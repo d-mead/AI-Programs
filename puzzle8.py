@@ -6,11 +6,96 @@ from collections import deque
 def main():
     global size
     size = 3
-    rand = randomsolvable()
-    print(rand)
-    path = solveFrom(rand)
-    print(len(path))
-    show_sequence(rand, path)
+
+    # 4 /////////
+    # rand = randomsolvable()
+    # print(rand)
+    # path = solveFrom(rand)
+    # if path == -1:
+    #     print("no path found")
+    # else:
+    #     print(len(path))
+    #     show_sequence(rand, path)
+    # ///////
+
+    #5
+    # fract, avg, long = test_many()
+    # print("fraction solvable:   " + str(round(fract, 3)))
+    # print("average length:      " + str(avg))
+    # print("longest path length: " + str(long))
+
+    #6
+    stat, length, path = get_longest_path()
+    print("hardest state:  " + str(stat))
+    print("moves required: " + str(length))
+    print("solution:       " + str(path))
+    show_sequence_reverse(stat, path[::-1])
+
+
+# 6
+
+def get_longest_path():
+    startState = "012345678"
+    start = Puzzle(startState, "")
+    fringe = deque()
+    fringe.append(start)
+    visited = {startState, }
+    longest = 0
+    longest_state = ""
+    longest_path = ""
+
+    while len(fringe) is not 0:
+        v = fringe.popleft()
+        children = getChildren(v.getState())
+        for child in children.keys():
+            if child not in visited:
+                path = v.getPath()+children.get(child, 0)
+                fringe.append(Puzzle(child, path))
+                if len(path) > longest:
+                    longest = len(path)
+                    longest_path = path
+                    longest_state = v.getState()
+                visited.add(child)
+    return longest_state, longest, longest_path
+
+def show_sequence_reverse(start, path):
+    print_puzzle(start)
+    state = start
+    for move in path:       # up: 1, right: 2, down: 3, left: 4
+        if move == "1":
+            state = moveDown(state)
+        elif move == "2":
+            state = moveLeft(state)
+        elif move == "3":
+            state = moveUp(state)
+        else:
+            state = moveRight(state)
+        print_puzzle(state)
+
+
+# 5
+
+def test_many():
+    global fraction_solvable, average_length
+    total = 20 #random.randint(100, 1000)
+    num_solvable = 0
+    total_length = 0
+    longest_length = 0
+    for x in range(1, 20+1):
+        path = solveFrom(randomstate())
+        if path != -1:
+            print("#" + str(x) + " of " + str(total) + ": " + path)
+            num_solvable += 1
+            total_length += len(path)
+            if len(path) > longest_length:
+                longest_length = len(path)
+        else:
+            print("#" + str(x) + " of " + str(total) + ": no path found")
+    average_length = int(total_length/total)
+    fraction_solvable = num_solvable/total
+    return fraction_solvable, average_length, longest_length
+
+# //////
 
 
 # 4
@@ -37,7 +122,7 @@ def solveFrom(state):
                 fringe.append(puz)
                 visited.add(child)
     if len(fringe) is 0:
-        return("no path exists")
+        return(-1)
 
 
 def show_sequence(start, path):
@@ -71,7 +156,29 @@ class Puzzle():
         return self.state
 
 
-# 2
+# 3 //////
+
+def randomstate():
+    return(''.join(random.sample("012345678", 9)))
+
+
+def randomsolvable():
+    state = "012345678"
+    for x in range (random.randint(20, 30), 300):
+        r = random.randint(1, 4)
+        if r is 1:
+            state = moveLeft(state)
+        elif r is 2:
+            state = moveRight(state)
+        elif r is 3:
+            state = moveUp(state)
+        else:
+            state = moveDown(state)
+    return state
+
+# //////
+
+# 2 //////
 
 
 def getAllWinnable():
@@ -94,36 +201,17 @@ def getChildren(state):
     return children
 # up: 1, right: 2, down: 3, left: 4
 
-# 3
+# //////
 
-def randomstate():
-    return(''.join(random.sample("012345678", 9)))
+# 1 //////
 
-
-def randomsolvable():
-    state = "012345678"
-    for x in range (random.randint(20, 30), 300):
-        r = random.randint(1, 4)
-        if r is 1:
-            state = moveLeft(state)
-        elif r is 2:
-            state = moveRight(state)
-        elif r is 3:
-            state = moveUp(state)
-        else:
-            state = moveDown(state)
-    return state
-
-
-# MARK: MOVE FUNCS
-
+    # move funcs
 
 def moveLeft(state):
     i = state.index("0")
-    x, y = coord(state)
-    if x is not 0:
+    if i % size is not 0:
         newState = state[:i-1] + state[i] + state[i-1] + state[i+1:]
-        #display(newState)
+        #print_puzzle(newState)
         return(newState)
     else:
         return(state)
@@ -131,10 +219,9 @@ def moveLeft(state):
 
 def moveRight(state):
     i = state.index("0")
-    x, y = coord(state)
-    if x is not size-1:
+    if i % size is not size-1:
         newState = state[:i] + state[i+1] + state[i] + state[i+2:]
-        #display(newState)
+        #print_puzzle(newState)
         return(newState)
     else:
         return(state)
@@ -142,13 +229,12 @@ def moveRight(state):
 
 def moveUp(state):
     i = state.index("0")
-    x, y = coord(state)
-    if y is not 0:
+    if int(i/size) is not 0:
         if(i-size > 0):
             newState = state[:max(0, i-size)] + state[i] + state[max(0, i-size)+1:i] + state[max(0, i-size)] + state[i+1:]
         else:
             newState =  state[i] + state[max(0, i - size) + 1:i] + state[max(0, i - size)] + state[i + 1:]
-        #display(newState)
+        #print_puzzle(newState)
         return(newState)
     else:
         return(state)
@@ -156,19 +242,17 @@ def moveUp(state):
 
 def moveDown(state):
     i = state.index("0")
-    x, y = coord(state)
-    if y is not size-1:
+    if int(i/size) is not size-1:
         if(i+size+1<=size*size-1):
             newState = state[:i] + state[i+size] + state[i+1:i+size] + state[i] + state[i+size+1:]
         else:
             newState = state[:i] + state[i + size] + state[i + 1:i + size] + state[i]
-        #display(newState)
+        #print_puzzle(newState)
         return(newState)
     else:
         return(state)
 
-
-# MARK: REQUIRED FUNCS
+    # //////
 
 
 def get_children(state):
@@ -181,30 +265,30 @@ def goal_test(state):
 
 
 def print_puzzle(state):
-    display(state)
-
-
-# MARK: MISC FUNCS
-
-
-def coord(state):
-    i = state.index("0")
-    x = i % size
-    y = int(i/size)
-    return (x, y)
-
-
-def display(state):
     for x in range(0, size):
         print(" ".join(state[x*size:(x+1)*size]))
     print("")
 
 
-def getStartState():
-    print("start state: " + sys.argv[1])
-    print("size: " + sys.argv[2])
+# def coord(state):
+#     i = state.index("0")
+#     x = i % size
+#     y = int(i/size)
+#     return (x, y)
 
-    return(sys.argv[1], int(sys.argv[2]))
 
+# def display(state):
+#     for x in range(0, size):
+#         print(" ".join(state[x*size:(x+1)*size]))
+#     print("")
+
+
+# def getStartState():
+#     print("start state: " + sys.argv[1])
+#     print("size: " + sys.argv[2])
+#
+#     return(sys.argv[1], int(sys.argv[2]))
+
+# //////
 
 main()
