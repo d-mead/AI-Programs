@@ -1,16 +1,30 @@
 import sys
 import random
 from collections import deque
+import time
 
 
 def main():
     global size
     size = 3
 
+    start = time.process_time()
+    rand = randomsolvable()
+    print(rand)
+    path = solve_dfs(rand)
+    if path == -1:
+        print("no path found")
+    else:
+        print(len(path))
+        show_sequence(rand, path)
+    end = time.process_time()
+    print("seconds to run: %s" % (end - start))
+
+
     # 4 /////////
     # rand = randomsolvable()
     # print(rand)
-    # path = solveFrom(rand)
+    # path = solve_bfs(rand)
     # if path == -1:
     #     print("no path found")
     # else:
@@ -25,12 +39,37 @@ def main():
     # print("longest path length: " + str(long))
 
     #6
-    stat, length, path = get_longest_path()
-    print("hardest state:  " + str(stat))
-    print("moves required: " + str(length))
-    print("solution:       " + str(path))
-    show_sequence_reverse(stat, path[::-1])
+    # stat, length, path = get_longest_path()
+    # print("hardest state:  " + str(stat))
+    # print("moves required: " + str(length))
+    # print("solution: ")
+    # print("")
+    # show_sequence_reverse(stat, path[::-1])
 
+
+# 7
+
+def solve_dfs(state):
+    startState = state
+    start = Puzzle(state, "")
+    fringe = deque()
+    fringe.append(start)
+    visited = {startState, }
+    paths = []
+
+    while len(fringe) is not 0:
+        v = fringe.pop()
+        visited.add(v.getState)
+        if goal_test(v.getState()):
+            return(v.getPath())
+        children = getChildren(v.getState())
+        for child in children.keys():
+            if child not in visited:
+                child_path = children.get(child, 0)
+                puz = Puzzle(child, v.getPath()+child_path)
+                fringe.append(puz)
+    if len(fringe) is 0:
+        return -1
 
 # 6
 
@@ -58,6 +97,21 @@ def get_longest_path():
                 visited.add(child)
     return longest_state, longest, longest_path
 
+
+# def reverse_path(path):
+#     new_path = ""
+#     for char in path[::-1]:
+#         if char == "1":
+#             new_path = new_path + "3"
+#         elif char == "2":
+#             new_path = new_path + "4"
+#         elif char == "3":
+#             new_path = new_path + "1"
+#         else:
+#             new_path = new_path + "2"
+#     return new_path
+
+
 def show_sequence_reverse(start, path):
     print_puzzle(start)
     state = start
@@ -82,7 +136,7 @@ def test_many():
     total_length = 0
     longest_length = 0
     for x in range(1, 20+1):
-        path = solveFrom(randomstate())
+        path = solve_bfs(randomstate())
         if path != -1:
             print("#" + str(x) + " of " + str(total) + ": " + path)
             num_solvable += 1
@@ -100,7 +154,7 @@ def test_many():
 
 # 4
 
-def solveFrom(state):
+def solve_bfs(state):
     startState = state
     start = Puzzle(state, "")
     fringe = deque()
@@ -110,8 +164,6 @@ def solveFrom(state):
 
     while len(fringe) is not 0:
         v = fringe.popleft()
-        if v.getState == "012345678":
-            print("arrived", len(v.getPath()))
         if goal_test(v.getState()):
             return(v.getPath())
         children = getChildren(v.getState())
