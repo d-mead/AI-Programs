@@ -1,8 +1,6 @@
 import sys
-import math
 import random
 from collections import deque
-import math
 
 
 def main():
@@ -10,13 +8,9 @@ def main():
     size = 3
     rand = randomsolvable()
     print(rand)
-    print(solveFrom(rand))
-    # start, size = getStartState()
-    # display(start)
-    # start = moveLeft(start)
-    # start = moveRight(start)
-    # start = moveUp(start)
-    # start = moveDown(start)
+    path = solveFrom(rand)
+    print(len(path))
+    show_sequence(rand, path)
 
 
 # 4
@@ -30,12 +24,11 @@ def solveFrom(state):
     paths = []
 
     while len(fringe) is not 0:
-        v = fringe.pop()
+        v = fringe.popleft()
         if v.getState == "012345678":
             print("arrived", len(v.getPath()))
         if goal_test(v.getState()):
-            print("Path found, length: " + str(len(v.getPath())))
-            paths.append(v.getPath())
+            return(v.getPath())
         children = getChildren(v.getState())
         for child in children.keys():
             if child not in visited:
@@ -44,15 +37,22 @@ def solveFrom(state):
                 fringe.append(puz)
                 visited.add(child)
     if len(fringe) is 0:
-        if len(paths) is not 0:
-            minIndex = 0
-            for num in paths:
-                if len(num) < len(paths[minIndex]):
-                    minIndex = num.index(paths)
-            print(paths[minIndex])
-            return
+        return("no path exists")
+
+
+def show_sequence(start, path):
+    print_puzzle(start)
+    state = start
+    for move in path:       # up: 1, right: 2, down: 3, left: 4
+        if move == "1":
+            state = moveUp(state)
+        elif move == "2":
+            state = moveRight(state)
+        elif move == "3":
+            state = moveDown(state)
         else:
-            return("no path exists")
+            state = moveLeft(state)
+        print_puzzle(state)
 
 
 class Puzzle():
