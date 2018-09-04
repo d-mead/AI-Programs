@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac51eb1-d9fa-49b2-88ef-715b8d84aa07" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Project1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ATBS practice/exercisesPart2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/puzzle8.py" beforeDir="false" afterPath="$PROJECT_DIR$/puzzle8.py" afterDir="false" />
     </list>
@@ -46,28 +44,29 @@
     <session id="-1151945877">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1453" />
+          <entry key="py" value="3099" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="2" />
+          <entry key="Python" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="2" />
+          <entry key="py" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1453" />
+          <entry key="Python" value="3099" />
         </counts>
       </usages-collector>
     </session>
@@ -91,7 +90,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exercisesPart1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
+            <state relative-caret-position="15">
               <caret line="110" selection-start-line="110" selection-end-line="110" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -100,29 +99,33 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ATBS practice/exercisesPart2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="38" column="3" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/puzzle8.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="203">
+              <caret line="39" column="19" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1535745245461" expanded="true" signature="315:634" ph="..." />
-                <marker date="1535745245461" expanded="true" signature="315:636" ph="..." />
-                <marker date="1535745245461" expanded="true" signature="659:765" ph="..." />
-                <marker date="1535745245461" expanded="true" signature="804:2140" ph="..." />
-                <marker date="1535745245461" expanded="true" signature="1999:2026" ph="..." />
-                <marker date="1535745245461" expanded="true" signature="2072:2075" ph="..." />
+                <marker date="1535935919580" expanded="true" signature="956:1277" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+        <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.2/python_stubs/-1199943126/builtins.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="17835">
+              <caret line="1189" column="8" selection-start-line="1189" selection-start-column="8" selection-end-line="1189" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -155,6 +158,8 @@
         <option value="$PROJECT_DIR$/chapter4.py" />
         <option value="$PROJECT_DIR$/chapter5.py" />
         <option value="$PROJECT_DIR$/exercisesPart1.py" />
+        <option value="$PROJECT_DIR$/exerciesPart2.p.py" />
+        <option value="$PROJECT_DIR$/ATBS practice/exercisesPart2.py" />
         <option value="$PROJECT_DIR$/puzzle8.py" />
       </list>
     </option>
@@ -169,6 +174,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -176,16 +182,10 @@
               <item name="AIPrograms" type="b2602c69:ProjectViewProjectNode" />
               <item name="AIPrograms" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="AIPrograms" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AIPrograms" type="462c0819:PsiDirectoryNode" />
-              <item name="ATBS practice" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -205,27 +205,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.puzzle8">
-    <configuration name="chapter3" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Project1" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/chapter3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="chapter4" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Project1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -289,6 +268,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="exercisesPart2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Project1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ATBS practice" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ATBS practice/exercisesPart2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="puzzle8" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Project1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -311,19 +311,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.chapter3" />
       <item itemvalue="Python.chapter4" />
       <item itemvalue="Python.chapter5" />
       <item itemvalue="Python.exercisesPart1" />
       <item itemvalue="Python.puzzle8" />
+      <item itemvalue="Python.exercisesPart2" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.puzzle8" />
+        <item itemvalue="Python.exercisesPart2" />
         <item itemvalue="Python.exercisesPart1" />
         <item itemvalue="Python.chapter5" />
         <item itemvalue="Python.chapter4" />
-        <item itemvalue="Python.chapter3" />
       </list>
     </recent_temporary>
   </component>
@@ -351,14 +351,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18111347" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.33493975" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33493975" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
@@ -375,65 +376,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>17</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>20</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>22</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>24</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>23</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>27</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>26</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>25</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>63</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/puzzle8.py</url>
-          <line>40</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="fringe" language="Python" />
@@ -444,12 +386,12 @@
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>getChildren()</expression-string>
+        <expression-string>visited</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>visited</expression-string>
+        <expression-string>getChildren()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -467,6 +409,14 @@
     <entry file="file://$PROJECT_DIR$/chapter1.py" />
     <entry file="file://$PROJECT_DIR$/chapter5.py" />
     <entry file="file://$PROJECT_DIR$/chapter4.py" />
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exerciesPart2.p.py" />
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -479,7 +429,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/exercisesPart1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
+        <state relative-caret-position="15">
           <caret line="110" selection-start-line="110" selection-end-line="110" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -487,25 +437,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+    <entry file="file://$PROJECT_DIR$/ATBS practice/exercisesPart2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="570">
+          <caret line="38" column="3" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.2/python_stubs/-1199943126/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17835">
+          <caret line="1189" column="8" selection-start-line="1189" selection-start-column="8" selection-end-line="1189" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/puzzle8.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="203">
+          <caret line="39" column="19" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1535745245461" expanded="true" signature="315:634" ph="..." />
-            <marker date="1535745245461" expanded="true" signature="315:636" ph="..." />
-            <marker date="1535745245461" expanded="true" signature="659:765" ph="..." />
-            <marker date="1535745245461" expanded="true" signature="804:2140" ph="..." />
-            <marker date="1535745245461" expanded="true" signature="1999:2026" ph="..." />
-            <marker date="1535745245461" expanded="true" signature="2072:2075" ph="..." />
+            <marker date="1535935919580" expanded="true" signature="956:1277" ph="..." />
           </folding>
         </state>
       </provider>
