@@ -8,14 +8,68 @@ import math
 def main():
     global size
     size = 3
-    print(randomstate())
-    print(randomsolvable())
+    rand = randomsolvable()
+    print(rand)
+    print(solveFrom(rand))
     # start, size = getStartState()
     # display(start)
     # start = moveLeft(start)
     # start = moveRight(start)
     # start = moveUp(start)
     # start = moveDown(start)
+
+
+# 4
+
+def solveFrom(state):
+    startState = state
+    start = Puzzle(state, "")
+    fringe = deque()
+    fringe.append(start)
+    visited = {startState, }
+    paths = []
+
+    while len(fringe) is not 0:
+        v = fringe.pop()
+        if v.getState == "012345678":
+            print("arrived", len(v.getPath()))
+        if goal_test(v.getState()):
+            print("Path found, length: " + str(len(v.getPath())))
+            paths.append(v.getPath())
+        children = getChildren(v.getState())
+        for child in children.keys():
+            if child not in visited:
+                child_path = children.get(child, 0)
+                puz = Puzzle(child, v.getPath()+child_path)
+                fringe.append(puz)
+                visited.add(child)
+    if len(fringe) is 0:
+        if len(paths) is not 0:
+            minIndex = 0
+            for num in paths:
+                if len(num) < len(paths[minIndex]):
+                    minIndex = num.index(paths)
+            print(paths[minIndex])
+            return
+        else:
+            return("no path exists")
+
+
+class Puzzle():
+
+    def __init__(self, s, p):
+        self.state = s
+        self.path = p
+
+    def addMove(self, move):
+        self.path = self.path + move
+
+    def getPath(self):
+        return self.path
+
+    def getState(self):
+        return self.state
+
 
 # 2
 
@@ -36,12 +90,11 @@ def getAllWinnable():
 
 
 def getChildren(state):
-    children = {moveLeft(state), moveDown(state), moveRight(state), moveUp(state)}
+    children = {moveUp(state): "1", moveRight(state): "2", moveDown(state): "3", moveLeft(state): "4"}
     return children
-
+# up: 1, right: 2, down: 3, left: 4
 
 # 3
-
 
 def randomstate():
     return(''.join(random.sample("012345678", 9)))
@@ -123,7 +176,7 @@ def get_children(state):
 
 
 def goal_test(state):
-    if state is "012345678":
+    if state == '012345678':
         return True
 
 
