@@ -9,7 +9,23 @@ def main():
     size = 3
 
     start = time.process_time()
+
     rand = randomsolvable()
+    print(rand)
+    path = solve_bfs(rand)
+    if path == -1:
+        print("no path found")
+    else:
+        print(len(path))
+        show_sequence(rand, path)
+
+
+    end = time.process_time()
+    print("seconds to run: %s" % (end - start))
+
+
+    start = time.process_time()
+
     print(rand)
     path = solve_dfs(rand)
     if path == -1:
@@ -17,6 +33,7 @@ def main():
     else:
         print(len(path))
         show_sequence(rand, path)
+
     end = time.process_time()
     print("seconds to run: %s" % (end - start))
 
@@ -52,25 +69,49 @@ def main():
 def solve_dfs(state):
     startState = state
     start = Puzzle(state, "")
-    fringe = deque()
-    fringe.append(start)
+    fringe = [start]
     visited = {startState, }
     paths = []
+    max_length = 31
 
     while len(fringe) is not 0:
         v = fringe.pop()
         visited.add(v.getState)
-        if goal_test(v.getState()):
-            return(v.getPath())
-        children = getChildren(v.getState())
-        for child in children.keys():
-            if child not in visited:
-                child_path = children.get(child, 0)
-                puz = Puzzle(child, v.getPath()+child_path)
-                fringe.append(puz)
+        if len(v.getPath()) <= max_length:
+            visited.add(v.getState)
+            if goal_test(v.getState()):
+                return v.getPath()
+            children = getChildren(v.getState())
+            for child in children.keys():
+                if child not in visited:
+                    child_path = children.get(child, 0)
+                    puz = Puzzle(child, v.getPath()+child_path)
+                    fringe.append(puz)
+                    if(len(visited))>181440:
+                        print("over 181440")
     if len(fringe) is 0:
         return -1
 
+
+def hardest_length():
+    startState = "012345678"
+    start = Puzzle(startState, "")
+    fringe = deque()
+    fringe.append(start)
+    visited = {startState, }
+    longest = 0
+
+    while len(fringe) is not 0:
+        v = fringe.popleft()
+        children = getChildren(v.getState())
+        for child in children.keys():
+            if child not in visited:
+                path = v.getPath() + children.get(child, 0)
+                fringe.append(Puzzle(child, path))
+                if len(path) > longest:
+                    longest = len(path)
+                visited.add(child)
+    return longest
 # 6
 
 def get_longest_path():
@@ -250,6 +291,7 @@ def getAllWinnable():
 
 def getChildren(state):
     children = {moveUp(state): "1", moveRight(state): "2", moveDown(state): "3", moveLeft(state): "4"}
+    children.pop(state, None)
     return children
 # up: 1, right: 2, down: 3, left: 4
 
