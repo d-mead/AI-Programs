@@ -106,15 +106,16 @@ import math
 #     print("prime")
 
 #13
-import PIL
-from PIL import Image
-if sys.argv[1].lower().endswith(".jpg" or ".png" or ".jpeg"):
-    im = Image.open(sys.argv[1])
-    width, height = im.size
-    print("width: " + str(width) + ", height: " + str(height))
-else:
-    print("not an image")
+# import PIL
+# from PIL import Image
+# if sys.argv[1].lower().endswith(".jpg" or ".png" or ".jpeg"):
+#     im = Image.open(sys.argv[1])
+#     width, height = im.size
+#     print("width: " + str(width) + ", height: " + str(height))
+# else:
+#     print("not an image")
 
 #14
 # s = '"Don'"'"'t quote me," she said.'
 # print(s)
+

@@ -8,7 +8,7 @@ for x in myCat.items():
     print(x)
 if 'fat' in myCat.values():
     print('yes')
-print("my cat's color is " + myCat.get('color', 0))
+print("my cat's color is " + myCat.get('color'))
 print("my cat's eye color is " + myCat.get("eyeColor", "problem"))
 
 message = "I will uphold personal and academic integrity in the TJHSST Community"
