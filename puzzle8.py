@@ -8,34 +8,38 @@ def main():
     global size
     size = 3
 
-    start = time.process_time()
-
-    rand = randomsolvable()
-    print(rand)
-    path = solve_bfs(rand)
-    if path == -1:
-        print("no path found")
-    else:
-        print(len(path))
-        show_sequence(rand, path)
-
-
-    end = time.process_time()
-    print("seconds to run: %s" % (end - start))
-
-
-    start = time.process_time()
-
-    print(rand)
-    path = solve_dfs(rand)
-    if path == -1:
-        print("no path found")
-    else:
-        print(len(path))
-        show_sequence(rand, path)
-
-    end = time.process_time()
-    print("seconds to run: %s" % (end - start))
+    #7
+    # start = time.process_time()
+    #
+    # rand = randomsolvable()
+    # print(rand)
+    # path = solve_bfs(rand)
+    # if path == -1:
+    #     print("no path found")
+    # else:
+    #     print(len(path))
+    #     print(path)
+    #     show_sequence(rand, path)
+    #
+    #
+    # end = time.process_time()
+    # print("seconds to run: %s" % (end - start))
+    #
+    #
+    # start = time.process_time()
+    #
+    # print(rand)
+    # path = solve_dfs(rand)
+    # if path == -1:
+    #     print("no path found")
+    # else:
+    #     print(len(path))
+    #     print(path)
+    #     show_sequence(rand, path)
+    # end = time.process_time()
+    # print(len(path))
+    # print(path)
+    # print("seconds to run: %s" % (end - start))
 
 
     # 4 /////////
@@ -50,10 +54,10 @@ def main():
     # ///////
 
     #5
-    # fract, avg, long = test_many()
-    # print("fraction solvable:   " + str(round(fract, 3)))
-    # print("average length:      " + str(avg))
-    # print("longest path length: " + str(long))
+    fract, avg, long = test_many()
+    print("fraction solvable:   " + str(round(fract, 3)))
+    print("average length:      " + str(avg))
+    print("longest path length: " + str(long))
 
     #6
     # stat, length, path = get_longest_path()
@@ -69,26 +73,21 @@ def main():
 def solve_dfs(state):
     startState = state
     start = Puzzle(state, "")
-    fringe = [start]
+    fringe = deque()
+    fringe.append(start)
     visited = {startState, }
-    paths = []
-    max_length = 31
 
     while len(fringe) is not 0:
         v = fringe.pop()
-        visited.add(v.getState)
-        if len(v.getPath()) <= max_length:
-            visited.add(v.getState)
-            if goal_test(v.getState()):
-                return v.getPath()
-            children = getChildren(v.getState())
-            for child in children.keys():
-                if child not in visited:
-                    child_path = children.get(child, 0)
-                    puz = Puzzle(child, v.getPath()+child_path)
-                    fringe.append(puz)
-                    if(len(visited))>181440:
-                        print("over 181440")
+        visited.add(v.getState())
+        if goal_test(v.getState()):
+            print("goal hit")
+            return v.getPath()
+        children = getChildren(v.getState())
+        for child in children.keys():
+            if child not in visited:
+                puz = Puzzle(child, v.getPath()+children.get(child, 0))
+                fringe.append(puz)
     if len(fringe) is 0:
         return -1
 
@@ -172,11 +171,11 @@ def show_sequence_reverse(start, path):
 
 def test_many():
     global fraction_solvable, average_length
-    total = 20 #random.randint(100, 1000)
+    total = 50 #random.randint(100, 1000)
     num_solvable = 0
     total_length = 0
     longest_length = 0
-    for x in range(1, 20+1):
+    for x in range(1, total+1):
         path = solve_bfs(randomstate())
         if path != -1:
             print("#" + str(x) + " of " + str(total) + ": " + path)
@@ -202,18 +201,20 @@ def solve_bfs(state):
     fringe.append(start)
     visited = {startState, }
     paths = []
+    max_length = 31
 
     while len(fringe) is not 0:
         v = fringe.popleft()
-        if goal_test(v.getState()):
-            return(v.getPath())
-        children = getChildren(v.getState())
-        for child in children.keys():
-            if child not in visited:
-                child_path = children.get(child, 0)
-                puz = Puzzle(child, v.getPath()+child_path)
-                fringe.append(puz)
-                visited.add(child)
+        if len(v.getPath()) <= max_length:
+            if goal_test(v.getState()):
+                return(v.getPath())
+            children = getChildren(v.getState())
+            for child in children.keys():
+                if child not in visited:
+                    child_path = children.get(child, 0)
+                    puz = Puzzle(child, v.getPath()+child_path)
+                    fringe.append(puz)
+                    visited.add(child)
     if len(fringe) is 0:
         return(-1)
 
