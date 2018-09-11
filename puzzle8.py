@@ -8,7 +8,11 @@ def main():
     global size
     size = 3
 
-    #7
+    # 9
+
+    graph()
+
+    # 7
     # start = time.process_time()
     #
     # rand = randomsolvable()
@@ -54,10 +58,10 @@ def main():
     # ///////
 
     #5
-    fract, avg, long = test_many()
-    print("fraction solvable:   " + str(round(fract, 3)))
-    print("average length:      " + str(avg))
-    print("longest path length: " + str(long))
+    # fract, avg, long = test_many()
+    # print("fraction solvable:   " + str(round(fract, 3)))
+    # print("average length:      " + str(avg))
+    # print("longest path length: " + str(long))
 
     #6
     # stat, length, path = get_longest_path()
@@ -66,6 +70,60 @@ def main():
     # print("solution: ")
     # print("")
     # show_sequence_reverse(stat, path[::-1])
+
+# 9
+
+def graph():
+    start = "012345678"
+    fringe = deque()
+    fringe.append(start)
+    next_fringe = deque()
+    visited = {start, }
+    dict = {}
+    done = False
+    count = 1
+
+    while not done:
+        while len(fringe) is not 0:
+            v = fringe.pop()
+            for child in getChildren(v):
+                if child not in visited:
+                    next_fringe.append(child)
+                    visited.add(child)
+        if len(next_fringe) is 0:
+            done = True
+        else:
+            dict[count] = len(next_fringe)
+            count += 1
+            while len(next_fringe) is not 0:
+                fringe.append(next_fringe.popleft())
+
+    print(dict)
+
+    # visited = {"012345678", }
+    # current_visited = set()
+    # current_unchecked = deque()
+    # next_unchecked = deque()
+    # start = "012345678"
+    # current_unchecked.append(start)
+    # dict = {}
+    # for x in range(1, 32):
+    #     print(x)
+    #     while len(current_unchecked) is not 0:
+    #         cur = current_unchecked.popleft()
+    #         children = getChildren(cur)
+    #         current_visited = current_visited.union(children.keys())
+    #         current_visited = current_visited.difference(visited)
+    #         for child in children.keys():
+    #             next_unchecked.append(child)
+    #         dict[x] = set(current_visited)
+    #     visited = visited | current_visited
+    #     while len(next_unchecked) is not 0:
+    #         current_unchecked.append(next_unchecked.popleft())
+    #     current_visited.clear()
+    #     print(x)
+    # print(dict)
+
 
 
 # 7
@@ -111,7 +169,9 @@ def hardest_length():
                     longest = len(path)
                 visited.add(child)
     return longest
+
 # 6
+
 
 def get_longest_path():
     startState = "012345678"
@@ -136,20 +196,6 @@ def get_longest_path():
                     longest_state = v.getState()
                 visited.add(child)
     return longest_state, longest, longest_path
-
-
-# def reverse_path(path):
-#     new_path = ""
-#     for char in path[::-1]:
-#         if char == "1":
-#             new_path = new_path + "3"
-#         elif char == "2":
-#             new_path = new_path + "4"
-#         elif char == "3":
-#             new_path = new_path + "1"
-#         else:
-#             new_path = new_path + "2"
-#     return new_path
 
 
 def show_sequence_reverse(start, path):
@@ -205,16 +251,15 @@ def solve_bfs(state):
 
     while len(fringe) is not 0:
         v = fringe.popleft()
-        if len(v.getPath()) <= max_length:
-            if goal_test(v.getState()):
-                return(v.getPath())
-            children = getChildren(v.getState())
-            for child in children.keys():
-                if child not in visited:
-                    child_path = children.get(child, 0)
-                    puz = Puzzle(child, v.getPath()+child_path)
-                    fringe.append(puz)
-                    visited.add(child)
+        if goal_test(v.getState()):
+            return(v.getPath())
+        children = getChildren(v.getState())
+        for child in children.keys():
+            if child not in visited:
+                child_path = children.get(child, 0)
+                puz = Puzzle(child, v.getPath()+child_path)
+                fringe.append(puz)
+                visited.add(child)
     if len(fringe) is 0:
         return(-1)
 
