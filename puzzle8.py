@@ -1,80 +1,70 @@
 import sys
 import random
+#import xlsxwriter
 from collections import deque
 import time
 
 
 def main():
     global size
-    size = 3
+    global goal
+    import time
 
-    # 9
-
-    graph()
-
-    # 7
-    # start = time.process_time()
-    #
-    # rand = randomsolvable()
-    # print(rand)
-    # path = solve_bfs(rand)
-    # if path == -1:
-    #     print("no path found")
-    # else:
-    #     print(len(path))
-    #     print(path)
-    #     show_sequence(rand, path)
-    #
-    #
-    # end = time.process_time()
-    # print("seconds to run: %s" % (end - start))
-    #
-    #
-    # start = time.process_time()
-    #
-    # print(rand)
-    # path = solve_dfs(rand)
-    # if path == -1:
-    #     print("no path found")
-    # else:
-    #     print(len(path))
-    #     print(path)
-    #     show_sequence(rand, path)
-    # end = time.process_time()
-    # print(len(path))
-    # print(path)
-    # print("seconds to run: %s" % (end - start))
+    filename = "sample.txt"
+    file = open(filename, "r")
+    lines = file.readlines()
+    sum_time = 0
+    for line in lines:
+        sep = line.split(" ")
+        size = int(sep[0])
+        state = sep[1]
+        goal = sep[2].replace("\n", "")
+        start = time.process_time()
+        path = solve_bfs(state)
+        end = time.process_time()
+        sum_time = sum_time + (end-start)
+        if path == -1:
+            print("No solution %s" % (end - start))
+        else:
+            print(len(path), (end - start))
+    print("Total number of seconds to process all input pairs: %s" % sum_time)
 
 
-    # 4 /////////
-    # rand = randomsolvable()
-    # print(rand)
-    # path = solve_bfs(rand)
-    # if path == -1:
-    #     print("no path found")
-    # else:
-    #     print(len(path))
-    #     show_sequence(rand, path)
-    # ///////
 
-    #5
-    # fract, avg, long = test_many()
-    # print("fraction solvable:   " + str(round(fract, 3)))
-    # print("average length:      " + str(avg))
-    # print("longest path length: " + str(long))
 
-    #6
-    # stat, length, path = get_longest_path()
-    # print("hardest state:  " + str(stat))
-    # print("moves required: " + str(length))
-    # print("solution: ")
-    # print("")
-    # show_sequence_reverse(stat, path[::-1])
+# 11
+
+def parityCheck(state):
+    count = 0
+    i = state.index("0")
+    state = state.replace("0", "")
+    for char in state:
+        for check in state[state.index(char):]:
+            if char > check:
+                count = count + 1
+    #print(count)
+    if size % 2 == 1:
+        if count % 2 == 0:
+            return 0
+        else:
+            return 1
+    else:
+        if (i // size) % 2 == 1:
+            if count % 2 == 0:
+                return 1
+            else:
+                return 0
+        else:
+            if count % 2 == 1:
+                return 1
+            else:
+                return 0
+
 
 # 9
 
 def graph():
-    start = "012345678"
+    start = "123405678"
     fringe = deque()
     fringe.append(start)
     next_fringe = deque()
@@ -100,33 +90,16 @@ def graph():
 
     print(dict)
 
-    # visited = {"012345678", }
-    # current_visited = set()
-    # current_unchecked = deque()
-    # next_unchecked = deque()
-    # start = "012345678"
-    # current_unchecked.append(start)
-    # dict = {}
-    # for x in range(1, 32):
-    #     print(x)
-    #     while len(current_unchecked) is not 0:
-    #         cur = current_unchecked.popleft()
-    #         children = getChildren(cur)
-    #         current_visited = current_visited.union(children.keys())
-    #         current_visited = current_visited.difference(visited)
-    #         for child in children.keys():
-    #             next_unchecked.append(child)
-    #         dict[x] = set(current_visited)
-    #     visited = visited | current_visited
-    #     while len(next_unchecked) is not 0:
-    #         current_unchecked.append(next_unchecked.popleft())
-    #     current_visited.clear()
-    #     print(x)
-    # print(dict)
+    workbook = xlsxwriter.Workbook('Spreadsheet2.xlsx')
+    worksheet = workbook.add_worksheet()
 
+    for r in range(1, 32):
+        worksheet.write(r, 0, dict.get(r-1))
 
+    workbook.close()
 
 # 7
+
 
 def solve_dfs(state):
     startState = state
@@ -134,6 +107,9 @@ def solve_dfs(state):
     fringe = deque()
     fringe.append(start)
     visited = {startState, }
+
+    if parityCheck(state) == 1:
+        return -1
 
     while len(fringe) is not 0:
         v = fringe.pop()
@@ -217,13 +193,15 @@ def show_sequence_reverse(start, path):
 
 def test_many():
     global fraction_solvable, average_length
+    dict = getAllWinnableDict()
     total = 50 #random.randint(100, 1000)
     num_solvable = 0
     total_length = 0
     longest_length = 0
     for x in range(1, total+1):
-        path = solve_bfs(randomstate())
-        if path != -1:
+        rand = randomstate()
+        if rand in getAllWinnableDict().keys():
+            path = getAllWinnableDict().get(rand)
             print("#" + str(x) + " of " + str(total) + ": " + path)
             num_solvable += 1
             total_length += len(path)
@@ -234,6 +212,23 @@ def test_many():
     average_length = int(total_length/total)
     fraction_solvable = num_solvable/total
     return fraction_solvable, average_length, longest_length
+
+def getAllWinnableDict():
+    startState = "012345678"
+    start = Puzzle(startState, "")
+    fringe = deque()
+    fringe.append(start)
+    visited = {startState: 0, }
+
+    while len(fringe) is not 0:
+        v = fringe.popleft()
+        children = getChildren(v.getState())
+        for child in children.keys():
+            if child not in visited.keys():
+                puz = Puzzle(child, v.getPath() + children.get(child, 0))
+                fringe.append(puz)
+                visited[child] = puz.getPath()
+    return visited
 
 # //////
 
@@ -249,10 +244,13 @@ def solve_bfs(state):
     paths = []
     max_length = 31
 
+    if parityCheck(state) == 1:
+        return -1
+
     while len(fringe) is not 0:
         v = fringe.popleft()
         if goal_test(v.getState()):
-            return(v.getPath())
+            return v.getPath()
         children = getChildren(v.getState())
         for child in children.keys():
             if child not in visited:
@@ -261,7 +259,7 @@ def solve_bfs(state):
                 fringe.append(puz)
                 visited.add(child)
     if len(fringe) is 0:
-        return(-1)
+        return -1
 
 
 def show_sequence(start, path):
@@ -400,7 +398,7 @@ def get_children(state):
 
 
 def goal_test(state):
-    if state == '012345678':
+    if state == goal:
         return True
 
 
@@ -409,26 +407,74 @@ def print_puzzle(state):
         print(" ".join(state[x*size:(x+1)*size]))
     print("")
 
-
-# def coord(state):
-#     i = state.index("0")
-#     x = i % size
-#     y = int(i/size)
-#     return (x, y)
-
-
-# def display(state):
-#     for x in range(0, size):
-#         print(" ".join(state[x*size:(x+1)*size]))
-#     print("")
-
-
-# def getStartState():
-#     print("start state: " + sys.argv[1])
-#     print("size: " + sys.argv[2])
-#
-#     return(sys.argv[1], int(sys.argv[2]))
-
-# //////
-
 main()
+
+
+# 11
+    # rand = randomstate()
+    # print(rand)
+    # print(parityCheck(rand))
+
+    # 9
+
+    # graph()
+
+    # 7
+    # start = time.process_time()
+    #
+    # rand = randomstate()
+    # print(rand)
+    # path = solve_bfs(rand)
+    # if path == -1:
+    #     print("no path found")
+    # else:
+    #     print(len(path))
+    #     print(path)
+    #     show_sequence(rand, path)
+    #
+    #
+    # end = time.process_time()
+    # print("seconds to run: %s" % (end - start))
+    #
+    #
+    # start = time.process_time()
+    #
+    # print(rand)
+    # path = solve_dfs(rand)
+    # if path == -1:
+    #     print("no path found")
+    # else:
+    #     print(len(path))
+    #     print(path)
+    #     show_sequence(rand, path)
+    # end = time.process_time()
+    # if path != -1:
+    #     print(len(path))
+    #     print(path)
+    # print("seconds to run: %s" % (end - start))
+
+
+    # 4 /////////
+    # rand = randomsolvable()
+    # print(rand)
+    # path = solve_bfs(rand)
+    # if path == -1:
+    #     print("no path found")
+    # else:
+    #     print(len(path))
+    #     show_sequence(rand, path)
+    # ///////
+
+    #5
+    # fract, avg, long = test_many()
+    # print("fraction solvable:   " + str(round(fract, 3)))
+    # print("average length:      " + str(avg))
+    # print("longest path length: " + str(long))
+
+    #6
+    # stat, length, path = get_longest_path()
+    # print("hardest state:  " + str(stat))
+    # print("moves required: " + str(length))
+    # print("solution: ")
+    # print("")
+    # show_sequence_reverse(stat, path[::-1])
