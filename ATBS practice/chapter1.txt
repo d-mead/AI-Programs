@@ -1,0 +1,861 @@
+<html xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<title>Chapter 1: Chapter Outline</title>
+<LINK REL="stylesheet" TYPE="text/css" HREF="http://bcs.bfwpub.com/bcs4_empty_shell_bsm/css/common.css">
+</head>
+<body bgcolor="#FFFFFF" lang=EN-US>
+<table width="100%" border="0" cellspacing="6" cellpadding="0">
+  <tr>
+    <td><p><strong>Chapter 1: Chapter Outline</strong></p></td>
+  </tr>
+  <tr>
+    <td>The following annotated chapter outline will  help you review the major topics covered in this chapter.</td>
+  </tr>
+  <tr>
+    <td><strong>Instructions:</strong> Review the outline to recall events and their relationships as presented in the  chapter. Return to skim any sections that seem unfamiliar.</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="6" cellpadding="0">
+  <tr>
+    <td colspan="4"><p><strong>I.  The Native American Experience</strong></p></td>
+  </tr>
+  <tr>
+    <td width="1%">&nbsp;</td>
+    <td width="2%" align="center" valign="top">A.</td>
+    <td colspan="2"><p>The First Americans</p></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td width="2%" align="center" valign="top">1.</td>
+    <td> The first people to live in the Western  Hemisphere were small bands of tribal migrants from Asia.  They followed animal herds over land and by sea over twenty thousand years ago,  when the last Ice Age created a 100-mile-wide land bridge over the Bering  Strait, connecting Siberia and Alaska.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td>Glacial melting then submerged the land bridge  and created the Bering Strait, reducing contact between peoples in North  America and Asia for three hundred  generations.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td>Anthropologists also agree that a second wave of  migrants, the ancestors of the Navajos and the Apaches, crossed the narrow Bering Strait in boats approximately eight thousand years  ago.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td>A third migration around five thousand years ago  brought the ancestors of the Aleut and Inuit peoples, the Eskimos, to North America.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td>For centuries, Native Americans were  hunter-gatherers; around 6000 b.c.  many societies developed farming based on corn, beans, and squash.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td>Agricultural surplus led to populous, urbanized,  and wealthy societies in Mexico,  Peru, and the Mississippi River Valley.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">B.</td>
+    <td colspan="2">The Mayas and the Aztecs</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">1.</td>
+    <td>The flowering of civilization in Mesoamerica began among the Olmec people, who lived along  the Gulf Coast of Mexico around 700 b.c.  Subsequently the Mayan peoples of the Yucat&aacute;n  Peninsula and Guatemala built  large urban religious centers.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td>An elite class claiming descent from the gods  ruled Mayan society and lived off the goods and taxes extracted from peasant  families.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td>Mayan astronomers created a calendar that  recorded historical events and predicted eclipses of the sun and the moon. The  Mayas also developed hieroglyphic writing.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td>Mayan skills in astronomy and writing increased  the authority and power of the class of warriors and priests that ruled Mayan  society, and provided the people with a sense of history and identity.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td>Beginning around a.d.  800, Mayan civilization declined, perhaps caused by a two-century-long dry  period that produced an economic crisis, social unrest, and population  dispersal.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td>By a.d.  900 many Mayan religious centers were abandoned. The few remaining city-states  would resist the Spanish invasion during the 1520s.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">7.</td>
+    <td>A second major Mesoamerican civilization  developed around the city of Teotihuac&aacute;n (pop.  100,000) in central Mexico.  By a.d. 800 Teotihuac&aacute;n had also  declined, probably because of a long-term drought and recurrent invasions by  seminomadic warrior peoples.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">8.</td>
+    <td>In  a.d. 1325 the Aztecs built the  lake city of Tenochtitl&aacute;n (Mexico   City), a base from where they learned the settled ways of resident  peoples, and established a complex hierarchical social order that subjugated  most of central Mexico  through invasion, economic tribute, and human sacrifice.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">9.</td>
+    <td>Aztec  priests and warrior-nobles ruled over twenty clans of free Aztec commoners who farmed communally owned land.  Aztec slaves and serfs also labored on elite private estates.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">10.</td>
+    <td>By a.d.  1500 Tenochtitl&aacute;n had grown into a metropolis of over 200,000 inhabitants, and  the Aztecs&rsquo; wealth, strong institutions, and military power posed a formidable  challenge to any adversary.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">C.</td>
+    <td colspan="2">The  Indians of the North</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">1.</td>
+    <td>The Indians north of the Rio Grande had less complex and coercive  societies, and lacked occupational diversity, social hierarchy, and strong  state institutions.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td>Most of these societies were self-governing  tribes composed of clans, groups of related families that traced their lineage  to a real or legendary common ancestor.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td>By a.d.  100 the Hopewells in present-day Ohio had  spread their influence from Louisiana to Wisconsin by organizing  themselves in large villages, establishing extensive trade networks, and  increasing their food supply through domesticating plants.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td>Hopewell trade networks were impressive. They imported  obsidian from the Rocky Mountains, copper from the Great Lakes, and pottery and  marine shells from the Gulf of Mexico.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td>The Hopewells built large burial mounds and  surrounded them with extensive circular, rectangular, or octagonal earthworks  that in some cases still survive. Skilled Hopewell  artisans fashioned striking ornaments to bury with the dead.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td>A second series of complex cultures developed in  the Southwest. The Hohokam and Mogollon cultures developed by a.d. 600, and the Anasazi by 900. Master  architects, the Anasazi built residential-ceremonial villages in steep cliffs,  a pueblo in Chaco   Canyon that housed one  thousand people, and 400 miles of straight roads.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">7.</td>
+    <td>The Hohokam people along the border of  present-day Arizona and New Mexico used irrigation to grow crops,  fashioned fine pottery, and worshiped their gods on Mesoamerican-like platform  mounds; by the year 1000 they were living in elaborate multiroom stone  structures called <strong>pueblos</strong>.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">8.</td>
+    <td>Drought brought on soil exhaustion and the  collapse of all of these cultures after 1150. Cities like Chaco Canyon  were abandoned, and the population dispersed to smaller settlements. The  descendants of these peoples&mdash;including the Acomas,  Zunis, and Hopis&mdash;later built strong but smaller village societies better suited  to the dry and unpredictable climate of the American Southwest.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">9.</td>
+    <td>The  advanced farming technology of Mesoamerica spread into the Mississippi River Valley  around a.d. 800; the Mississippian  civilization was the last large-scale culture to emerge north of the Rio Grande.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">10.</td>
+    <td>By 1150 the largest city, Cahokia, near  present-day St. Louis,  boasted a population of 15,000 to 20,000 and more than one hundred temple  mounds, one of them as large as the great Egyptian pyramids. As in Mesoamerica, the tribute paid by peasant farmers  supported a privileged class of nobles and priests who waged war against  neighboring chiefdoms, patronized artisans, and claimed descent from the sun  god.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">11.</td>
+    <td>By 1350 overpopulation, urban disease, and  warfare led to the decline of the Mississippian civilization. The large  population had overburdened the environment, depleting nearby forests and herds  of deer. Still, Mississippian institutions and practices endured for centuries.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">12.</td>
+    <td>In  the Muskogean-speaking societies&mdash;and among the Algonquian-speaking peoples who  lived farther north and to the east, in present-day Virginia&mdash;farming became the work of women.  While the men hunted and fished, the women used flint hoes to raise corn,  squash, and beans.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">13.</td>
+    <td>Because of the importance of farming, a <strong>matrilineal</strong> inheritance system developed among  many eastern Indian peoples. Women cultivated the fields around semipermanent  settlements and passed the use rights to the fields to their daughters.</td>
+  </tr>
+</table>
+<br>
+<table width="100%" border="0" cellspacing="6" cellpadding="0">
+  <tr>
+    <td colspan="4"><b>II. <strong>Tradition-Bound Europe</strong></b></td>
+  </tr>
+  <tr>
+    <td width="1%">&nbsp;</td>
+    <td width="2%" align="center" valign="top">A.</td>
+    <td colspan="2">European Peasant Society</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td width="2%" align="center" valign="top">1.</td>
+    <td><b> </b>In 1450, most Europeans were <strong>peasants</strong> living in small rural communities of  compact agricultural villages surrounded by open fields.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td>Cooperative farming was a necessity because of  the lack of available land; most farm families exchanged their surplus farm  products with their neighbors or bartered it for local services due to poor  roads and transportation systems.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td>Most peasants yearned to be <strong>yeomen</strong>, owners of small farms that provided a marginally  comfortable living, but few achieved that goal due to exploitation by  landlords.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td>As with the Native American cultures, many  aspects of European life followed a seasonal pattern; even European birth and  death patterns appear to have been seasonal, indicating the profoundly rural  nature of peasant existence.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td>Mortality rates among the peasants were high,  primarily from disease. Hunger, disease, and violence were part of the fabric  of daily life. Although most peasants accepted their difficult circumstances,  others hoped for a better life. The deprived rural classes of Britain, Spain,  and Germany would supply the  majority of white migrants to the Western Hemisphere  during the colonial period.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">B.</td>
+    <td colspan="2">Hierarchy and Authority</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">1.</td>
+    <td>In the traditional European social order,  authority came from above; kings and princes owned vast tracts of land,  conscripted men for military service, and lived in splendor off the labor of  the peasantry.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td>Collectively, noblemen who possessed large  landed estates had the power to challenge royal authority through control of the  local military and legislative institutions.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td>The man ruled his women and children; his power  was codified in laws, sanctioned by social custom, and justified by the  teachings of the Christian Church.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td>On marriage, an English woman assumed her husband&rsquo;s  surname and was required to submit to his orders. She also surrendered to her  husband her legal right to all her property. When he died, she received a <strong>dower</strong>,  one-third of the family&rsquo;s property for her use during her lifetime.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td>The inheritance practice of <strong>primogeniture</strong>,  which bestowed all land on the eldest son, forced many younger children to join  the ranks of the roaming poor; few men&mdash;and even fewer women&mdash;had much personal  freedom or individual identity. Fathers often demanded that children work for  them until their mid-twenties.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td><p>Hierarchy  and authority through family, church, and village prevailed because they  offered a measure of social order and security; these values shaped the violent  and unpredictable American social order well into the eighteenth century.</p></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">C.</td>
+    <td colspan="2">The Power of Religion</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">1.</td>
+    <td>The Roman Catholic Church served as one of the  great unifying forces in Western European society; the Church provided a  pervasive authority and discipline through Christian dogma, a church staffed by  priests in every village, and the unifying language of Latin.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td>Like the Indians of North America, European  peasants originally were <strong>pagans</strong> and  animists: They believed that unpredictable spiritual forces governed the  natural world and that those spirits had to be paid ritual honor. The Church  attacked paganism by devising a religious calendar that transformed pagan  agricultural festivals into Christian holy days. Christian doctrine penetrated  the lives of peasants; to avert famine and plague, Christians offered prayers  to Christ and the saints.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td>Crushing other religions and suppressing  heresies among Christians was an obligation of rulers and a task of the new  orders of Christian knights.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td>Between  1096 and 1291 successive armies of Christians embarked on Crusades; Muslims  were a prime target of the crusaders. Christians also persecuted <strong>pagans</strong>,  those who believed in polytheism, for <strong>heresy</strong>.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td>The Crusades strengthened the Christian identity  of the European population and helped broaden the intellectual and economic  horizons of the European privileged class.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td>Military successes against Islamic peoples and  the absorption of Arab knowledge also enabled European elites to set out to  capture the Arab-dominated trade routes that stretched from Constantinople to Beijing and from the Mediterranean  to the East Indian seas.</td>
+  </tr> 
+  
+</table>
+<br>
+<table width="100%" border="0" cellspacing="6" cellpadding="0">
+  <tr>
+    <td colspan="5"><b>III.
+    <strong>Europeans Create a Global World, 1450&ndash;1600</strong></b></td>
+  </tr>
+  <tr>
+    <td width="1%">&nbsp;</td>
+    <td width="2%" align="center" valign="top">A.</td>
+    <td colspan="3">The Renaissance Changes  Europe, 1300&ndash;1500</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td width="2%" align="center" valign="top">1.</td>
+    <td width="94%" colspan="2">Stimulated by the wealth and learning of the  Arab and Chinese world and the re-introduction of Greek and Roman texts  following the Black Death that destroyed one-third of the population, Europe  experienced a &quot;rebirth&quot; of learning, economic development, and cultural life.  The Renaissance had the most impact on the upper classes.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td colspan="2">A new ruling class of moneyed elite&mdash;merchants,  bankers, and textile manufacturers&mdash;created the concept of <strong>civic humanism</strong>.  This ideology<strong> </strong>celebrated  public virtue and service to the state and would profoundly influence European  and American conceptions of government and national expansion. In Italy this  movement led to the establishment of city-states as <strong>republics</strong> without princes or kings.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td colspan="2">Works by artists such as Michelangelo, Palladio,  and da Vinci were part of a flowering of artistic genius that set standards  that still influence the modern era.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td colspan="2">Following Niccol&ograve; Machiavelli&rsquo;s advice in <em>The  Prince </em>(1513), an alliance of monarchs, merchants, and royal bureaucrats  challenged the power of the agrarian nobility by creating royal law courts and  bureaucracies.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td colspan="2">Monarchs allowed merchants to trade throughout  their realms, granted privileges to the artisan organizations called <strong>guilds</strong>,  and safeguarded commercial transactions, thereby encouraging domestic  manufacturing and foreign trade. In return, kings and princes extracted taxes  from towns and loans from merchants to support their armies and officials.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td colspan="2">This mutually enriching alliance of monarchs,  merchants, and royal bureaucrats (which eventually became known as  mercantilism) propelled Europe into its first age of overseas expansion under Spain and Portugal.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">7.</td>
+    <td colspan="2">Because Arabs and Italians dominated trade in  the Mediterranean, Prince Henry of Portugal  sought an alternate oceanic route to Asia; under Henry&rsquo;s direction, Portugal led  European expansion overseas. Arab learning and innovations in sail and ship  design facilitated Henry&rsquo;s success.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">8.</td>
+    <td colspan="2">Eventually Henry&rsquo;s mariners sailed far into the  Atlantic, where they discovered and colonized the Azores and Madeira   Islands; from there they explored the sub-Saharan African coast.</td>
+  </tr>
+  
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">B.</td>
+    <td colspan="3">West African Society and Slavery</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">1.</td>
+    <td colspan="2">Vast and diverse, West Africa stretches along  the coast from present-day Senegal  to the Democratic Republic of Congo.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td colspan="2">In the 1400s tropical rain forest covered much  of the coast, but a series of great rivers&mdash;the Senegal, Gambia, Volta, Niger,  and Congo&mdash;provided access to the interior, where most people lived. There were  few coastal cities because there was little seaborne trade.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td colspan="2">Most West Africans farmed small plots and lived  with extended families in small villages that specialized in certain crops,  ranging from millet and cotton to livestock, yams, and oil-rich palm nuts. They  traded both raw and manufactured goods with one another, including rare items  such as salt, iron, gold, textiles, and ivory.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td colspan="2">The majority of the population lived in  hierarchical societies ruled by princes, similar to the Aztec and Maya peoples  in Mesoamerica. Some Africans inhabited  smaller-scale stateless societies based on household and lineage.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td colspan="2">Among West Atlantic&ndash;speakers, the Fulani and Wolof  peoples were most numerous. Mande-speakers in the upper Niger region included the Malinke and Bambara  peoples; the Yorubas and the Ibos of southern Nigeria spoke varieties of the Kwa  language. Finally, the Mossis and other Voltaic-speakers inhabited the area  along the upper Volta   River.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td colspan="2">Spiritual  beliefs varied greatly, with most West Africans recognizing a variety of  deities. West Africans who lived immediately south of the Sahara&mdash;the Fulanis in  Senegal, Mande-speakers in Mali, and the Hausas in northern Nigeria&mdash;learned  about Islam from Arab merchants and missionaries.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">7.</td>
+    <td colspan="2">At first, European traders had a positive impact  on the West African peoples by introducing new plants (coconuts and lemons),  animals (pigs), and metal products (iron) and by expanding the African trade  networks.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">8.</td>
+    <td colspan="2">From small, fortified trading posts on the  coast, Europeans shipped metal products, manufactures, and slaves along the  coast and to inland regions, and took gold, ivory, and pepper in return.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">9.</td>
+    <td colspan="2">In 1502 Vasco da Gama&rsquo;s ships outgunned Arab  fleets; the Portuguese government soon built fortified trading posts on the  coast and opened trade routes from Africa to Indonesia  and up the coast of Asia to China  and Japan.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">10.</td>
+    <td colspan="2">Portuguese traders joined African states and  Arab merchants in the slave trade. Bonded labor&mdash;slavery, serfdom, indentured  servitude&mdash;was the norm in most premodern societies, and in Africa  it took the form of slavery.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">11.</td>
+    <td colspan="2">A small portion of West Africans were trade  slaves, mostly war captives and criminals sold from one kingdom to another as  agricultural workers. Some African slaves were carried overland in caravans by  Arab traders to the Mediterranean region.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">12.</td>
+    <td colspan="2">To exploit this trade, Portuguese merchants  established forts at small port cities&mdash;first at Elmina in 1482 and later at  Gor&eacute;e, Mpinda, and Loango&mdash;where they bought gold and slaves from African  princes and warlords.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">13.</td>
+    <td colspan="2">Initially  the Portuguese carried a few thousand African slaves each year to work on sugar  plantations in the Cape Verde Islands, the Azores, and the Madeira Islands; they  also sold slaves in Lisbon,  which soon had a black population of 9,000.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">14.</td>
+    <td colspan="2">After 1550 other Europeans soon joined West  Africa&rsquo;s long-established trade in humans; by 1700 Europeans shipped hundreds  of thousands of slaves to new American sugar plantations in Brazil and West Indies.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">C.</td>
+    <td colspan="3">Europeans Explore America</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">1.</td>
+    <td colspan="2">Explorers financed by the Spanish monarchs, King  Ferdinand of Aragon and  Queen Isabel of Castile,  discovered the Western Hemisphere for  Europeans.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td colspan="2">Married in an arranged match to combine their  Christian kingdoms, the young rulers completed the centuries-long <strong><em>reconquista</em></strong>.  In 1492 their armies captured Granada, the last  Islamic state in Western Europe.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td colspan="2">Simultaneously, Ferdinand and Isabel sought  trade and empire, and enlisted the services of Christopher Columbus, a  Christian mariner from Genoa.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td colspan="2">Misinterpreting the findings of Italian  geographers, Columbus believed that the Atlantic  Ocean, long feared by Arab merchants as a 10,000-mile-wide &ldquo;green sea of darkness,&rdquo;  was a much narrower channel of water separating Europe from Asia.  Although dubious about Columbus&rsquo;s theory,  Ferdinand and Isabel arranged financial backing from Spanish merchants and  charged Columbus with finding a western route to  Asia and carrying Christianity to its peoples.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td colspan="2">Christopher Columbus set sail in three small  ships in August 1492. After a perilous voyage of 3,000 miles, he disembarked on  October 12 on an island in the present-day Bahamas,  believing he had reached Asia&mdash;&ldquo;the Indies,&rdquo; in  fifteenth-century parlance.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td colspan="2"> Columbus called the native inhabitants (the Taino, Arawak, and Carib) Indians and the islands the West Indies.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">7.</td>
+    <td colspan="2">Although Columbus found no gold, the monarchs sent three more expeditions over the next twelve years; they wanted to make the new land they called Las Indias (the Indies) a Spanish empire.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">8.</td>
+    <td colspan="2">During those expeditions, Columbus  began the colonization of the West Indies,  transporting more than a thousand Spanish settlers&mdash;all men&mdash;and hundreds of  domestic animals.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">9.</td>
+    <td colspan="2">A  German geographer soon labeled the &ldquo;new&rdquo; continents &ldquo;America&rdquo; in honor of a Genoese  explorer, Amerigo Vespucci. Vespucci, who had explored the region around 1500,  believed that the land was <em>not </em>Asia and  called it a <em>nuevo mundo</em>, a new world.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">10.</td>
+    <td colspan="2">The  Spanish disregarded Vespucci&rsquo;s term, and continued to consider all new lands as  part of the Indies.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">D.</td>
+    <td colspan="3">The  Spanish Conquest</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">1.</td>
+    <td colspan="2">Spanish adventurers ruled the peoples of the Indies with an iron hand. After subduing the Arawaks and  Tainos on Hispaniola, the Spanish probed the  mainland for gold and slaves.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td colspan="2">Rumors  of rich Indian kingdoms in the interior encouraged other Spaniards, including  hardened veterans of the <strong><em>reconquista</em></strong>, to launch an invasion.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td colspan="2">In 1519 Hern&aacute;n Cort&eacute;s, a member of the Spanish  gentry class, and his fellow Spanish conquistadors landed on the Mexican coast  and began a conquest of the Aztec empire. Luck, Indian allies, and superb  negotiation strategies enabled the Spanish to emerge victorious.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td colspan="2">Moctezuma, the Aztec ruler, believed that Cort&eacute;s  might be a returning god and allowed him to enter the empire without challenge.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td colspan="2">Superior European military technology,  internal divisions within the Aztec empire, and the assistance of a female  native interpreter named Malinali (Malinche) also contributed to Spanish  victory.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td colspan="2">The Spanish also had a silent ally, disease. A  smallpox outbreak of 70 days decimated the population of Tenochtitl&aacute;n, enabling Cort&eacute;s and his crew to  infiltrate the city. Subsequent outbreaks of measles, influenza, and smallpox  facilitated Aztec collapse.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">7.</td>
+    <td colspan="2">In the 1520s the Spanish conquest entered a new  phase when Francisco Pizarro overthrew the Inca empire in Peru; the Incas  were also easy prey because of internal fighting over the throne and disease  brought by the Spanish.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">8.</td>
+    <td colspan="2">The Spanish invasion changed life forever in the  Americas.  Disease and warfare wiped out virtually all of the Indians of Hispaniola&mdash;at  least 300,000 people.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">9.</td>
+    <td colspan="2">The  conquistadors remained powerful because they held royal grants (<strong><em>encomiendas</em></strong>)  giving them legal control of the native population, principally on plantations  and livestock ranches that exported goods to Europe.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">10.</td>
+    <td colspan="2">The  Spanish invasion of the Americas  had a significant impact on life in Europe, the Americas,  and Africa due to a process of transfer known  as the <strong>Columbian Exchange</strong>.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">11.</td>
+    <td colspan="2">The gold and silver that had formerly honored  Aztec gods now gilded the Catholic churches of Europe and flowed into the  countinghouses of Spain,  making that nation the richest and most powerful in Europe.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">12.</td>
+    <td colspan="2">Between 1500 and 1650 no fewer than 350,000  Spaniards migrated to Mesoamerica and western South   America. More than 75 percent of the Spanish settlers were men,  and many of them took Indian women as wives or mistresses.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">13.</td>
+    <td colspan="2">Consequently,  a substantial mixed-race population, called <strong>mestizos</strong>, quickly appeared,  along with an elaborate, race-based <strong>caste system</strong>.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">14.</td>
+    <td colspan="2">The empire contained about 16 million people:  a dominant caste of 3.2 million Spaniards; 5.5 million people of mixed Indian  and European heritage; 1.0 million African slaves; and 6.5 million Indians, who  lived mostly on marginal lands.</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="6" cellpadding="0">
+  <tr>
+    <td colspan="5"><strong>IV.  The Rise of Protestant England,  1500&ndash;1620</strong></td>
+  </tr>
+  <tr>
+    <td width="1%">&nbsp;</td>
+    <td width="2%" align="center" valign="top">A.</td>
+    <td colspan="3">The Protestant Movement</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td width="2%" align="center" valign="top">1.</td>
+    <td width="94%" colspan="2">Christianity  ceased to be a unifying force in European society as new religious doctrines  divided Christians into armed ideological camps of Catholics and Protestants  and created centuries of religious wars.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td colspan="2">During these conflicts, France replaced Spain  as the most powerful European state, and Holland  and England emerged as  Protestant nations determined to colonize the Western   Hemisphere.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td colspan="2">Over the centuries the Catholic Church became a  large and wealthy institution, controlling vast resources and political power  throughout Europe. Critics of church wealth  began to voice their concerns following the Renaissance.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td colspan="2">In 1517 a Catholic priest named Martin Luther  publicly challenged Roman Catholic practices and doctrine with his <em>Ninety-five Theses</em>; the document  condemned the sale of <strong>indulgences </strong>by the Church.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td colspan="2">Luther argued three main points: He believed  that people could be saved only by grace, not good works; he dismissed the need  for priests to act as intermediaries between Christians and God; and he  downplayed the role of high-ranking clergymen and popes by naming the Bible the  ultimate authority in matters of faith.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td colspan="2">As  peasants mounted violent social protests of their own, Luther urged obedience  to established political institutions and condemned the teachings of religious  dissidents more radical than him.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">7.</td>
+    <td colspan="2">Eventually, the Peace of Augsburg (1555) divided  Germany  into Lutheran states in the north and Catholic principalities in the south. It  allowed princes to decide the religion of their subjects; southern German  rulers installed Catholicism, and Northern German rulers chose Lutheranism.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">8.</td>
+    <td colspan="2">In his <em>Institutes of the Christian Religion </em>(1536),  Protestant John Calvin preached <strong>predestination</strong>&mdash;the idea that God  determines who will be saved before they are born.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">9.</td>
+    <td colspan="2">When the pope denied his request for a marriage  annulment, King Henry VIII broke with the Roman Catholic Church and created a  national Church of England.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">10.</td>
+    <td colspan="2">Henry&rsquo;s daughter, Elizabeth I, combined Lutheran  and Calvinist beliefs but retained the Catholic ritual of Holy Communion in her  religious reforms. This compromise angered some radical Protestants who took  inspiration from the Presbyterian system in which male church elders guided the  church.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">11.</td>
+    <td colspan="2">Other radical Protestants called themselves  Puritans; they wanted to purify the church of &ldquo;false&rdquo; Catholic teachings and  practices.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">B.</td>
+    <td colspan="3">The Dutch and English Challenge Spain</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">1.</td>
+    <td colspan="2">King Philip II wanted to root Protestantism out  of the Netherlands and England, as well as Islam from North   Africa. He failed in both efforts.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td colspan="2">To  protect their Calvinism and political liberties, the seven northern   provinces of the Spanish Netherlands declared their independence  in 1581 and became the Dutch Republic (or Holland).</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td colspan="2">To  assist the Dutch independence movement, Queen Elizabeth I dispatched 6,000  troops to the Netherlands.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td colspan="2">She also supported military expeditions to  extend direct English rule over Gaelic-speaking Catholic regions of Ireland.  Calling the Irish &ldquo;wild savages,&rdquo; English troops brutally massacred thousands,  prefiguring the treatment of Indians in America.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td colspan="2">Through  her actions Elizabeth immediately became the  enemy of King Phillip of Spain.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td colspan="2"> In 1588 the Spanish Armada sailed out to  reimpose Catholic rule in England  and Holland but  was defeated when a storm allowed the English to claim victory.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">7.</td>
+    <td colspan="2">Shrugging off this defeat, Philip continued to spend  his American gold on religious wars. This ill-advised policy diverted resources  from industrial investment in Spain  and weakened its economy.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">8.</td>
+    <td colspan="2">Oppressed by high taxes on agriculture and  fearful of military service, more than 200,000 residents of Castile, the richest region of Spain, migrated to America.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">9.</td>
+    <td colspan="2">As the Spanish government and economy struggled,  the Dutch Republic  became the leading commercial power of Europe.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">10.</td>
+    <td colspan="2">Amsterdam emerged as the financial capital of northern Europe,  and the Dutch Republic  replaced Portugal as the  dominant trader in Indonesia  and West Africa.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">11.</td>
+    <td colspan="2">Dutch merchants also looked across the Atlantic:  They created the West India Company, which invested in sugar plantations in Brazil and established the fur-trading colony of  New Netherland along the Hudson River in North America.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">12.</td>
+    <td colspan="2">England&rsquo;s economy was stimulated by a rise in population  (from 3 million in 1500 to 5 million in 1630) and by <strong>mercantilism</strong>, a system of state-supported manufacturing and trade.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">13.</td>
+    <td colspan="2">Mercantilist-minded  monarchs like Queen Elizabeth encouraged merchants to invest in domestic  manufacturing, thereby increasing exports and decreasing imports.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">14.</td>
+    <td colspan="2">The domestic English textile industry relied on <strong>outwork</strong>: Merchants bought wool from the  owners of great estates and then hired landless peasants to spin and weave the  wool into cloth. The government further helped textile entrepreneurs by setting  low rates for wages.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">15.</td>
+    <td colspan="2">By 1600 the success of merchant-oriented  policies helped to give the English and the Dutch the ability to challenge Spain&rsquo;s control of the Western   Hemisphere.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">C.</td>
+    <td colspan="3">The Social Causes of English Expansion</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">1.</td>
+    <td colspan="2">England  sent more than merchant fleets and manufactures to America. Economic changes would  bring thousands of poor, landless English peasants to search for prosperity in  the Americas.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">2.</td>
+    <td colspan="2">The <strong>Price Revolution</strong>, major inflation as  a result of Spanish dumping of gold and silver on the European market, caused  social changes in England;  the nobility were its first casualties largely because they had rented their  lands on long-term leases at low rents. In contrast, the <strong>gentry</strong>, or  nonnoble landowners, prospered by offering short-term leases at high rates.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">3.</td>
+    <td colspan="2">As  the influence of the House of Commons increased, rich commoners and small  property owners gained a voice in government; this process of creating  representative government had profound consequences for English and American  political history.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">4.</td>
+    <td colspan="2">The  Price Revolution likewise transformed the lives of peasants. The economic  stimulus of Spanish gold spurred the expansion of the textile industry. To  increase the supply of wool, profit-minded landlords and wool merchants  persuaded Parliament to pass <strong>enclosure acts</strong>, laws that allowed owners to  fence in the open fields that surrounded many peasant villages and put sheep to  graze on them.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">5.</td>
+    <td colspan="2">Because  of the Enclosure acts, the Price Revolution, and crop failure, many peasants  lost the means to earn a living and were willing to go to America as indentured servants, signing a  contract in which the individual agreed to work without wages for four or five  years in exchange for passage to America and room and board for the term of the  contract.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="center" valign="top">6.</td>
+    <td colspan="2">This massive migration to America brought  about a new collision between European and Native American worlds.</td>
+  </tr>
+  <tr>
+    
+  
+</table>
+<br>
+<br>
+
+</body>
+</html>
