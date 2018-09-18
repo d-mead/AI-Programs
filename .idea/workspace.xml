@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac51eb1-d9fa-49b2-88ef-715b8d84aa07" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/puzzles.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/puzzles_all.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/puzzles_longer.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/word_ladder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/words_6.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/words_6_longer.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/words_all.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word_ladder.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_ladder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/words_6.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/words_6.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/words_6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/words_6.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +60,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="22044" />
+          <entry key="py" value="25135" />
+          <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -81,7 +78,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="22044" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="Python" value="25135" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -110,8 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="336" column="25" lean-forward="true" selection-start-line="319" selection-end-line="336" selection-end-column="25" />
+            <state relative-caret-position="-1782">
+              <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -122,12 +120,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/word_ladder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="51" column="16" lean-forward="true" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
+            <state relative-caret-position="302">
+              <caret line="30" column="3" lean-forward="true" selection-start-line="30" selection-start-column="3" selection-end-line="31" selection-end-column="66" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1537197572227" expanded="true" signature="406:1086" ph="..." />
-                <marker date="1537197572227" expanded="true" signature="1649:2743" ph="..." />
+                <marker date="1537282864010" expanded="true" signature="1031:1967" ph="..." />
+                <marker date="1537282864010" expanded="true" signature="2059:2748" ph="..." />
+                <marker date="1537282864010" expanded="true" signature="2804:3335" ph="..." />
+                <marker date="1537282864010" expanded="true" signature="3359:3888" ph="..." />
+                <marker date="1537282864010" expanded="true" signature="4539:4847" ph="..." />
               </folding>
             </state>
           </provider>
@@ -145,8 +146,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/words_6.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="6" lean-forward="true" selection-start-column="6" selection-end-column="6" />
+            <state relative-caret-position="315">
+              <caret line="21" column="6" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -217,18 +218,18 @@
         <option value="$PROJECT_DIR$/exercisesPart1.py" />
         <option value="$PROJECT_DIR$/sample.txt" />
         <option value="$PROJECT_DIR$/puzzle8.py" />
-        <option value="$PROJECT_DIR$/words_6.txt" />
         <option value="$PROJECT_DIR$/puzzles.txt" />
         <option value="$PROJECT_DIR$/ATBS practice/puzzles_all.txt" />
         <option value="$PROJECT_DIR$/puzzles_all.txt" />
         <option value="$PROJECT_DIR$/puzzles_longer.txt" />
         <option value="$PROJECT_DIR$/words_6_longer.txt" />
         <option value="$PROJECT_DIR$/words_all.txt" />
+        <option value="$PROJECT_DIR$/words_6.txt" />
         <option value="$PROJECT_DIR$/word_ladder.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -414,7 +415,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17829457" />
@@ -422,13 +423,13 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32970297" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30722892" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3493976" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33012047" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34819278" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.39156628" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3910891" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -444,13 +445,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/word_ladder.py</url>
-          <line>50</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/word_ladder.py</url>
-          <line>51</line>
-          <option name="timeStamp" value="37" />
+          <line>63</line>
+          <option name="timeStamp" value="93" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -463,26 +459,47 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
+        <watch expression="total_set" language="Python" />
         <watch expression="dict" language="Python" />
-        <watch expression="lines" language="Python" />
-        <watch expression="start" language="Python" />
-        <watch expression="end" language="Python" />
-        <watch expression="line" language="Python" />
+        <watch expression="fringe" language="Python" />
         <watch expression="word" language="Python" />
-        <watch expression="comp" language="Python" />
+        <watch expression="visited_words" language="Python" />
+        <watch expression="path" language="Python" />
+        <watch expression="max_path" language="Python" />
         <watch expression="children" language="Python" />
+        <watch expression="child" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>end</expression-string>
+        <expression-string>dict</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>start</expression-string>
+        <expression-string>total_set</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>max_path</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>path</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>visited_words</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>child</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -492,7 +509,7 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>comp</expression-string>
+        <expression-string>word.get_path()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -502,27 +519,7 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>line</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>lines</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>word_b</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>word_a</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>words_set</expression-string>
+        <expression-string>visited</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -641,10 +638,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ATBS practice/chapter5.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1782">
+          <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/words_6.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" lean-forward="true" selection-start-column="6" selection-end-column="6" />
+        <state relative-caret-position="315">
+          <caret line="21" column="6" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -655,31 +669,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ATBS practice/chapter5.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="336" column="25" lean-forward="true" selection-start-line="319" selection-end-line="336" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/word_ladder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="51" column="16" lean-forward="true" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
+        <state relative-caret-position="302">
+          <caret line="30" column="3" lean-forward="true" selection-start-line="30" selection-start-column="3" selection-end-line="31" selection-end-column="66" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1537197572227" expanded="true" signature="406:1086" ph="..." />
-            <marker date="1537197572227" expanded="true" signature="1649:2743" ph="..." />
+            <marker date="1537282864010" expanded="true" signature="1031:1967" ph="..." />
+            <marker date="1537282864010" expanded="true" signature="2059:2748" ph="..." />
+            <marker date="1537282864010" expanded="true" signature="2804:3335" ph="..." />
+            <marker date="1537282864010" expanded="true" signature="3359:3888" ph="..." />
+            <marker date="1537282864010" expanded="true" signature="4539:4847" ph="..." />
           </folding>
         </state>
       </provider>
