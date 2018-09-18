@@ -17,26 +17,34 @@ def main():
     with open("words_6.pkl", "rb") as infile:
         dict = pickle.load(infile)
 
-
     # print(connected_components(dict))
 
-    # start, end, length = longest_path(dict)
-    # print("start: %s, end: %s, length: %s" % (start, end, length))
     begin = time.process_time()
 
-    # count, longest = connected_components(dict)
-    # print("number of connected components: %s" % count)
+    print("PROBLEM 2: ")
+    read_many("puzzles.txt")
+
+    print("PROBLEM 4: ")
+    count, longest = connected_components(dict)
+    print("number of connected components: %s" % count)
     # print("fringe of the longest group: %s" % longest)
     # print("size of longest group: %s" % len(longest))
-    start, end, length = longest_path(dict)
-    print("start: %s, end: %s, length: %s" % (start, end, length))
+
+    # begin = time.process_time()
+
+    print("PROBLEM 5: ")
+    length, start, end = longest_path(dict)
+    print("start: %s, end: %s, length: %s" % (end, start, length))
+
+    print(find_path(start, end))
+
 
     finish = time.process_time()
     print("seconds to run: %s" % (finish - begin))
 
 
 def longest_path(dict):
-    count, search_queue = connected_components(dict)
+    count, search_set = connected_components(dict)
     total_set = set(dict.keys())
     max_path = deque()
     visited_words = {"", }
@@ -47,7 +55,6 @@ def longest_path(dict):
         visited_words.add(start)
         fringe = deque()
         starting_path = deque()
-        starting_path.append(start)
         fringe.append(Word(start, starting_path))
         visited_words.add(start)
         while len(fringe) > 0:
@@ -55,13 +62,13 @@ def longest_path(dict):
             children = dict.get(word.get_string())
             for child in children:
                 if child not in visited_words:
-                    path = copy.copy(word.get_path())
+                    path = deque(word.get_path())
                     path.appendleft(child)
                     fringe.append(Word(child, path))
                     if len(path) > len(max_path):
                         max_path = path
                     visited_words.add(child)
-    return max_path.popleft(), max_path.pop(), len(max_path)
+    return len(max_path), max_path.pop(), max_path.popleft()
 
 
 def connected_components(dict):
@@ -69,8 +76,10 @@ def connected_components(dict):
     start = total_set.pop()
     visited_words = {start}
     count = 0
-    longest_fringe = deque()
+    longest_set = {}
     while len(total_set) > 0:
+
+        visited_words.clear()
         start = total_set.pop()
         visited_words.add(start)
         fringe = deque()
@@ -83,10 +92,11 @@ def connected_components(dict):
                     fringe.append(child)
                     visited_words.add(child)
                     total_set.remove(child)
-            if len(fringe) > len(longest_fringe):
-                longest_fringe = deque(fringe)
         count += 1
-    return count, longest_fringe
+        if len(visited_words) > len(longest_set):
+            longest_set = set(visited_words)
+
+    return count, longest_set
 
 
 def read_many(filename):
@@ -121,6 +131,8 @@ def make_dict(filename):
                     dict.get(word).append(comp)
                 else:
                     dict[word] = [comp]
+        if word not in dict.keys():
+            dict[word] = []
     return dict
 
 
@@ -132,15 +144,15 @@ def find_path(start, end):
     visited = {start, }
 
     while len(fringe) is not 0:
-        word = fringe.popleft()
+        word = fringe.pop()
         if word.get_string() == end:
-            return list(word.get_path())
+            return word.get_path()
         children = dict.get(word.get_string())
         for child in children:
             if child not in visited:
-                path = copy.copy(word.get_path())
+                path = deque(word.get_path())
                 path.appendleft(child)
-                fringe.append(Word(child, path))
+                fringe.appendleft(Word(child, path))
                 visited.add(child)
     if len(fringe) == 0:
         return -1
