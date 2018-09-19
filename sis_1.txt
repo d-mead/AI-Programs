@@ -1,0 +1,135 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<HTML lang="en">
+<head>
+		<title>ParentVUE </title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta content="en-US" name="language">
+		<meta content="private - general audiences" name="rating">
+		<meta content="2005 - Edupoint,Inc" name="copyright">
+		<meta content="Edupoint, LLC" name="author">
+		<link title="global styles" href="Schemes/PXP_Global.css" type="text/css" rel="stylesheet" />
+		<link title="global styles" href="Schemes/PXP_Form.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" language="javascript" src="js/PXP/PXP_Calendar.js"></script>
+	    <link rel="stylesheet" href="schemes/jquery-ui.min.css" />
+        <script type="text/javascript" src="js/ST/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="js/ST/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="https://js.live.net/v5.0/OneDrive.js"></script>
+        <script type="text/javascript" src="JS/PXP/GoogleDrive.js"></script>
+        <script type="text/javascript" src="JS/PXP/OneDrive.js"></script>
+        <script type="text/javascript" src="JS/PXP/PXP_DropBox.js"></script>
+        <script type="text/javascript" src="JS/PXP/jquery.ddslick.min.js"></script>
+        <style type="text/css">
+        	#standards_tbl td {
+        		border-style: none;
+        	}
+
+        	#standards_tbl td.standard_col {
+        		border-style: none;
+        		border-left-style: solid;
+        		border-left-width: 1px;
+        	}
+
+        	.ScoreLegend {
+        		float: left;
+        		margin-right: 10px;
+        		margin-top: 10px;
+        		width: 175px;
+        	}
+        	.spinnerModal {
+        		display: none;
+        		position: fixed;
+        		z-index: 1000;
+        		top: 0;
+        		left: 0;
+        		height: 100%;
+        		width: 100%;
+        		background: rgba( 255, 255, 255, .8 ) url("data:image/gif;base64,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") 50% 50% no-repeat;
+        	}
+        	body.loading {
+        		overflow: hidden;
+        	}
+        	body.loading .spinnerModal {
+        		display: block;
+        	}
+			.CloudOpenButton{
+				margin-top: 5px;
+				width: 53px;
+				height: 43px;
+			}
+        </style>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			DROPBOXFILESOURCEHANDLER.Init();
+		});
+	</script>
+</head>
+	<body>
+    <form name="studentForm" method="post" action="./PXP_Gradebook.aspx?AGU=0" id="studentForm">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="9hRuP9ASSTmXyXOKZ4ECyXhiWSnbrrCgo12eczml4KPsuYzhAaRTTUFeXWMYk9yRmDTff+5ngbkjMjGMIRHQ++23xY+qD0K73fYp5S4nya0=" />
+
+
+<script type="text/javascript">
+//<![CDATA[
+var CURRENT_WEB_PORTAL='Synergy';//]]>
+</script>
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="79D1D4A6" />
+    <div id="MainDiv">
+    </div>
+		<div id="df" class="DFHiden" name="df">
+			<div class="MB">
+				<table style="height: 100%" cellspacing="0" cellpadding="0" width="100%">
+					<tr style="background-color:#99CCFF">
+						<td >
+						    <img src="Images/PXP/TchComment.gif" alt="tch comment" />
+						</td>
+						<td width="100%" >
+                        <div class="MBHead">
+                            Teacher Comment</div>
+						</td>
+						<td>
+						    <div class="MBHead">
+						    <input type="button" name="btnCloseD" value="Close" id="btnCloseD" class="BtnClose" style="width:80px;" onclick="HideDetail()"/>
+						    </div>
+						</td>
+					</tr>
+					<tr>
+                    <td colspan="3" id="tdDetail" name="tdDetail">
+                    </td>
+					</tr>
+				</table>
+			</div>
+		</div>
+    <div class="Pop_Hide" id="OVERLAY" name="OVERLAY">
+    </div>
+	<div class="spinnerModal"></div>
+    </form>
+	</body>
+</html>
+
+<SPAN id="ERROR" class="ERROR">Unknown error while accessing the web site. Please check back later as we address the problem:<br> Object reference not set to an instance of an object....<div style='display:none;'>Revelation.RevException: Object reference not set to an instance of an object. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at PXP.PXPInfo.StudentFormBasePXP.ValidateAcknowledgements()
+   --- End of inner exception stack trace ---
+   at Revelation.RevError.HandleError(Exception inner)
+   at PXP.PXPInfo.StudentFormBasePXP.ValidateAcknowledgements()
+   at PXP.PXPInfo.StudentFormBasePXP.Page_Load_Base(Object sender, EventArgs e)</div></SPAN><DIV style="display:none;">Revelation.RevException
+Revelation.RevException
+Source: Exception, Msg: Object reference not set to an instance of an object.
+Stack:    at Revelation.RevError.HandleError(Exception inner)
+   at PXP.PXPInfo.StudentFormBasePXP.ValidateAcknowledgements()
+   at PXP.PXPInfo.StudentFormBasePXP.Page_Load_Base(Object sender, EventArgs e)
+--------------------------
+System.NullReferenceException
+System.NullReferenceException
+Source: PXP, Msg: Object reference not set to an instance of an object.
+Stack:    at PXP.PXPInfo.StudentFormBasePXP.ValidateAcknowledgements()
+--------------------------
+^^^ This is where the exception occurred ^^^ (the output is from top to bottom)
+</DIV><script id="f5_cspm">(function(){var f5_cspm={f5_p:'ADMKDIAKLJDHFJPLGLGLNMPEONOELCBIIODFCEJGDJALFIDGLDLGILIJBLDENCAOOPPPHPKCMNNBKIBJLHJIDINDFKOANPHIAAOEIIKLINLCGPMIAAOELJNMIEEODCDE',setCharAt:function(str,index,chr){if(index>str.length-1)return str;return str.substr(0,index)+chr+str.substr(index+1);},get_byte:function(str,i){var s=(i/16)|0;i=(i&15);s=s*32;return((str.charCodeAt(i+16+s)-65)<<4)|(str.charCodeAt(i+s)-65);},set_byte:function(str,i,b){var s=(i/16)|0;i=(i&15);s=s*32;str=f5_cspm.setCharAt(str,(i+16+s),String.fromCharCode((b>>4)+65));str=f5_cspm.setCharAt(str,(i+s),String.fromCharCode((b&15)+65));return str;},set_latency:function(str,latency){latency=latency&0xffff;str=f5_cspm.set_byte(str,48,(latency>>8));str=f5_cspm.set_byte(str,49,(latency&0xff));str=f5_cspm.set_byte(str,43,2);return str;},wait_perf_data:function(){try{var wp=window.performance.timing;if(wp.loadEventEnd>0){var res=wp.loadEventEnd-wp.navigationStart;if(res<60001){var cookie_val=f5_cspm.set_latency(f5_cspm.f5_p,res);window.document.cookie='f5avr0244497589aaaaaaaaaaaaaaaa='+encodeURIComponent(cookie_val)+';path=/';}
+return;}}
+catch(err){return;}
+setTimeout(f5_cspm.wait_perf_data,100);return;},go:function(){var chunk=window.document.cookie.split(/\s*;\s*/);for(var i=0;i<chunk.length;++i){var pair=chunk[i].split(/\s*=\s*/);if(pair[0]=='f5_cspm'&&pair[1]=='1234')
+{var d=new Date();d.setTime(d.getTime()-1000);window.document.cookie='f5_cspm=;expires='+d.toUTCString()+';path=/;';setTimeout(f5_cspm.wait_perf_data,100);}}}}
+f5_cspm.go();}());</script>
