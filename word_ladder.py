@@ -7,11 +7,11 @@ import time
 def main():
     global dict
 
-    # dict = make_dict("words_6.txt")
+    # dict = make_dict("words_6_longer.txt")
     #
     # print(dict)
     #
-    # with open("words_6.pkl", "wb") as outfile:
+    # with open("words_6_longer.pkl", "wb") as outfile:
     #     pickle.dump(dict, outfile)
 
     with open("words_6.pkl", "rb") as infile:
@@ -50,7 +50,7 @@ def longest_path(dict):
     visited_words = {"", }
     count = 0
     max_path = deque()
-    for start in total_set:
+    for start in search_set:
         visited_words.clear()
         visited_words.add(start)
         fringe = deque()
