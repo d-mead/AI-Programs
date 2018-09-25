@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac51eb1-d9fa-49b2-88ef-715b8d84aa07" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/peg_solitare.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/8puzzle_test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/8PuzzleScript236.py" beforeDir="false" afterPath="$PROJECT_DIR$/8PuzzleScript236.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/peg_solitare.py" beforeDir="false" afterPath="$PROJECT_DIR$/peg_solitare.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/word_ladder.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_ladder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/words_6_longer.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/words_6_longer.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word_ladder_matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_ladder_matrix.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,43 +47,45 @@
     <session id="-1151945877">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.25" value="1" />
+          <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="32105" />
+          <entry key="py" value="35245" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="17" />
-          <entry key="Python" value="16" />
+          <entry key="PLAIN_TEXT" value="24" />
+          <entry key="Python" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="16" />
-          <entry key="txt" value="17" />
+          <entry key="py" value="18" />
+          <entry key="txt" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="32105" />
+          <entry key="Python" value="35245" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -90,95 +94,64 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grade_check.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sis_2.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1095">
-              <caret line="73" column="113" selection-start-line="73" selection-start-column="95" selection-end-line="73" selection-end-column="113" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/word_ladder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="11" />
+            <state relative-caret-position="195">
+              <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="14" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/peg_solitare.py">
+        <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="93" column="18" selection-start-line="93" selection-start-column="18" selection-end-line="93" selection-end-column="18" />
+            <state relative-caret-position="312">
+              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1537462868017" expanded="true" signature="66:71" ph="..." />
-                <marker date="1537462868017" expanded="true" signature="66:517" ph="..." />
-                <marker date="1537462868017" expanded="true" signature="66:519" ph="..." />
-                <marker date="1537462868017" expanded="true" signature="540:1168" ph="..." />
-                <marker date="1537462868017" expanded="true" signature="2015:2169" ph="..." />
-                <marker date="1537462868017" expanded="true" signature="2456:3497" ph="..." />
-                <marker date="1537462868017" expanded="true" signature="3520:3807" ph="..." />
-                <marker date="1537462868017" expanded="true" signature="3831:4126" ph="..." />
-                <marker date="1537462868017" expanded="true" signature="4923:5105" ph="..." />
-                <marker date="1537462868017" expanded="true" signature="5127:5132" ph="..." />
-                <marker date="1537462868017" expanded="true" signature="5127:5216" ph="..." />
+                <marker date="1537899235088" expanded="true" signature="6685:6765" ph="..." />
+                <marker date="1537899235088" expanded="true" signature="8933:9382" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sis_1.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/puzzles_longer.txt">
+        <entry file="file://$PROJECT_DIR$/word_ladder_matrix.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="13" />
+            <state relative-caret-position="689">
+              <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/words_6_longer.txt">
+        <entry file="file://$PROJECT_DIR$/peg_solitare.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321495">
-              <caret line="21433" column="6" selection-start-line="21433" selection-start-column="6" selection-end-line="21433" selection-end-column="6" />
+            <state relative-caret-position="-10">
+              <caret line="113" column="24" lean-forward="true" selection-start-line="113" selection-start-column="24" selection-end-line="113" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+                <marker date="1537797972419" expanded="true" signature="66:71" ph="..." />
+                <marker date="1537797972419" expanded="true" signature="66:517" ph="..." />
+                <marker date="1537797972419" expanded="true" signature="66:519" ph="..." />
+                <marker date="1537797972419" expanded="true" signature="540:1168" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/puzzles.txt">
+        <entry file="file://$PROJECT_DIR$/8puzzle_test.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/words_6.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24615">
-              <caret line="1641" selection-start-line="1641" selection-end-line="1641" selection-end-column="6" />
+            <state>
+              <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -186,8 +159,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="75">
+              <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -215,8 +188,6 @@
       <find>file</find>
       <find>solve_bfs</find>
       <find>print(</find>
-      <find>bfs</find>
-      <find>parity</find>
       <find>show_sequence</find>
       <find>show</find>
       <find>dfs</find>
@@ -225,6 +196,10 @@
       <find>hardest_length</find>
       <find>username</find>
       <find>x</find>
+      <find>puzzle</find>
+      <find>parity</find>
+      <find>bfs</find>
+      <find>reverse</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -257,17 +232,20 @@
         <option value="$PROJECT_DIR$/words_6_longer.txt" />
         <option value="$PROJECT_DIR$/words_all.txt" />
         <option value="$PROJECT_DIR$/words_6.txt" />
-        <option value="$PROJECT_DIR$/word_ladder_matrix.py" />
         <option value="$PROJECT_DIR$/ATBS practice/download_apush_book.py" />
         <option value="$PROJECT_DIR$/grade_check.py" />
-        <option value="$PROJECT_DIR$/word_ladder.py" />
         <option value="$PROJECT_DIR$/peg_solitare.py" />
+        <option value="$PROJECT_DIR$/8puzzle_test.txt" />
+        <option value="$PROJECT_DIR$/15puzzle.txt" />
+        <option value="$PROJECT_DIR$/word_ladder_matrix.py" />
+        <option value="$PROJECT_DIR$/word_ladder.py" />
+        <option value="$PROJECT_DIR$/8PuzzleScript236.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -305,8 +283,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.peg_solitare">
-    <configuration name="download_apush_book" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.8PuzzleScript236">
+    <configuration name="8PuzzleScript236" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Project1" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -314,11 +292,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ATBS practice" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ATBS practice/download_apush_book.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/8PuzzleScript236.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -413,18 +391,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.word_ladder" />
-      <item itemvalue="Python.word_ladder_matrix" />
-      <item itemvalue="Python.download_apush_book" />
       <item itemvalue="Python.grade_check" />
       <item itemvalue="Python.peg_solitare" />
+      <item itemvalue="Python.8PuzzleScript236" />
+      <item itemvalue="Python.word_ladder_matrix" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.peg_solitare" />
+        <item itemvalue="Python.8PuzzleScript236" />
         <item itemvalue="Python.word_ladder" />
-        <item itemvalue="Python.grade_check" />
-        <item itemvalue="Python.download_apush_book" />
         <item itemvalue="Python.word_ladder_matrix" />
+        <item itemvalue="Python.peg_solitare" />
+        <item itemvalue="Python.grade_check" />
       </list>
     </recent_temporary>
   </component>
@@ -454,18 +432,18 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16490486" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16420014" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32970297" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34698796" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32871288" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.39009902" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.25301206" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -481,27 +459,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/word_ladder.py</url>
-          <line>70</line>
+          <line>76</line>
           <option name="timeStamp" value="93" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/word_ladder.py</url>
-          <line>148</line>
-          <option name="timeStamp" value="110" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/word_ladder.py</url>
-          <line>35</line>
+          <line>36</line>
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/word_ladder.py</url>
-          <line>36</line>
+          <line>37</line>
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/word_ladder_matrix.py</url>
-          <line>47</line>
+          <line>48</line>
           <option name="timeStamp" value="113" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -521,23 +494,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peg_solitare.py</url>
-          <line>99</line>
+          <line>98</line>
           <option name="timeStamp" value="147" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peg_solitare.py</url>
-          <line>98</line>
+          <line>97</line>
           <option name="timeStamp" value="148" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peg_solitare.py</url>
-          <line>100</line>
+          <line>99</line>
           <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/peg_solitare.py</url>
-          <line>101</line>
+          <line>100</line>
           <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/8PuzzleScript236.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="188" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -551,33 +529,23 @@
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="visited" language="Python" />
-        <watch expression="fringe" language="Python" />
-        <watch expression="board" language="Python" />
-        <watch expression="board.get_state()" language="Python" />
-        <watch expression="board.get_path()" language="Python" />
+        <watch expression="fringe_top" language="Python" />
+        <watch expression="fringe_bottom" language="Python" />
+        <watch expression="vt" language="Python" />
+        <watch expression="vt.getState()" language="Python" />
+        <watch expression="vb" language="Python" />
+        <watch expression="vb.getState()" language="Python" />
+        <watch expression="fringe_t" language="Python" />
+        <watch expression="fringe_b" language="Python" />
         <watch expression="children" language="Python" />
         <watch expression="child" language="Python" />
-        <watch expression="path" language="Python" />
-        <watch expression="state" language="Python" />
-        <watch expression="children_set" language="Python" />
-        <watch expression="index" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>index</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>children_set</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>state</expression-string>
+        <expression-string>child</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -587,32 +555,42 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>path</expression-string>
+        <expression-string>vb.getState()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>child</expression-string>
+        <expression-string>vt.getState()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>board.get_path()</expression-string>
+        <expression-string>vt.getState</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>board.get_state()</expression-string>
+        <expression-string>fringe_b</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>board</expression-string>
+        <expression-string>fringe_bottom</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>visited</expression-string>
+        <expression-string>fringe_top</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>fringe_t</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>vb</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -673,13 +651,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ATBS practice/puzzles_all.txt" />
-    <entry file="file://$PROJECT_DIR$/puzzles_all.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/words_all.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="721605">
@@ -701,27 +672,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ATBS practice/download_apush_book.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="15" column="169" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="169" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/word_ladder_matrix.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -742,8 +696,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/words_6_longer.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321495">
+          <caret line="21433" column="6" selection-start-line="21433" selection-start-column="6" selection-end-line="21433" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sis_1.txt">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/15puzzle.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/puzzles_all.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/puzzles.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/words_6.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="1641" selection-start-line="1641" selection-end-line="1641" selection-end-column="6" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/puzzles_longer.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -752,58 +748,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/words_6_longer.txt">
+    <entry file="file://$PROJECT_DIR$/peg_solitare.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321495">
-          <caret line="21433" column="6" selection-start-line="21433" selection-start-column="6" selection-end-line="21433" selection-end-column="6" />
+        <state relative-caret-position="-10">
+          <caret line="113" column="24" lean-forward="true" selection-start-line="113" selection-start-column="24" selection-end-line="113" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1537797972419" expanded="true" signature="66:71" ph="..." />
+            <marker date="1537797972419" expanded="true" signature="66:517" ph="..." />
+            <marker date="1537797972419" expanded="true" signature="66:519" ph="..." />
+            <marker date="1537797972419" expanded="true" signature="540:1168" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/puzzles.txt">
+    <entry file="file://$PROJECT_DIR$/8puzzle_test.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="13" />
+        <state>
+          <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/words_6.txt">
+    <entry file="file://$PROJECT_DIR$/word_ladder_matrix.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24615">
-          <caret line="1641" selection-start-line="1641" selection-end-line="1641" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="689">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/word_ladder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="11" />
+        <state relative-caret-position="195">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="14" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/peg_solitare.py">
+    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="93" column="18" selection-start-line="93" selection-start-column="18" selection-end-line="93" selection-end-column="18" />
+        <state relative-caret-position="312">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1537462868017" expanded="true" signature="66:71" ph="..." />
-            <marker date="1537462868017" expanded="true" signature="66:517" ph="..." />
-            <marker date="1537462868017" expanded="true" signature="66:519" ph="..." />
-            <marker date="1537462868017" expanded="true" signature="540:1168" ph="..." />
-            <marker date="1537462868017" expanded="true" signature="2015:2169" ph="..." />
-            <marker date="1537462868017" expanded="true" signature="2456:3497" ph="..." />
-            <marker date="1537462868017" expanded="true" signature="3520:3807" ph="..." />
-            <marker date="1537462868017" expanded="true" signature="3831:4126" ph="..." />
-            <marker date="1537462868017" expanded="true" signature="4923:5105" ph="..." />
-            <marker date="1537462868017" expanded="true" signature="5127:5132" ph="..." />
-            <marker date="1537462868017" expanded="true" signature="5127:5216" ph="..." />
+            <marker date="1537899235088" expanded="true" signature="6685:6765" ph="..." />
+            <marker date="1537899235088" expanded="true" signature="8933:9382" ph="..." />
           </folding>
         </state>
       </provider>

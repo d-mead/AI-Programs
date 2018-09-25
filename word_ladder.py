@@ -24,19 +24,20 @@ def main():
     print("PROBLEM 2: ")
     read_many("puzzles.txt")
 
-    print("PROBLEM 4: ")
-    count, longest = connected_components(dict)
-    print("number of connected components: %s" % count)
+
+    # print("PROBLEM 4: ")
+    # count, longest = connected_components(dict)
+    # print("number of connected components: %s" % count)
     # print("fringe of the longest group: %s" % longest)
     # print("size of longest group: %s" % len(longest))
 
     # begin = time.process_time()
 
     print("PROBLEM 5: ")
-    length, start, end = longest_path(dict)
-    print("start: %s, end: %s, length: %s" % (end, start, length))
+    # length, start, end = longest_path(dict)
+    # print("start: %s, end: %s, length: %s" % (end, start, length))
 
-    print(find_path(start, end))
+    # print(find_furthest_dfs("dimmed"))
 
 
     finish = time.process_time()
@@ -49,6 +50,7 @@ def longest_path(dict):
     max_path = deque()
     visited_words = {"", }
     count = 0
+
     max_path = deque()
     for start in search_set:
         visited_words.clear()
@@ -68,6 +70,10 @@ def longest_path(dict):
                     if len(path) > len(max_path):
                         max_path = path
                     visited_words.add(child)
+
+    rand = search_set.pop()
+    print()
+
     return len(max_path), max_path.pop(), max_path.popleft()
 
 
@@ -156,6 +162,31 @@ def find_path(start, end):
                 visited.add(child)
     if len(fringe) == 0:
         return -1
+
+
+def find_furthest_dfs(start):
+    fringe = deque()
+    starting_path = deque()
+    starting_path.append(start)
+    fringe.append(Word(start, starting_path))
+    visited = {start, }
+    max_path = starting_path
+    furthest = start
+
+    while len(fringe) is not 0:
+        word = fringe.pop()
+        children = dict.get(word.get_string())
+        for child in children:
+            if child not in visited:
+                path = deque(word.get_path())
+                path.appendleft(child)
+                fringe.appendleft(Word(child, path))
+                visited.add(word)
+                if len(path) > len(max_path):
+                    max_path = path
+                    furthest = child
+                    print("new furthest: " + furthest)
+    print(furthest + ": " + str(len(max_path)))
 
 
 class Word:

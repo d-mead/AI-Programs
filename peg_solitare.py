@@ -91,7 +91,6 @@ def diag_left_up(state, index):
         if index == 5 or index == 8 or index == 9 or index == 12 or index == 13 or index == 14:
             if state[index - row] == "x" and state[index - row - (row - 1)] == "x":
                 return swaps_up(state, index - row - (row - 1), index - row, index)
-                # return state[:index - row - (row - 1)] + "0" + state[index - row - (row - 1) + 1: index-row] + "0" + state[index-row+1:index] + "x" + state[index+1:]
     return -1
 
 
@@ -101,7 +100,6 @@ def diag_right_up(state, index):
         if index == 3 or index == 6 or index == 7 or index == 10 or index == 11 or index == 12:
             if state[index - row + 1] == "x" and state[index - row + 1 - row + 2] == "x":
                 return swaps_up(state, index - row + 1 - row + 2, index - row + 1, index)
-                # return state[:index - row + 1 - row + 2] + "0" + state[index - row + 1 - row + 2 + 1: index - row + 1] + "0" + state[index - row + 1 + 1:index] + "x" + state[index+1:]
     return -1
 
 def left(state, index):

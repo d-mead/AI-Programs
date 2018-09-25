@@ -13,7 +13,7 @@ import decimal
 
 def main():
     global word_bytes, word_list, graph
-    word_bytes, word_list = get_words("words_6_longer.txt")
+    word_bytes, word_list = get_words("words_6.txt")
     graph = graph()
     shortest_path()
 
@@ -38,10 +38,11 @@ def graph():
 def shortest_path():
     begin = time.clock()
 
-    i1 = word_list.searchsorted('embail')
+    i1 = word_list.searchsorted('horned')
     print(i1, word_list[i1])
 
-    i2 = word_list.searchsorted('zaffar')
+
+    i2 = word_list.searchsorted('bribes')
     print(i2, word_list[i2])
 
     distances, predecessors = csgraph.shortest_path(graph, return_predecessors=True)

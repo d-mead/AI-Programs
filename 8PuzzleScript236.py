@@ -3,36 +3,75 @@ import random
 #import xlsxwriter
 from collections import deque
 import time
+import pickle
 
 
 def main():
     global size
     global goal
 
-    filename = sys.argv[1]
-    file = open(filename, "r")
-    lines = file.readlines()
-    file.close()
-    sum_time = 0
-    for line in lines:
-        sep = line.split(" ")
-        size = int(sep[0])
-        state = sep[1]
-        goal = sep[2].replace("\n", "")
-        start = time.clock()
-        path = solve_bfs(state)
-        end = time.clock()
-        sum_time = sum_time + (end-start)
-        if path == -1:
-            print("No solution %s" % (end - start))
-        else:
-            print(str(len(path)) + " " + str((end - start)))
-    print("Total number of seconds to process all input pairs: %s" % sum_time)
-
-
-
     goal = "012345678"
     size = 3
+    #
+    # test_many()
+
+    thousand = make_list(1000)
+
+    with open("1000.pkl", "wb") as outfile:
+        pickle.dump(thousand, outfile)
+
+    with open("1000.pkl", "rb") as infile:
+        thousand = pickle.load(infile)
+
+    start = time.process_time()
+
+    fract, avg, long = test_many(hundred)
+
+    end = time.process_time()
+
+    print("fraction solvable:   " + str(round(fract, 3)))
+    print("average length:      " + str(avg))
+    print("longest path length: " + str(long))
+
+    print("seconds to run: %s" % (end - start))
+
+
+    # filename = "16puzzle.txt"
+    # file = open(filename, "r")
+    # lines = file.readlines()
+    # file.close()
+    # goal = "0ABCDEFGHIJKLMNO"
+    # sum_time = 0
+    #
+    # for line in lines:
+    #     sep = line.split(" ")
+    #     size = 4
+    #     state = sep[0].replace("\n", "")
+    #     start = time.process_time()
+    #     path = solve_bfs(state)
+    #     end = time.process_time()
+    #     sum_time = sum_time + (end-start)
+    #     if path == -1:
+    #         print("No solution %s" % (end - start))
+    #     else:
+    #         print(str(len(path)) + " " + str((end - start)))
+
+
+
+
+
+    # state = "025187436"
+    #
+    # start = time.process_time()
+    # print(len(solve_bfs(state)))
+    # end = time.process_time()
+    # print("time to solve: " + str((end - start)))
+    #
+    # start = time.process_time()
+    # print(len(solve_bfs_original(state)))
+    # end = time.process_time()
+    # print("time to solve: " + str((end - start)))
+
 
 
     # number 2:
@@ -80,22 +119,162 @@ def main():
 
 # functions for problem number: 11
 
+# 4
+
+def solve_bfs(state):
+    # finds the path to the goal state from a given state using a breadth first search algorithm
+    startState = state
+    start = Puzzle(state, "")
+    fringe_top = deque()
+    fringe_top.append((state, ""), )
+    fringe_bottom = deque()
+    end = Puzzle(goal, "")
+    fringe_bottom.append((goal, ""), )
+    visited_top = {startState, }
+    visited_bottom = {goal, }
+    fringe_t = {state, }
+
+    if parityCheck(state) == 1:   #
+        return -1                 # if parity determines its not solveable
+
+    while len(fringe_top) is not 0 and len(fringe_bottom) is not 0:
+        vt = fringe_top.popleft()                                     # your standard BFS algorithm
+        vb = fringe_bottom.popleft()
+        if vb[0] in visited_top:
+            for state in fringe_top:
+                if state[0] == vb[0]:
+                    return state[1] + vb[1]
+        if goal_test(vt[0]):
+            return vt[1]
+        children = getChildren(vt[0])
+        for child in children.keys():
+            if child not in visited_top:
+                fringe_top.append((child, vb[1]+children.get(child, 0)))
+                visited_top.add(child)
+        children = getChildren(vb[0])
+        for child in children.keys():
+            if child not in visited_bottom:
+                fringe_bottom.append((child, vb[1]+children.get(child, 0)))
+                visited_bottom.add(child)
+    if len(fringe_top) is 0 and len(fringe_bottom) is 0:
+        return -2
+
+
+def solve_bfs_zoom(state):
+    # finds the path to the goal state from a given state using a breadth first search algorithm
+    startState = state
+    fringe_top = deque()
+    fringe_top.append((state, 0), )
+    fringe_bottom = deque()
+    fringe_bottom.append((goal, 0), )
+    visited_top = {startState, }
+    visited_bottom = {goal, }
+    fringe_t = {state, }
+
+    if parityCheck(state) == 1:   #
+        return -1                 # if parity determines its not solveable
+
+    while len(fringe_top) is not 0 and len(fringe_bottom) is not 0:
+        vt = fringe_top.popleft()                                     # your standard BFS algorithm
+        vb = fringe_bottom.popleft()
+        if vb[0] in visited_top:
+            for state in fringe_top:
+                if state[0] == vb[0]:
+                    return state[1] + vb[1]
+        if goal_test(vt[0]):
+            return vt[1]
+        children = getChildren(vt[0])
+        for child in children.keys():
+            if child not in visited_top:
+                fringe_top.append((child, vb[1]+1))
+                visited_top.add(child)
+        children = getChildren(vb[0])
+        for child in children.keys():
+            if child not in visited_bottom:
+                fringe_bottom.append((child, vb[1]+1))
+                visited_bottom.add(child)
+    if len(fringe_top) is 0 and len(fringe_bottom) is 0:
+        return -2
+
+
+def solve_bfs_original(state):
+    # finds the path to the goal state from a given state using a breadth first search algorithm
+    startState = state
+    start = Puzzle(state, "")
+    fringe = deque()
+    fringe.append(start)
+    visited = {startState, }
+
+    if parityCheck(state) == 1:   #
+        return -1                 # if parity determines its not solveable
+
+    while len(fringe) is not 0:                                  #
+        v = fringe.popleft()                                     # your standard BFS algorithm
+        if goal_test(v.getState()):                              #
+            return v.getPath()                                   #
+        children = getChildren(v.getState())                     #
+        for child in children.keys():                            #
+            if child not in visited:                             #
+                child_path = children.get(child, 0)              #
+                puz = Puzzle(child, v.getPath()+child_path)      #
+                fringe.append(puz)                               #
+                visited.add(child)                               #
+    if len(fringe) is 0:
+        return -1
+
+# 5
+
+def make_list(x):
+    list = []
+    for i in range(0, x):
+        list.append(randomstate())
+    return list
+
+
+def test_many(list):
+    # generates 100 to 1000 boards, attempts to solve them, and prints % solvable, avg path length, and longest path
+    global fraction_solvable, average_length
+    # dict = getAllWinnableDict()            # makes a dictionary of all the states and their paths to goal
+    # total = random.randint(100, 1000)      # random number of states from 100 to 1000
+    total = len(list)
+    num_solvable = 0
+    total_length = len(list)
+    # print(total)
+    longest_length = 0
+    x = 0
+    for rand in list:
+        x += 1
+        # rand = randomstate()            # makes a random state
+        path = solve_bfs_zoom(rand)
+        if path == -1:
+            print("#" + str(x) + " of " + str(total) + ": no path found")
+        else:
+            print("#" + str(x) + " of " + str(total) + ": " + str(path)) # prints update
+            num_solvable += 1                  #
+            total_length += path         # updates the tracking variables
+            if path > longest_length:     #
+                longest_length = path     #
+    average_length = int(total_length/total)
+    fraction_solvable = num_solvable/total
+    return fraction_solvable, average_length, longest_length
+
 
 def parityCheck(state):
-    # takes the state argument and determines it's parity, returning 0 if it's parity indicates that its solveable
-    count = 0                                     # variable to count the number of out of order pairs
+
     i = state.index("0")
-    state = state.replace("0", "")                # removes the 0 from the state string
-    for char in state:
-        for check in state[state.index(char):]:
-            if char > check:
-                count = count + 1                 # iterates through all characters in the state,
-                                                  #  adding to the count varible if the character is out of order
+    # state = state.replace("0", "")  # removes the 0 from the state string
+
+    # print(parityCount(state))
+    if goal == "012345678" :
+        count = parityCount(state)
+    else:
+        count = abs(parityCount(goal) - parityCount(state))
+
     if size % 2 == 1:       # if size is odd
-        if count % 2 == 0:  # if count is even
-            return 0        # its solvable
+        if count % 2 == 1:  # if count is even
+            return 1        # its solvable
         else:
-            return 1
+            return 0
     else:                         # if size if even
         if (i // size) % 2 == 1:  # if the 0 was in an odd row
             if count % 2 == 0:    # if the count is even
@@ -109,7 +288,19 @@ def parityCheck(state):
                 return 0
 
 
+def parityCount(state):
+    count = 0  # variable to count the number of out of order pairs
+    i = state.index("0")
+    state = state.replace("0", "")  # removes the 0 from the state string
+    for char in state:
+        for check in state[state.index(char):]:
+            if char > check:
+                count = count + 1  # iterates through all characters in the state,
+                #  adding to the count varible if the character is out of order
+    return count
+
 # 9
+
 
 def graph(goal_state):
     # takes in a goal and returns the distribution of the path lengths to get to the goal from every winnable state
@@ -226,31 +417,7 @@ def show_sequence_reverse(start, path):
     print(combo[:len(combo)-2])
 
 
-# 5
 
-def test_many():
-    # generates 100 to 1000 boards, attempts to solve them, and prints % solvable, avg path length, and longest path
-    global fraction_solvable, average_length
-    dict = getAllWinnableDict()            # makes a dictionary of all the states and their paths to goal
-    total = random.randint(100, 1000)      # random number of states from 100 to 1000
-    num_solvable = 0
-    total_length = 0
-    print(total)
-    longest_length = 0
-    for x in range(1, total+1):
-        rand = randomstate()            # makes a random state
-        if parityCheck(rand) == 1:
-            print("#" + str(x) + " of " + str(total) + ": no path found")  # if its not solvable, print so
-        else:
-            path = getAllWinnableDict().get(rand)            # finds the path to goal from the dictionary
-            print("#" + str(x) + " of " + str(total) + ": " + str(len(str(path)))) # prints update
-            num_solvable += 1                  #
-            total_length += len(path)          # updates the tracking variables
-            if len(path) > longest_length:     #
-                longest_length = len(path)     #
-    average_length = int(total_length/total)
-    fraction_solvable = num_solvable/total
-    return fraction_solvable, average_length, longest_length
 
 
 def getAllWinnableDict():
@@ -268,37 +435,8 @@ def getAllWinnableDict():
             if child not in visited.keys():                                 #
                 puz = Puzzle(child, v.getPath() + children.get(child, 0))   #
                 fringe.append(puz)                                          #
-                visited[child] = puz.getPath()                              #
+                visited[child] = len(puz.getPath())                          #
     return visited
-
-
-
-# 4
-
-def solve_bfs(state):
-    # finds the path to the goal state from a given state using a breadth first search algorithm
-    startState = state
-    start = Puzzle(state, "")
-    fringe = deque()
-    fringe.append(start)
-    visited = {startState, }
-
-    if parityCheck(state) == 1:   #
-        return -1                 # if parity determines its not solveable
-
-    while len(fringe) is not 0:                                  #
-        v = fringe.popleft()                                     # your standard BFS algorithm
-        if goal_test(v.getState()):                              #
-            return v.getPath()                                   #
-        children = getChildren(v.getState())                     #
-        for child in children.keys():                            #
-            if child not in visited:                             #
-                child_path = children.get(child, 0)              #
-                puz = Puzzle(child, v.getPath()+child_path)      #
-                fringe.append(puz)                               #
-                visited.add(child)                               #
-    if len(fringe) is 0:
-        return -1
 
 
 def show_sequence(start, path):
@@ -366,6 +504,7 @@ def randomsolvable():
     return state
 
 # 2
+
 
 def getAllWinnable():
     # iterates through the entire graph of solvable states and returns the total number of them
