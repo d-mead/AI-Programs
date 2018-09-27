@@ -15,13 +15,13 @@ def main():
     #
     # test_many()
 
-    thousand = make_list(1000)
+    # hundred = make_list(100)
+    #
+    # with open("100.pkl", "wb") as outfile:
+    #     pickle.dump(hundred, outfile)
 
-    with open("1000.pkl", "wb") as outfile:
-        pickle.dump(thousand, outfile)
-
-    with open("1000.pkl", "rb") as infile:
-        thousand = pickle.load(infile)
+    with open("100.pkl", "rb") as infile:
+        hundred = pickle.load(infile)
 
     start = time.process_time()
 
@@ -141,9 +141,10 @@ def solve_bfs(state):
         vt = fringe_top.popleft()                                     # your standard BFS algorithm
         vb = fringe_bottom.popleft()
         if vb[0] in visited_top:
-            for state in fringe_top:
-                if state[0] == vb[0]:
-                    return state[1] + vb[1]
+            #for state in fringe_top:
+            state = fringe_top[vb[0].index(fringe_t)]
+                # if state[0] == vb[0]:
+            return state[1] + vb[1]
         if goal_test(vt[0]):
             return vt[1]
         children = getChildren(vt[0])
@@ -162,21 +163,19 @@ def solve_bfs(state):
 
 def solve_bfs_zoom(state):
     # finds the path to the goal state from a given state using a breadth first search algorithm
-    startState = state
     fringe_top = deque()
     fringe_top.append((state, 0), )
     fringe_bottom = deque()
     fringe_bottom.append((goal, 0), )
-    visited_top = {startState, }
+    visited_top = {state, }
     visited_bottom = {goal, }
-    fringe_t = {state, }
 
     if parityCheck(state) == 1:   #
         return -1                 # if parity determines its not solveable
 
     while len(fringe_top) is not 0 and len(fringe_bottom) is not 0:
-        vt = fringe_top.popleft()                                     # your standard BFS algorithm
-        vb = fringe_bottom.popleft()
+        vt = fringe_top.pop()                                     # your standard BFS algorithm
+        vb = fringe_bottom.pop()
         if vb[0] in visited_top:
             for state in fringe_top:
                 if state[0] == vb[0]:
@@ -186,12 +185,12 @@ def solve_bfs_zoom(state):
         children = getChildren(vt[0])
         for child in children.keys():
             if child not in visited_top:
-                fringe_top.append((child, vb[1]+1))
+                fringe_top.appendleft((child, vb[1]+1))
                 visited_top.add(child)
         children = getChildren(vb[0])
         for child in children.keys():
             if child not in visited_bottom:
-                fringe_bottom.append((child, vb[1]+1))
+                fringe_bottom.appendleft((child, vb[1]+1))
                 visited_bottom.add(child)
     if len(fringe_top) is 0 and len(fringe_bottom) is 0:
         return -2
@@ -417,9 +416,6 @@ def show_sequence_reverse(start, path):
     print(combo[:len(combo)-2])
 
 
-
-
-
 def getAllWinnableDict():
     # creates a dictionary of all states and their path to the goal
     startState = "012345678"
@@ -525,7 +521,7 @@ def getAllWinnable():
 def getChildren(state):
     # returns a dictionary of the children from a state, each child's value being the move direction used to get there
     children = {moveUp(state): "1", moveRight(state): "2", moveDown(state): "3", moveLeft(state): "4"}
-    children.pop(state, None)  # removes states that are the same as the original (i.e. if "moved up" from top row)
+    # children.pop(state, None)  # removes states that are the same as the original (i.e. if "moved up" from top row)
     return children
 
 # up: 1, right: 2, down: 3, left: 4
