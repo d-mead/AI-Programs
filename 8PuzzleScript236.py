@@ -22,11 +22,11 @@ def main():
     #     pickle.dump(hundred, outfile)
 
     with open("1000.pkl", "rb") as infile:
-        thousand = pickle.load(infile)
+        list = pickle.load(infile)
 
     start = time.process_time()
 
-    fract, avg, long = test_many(thousand)
+    fract, avg, long = test_many(list)
 
     end = time.process_time()
 
@@ -34,7 +34,7 @@ def main():
     print("average length:      " + str(avg))
     print("longest path length: " + str(long))
 
-    print("seconds to run: %s" % (end - start))
+    print("time to run: %s" % (end - start))
 
 
     # filename = "16puzzle.txt"
@@ -196,7 +196,8 @@ def solve_bfs_zoom(state):
     if len(fringe_top) is 0 and len(fringe_bottom) is 0:
         return -2
 
-def solve_bfs_zoom_heap(state):
+
+def solve_zoom_heap(state):
     # finds the path to the goal state from a given state using a breadth first search algorithm
     start_state = state
     fringe_top = [(taxicab_dist(state, goal), state, 0), ]
@@ -220,17 +221,14 @@ def solve_bfs_zoom_heap(state):
         children = get_children(vt[1])
         for child in children.keys():
             if child not in visited_top:
-                if isinstance(goal, tuple):
-                    x=5
-                heappush(fringe_top, (taxicab_dist(child, goal), child, vb[2]+1))
+                # fringe_top.append((taxicab_dist(child, goal), child, vb[2]+1))
+                heappush(fringe_top, (taxicab_dist(child, goal), child, vt[2]+1))
                 visited_top.add(child)
         children = get_children(vb[1])
         for child in children.keys():
             if child not in visited_bottom:
-                if isinstance(state, tuple):
-                    x=5
+                # fringe_bottom.append((taxicab_dist(child, state), child, vb[2] + 1))
                 heappush(fringe_bottom, (taxicab_dist(child, state), child, vb[2] + 1))
-                # fringe_bottom.appendleft((child, vb[1]+1))
                 visited_bottom.add(child)
     if len(fringe_top) is 0 and len(fringe_bottom) is 0:
         return -2
@@ -239,11 +237,13 @@ def solve_bfs_zoom_heap(state):
 def taxicab_dist(state, aim):
     summ = 0
     for char in state:
-        y_goal = int(aim.index(char) / size)
-        x_goal = int(aim.index(char) % size)
-        y_cur = int(state.index(char) / size)
-        x_cur = int(state.index(char) % size)
-        summ += abs(y_goal-y_cur) + abs(x_goal-x_cur)
+        ai = aim.index(char)
+        ci = state.index(char)
+        y_goal = int(ai / size)
+        x_goal = int(ai % size)
+        y_cur = int(ci / size)
+        x_cur = int(ci % size)
+        summ += abs(y_goal - y_cur) + abs(x_goal - x_cur)
     return summ
 
 
@@ -295,7 +295,7 @@ def test_many(list):
     for rand in list:
         x += 1
         # rand = randomstate()            # makes a random state
-        path = solve_bfs_zoom_heap(rand)
+        path = solve_zoom_heap(rand)
         if path == -1:
             print("#" + str(x) + " of " + str(total) + ": no path found")
         else:

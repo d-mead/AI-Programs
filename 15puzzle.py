@@ -26,7 +26,7 @@ def main():
         size = 4
         state = sep[0].replace("\n", "")
 
-        print("%s: (depth: %s)" % (state, count))
+        print("%s: (%s)" % (state, count))
 
         # try:
         #     start = time.process_time()
@@ -42,7 +42,7 @@ def main():
             solve_bfs_zoom_heap(state)
             end = time.process_time()
             sum_time = sum_time + (end - start)
-            print("\tBFS Zoom Heap %s" % (end - start))
+            print("\tBFS Zoom Heap \t\t %s seconds" % round(end - start, 5))
         except MemoryError:
             print("\tBFS Zoom Heap Memory Error")
 
@@ -53,6 +53,22 @@ def main():
         # print("\tID_DFS %s" % (end - start))
 
         count += 1
+
+
+def solve_kdfs_heap(start, k):
+    fringe = [(taxicab_dist(start, goal), start, 0, {start, }, ""), ]
+    while len(fringe) is not 0:
+        v = heappop(fringe)
+        if goal_test(v[1]):
+            return v
+        if v[2] < k:
+            children = get_children(v[1])
+            for child in children:
+                if child not in v[3]:
+                    a = set(v[3])
+                    a.add(child)
+                    heappush(fringe, (taxicab_dist(child, goal), child, v[2] + 1, a, v[4]+children.get(child)))
+    return None
 
 
 def solve_kdfs(start, k):
@@ -75,6 +91,14 @@ def solve_kdfs(start, k):
 def id_dfs(start, max):
     for k in range(1, max):
         sol = solve_kdfs(start, k)
+        if sol is not None:
+            return sol
+    return None
+
+
+def id_dfs_heap(start, max):
+    for k in range(1, max):
+        sol = solve_kdfs_heap(start, k)
         if sol is not None:
             return sol
     return None
@@ -165,15 +189,11 @@ def solve_bfs_zoom_heap(state):
         children = get_children(vt[1])
         for child in children.keys():
             if child not in visited_top:
-                if isinstance(goal, tuple):
-                    x=5
                 heappush(fringe_top, (taxicab_dist(child, goal), child, vb[2]+1))
                 visited_top.add(child)
         children = get_children(vb[1])
         for child in children.keys():
             if child not in visited_bottom:
-                if isinstance(state, tuple):
-                    x=5
                 heappush(fringe_bottom, (taxicab_dist(child, state), child, vb[2] + 1))
                 # fringe_bottom.appendleft((child, vb[1]+1))
                 visited_bottom.add(child)
@@ -224,17 +244,19 @@ def parity_count(state):
 def taxicab_dist(state, aim):
     summ = 0
     for char in state:
-        y_goal = int(aim.index(char) / size)
-        x_goal = int(aim.index(char) % size)
-        y_cur = int(state.index(char) / size)
-        x_cur = int(state.index(char) % size)
+        ai = aim.index(char)
+        ci = state.index(char)
+        y_goal = int(ai / size)
+        x_goal = int(ai % size)
+        y_cur = int(ci / size)
+        x_cur = int(ci % size)
         summ += abs(y_goal-y_cur) + abs(x_goal-x_cur)
     return summ
 
 
 def random_state():
     # generates a random state by shuffling the string "012345678"
-    return(''.join(random.sample("012345678", 9)))
+    return ''.join(random.sample("012345678", 9))
 
 
 def random_solvable():
