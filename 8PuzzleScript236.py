@@ -4,6 +4,7 @@ import random
 from collections import deque
 import time
 import pickle
+from heapq import heappush, heappop
 
 
 def main():
@@ -20,12 +21,12 @@ def main():
     # with open("100.pkl", "wb") as outfile:
     #     pickle.dump(hundred, outfile)
 
-    with open("100.pkl", "rb") as infile:
-        hundred = pickle.load(infile)
+    with open("1000.pkl", "rb") as infile:
+        thousand = pickle.load(infile)
 
     start = time.process_time()
 
-    fract, avg, long = test_many(hundred)
+    fract, avg, long = test_many(thousand)
 
     end = time.process_time()
 
@@ -195,6 +196,56 @@ def solve_bfs_zoom(state):
     if len(fringe_top) is 0 and len(fringe_bottom) is 0:
         return -2
 
+def solve_bfs_zoom_heap(state):
+    # finds the path to the goal state from a given state using a breadth first search algorithm
+    start_state = state
+    fringe_top = [(taxicab_dist(state, goal), state, 0), ]
+    fringe_bottom = [(taxicab_dist(goal, state), goal, 0), ]
+    visited_top = {state, }
+    visited_bottom = {goal, }
+    fringe_t = {state, }
+
+    if parityCheck(state) == 1:   #
+        return -1                 # if parity determines its not solveable
+
+    while len(fringe_top) is not 0 and len(fringe_bottom) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+        vb = heappop(fringe_bottom)
+        if vb[1] in visited_top:
+            for s in fringe_top:
+                if s[1] == vb[1]:
+                    return s[2] + vb[2]
+        if goal_test(vt[1]):
+            return vt[2]
+        children = get_children(vt[1])
+        for child in children.keys():
+            if child not in visited_top:
+                if isinstance(goal, tuple):
+                    x=5
+                heappush(fringe_top, (taxicab_dist(child, goal), child, vb[2]+1))
+                visited_top.add(child)
+        children = get_children(vb[1])
+        for child in children.keys():
+            if child not in visited_bottom:
+                if isinstance(state, tuple):
+                    x=5
+                heappush(fringe_bottom, (taxicab_dist(child, state), child, vb[2] + 1))
+                # fringe_bottom.appendleft((child, vb[1]+1))
+                visited_bottom.add(child)
+    if len(fringe_top) is 0 and len(fringe_bottom) is 0:
+        return -2
+
+
+def taxicab_dist(state, aim):
+    summ = 0
+    for char in state:
+        y_goal = int(aim.index(char) / size)
+        x_goal = int(aim.index(char) % size)
+        y_cur = int(state.index(char) / size)
+        x_cur = int(state.index(char) % size)
+        summ += abs(y_goal-y_cur) + abs(x_goal-x_cur)
+    return summ
+
 
 def solve_bfs_original(state):
     # finds the path to the goal state from a given state using a breadth first search algorithm
@@ -244,7 +295,7 @@ def test_many(list):
     for rand in list:
         x += 1
         # rand = randomstate()            # makes a random state
-        path = solve_bfs_zoom(rand)
+        path = solve_bfs_zoom_heap(rand)
         if path == -1:
             print("#" + str(x) + " of " + str(total) + ": no path found")
         else:

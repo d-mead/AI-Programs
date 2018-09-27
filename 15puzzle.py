@@ -28,14 +28,23 @@ def main():
 
         print("%s: (depth: %s)" % (state, count))
 
+        # try:
+        #     start = time.process_time()
+        #     solve_bfs_zoom(state)
+        #     end = time.process_time()
+        #     sum_time = sum_time + (end - start)
+        #     print("\tBFS Zoom %s" % (end - start))
+        # except MemoryError:
+        #     print("\tBFS Zoom Memory Error")
+
         try:
             start = time.process_time()
-            solve_bfs_zoom(state)
+            solve_bfs_zoom_heap(state)
             end = time.process_time()
             sum_time = sum_time + (end - start)
-            print("\tBFS %s" % (end - start))
+            print("\tBFS Zoom Heap %s" % (end - start))
         except MemoryError:
-            print("\tBFS Memory Error")
+            print("\tBFS Zoom Heap Memory Error")
 
         # start = time.process_time()
         # id_dfs(state, count)
@@ -110,7 +119,7 @@ def solve_bfs_zoom(state):
         return -1                 # if parity determines its not solveable
 
     while len(fringe_top) is not 0 and len(fringe_bottom) is not 0:
-        vt = fringe_top.pop()                                     # your standard BFS algorithm
+        vt = fringe_top.pop()  # your standard BFS algorithm
         vb = fringe_bottom.pop()
         if vb[0] in visited_top:
             for state in fringe_top:
@@ -132,9 +141,47 @@ def solve_bfs_zoom(state):
         return -2
 
 
+def solve_bfs_zoom_heap(state):
+    # finds the path to the goal state from a given state using a breadth first search algorithm
+    start_state = state
+    fringe_top = [(taxicab_dist(state, goal), state, 0), ]
+    fringe_bottom = [(taxicab_dist(goal, state), goal, 0), ]
+    visited_top = {state, }
+    visited_bottom = {goal, }
+    fringe_t = {state, }
+
+    if parity_check(state) == 1:   #
+        return -1                 # if parity determines its not solveable
+
+    while len(fringe_top) is not 0 and len(fringe_bottom) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+        vb = heappop(fringe_bottom)
+        if vb[1] in visited_top:
+            for s in fringe_top:
+                if s[1] == vb[1]:
+                    return s[2] + vb[2]
+        if goal_test(vt[1]):
+            return vt[2]
+        children = get_children(vt[1])
+        for child in children.keys():
+            if child not in visited_top:
+                if isinstance(goal, tuple):
+                    x=5
+                heappush(fringe_top, (taxicab_dist(child, goal), child, vb[2]+1))
+                visited_top.add(child)
+        children = get_children(vb[1])
+        for child in children.keys():
+            if child not in visited_bottom:
+                if isinstance(state, tuple):
+                    x=5
+                heappush(fringe_bottom, (taxicab_dist(child, state), child, vb[2] + 1))
+                # fringe_bottom.appendleft((child, vb[1]+1))
+                visited_bottom.add(child)
+    if len(fringe_top) is 0 and len(fringe_bottom) is 0:
+        return -2
+
 
 def parity_check(state):
-
     i = state.index("0")
     # state = state.replace("0", "")  # removes the 0 from the state string
 
@@ -174,13 +221,13 @@ def parity_count(state):
     return count
 
 
-def taxicab_dist(state):
+def taxicab_dist(state, aim):
     summ = 0
     for char in state:
-        y_goal = goal.index(char) / size
-        x_goal = goal.index(char) % size
-        y_cur = state.index(char) / size
-        x_cur = state.index(char) % size
+        y_goal = int(aim.index(char) / size)
+        x_goal = int(aim.index(char) % size)
+        y_cur = int(state.index(char) / size)
+        x_cur = int(state.index(char) % size)
         summ += abs(y_goal-y_cur) + abs(x_goal-x_cur)
     return summ
 
