@@ -21,7 +21,7 @@ def main():
     # with open("100.pkl", "wb") as outfile:
     #     pickle.dump(hundred, outfile)
 
-    with open("1000.pkl", "rb") as infile:
+    with open("100.pkl", "rb") as infile:
         list = pickle.load(infile)
 
     start = time.process_time()
@@ -35,6 +35,7 @@ def main():
     print("longest path length: " + str(long))
 
     print("time to run: %s" % (end - start))
+
 
 
     # filename = "16puzzle.txt"
@@ -121,6 +122,7 @@ def main():
 # functions for problem number: 11
 
 # 4
+
 
 def solve_bfs(state):
     # finds the path to the goal state from a given state using a breadth first search algorithm
@@ -234,16 +236,22 @@ def solve_zoom_heap(state):
         return -2
 
 
+def zoom_heap_shortest():
+
+
+
+
 def taxicab_dist(state, aim):
     summ = 0
     for char in state:
-        ai = aim.index(char)
-        ci = state.index(char)
-        y_goal = int(ai / size)
-        x_goal = int(ai % size)
-        y_cur = int(ci / size)
-        x_cur = int(ci % size)
-        summ += abs(y_goal - y_cur) + abs(x_goal - x_cur)
+        if char is not 0:
+            ai = aim.index(char)
+            ci = state.index(char)
+            y_goal = int(ai / size)
+            x_goal = int(ai % size)
+            y_cur = int(ci / size)
+            x_cur = int(ci % size)
+            summ += abs(y_goal-y_cur) + abs(x_goal-x_cur)
     return summ
 
 
@@ -282,6 +290,34 @@ def make_list(x):
 
 
 def test_many(list):
+    # generates 100 to 1000 boards, attempts to solve them, and prints % solvable, avg path length, and longest path
+    global fraction_solvable, average_length
+    # dict = getAllWinnableDict()            # makes a dictionary of all the states and their paths to goal
+    # total = random.randint(100, 1000)      # random number of states from 100 to 1000
+    total = len(list)
+    num_solvable = 0
+    total_length = len(list)
+    # print(total)
+    longest_length = 0
+    x = 0
+    for rand in list:
+        x += 1
+        # rand = randomstate()            # makes a random state
+        path = solve_bfs_zoom(rand)
+        if path == -1:
+            print("#" + str(x) + " of " + str(total) + ": no path found")
+        else:
+            print("#" + str(x) + " of " + str(total) + ": " + str(path)) # prints update
+            num_solvable += 1                  #
+            total_length += path         # updates the tracking variables
+            if path > longest_length:     #
+                longest_length = path     #
+    average_length = int(total_length/total)
+    fraction_solvable = num_solvable/total
+    return fraction_solvable, average_length, longest_length
+
+
+def test_many_heap(list):
     # generates 100 to 1000 boards, attempts to solve them, and prints % solvable, avg path length, and longest path
     global fraction_solvable, average_length
     # dict = getAllWinnableDict()            # makes a dictionary of all the states and their paths to goal

@@ -20,7 +20,6 @@ def main():
     goal = "0ABCDEFGHIJKLMNO"
     sum_time = 0
     count = 0
-
     for line in lines:
         sep = line.split(" ")
         size = 4
@@ -28,31 +27,36 @@ def main():
 
         print("%s: (%s)" % (state, count))
 
-        # try:
-        #     start = time.process_time()
-        #     solve_bfs_zoom(state)
-        #     end = time.process_time()
-        #     sum_time = sum_time + (end - start)
-        #     print("\tBFS Zoom %s" % (end - start))
-        # except MemoryError:
-        #     print("\tBFS Zoom Memory Error")
-
         try:
             start = time.process_time()
-            solve_bfs_zoom_heap(state)
+            path = solve_bfs_original(state)
             end = time.process_time()
             sum_time = sum_time + (end - start)
-            print("\tBFS Zoom Heap \t\t %s seconds" % round(end - start, 5))
+            print("\tBFS \t%s \t%s" % (len(path), end - start))
         except MemoryError:
-            print("\tBFS Zoom Heap Memory Error")
+            print("\tBFS Memory Error")
 
-        # start = time.process_time()
-        # id_dfs(state, count)
-        # end = time.process_time()
-        # sum_time = sum_time + (end - start)
-        # print("\tID_DFS %s" % (end - start))
+
+
+        # try:
+        #     start = time.process_time()
+        #     solve_bfs_zoom_heap(state)
+        #     end = time.process_time()
+        #     sum_time = sum_time + (end - start)
+        #     print("\tBFS Zoom Heap \t\t %s seconds" % round(end - start, 5))
+        # except MemoryError:
+        #     print("\tBFS Zoom Heap Memory Error")
+
+
+        start = time.process_time()
+        path = id_dfs(state, count)
+        end = time.process_time()
+        sum_time = sum_time + (end - start)
+        print("\tID_DFS \t%s \t%s" % (len(path), end - start))
 
         count += 1
+
+    print("Total Time: %s" % round(sum_time, 5))
 
 
 def solve_kdfs_heap(start, k):
@@ -77,22 +81,24 @@ def solve_kdfs(start, k):
     while len(fringe) is not 0:
         v = fringe.pop()
         if goal_test(v[0]):
-            return v
-        if v[1] < k:
+            return v[3]
+        if v[1] <= k:
             children = get_children(v[0])
             for child in children:
                 if child not in v[2]:
                     a = set(v[2])
                     a.add(child)
-                    fringe.append((child, v[1] + 1, a, v[3]+children.get(child)))
+                    fringe.append((child, v[1] + 1, a, v[3] + children.get(child)))
     return None
 
 
 def id_dfs(start, max):
-    for k in range(1, max):
+    for k in range(0, max):
         sol = solve_kdfs(start, k)
         if sol is not None:
             return sol
+    if max == 0:
+        return ""
     return None
 
 
@@ -118,7 +124,7 @@ def solve_bfs_original(state):
     while len(fringe) is not 0:
         v = fringe.popleft()
         if goal_test(v[0]):
-            return v[1]
+            return str(v[1])
         children = get_children(v[0])
         for child in children.keys():
             if child not in visited:
@@ -244,13 +250,14 @@ def parity_count(state):
 def taxicab_dist(state, aim):
     summ = 0
     for char in state:
-        ai = aim.index(char)
-        ci = state.index(char)
-        y_goal = int(ai / size)
-        x_goal = int(ai % size)
-        y_cur = int(ci / size)
-        x_cur = int(ci % size)
-        summ += abs(y_goal-y_cur) + abs(x_goal-x_cur)
+        if char is not 0:
+            ai = aim.index(char)
+            ci = state.index(char)
+            y_goal = int(ai / size)
+            x_goal = int(ai % size)
+            y_cur = int(ci / size)
+            x_cur = int(ci % size)
+            summ += abs(y_goal-y_cur) + abs(x_goal-x_cur)
     return summ
 
 
