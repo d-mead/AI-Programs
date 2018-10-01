@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac51eb1-d9fa-49b2-88ef-715b8d84aa07" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/100.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/100.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/15puzzle.py" beforeDir="false" afterPath="$PROJECT_DIR$/15puzzle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/8PuzzleScript236.py" beforeDir="false" afterPath="$PROJECT_DIR$/8PuzzleScript236.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,7 +62,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="38639" />
+          <entry key="py" value="38820" />
           <entry key="txt" value="73" />
         </counts>
       </usages-collector>
@@ -84,7 +81,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="73" />
-          <entry key="Python" value="38639" />
+          <entry key="Python" value="38820" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -104,24 +101,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3495">
-              <caret line="239" selection-start-line="239" selection-end-line="239" />
+            <state relative-caret-position="195">
+              <caret line="337" column="35" selection-start-line="337" selection-start-column="35" selection-end-line="337" selection-end-column="35" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1538403449574" expanded="true" signature="7088:7093" ph="..." />
+                <marker date="1538407223425" expanded="true" signature="7093:8587" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+            <state relative-caret-position="-1075">
+              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <marker date="1538406653254" expanded="true" signature="221:226" ph="..." />
@@ -264,8 +261,8 @@
         <option value="$PROJECT_DIR$/word_ladder_matrix.py" />
         <option value="$PROJECT_DIR$/word_ladder.py" />
         <option value="$PROJECT_DIR$/guess.txt" />
-        <option value="$PROJECT_DIR$/8PuzzleScript236.py" />
         <option value="$PROJECT_DIR$/15puzzle.py" />
+        <option value="$PROJECT_DIR$/8PuzzleScript236.py" />
       </list>
     </option>
   </component>
@@ -314,7 +311,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.15puzzle">
+  <component name="RunManager" selected="Python.8PuzzleScript236">
     <configuration name="15puzzle" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Project1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -429,8 +426,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.15puzzle" />
         <item itemvalue="Python.8PuzzleScript236" />
+        <item itemvalue="Python.15puzzle" />
         <item itemvalue="Python.word_ladder" />
         <item itemvalue="Python.word_ladder_matrix" />
         <item itemvalue="Python.peg_solitare" />
@@ -846,17 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3495">
-          <caret line="239" selection-start-line="239" selection-end-line="239" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1538403449574" expanded="true" signature="7088:7093" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/word_ladder_matrix.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -904,13 +890,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/15puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+        <state relative-caret-position="-1075">
+          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <marker date="1538406653254" expanded="true" signature="221:226" ph="..." />
             <marker date="1538406653254" expanded="true" signature="2574:2908" ph="..." />
             <marker date="1538406653254" expanded="true" signature="2938:2943" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="337" column="35" selection-start-line="337" selection-start-column="35" selection-end-line="337" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1538407223425" expanded="true" signature="7093:8587" ph="..." />
           </folding>
         </state>
       </provider>

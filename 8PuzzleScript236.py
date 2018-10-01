@@ -235,10 +235,42 @@ def solve_zoom_heap(state):
     if len(fringe_top) is 0 and len(fringe_bottom) is 0:
         return -2
 
+def heap_still_shortest(state):
+    # finds the path to the goal state from a given state using a breadth first search algorithm
+    start_state = state
+    fringe_top = [(taxicab_dist(state, goal), state, 0), ]
+    fringe_bottom = deque()
+    fringe_bottom.append((goal, 0))
+    visited_top = {state, }
+    visited_bottom = {goal, }
+    fringe_t = {state, }
 
-def zoom_heap_shortest():
+    if parityCheck(state) == 1:  #
+        return -1  # if parity determines its not solveable
 
-
+    while len(fringe_top) is not 0 and len(fringe_bottom) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+        vb = fringe_bottom.popleft()
+        if vb[0] in visited_top:
+            for s in fringe_top:
+                if s[1] == vb[0]:
+                    return s[2] + vb[1]
+        if goal_test(vt[1]):
+            return vt[2]
+        children = get_children(vt[1])
+        for child in children.keys():
+            if child not in visited_top:
+                # fringe_top.append((taxicab_dist(child, goal), child, vb[2]+1))
+                heappush(fringe_top, (taxicab_dist(child, goal), child, vt[2] + 1))
+                visited_top.add(child)
+        children = get_children(vb[0])
+        for child in children.keys():
+            if child not in visited_bottom:
+                # fringe_bottom.append((taxicab_dist(child, state), child, vb[2] + 1))
+                fringe_bottom.append((child, vb[1] + 1))
+                visited_bottom.add(child)
+    if len(fringe_top) is 0 and len(fringe_bottom) is 0:
+        return -2
 
 
 def taxicab_dist(state, aim):
@@ -303,7 +335,7 @@ def test_many(list):
     for rand in list:
         x += 1
         # rand = randomstate()            # makes a random state
-        path = solve_bfs_zoom(rand)
+        path = heap_still_shortest(rand)
         if path == -1:
             print("#" + str(x) + " of " + str(total) + ": no path found")
         else:
