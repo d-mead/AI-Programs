@@ -12,6 +12,7 @@ from heapq import heappush, heappop
 def main():
     global size
     global goal
+    global memory
 
     filename = "16puzzle.txt"
     file = open(filename, "r")
@@ -36,27 +37,60 @@ def main():
         except MemoryError:
             print("\tBFS Memory Error")
 
+        try:
+            start = time.process_time()
+            path = a_star(state)
+            end = time.process_time()
+            sum_time = sum_time + (end - start)
+            print("\tA-Star \t%s \t %s seconds" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
 
 
-        # try:
-        #     start = time.process_time()
-        #     solve_bfs_zoom_heap(state)
-        #     end = time.process_time()
-        #     sum_time = sum_time + (end - start)
-        #     print("\tBFS Zoom Heap \t\t %s seconds" % round(end - start, 5))
-        # except MemoryError:
-        #     print("\tBFS Zoom Heap Memory Error")
+        # start = time.process_time()
+        # path = id_dfs(state, count)
+        # end = time.process_time()
+        # sum_time = sum_time + (end - start)
+        # print("\tID_DFS \t%s \t%s" % (len(path), end - start))
+        #
+        # count += 1
 
-
-        start = time.process_time()
-        path = id_dfs(state, count)
-        end = time.process_time()
-        sum_time = sum_time + (end - start)
-        print("\tID_DFS \t%s \t%s" % (len(path), end - start))
-
+        # start = time.process_time()
+        # path = id_bfs(state, count+3)
+        # end = time.process_time()
+        # sum_time = sum_time + (end - start)
+        # print("\tID_BFS \t%s" % (end - start))
+        #
         count += 1
 
+
+    # size = 4
+    # start = lines[16].split(" ")[0].replace("\n", "")
+    # print(id_bfs(start, 19))
+
     print("Total Time: %s" % round(sum_time, 5))
+
+
+def a_star(state):
+    fringe_top = [(taxicab_dist(state, goal)+0, state, 0), ]
+    visited_top = {state, }
+
+    # if parity_check(state) == 1:   #
+    #     return -1                 # if parity determines its not solveable
+
+    while len(fringe_top) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+        if goal_test(vt[1]):
+            return vt[2]
+        children = get_children(vt[1])
+        for child in children.keys():
+            if child not in visited_top:
+                if vt[2]+1==26:
+                    a=5
+                heappush(fringe_top, ((taxicab_dist(child, goal)+vt[2]+1), child, vt[2]+1))
+                visited_top.add(child)
+    if len(fringe_top) is 0:
+        return -2
 
 
 def solve_kdfs_heap(start, k):
@@ -93,7 +127,7 @@ def solve_kdfs(start, k):
 
 
 def id_dfs(start, max):
-    for k in range(0, max):
+    for k in range(taxicab_dist(start, goal), max):
         sol = solve_kdfs(start, k)
         if sol is not None:
             return sol
@@ -108,6 +142,98 @@ def id_dfs_heap(start, max):
         if sol is not None:
             return sol
     return None
+
+
+def solve_kbfs_cab(state, k):
+    start_state = state
+    fringe_top = [(taxicab_dist(state, goal), state, 0), ]
+    visited_top = {state, }
+    fringe_top_next = []
+    fringe_t = {state, }
+    done = False
+    count = 0
+
+    if parity_check(state) == 1:  #
+        return -1  # if parity determines its not solveable
+
+    while not done:
+        while len(fringe_top) is not 0:
+            vt = heappop(fringe_top)  # your standard BFS algorithm
+            if goal_test(vt[1]):
+                return vt[2]
+            children = get_children(vt[1])
+            for child in children.keys():
+                if child not in visited_top:
+                    # fringe_top.append((taxicab_dist(child, goal), child, vb[2]+1))
+                    heappush(fringe_top_next, (taxicab_dist(child, goal), child, vt[2] + 1))
+                    visited_top.add(child)
+        if count >= k:
+            done = True
+        else:
+            count += 1
+            fringe_top = list(fringe_top_next)
+
+    if len(fringe_top) is 0:
+        return None
+
+
+def id_bfs(start, max):
+    for k in range(taxicab_dist(start, goal), max):
+        sol = solve_kbfs_zoom_cab(start, k)
+        if sol is not None:
+            return sol
+    if max == 0:
+        return ""
+    return None
+
+
+def solve_kbfs_zoom_cab(state, k):
+    start_state = state
+    fringe_top = [(taxicab_dist(state, goal), state, 0), ]
+    fringe_bottom = [(taxicab_dist(goal, state), goal, 0), ]
+    visited_top = {state, }
+    visited_bottom = {goal, }
+    fringe_top_next = []
+    fringe_bottom_next = []
+    fringe_t = {state, }
+    done = False
+    count = -1
+
+    if parity_check(state) == 1:  #
+        return -1  # if parity determines its not solveable
+
+    while not done:
+        while len(fringe_top) is not 0 and len(fringe_bottom) is not 0:
+            vt = heappop(fringe_top)  # your standard BFS algorithm
+            vb = heappop(fringe_bottom)
+            if vb[1] in visited_top:
+                for s in fringe_top:
+                    if s[1] == vb[1]:
+                        #if s[2] + vb[2] < k:
+                        return s[2] + vb[2]
+            if goal_test(vt[1]):
+                return vt[2]
+            children = get_children(vt[1])
+            for child in children.keys():
+                if child not in visited_top:
+                    # fringe_top.append((taxicab_dist(child, goal), child, vb[2]+1))
+                    heappush(fringe_top_next, (taxicab_dist(child, goal), child, vt[2] + 1))
+                    visited_top.add(child)
+            children = get_children(vb[1])
+            for child in children.keys():
+                if child not in visited_bottom:
+                    # fringe_bottom.append((taxicab_dist(child, state), child, vb[2] + 1))
+                    heappush(fringe_bottom_next, (taxicab_dist(child, state), child, vb[2] + 1))
+                    visited_bottom.add(child)
+        if count >= k:
+            done = True
+        else:
+            count += 1
+            fringe_bottom = list(fringe_bottom_next)
+            fringe_top = list(fringe_top_next)
+
+    if len(fringe_top) is 0 and len(fringe_bottom) is 0:
+        return None
 
 
 def solve_bfs_original(state):
