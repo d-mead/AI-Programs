@@ -13,6 +13,10 @@ def main():
     global size
     global goal
     global memory
+    global memorylist
+
+    memory = set()
+    memorylist = []
 
     filename = "16puzzle.txt"
     file = open(filename, "r")
@@ -21,6 +25,33 @@ def main():
     goal = "0ABCDEFGHIJKLMNO"
     sum_time = 0
     count = 0
+    size = 4
+
+    # state = "A0BCDEFGHIJKLMNO" #lines[20].split(" ")[0].replace("\n", "")
+    # print("%s" % taxicab_dist(state, goal))
+    # print("left   %s" % taxicab_dist(left(state), goal))
+    # print("right  %s" % taxicab_dist(right(state), goal))
+    # print("up     %s" % taxicab_dist(up(state), goal))
+    # print("down   %s" % taxicab_dist(down(state), goal))
+    #
+    # print("")
+    #
+    # state = "DABC0EFGHIJKLMNO" #lines[21].split(" ")[0].replace("\n", "")
+    # print("%s" % taxicab_dist(state, goal))
+    # print("left   %s" % taxicab_dist(left(state), goal))
+    # print("right  %s" % taxicab_dist(right(state), goal))
+    # print("up     %s" % taxicab_dist(up(state), goal))
+    # print("down   %s" % taxicab_dist(down(state), goal))
+    #
+    # print("")
+    #
+    # state = lines[22].split(" ")[0].replace("\n", "")
+    # print("%s" % taxicab_dist(state, goal))
+    # print("left   %s" % taxicab_dist(left(state), goal))
+    # print("right  %s" % taxicab_dist(right(state), goal))
+    # print("up     %s" % taxicab_dist(up(state), goal))
+    # print("down   %s" % taxicab_dist(down(state), goal))
+
     for line in lines:
         sep = line.split(" ")
         size = 4
@@ -28,39 +59,50 @@ def main():
 
         print("%s: (%s)" % (state, count))
 
-        try:
-            start = time.process_time()
-            path = solve_bfs_original(state)
-            end = time.process_time()
-            sum_time = sum_time + (end - start)
-            print("\tBFS \t%s \t%s" % (len(path), end - start))
-        except MemoryError:
-            print("\tBFS Memory Error")
+
+
+        # try:
+        #     start = time.process_time()
+        #     path = solve_bfs_original(state)
+        #     end = time.process_time()
+        #     sum_time = sum_time + (end - start)
+        #     print("\tBFS \t%s \t%s" % (len(path), end - start))
+        # except MemoryError:
+        #     print("\tBFS Memory Error")
 
         try:
             start = time.process_time()
-            path = a_star(state)
+            path = a_star_taxi(state)
             end = time.process_time()
             sum_time = sum_time + (end - start)
-            print("\tA-Star \t%s \t %s seconds" % (path, round(end - start, 5)))
+            print("\tA-STAR \t\t%s \t%s" % (path, round(end - start, 5)))
         except MemoryError:
             print("\tA Star")
 
 
-        # start = time.process_time()
-        # path = id_dfs(state, count)
-        # end = time.process_time()
-        # sum_time = sum_time + (end - start)
-        # print("\tID_DFS \t%s \t%s" % (len(path), end - start))
-        #
-        # count += 1
+        # try:
+        #     start = time.process_time()
+        #     path = solve_bfs_original(state)
+        #     end = time.process_time()
+        #     sum_time = sum_time + (end - start)
+        #     print("\tBFS \t%s \t%s" % (len(path), round(end - start, 5)))
+        # except MemoryError:
+        #     print("\tBFS Memory Error")
+
 
         # start = time.process_time()
-        # path = id_bfs(state, count+3)
+        # path = solve_bfs_zoom_heap(state)
         # end = time.process_time()
         # sum_time = sum_time + (end - start)
-        # print("\tID_BFS \t%s" % (end - start))
-        #
+        # print("\tBZH \t%s \t%s" % (path, end - start))
+
+
+        # start = time.process_time()
+        # path = id_dfs(state, count+3)
+        # end = time.process_time()
+        # sum_time = sum_time + (end - start)
+        # print("\tID_DFS \t%s \t%s" % (len(path), round(end - start, 5)))
+
         count += 1
 
 
@@ -72,23 +114,84 @@ def main():
 
 
 def a_star(state):
-    fringe_top = [(taxicab_dist(state, goal)+0, state, 0), ]
-    visited_top = {state, }
+    fringe_top = [(taxicab_dist(state, goal)+0, state, 0)]
+    visited_top = set()
 
-    # if parity_check(state) == 1:   #
-    #     return -1                 # if parity determines its not solveable
+    # if parity_check(state) == 1:
+    #     return -1
 
     while len(fringe_top) is not 0:
         vt = heappop(fringe_top)  # your standard BFS algorithm
+
+        if vt[1] not in visited_top:
+            visited_top.add(vt[1])
+        else:
+            continue
+
         if goal_test(vt[1]):
             return vt[2]
+
         children = get_children(vt[1])
         for child in children.keys():
             if child not in visited_top:
-                if vt[2]+1==26:
-                    a=5
-                heappush(fringe_top, ((taxicab_dist(child, goal)+vt[2]+1), child, vt[2]+1))
-                visited_top.add(child)
+                heappush(fringe_top, ((vt[2]+1+taxicab_dist(child, goal)), child, vt[2]+1))
+        # visited_top.add(vt[1])
+
+    if len(fringe_top) is 0:
+        return -2
+
+
+def a_star_taxi(state):
+    fringe_top = [(taxicab_dist(state, goal)+0, state, 0)]
+    visited_top = set()
+
+    # if parity_check(state) == 1:
+    #     return -1
+
+    while len(fringe_top) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+
+        if vt[1] not in visited_top:
+            visited_top.add(vt[1])
+        else:
+            continue
+
+        if goal_test(vt[1]):
+            return vt[2]
+
+        children = get_children_taxi(vt[1])
+        for child in children.keys():
+            if child not in visited_top:
+                heappush(fringe_top, ((vt[2]+1+vt[0]+children.get(child)), child, vt[2]+1))
+        # visited_top.add(vt[1])
+
+    if len(fringe_top) is 0:
+        return -2
+
+
+def a_star_random(state):
+    fringe_top = [(taxicab_dist(state, goal) + 0, random.randint(1, 1000), state, 0), ]
+    visited_top = set()
+
+    # if parity_check(state) == 1:
+    #     return -1
+
+    while len(fringe_top) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+
+        if vt[2] not in visited_top:
+            visited_top.add(vt[2])
+        else:
+            continue
+
+        if goal_test(vt[2]):
+            return vt[3]
+        children = get_children(vt[2])
+        for child in children.keys():
+            if child not in visited_top:
+                heappush(fringe_top, ((vt[3] + 1 + taxicab_dist(child, goal)), random.randint(1, 1000), child, vt[3] + 1))
+        visited_top.add(vt[2])
+
     if len(fringe_top) is 0:
         return -2
 
@@ -127,12 +230,10 @@ def solve_kdfs(start, k):
 
 
 def id_dfs(start, max):
-    for k in range(taxicab_dist(start, goal), max):
+    for k in range(taxicab_dist(start, goal), max+3):
         sol = solve_kdfs(start, k)
         if sol is not None:
             return sol
-    if max == 0:
-        return ""
     return None
 
 
@@ -237,7 +338,6 @@ def solve_kbfs_zoom_cab(state, k):
 
 
 def solve_bfs_original(state):
-    # finds the path to the goal state from a given state using a breadth first search algorithm
     startState = state
     start = (state, "")
     fringe = deque()
@@ -321,7 +421,7 @@ def solve_bfs_zoom_heap(state):
         children = get_children(vt[1])
         for child in children.keys():
             if child not in visited_top:
-                heappush(fringe_top, (taxicab_dist(child, goal), child, vb[2]+1))
+                heappush(fringe_top, (taxicab_dist(child, goal), child, vt[2]+1))
                 visited_top.add(child)
         children = get_children(vb[1])
         for child in children.keys():
@@ -376,7 +476,7 @@ def parity_count(state):
 def taxicab_dist(state, aim):
     summ = 0
     for char in state:
-        if char is not 0:
+        if char is not "0":
             ai = aim.index(char)
             ci = state.index(char)
             y_goal = int(ai / size)
@@ -403,6 +503,23 @@ def random_solvable():
 def get_children(state):
     # returns a dictionary of the children from a state, each child's value being the move direction used to get there
     children = {up(state): "1", right(state): "2", down(state): "3", left(state): "4"}
+    # children.pop(state, None)  # removes states that are the same as the original (i.e. if "moved up" from top row)
+    return children
+
+#
+def get_children_taxi(state):
+    # returns a dictionary of the children from a state, each child's value being the move direction used to get there
+    iy = state.index("0") / size
+    ix = state.index("0") % size
+    children = set()
+    if iy > 0 and ix > 0:
+        children = {up(state): -1, right(state): 1, down(state): 1, left(state): -1}
+    elif iy > 0 and ix == 0:
+        children = {up(state): -1, right(state): 1, down(state): 1, left(state): 0}
+    elif iy == 0 and ix > 0:
+        children = {up(state): 0, right(state): 1, down(state): 1, left(state): -1}
+    else:
+        children = {up(state): 0, right(state): 1, down(state): 1, left(state): 0}
     # children.pop(state, None)  # removes states that are the same as the original (i.e. if "moved up" from top row)
     return children
 
@@ -474,3 +591,5 @@ def print_puzzle(state):
 if __name__ == "__main__":
     # main func!
     main()
+
+
