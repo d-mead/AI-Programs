@@ -162,6 +162,8 @@ def a_star_taxi(state):
         children = get_children_taxi(vt[1])
         for child in children.keys():
             if child not in visited_top:
+                a = (vt[2]+1+taxicab_dist(child, goal))
+                b = (vt[2]+1+vt[0]+children.get(child))
                 heappush(fringe_top, ((vt[2]+1+vt[0]+children.get(child)), child, vt[2]+1))
         # visited_top.add(vt[1])
 
@@ -502,24 +504,150 @@ def random_solvable():
 
 def get_children(state):
     # returns a dictionary of the children from a state, each child's value being the move direction used to get there
+    # children = {up(state): "1", right(state): "2", down(state): "3", left(state): "4"}
     children = {up(state): "1", right(state): "2", down(state): "3", left(state): "4"}
     # children.pop(state, None)  # removes states that are the same as the original (i.e. if "moved up" from top row)
     return children
 
-#
+
 def get_children_taxi(state):
     # returns a dictionary of the children from a state, each child's value being the move direction used to get there
-    iy = state.index("0") / size
-    ix = state.index("0") % size
-    children = set()
-    if iy > 0 and ix > 0:
-        children = {up(state): -1, right(state): 1, down(state): 1, left(state): -1}
-    elif iy > 0 and ix == 0:
-        children = {up(state): -1, right(state): 1, down(state): 1, left(state): 0}
-    elif iy == 0 and ix > 0:
-        children = {up(state): 0, right(state): 1, down(state): 1, left(state): -1}
+    # find the one it swaps with
+    # calculate how far it should be from that
+
+    children = dict()
+    o = state.index("0")
+    ox = state.index("0") % size
+    oy = int(state.index("0") / size)
+    # left:
+    if ox-1 >= 0:
+        current_char = state[ox-1]
+        goal_x = goal.index(current_char)
+        if goal_x < ox-1:
+            children[left(state)] = -1
+        else:
+            children[left(state)] = 1
     else:
-        children = {up(state): 0, right(state): 1, down(state): 1, left(state): 0}
+        children[left(state)] = 0
+
+    # right:
+    if ox+1 <= len(state)-1:
+        current_char = state[ox+1]
+        goal_x = goal.index(current_char)
+        if goal_x > ox+1:
+            children[right(state)] = -1
+        else:
+            children[right(state)] = 1
+    else:
+        children[right(state)] = 0
+
+    # up:
+    if oy-size >= 0:
+        current_char = state[oy-size]
+        goal_y = goal.index(current_char)
+        if goal_y < oy-size:
+            children[up(state)] = -1
+        else:
+            children[up(state)] = 1
+    else:
+        children[up(state)] = 0
+
+    # down:
+    if oy+size <= len(state)-1:
+        current_char = state[oy+size]
+        goal_y = goal.index(current_char)
+        if goal_y > oy+size:
+            children[down(state)] = -1
+        else:
+            children[down(state)] = 1
+    else:
+        children[down(state)] = 0
+
+
+
+    # children = dict()
+    # i = state.index("0")
+    # iy = int(state.index("0") / size)
+    # ix = state.index("0") % size
+    # li = i-1
+    # ri = i+1
+    # ui = i-size
+    # di = i+size
+    # if iy != 0: #UP
+    #     uc = state[ui]
+    #     g = goal.index(uc)
+    #     gy = int(g/size)
+    #     gx = g%size
+    #     cy = int(ui/size) - 1
+    #     cx = ui%size
+    #     if gy < cy:
+    #         children[up(state)] = -1
+    #     elif gy > cy:
+    #         children[up(state)] = 1
+    #     else:
+    #         children[up(state)] = 0
+    # else:
+    #     children[up(state)] = 0
+    #
+    # if iy != size-1:
+    #     dc = state[di]
+    #     g = goal.index(dc)
+    #     gy = int(g / size)
+    #     gx = g % size
+    #     cy = int(di / size) + 1
+    #     cx = di % size
+    #     if gy > cy:
+    #         children[down(state)] = -1
+    #     elif gy < cy:
+    #         children[down(state)] = 1
+    #     else:
+    #         children[down(state)] = 0
+    # else:
+    #     children[down(state)] = 0
+    #
+    # if (ix+1) < 0:
+    #     lc = state[li]
+    #     g = goal.index(lc)
+    #     gy = int(g / size)
+    #     gx = g % size
+    #     cy = int(li / size)
+    #     cx = li % size + 1
+    #     if gx > cx:
+    #         children[left(state)] = -1
+    #     elif gx < cx:
+    #         children[left(state)] = 1
+    #     else:
+    #         children[left(state)] = 0
+    # else:
+    #     children[left(state)] = 0
+    #
+    # if ix > size-1:
+    #     rc = state[ri]
+    #     g = goal.index(rc)
+    #     gy = int(g / size)
+    #     gx = g % size
+    #     cy = int(ri / size)
+    #     cx = ri % size - 1
+    #     if gx < cx:
+    #         children[right(state)] = -1
+    #     elif gx > cx:
+    #         children[right(state)] = 1
+    #     else:
+    #         children[right(state)] = 0
+    # else:
+    #     children[right(state)] = 0
+
+
+
+    # children = set()
+    # if iy > 0 and ix > 0:
+    #     children = {up(state): -1, right(state): 1, down(state): 1, left(state): -1}
+    # elif iy > 0 and ix == 0:
+    #     children = {up(state): -1, right(state): 1, down(state): 1, left(state): 0}
+    # elif iy == 0 and ix > 0:
+    #     children = {up(state): 0, right(state): 1, down(state): 1, left(state): -1}
+    # else:
+    #     children = {up(state): 0, right(state): 1, down(state): 1, left(state): 0}
     # children.pop(state, None)  # removes states that are the same as the original (i.e. if "moved up" from top row)
     return children
 
