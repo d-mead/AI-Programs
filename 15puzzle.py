@@ -7,6 +7,15 @@ import pickle
 from heapq import heappush, heappop
 # heappush(list, item)
 # heappop(list)
+#import graph_tool
+# from graph_tool.all import *
+import pandas as pd
+import numpy as np
+import networkx as nx
+import matplotlib.pyplot as plt
+
+#sys.path.append('/Users/JackMead/Desktop/CompSci/PycharmProjects/AIPrograms/venv/lib/python3.7/site-packages/graph-tool-2.27/src')
+#from graph_tool import *
 
 
 def main():
@@ -14,103 +23,52 @@ def main():
     global goal
     global memory
     global memorylist
+    global g
 
     memory = set()
     memorylist = []
 
-    filename = "16puzzle.txt"
-    file = open(filename, "r")
-    lines = file.readlines()
-    file.close()
     goal = "0ABCDEFGHIJKLMNO"
-    sum_time = 0
-    count = 0
     size = 4
 
-    # state = "A0BCDEFGHIJKLMNO" #lines[20].split(" ")[0].replace("\n", "")
-    # print("%s" % taxicab_dist(state, goal))
-    # print("left   %s" % taxicab_dist(left(state), goal))
-    # print("right  %s" % taxicab_dist(right(state), goal))
-    # print("up     %s" % taxicab_dist(up(state), goal))
-    # print("down   %s" % taxicab_dist(down(state), goal))
-    #
-    # print("")
-    #
-    # state = "DABC0EFGHIJKLMNO" #lines[21].split(" ")[0].replace("\n", "")
-    # print("%s" % taxicab_dist(state, goal))
-    # print("left   %s" % taxicab_dist(left(state), goal))
-    # print("right  %s" % taxicab_dist(right(state), goal))
-    # print("up     %s" % taxicab_dist(up(state), goal))
-    # print("down   %s" % taxicab_dist(down(state), goal))
-    #
-    # print("")
-    #
-    # state = lines[22].split(" ")[0].replace("\n", "")
-    # print("%s" % taxicab_dist(state, goal))
-    # print("left   %s" % taxicab_dist(left(state), goal))
-    # print("right  %s" % taxicab_dist(right(state), goal))
-    # print("up     %s" % taxicab_dist(up(state), goal))
-    # print("down   %s" % taxicab_dist(down(state), goal))
+    visualize2()
 
-    for line in lines:
-        sep = line.split(" ")
-        size = 4
-        state = sep[0].replace("\n", "")
-
-        print("%s: (%s)" % (state, count))
-
-
-
-        # try:
-        #     start = time.process_time()
-        #     path = solve_bfs_original(state)
-        #     end = time.process_time()
-        #     sum_time = sum_time + (end - start)
-        #     print("\tBFS \t%s \t%s" % (len(path), end - start))
-        # except MemoryError:
-        #     print("\tBFS Memory Error")
-
-        try:
-            start = time.process_time()
-            path = a_star_taxi(state)
-            end = time.process_time()
-            sum_time = sum_time + (end - start)
-            print("\tA-STAR \t\t%s \t%s" % (path, round(end - start, 5)))
-        except MemoryError:
-            print("\tA Star")
-
-
-        # try:
-        #     start = time.process_time()
-        #     path = solve_bfs_original(state)
-        #     end = time.process_time()
-        #     sum_time = sum_time + (end - start)
-        #     print("\tBFS \t%s \t%s" % (len(path), round(end - start, 5)))
-        # except MemoryError:
-        #     print("\tBFS Memory Error")
-
-
-        # start = time.process_time()
-        # path = solve_bfs_zoom_heap(state)
-        # end = time.process_time()
-        # sum_time = sum_time + (end - start)
-        # print("\tBZH \t%s \t%s" % (path, end - start))
-
-
-        # start = time.process_time()
-        # path = id_dfs(state, count+3)
-        # end = time.process_time()
-        # sum_time = sum_time + (end - start)
-        # print("\tID_DFS \t%s \t%s" % (len(path), round(end - start, 5)))
-
-        count += 1
-
-
+    # filename = "16puzzle.txt"
+    # file = open(filename, "r")
+    # lines = file.readlines()
+    # file.close()
+    # goal = "0ABCDEFGHIJKLMNO"
+    # sum_time = 0
+    # count = 0
     # size = 4
-    # start = lines[16].split(" ")[0].replace("\n", "")
-    # print(id_bfs(start, 19))
-
-    print("Total Time: %s" % round(sum_time, 5))
+    #
+    #
+    # for line in lines:
+    #
+    #     sep = line.split(" ")
+    #     size = 4
+    #     state = sep[0].replace("\n", "")
+    #
+    #     print("%s: (%s)" % (state, count))
+    #
+    #     #worksheet.write(count, 0, count)
+    #
+    #     try:
+    #         # start = time.process_time()
+    #         start = time.clock()
+    #         path = a_star_multiplier(state, .6) ###
+    #         # end = time.process_time()
+    #         end = time.clock()
+    #         sum_time = sum_time + (end - start)
+    #         #worksheet.write(count, 1, path) ###
+    #         print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+    #     except MemoryError:
+    #         print("\tA Star")
+    #
+    #     count += 1
+    #
+    # print("Total Time: %s" % round(sum_time, 5))
+    #workbook.close()
 
 
 def a_star(state):
@@ -142,7 +100,7 @@ def a_star(state):
 
 
 def a_star_taxi(state):
-    fringe_top = [(taxicab_dist(state, goal)+0, state, 0)]
+    fringe_top = [(taxicab_dist(state, goal)+0, state, 0, taxicab_dist(state, goal))]
     visited_top = set()
 
     # if parity_check(state) == 1:
@@ -162,9 +120,10 @@ def a_star_taxi(state):
         children = get_children_taxi(vt[1])
         for child in children.keys():
             if child not in visited_top:
-                a = (vt[2]+1+taxicab_dist(child, goal))
-                b = (vt[2]+1+vt[0]+children.get(child))
-                heappush(fringe_top, ((vt[2]+1+vt[0]+children.get(child)), child, vt[2]+1))
+                # a = (vt[2]+1+taxicab_dist(child, goal))
+                # b = (1+vt[0]+children.get(child))
+                taxi = vt[3] + children.get(child)
+                heappush(fringe_top, ((vt[2]+1+taxi), child, vt[2]+1, taxi))
         # visited_top.add(vt[1])
 
     if len(fringe_top) is 0:
@@ -172,7 +131,7 @@ def a_star_taxi(state):
 
 
 def a_star_random(state):
-    fringe_top = [(taxicab_dist(state, goal) + 0, random.randint(1, 1000), state, 0), ]
+    fringe_top = [(taxicab_dist(state, goal) + 0, random.randint(1, 1000), state, 0, taxicab_dist(state, goal)), ]
     visited_top = set()
 
     # if parity_check(state) == 1:
@@ -188,11 +147,71 @@ def a_star_random(state):
 
         if goal_test(vt[2]):
             return vt[3]
-        children = get_children(vt[2])
+        children = get_children_taxi(vt[2])
         for child in children.keys():
             if child not in visited_top:
-                heappush(fringe_top, ((vt[3] + 1 + taxicab_dist(child, goal)), random.randint(1, 1000), child, vt[3] + 1))
+                taxi = vt[4] + children.get(child)
+                heappush(fringe_top, ((vt[3]+1+taxi), random.randint(1, 1000), child, vt[3] + 1, taxi))
         visited_top.add(vt[2])
+
+    if len(fringe_top) is 0:
+        return -2
+
+
+def a_star_multiplier(state, multiplier):
+    fringe_top = [(taxicab_dist(state, goal) + 0, random.randint(1, 1000), state, 0, taxicab_dist(state, goal)), ]
+    visited_top = set()
+
+    # if parity_check(state) == 1:
+    #     return -1
+
+    while len(fringe_top) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+
+        if vt[2] not in visited_top:
+            visited_top.add(vt[2])
+        else:
+            continue
+
+        if goal_test(vt[2]):
+            return vt[3]
+        children = get_children_taxi(vt[2])
+        for child in children.keys():
+            if child not in visited_top:
+                taxi = vt[4] + children.get(child)
+                heappush(fringe_top, ((multiplier * (vt[3] + 1) + taxi), random.randint(1, 1000), child, vt[3] + 1, taxi))
+        visited_top.add(vt[2])
+
+    if len(fringe_top) is 0:
+        return -2
+
+
+def a_star_nps(state):
+    fringe_top = [(taxicab_dist(state, goal) + 0, state, 0, taxicab_dist(state, goal))]
+    visited_top = set()
+
+    # if parity_check(state) == 1:
+    #     return -1
+
+    while len(fringe_top) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+
+        if vt[1] not in visited_top:
+            visited_top.add(vt[1])
+        else:
+            continue
+
+        if goal_test(vt[1]):
+            return (vt[2], len(visited_top))
+
+        children = get_children_taxi(vt[1])
+        for child in children.keys():
+            if child not in visited_top:
+                # a = (vt[2]+1+taxicab_dist(child, goal))
+                # b = (1+vt[0]+children.get(child))
+                taxi = vt[3] + children.get(child)
+                heappush(fringe_top, ((vt[2] + 1 + taxi), child, vt[2] + 1, taxi))
+        # visited_top.add(vt[1])
 
     if len(fringe_top) is 0:
         return -2
@@ -231,11 +250,38 @@ def solve_kdfs(start, k):
     return None
 
 
+def solve_kdfs_nps(start, k):
+    fringe = deque()
+    fringe.append((start, 0, {start, }, ""))
+    nodes = 0
+    while len(fringe) is not 0:
+        v = fringe.pop()
+        if goal_test(v[0]):
+            return v[3], nodes
+        if v[1] <= k:
+            children = get_children(v[0])
+            for child in children:
+                if child not in v[2]:
+                    a = set(v[2])
+                    a.add(child)
+                    fringe.append((child, v[1] + 1, a, v[3] + children.get(child)))
+                    nodes += 1
+    return None, None
+
+
 def id_dfs(start, max):
     for k in range(taxicab_dist(start, goal), max+3):
         sol = solve_kdfs(start, k)
         if sol is not None:
             return sol
+    return None
+
+
+def id_dfs_nps(start, max):
+    for k in range(taxicab_dist(start, goal), max+3):
+        sol, nodes = solve_kdfs_nps(start, k)
+        if sol is not None:
+            return sol, nodes
     return None
 
 
@@ -362,6 +408,29 @@ def solve_bfs_original(state):
         return -1
 
 
+def solve_bfs_original_nps(state):
+    startState = state
+    start = (state, "")
+    fringe = deque()
+    fringe.append(start)
+    visited = {state, }
+
+    if parity_check(state) == 1:  #
+        return -1  # if parity determines its not solveable
+
+    while len(fringe) is not 0:
+        v = fringe.popleft()
+        if goal_test(v[0]):
+            return str(v[1]), len(visited)
+        children = get_children(v[0])
+        for child in children.keys():
+            if child not in visited:
+                fringe.append((child, v[1] + children.get(child, 0)))
+                visited.add(child)
+    if len(fringe) is 0:
+        return -1
+
+
 def solve_bfs_zoom(state):
     # finds the path to the goal state from a given state using a breadth first search algorithm
     start_state = state
@@ -394,6 +463,43 @@ def solve_bfs_zoom(state):
         for child in children.keys():
             if child not in visited_bottom:
                 fringe_bottom.appendleft((child, vb[1]+1))
+                visited_bottom.add(child)
+    if len(fringe_top) is 0 and len(fringe_bottom) is 0:
+        return -2
+
+
+def solve_bfs_zoom_nps(state):
+    # finds the path to the goal state from a given state using a breadth first search algorithm
+    start_state = state
+    fringe_top = deque()
+    fringe_top.append((state, 0), )
+    fringe_bottom = deque()
+    fringe_bottom.append((goal, 0), )
+    visited_top = {state, }
+    visited_bottom = {goal, }
+    fringe_t = {state, }
+
+    if parity_check(state) == 1:  #
+        return -1  # if parity determines its not solveable
+
+    while len(fringe_top) is not 0 and len(fringe_bottom) is not 0:
+        vt = fringe_top.pop()  # your standard BFS algorithm
+        vb = fringe_bottom.pop()
+        if vb[0] in visited_top:
+            for state in fringe_top:
+                if state[0] == vb[0]:
+                    return state[1] + vb[1], len(visited_top) + len(visited_bottom)
+        if goal_test(vt[0]):
+            return vt[1], len(visited_top) + len(visited_bottom)
+        children = get_children(vt[0])
+        for child in children.keys():
+            if child not in visited_top:
+                fringe_top.appendleft((child, vb[1] + 1))
+                visited_top.add(child)
+        children = get_children(vb[0])
+        for child in children.keys():
+            if child not in visited_bottom:
+                fringe_bottom.appendleft((child, vb[1] + 1))
                 visited_bottom.add(child)
     if len(fringe_top) is 0 and len(fringe_bottom) is 0:
         return -2
@@ -517,142 +623,46 @@ def get_children_taxi(state):
 
     children = dict()
     o = state.index("0")
-    ox = state.index("0") % size
-    oy = int(state.index("0") / size)
-    # left:
-    if ox-1 >= 0:
-        current_char = state[ox-1]
-        goal_x = goal.index(current_char)
-        if goal_x < ox-1:
-            children[left(state)] = -1
-        else:
-            children[left(state)] = 1
-    else:
-        children[left(state)] = 0
 
-    # right:
-    if ox+1 <= len(state)-1:
-        current_char = state[ox+1]
-        goal_x = goal.index(current_char)
-        if goal_x > ox+1:
-            children[right(state)] = -1
-        else:
-            children[right(state)] = 1
-    else:
-        children[right(state)] = 0
+    left_state = left(state)
+    left_taxi = 0
+    if left_state != state:
+        left_taxi = taxi_char(state[o - 1], left_state, goal)-taxi_char(state[o - 1], state, goal)
+    children[left_state] = left_taxi
 
-    # up:
-    if oy-size >= 0:
-        current_char = state[oy-size]
-        goal_y = goal.index(current_char)
-        if goal_y < oy-size:
-            children[up(state)] = -1
-        else:
-            children[up(state)] = 1
-    else:
-        children[up(state)] = 0
+    right_state = right(state)
+    right_taxi = 0
+    if right_state != state:
+        right_taxi = taxi_char(state[o + 1], right_state, goal) - taxi_char(state[o + 1], state, goal)
+    children[right_state] = right_taxi
 
-    # down:
-    if oy+size <= len(state)-1:
-        current_char = state[oy+size]
-        goal_y = goal.index(current_char)
-        if goal_y > oy+size:
-            children[down(state)] = -1
-        else:
-            children[down(state)] = 1
-    else:
-        children[down(state)] = 0
+    up_state = up(state)
+    up_taxi = 0
+    if up_state != state:
+        up_taxi = taxi_char(state[o - size], up_state, goal) - taxi_char(state[o - size], state, goal)
+    children[up_state] = up_taxi
 
+    down_state = down(state)
+    down_taxi = 0
+    if down_state != state:
+        down_taxi = taxi_char(state[o + size], down_state, goal) - taxi_char(state[o + size], state, goal)
+    children[down_state] = down_taxi
 
-
-    # children = dict()
-    # i = state.index("0")
-    # iy = int(state.index("0") / size)
-    # ix = state.index("0") % size
-    # li = i-1
-    # ri = i+1
-    # ui = i-size
-    # di = i+size
-    # if iy != 0: #UP
-    #     uc = state[ui]
-    #     g = goal.index(uc)
-    #     gy = int(g/size)
-    #     gx = g%size
-    #     cy = int(ui/size) - 1
-    #     cx = ui%size
-    #     if gy < cy:
-    #         children[up(state)] = -1
-    #     elif gy > cy:
-    #         children[up(state)] = 1
-    #     else:
-    #         children[up(state)] = 0
-    # else:
-    #     children[up(state)] = 0
-    #
-    # if iy != size-1:
-    #     dc = state[di]
-    #     g = goal.index(dc)
-    #     gy = int(g / size)
-    #     gx = g % size
-    #     cy = int(di / size) + 1
-    #     cx = di % size
-    #     if gy > cy:
-    #         children[down(state)] = -1
-    #     elif gy < cy:
-    #         children[down(state)] = 1
-    #     else:
-    #         children[down(state)] = 0
-    # else:
-    #     children[down(state)] = 0
-    #
-    # if (ix+1) < 0:
-    #     lc = state[li]
-    #     g = goal.index(lc)
-    #     gy = int(g / size)
-    #     gx = g % size
-    #     cy = int(li / size)
-    #     cx = li % size + 1
-    #     if gx > cx:
-    #         children[left(state)] = -1
-    #     elif gx < cx:
-    #         children[left(state)] = 1
-    #     else:
-    #         children[left(state)] = 0
-    # else:
-    #     children[left(state)] = 0
-    #
-    # if ix > size-1:
-    #     rc = state[ri]
-    #     g = goal.index(rc)
-    #     gy = int(g / size)
-    #     gx = g % size
-    #     cy = int(ri / size)
-    #     cx = ri % size - 1
-    #     if gx < cx:
-    #         children[right(state)] = -1
-    #     elif gx > cx:
-    #         children[right(state)] = 1
-    #     else:
-    #         children[right(state)] = 0
-    # else:
-    #     children[right(state)] = 0
-
-
-
-    # children = set()
-    # if iy > 0 and ix > 0:
-    #     children = {up(state): -1, right(state): 1, down(state): 1, left(state): -1}
-    # elif iy > 0 and ix == 0:
-    #     children = {up(state): -1, right(state): 1, down(state): 1, left(state): 0}
-    # elif iy == 0 and ix > 0:
-    #     children = {up(state): 0, right(state): 1, down(state): 1, left(state): -1}
-    # else:
-    #     children = {up(state): 0, right(state): 1, down(state): 1, left(state): 0}
-    # children.pop(state, None)  # removes states that are the same as the original (i.e. if "moved up" from top row)
     return children
 
 # up: 1, right: 2, down: 3, left: 4
 
+def taxi_char(char, state, aim):
+    summ = 0
+    if char is not "0":
+        ai = aim.index(char)
+        ci = state.index(char)
+        y_goal = int(ai / size)
+        x_goal = int(ai % size)
+        y_cur = int(ci / size)
+        x_cur = int(ci % size)
+        summ += abs(y_goal - y_cur) + abs(x_goal - x_cur)
+    return summ
 
 def left(state):
     # moves space left
@@ -716,8 +726,383 @@ def print_puzzle(state):
         print(" ".join(state[x*size:(x+1)*size]))
     print("")
 
+
+def korf(m):
+    filename = "korf100.txt"
+    file = open(filename, "r")
+    lines = file.readlines()
+    file.close()
+    global goal
+    goal = "0ABCDEFGHIJKLMNO"
+    sum_time = 0
+    count = 0
+    global size
+    size = 4
+
+
+    workbook = xlsxwriter.Workbook('Multiplier3.xlsx')
+    worksheet = workbook.add_worksheet()
+
+    worksheet.write(count, 0, "depth")
+    worksheet.write(count, 1, "2.5")
+    worksheet.write(count, 2, "3")
+    worksheet.write(count, 3, "4")
+    worksheet.write(count, 4, "5")
+    worksheet.write(count, 5, "6")
+
+    for line in lines[:10]:
+        sep = line.split(" ")
+        size = 4
+        state = sep[0].replace("\n", "")
+
+        print("%s: (%s)" % (state, count))
+
+        worksheet.write(count+1, 0, count)
+
+        for x in range(1, 11):
+            try:
+                # start = time.process_time()
+                start = time.clock()
+                path = a_star_multiplier(state, m)  ###
+                # end = time.process_time()
+                end = time.clock()
+                sum_time = sum_time + (end - start)
+                worksheet.write(count+1, x, path)  ###
+                print("\tA-STAR %s\t%s \t%s" % (x, path, round(end - start, 5)))
+            except MemoryError:
+                print("\tA Star")
+
+        count += 1
+
+    print("Total Time: %s" % round(sum_time, 5))
+    workbook.close()
+
+
+def multiplier_excel_1():
+    workbook = xlsxwriter.Workbook('Multiplier3.xlsx')
+    worksheet = workbook.add_worksheet()
+
+    worksheet.write(count, 0, "depth")
+    worksheet.write(count, 1, "2")
+    worksheet.write(count, 1, "4")
+    worksheet.write(count, 1, "8")
+    worksheet.write(count, 1, "16")
+    worksheet.write(count, 1, "32")
+    worksheet.write(count, 1, "64")
+    worksheet.write(count, 1, "128")
+
+    for line in lines:
+        sep = line.split(" ")
+        size = 4
+        state = sep[0].replace("\n", "")
+
+        print("%s: (%s)" % (state, count))
+
+        worksheet.write(count, 0, count)
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_multiplier(state, 2)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count, 1, path)  ###
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_multiplier(state, 4)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count, 2, path)  ###
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_multiplier(state, 8)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count, 3, path)  ###
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_multiplier(state, 16)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count, 4, path)  ###
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_multiplier(state, 32)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count, 5, path)  ###
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_multiplier(state, 64)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count, 6, path)  ###
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_multiplier(state, 128)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count, 7, path)  ###
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        count += 1
+
+    print("Total Time: %s" % round(sum_time, 5))
+    workbook.close()
+
+
+def req_1():
+    filename = "16puzzle.txt"
+    file = open(filename, "r")
+    lines = file.readlines()
+    file.close()
+    goal = "0ABCDEFGHIJKLMNO"
+    sum_time = 0
+    count = 35
+    size = 4
+
+    workbook = xlsxwriter.Workbook('Random2.xlsx')
+    worksheet = workbook.add_worksheet()
+
+    for line in lines[35:41]:
+
+        sep = line.split(" ")
+        size = 4
+        state = sep[0].replace("\n", "")
+
+        print("%s: (%s)" % (state, count))
+
+        worksheet.write(count-35, 0, count)
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_random(state)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count-35, 1, round(end - start, 5))  ###
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_random(state)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count-35, 2, round(end - start, 5))  ###
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_random(state)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count-35, 3, round(end - start, 5))  ###
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        count += 1
+
+    print("Total Time: %s" % round(sum_time, 5))
+    workbook.close()
+
+
+def nps():
+    state = "DACGEIFBHK0OLJMN"
+
+    filename = "16puzzle.txt"
+    file = open(filename, "r")
+    lines = file.readlines()
+    file.close()
+    goal = "0ABCDEFGHIJKLMNO"
+    sum_time = 0
+    count = 0
+    size = 4
+
+    bfs = "AFICDB0GEHJOLMKN"
+    iddfs = "ABKCHDG0IFEJLMNO"
+    astar = "KDEB0AJFLIGNMHCO"
+    bibfs = "FIEBDA0CONKGHLMJ"
+
+    # start = time.process_time()
+    start = time.clock()
+    path, nodes = solve_bfs_original_nps(bfs)
+    # end = time.process_time()
+    end = time.clock()
+    print("\tBFS \t%s \t%s \t%s" % (len(path), round(end - start, 5), nodes / round(end - start, 5)))
+
+    # start = time.process_time()
+    start = time.clock()
+    path, nodes = id_dfs_nps(iddfs, 20)
+    # end = time.process_time()
+    end = time.clock()
+    print("\tID DFS \t%s \t%s \t%s" % (len(path), round(end - start, 5), nodes / round(end - start, 5)))
+
+    # start = time.process_time()
+    start = time.clock()
+    path, nodes = a_star_nps(astar)
+    # end = time.process_time()
+    end = time.clock()
+    print("\tA-STAR \t%s \t%s \t%s" % (path, round(end - start, 5), nodes/round(end - start, 5)))
+
+    # start = time.process_time()
+    start = time.clock()
+    path, nodes = solve_bfs_zoom_nps(bibfs)
+    # end = time.process_time()
+    end = time.clock()
+    print("\tBI BFS \t%s \t%s \t%s" % (path, round(end - start, 5), nodes / round(end - start, 5)))
+
+
+def visualize():
+    g = Graph(directed = False)
+    a_star_visialize(g)
+    g.graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=10, output_size = (500, 500), output = "graph1.png")
+
+
+def a_star_visialize(state):
+    fringe_top = [(taxicab_dist(state, goal) + 0, state, 0, taxicab_dist(state, goal), [state, ])]
+    visited_top = set()
+
+    g = nx.Graph()
+
+    # if parity_check(state) == 1:
+    #     return -1
+
+    while len(fringe_top) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+
+        if vt[1] not in visited_top:
+            visited_top.add(vt[1])
+        else:
+            continue
+
+        if goal_test(vt[1]):
+            return g, vt[4]
+
+        children = get_children_taxi(vt[1])
+        for child in children.keys():
+            if child not in visited_top:
+                # a = (vt[2]+1+taxicab_dist(child, goal))
+                # b = (1+vt[0]+children.get(child))
+                taxi = vt[3] + children.get(child)
+                ancestors = list(vt[4])
+                ancestors.append(vt[1])
+                heappush(fringe_top, ((vt[2] + 1 + taxi), child, vt[2] + 1, taxi, ancestors))
+                g.add_edge(child, vt[1])
+
+
+def visualize2():
+
+    state = "AFICDB0GEHJOLMKN"
+    # Build a dataframe with 4 connections
+    from_list = []
+    to_list = []
+
+
+    g, l = a_star_visialize(state)
+
+    edge_l = []
+    color_list = [".6"]*len(g.edges())
+    l.append(goal)
+    prev = l[0]
+    for node in l:
+        edge_l.append((prev, node))
+        if (prev, node) in list(g.edges()):
+            index = list(g.edges()).index((prev, node))
+            color_list[index] = "red"
+        elif (node, prev) in list(g.edges()):
+            index = list(g.edges()).index((node, prev))
+            color_list[index] = 'red'
+        prev = node
+
+    # for e in range(0, len(g.edges())):
+    #     if e < len(color_list):
+    #         if color_list[e] != ".1":
+    #             color_list[e] = ".5"
+    #     else:
+    #         color_list.append(".5")
+
+
+    #print(g.edges())
+    #print(vt[4])
+    ##print(edge_l)
+
+    # plt.subplot(121)
+    #
+    # nx.draw(g, with_labels=True, font_weight='bold')
+    plt.subplot(111)
+
+
+    nx.draw(g, labels = {state: "start", goal:"finish"}, with_labels=True, font_size = 10, node_color='darkblue', node_size=10, edge_color=color_list, width=2.0,
+            edge_cmap=plt.cm.Blues, font_weight = "bold", font_color = "black", label = "Graph of all nodes proccesed and the correct path for A* search from " + state + " to " + goal+"." )
+
+
+    #nx.draw_shell(g, nlist=[range(5, 10), range(5)], with_labels=True, font_weight='bold')
+    options = {
+    'node_color': 'black',
+    'node_size': 10,
+    'width': 2,
+
+    }
+    plt.show()
+
+
 if __name__ == "__main__":
     # main func!
     main()
+
+
+
+
+
+
 
 
