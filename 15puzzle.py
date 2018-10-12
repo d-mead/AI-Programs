@@ -250,6 +250,14 @@ def solve_kdfs(start, k):
     return None
 
 
+def id_dfs_nps(start, max):
+    for k in range(taxicab_dist(start, goal), max+3):
+        sol, nodes = solve_kdfs_nps(start, k)
+        if sol is not None:
+            return sol, nodes
+    return None
+
+
 def solve_kdfs_nps(start, k):
     fringe = deque()
     fringe.append((start, 0, {start, }, ""))
@@ -274,14 +282,6 @@ def id_dfs(start, max):
         sol = solve_kdfs(start, k)
         if sol is not None:
             return sol
-    return None
-
-
-def id_dfs_nps(start, max):
-    for k in range(taxicab_dist(start, goal), max+3):
-        sol, nodes = solve_kdfs_nps(start, k)
-        if sol is not None:
-            return sol, nodes
     return None
 
 
@@ -1008,7 +1008,7 @@ def visualize():
 
 
 def a_star_visialize(state):
-    fringe_top = [(taxicab_dist(state, goal) + 0, state, 0, taxicab_dist(state, goal), [state, ])]
+    fringe_top = [(taxicab_dist(state, goal) + 0, state, 0, taxicab_dist(state, goal), [])]
     visited_top = set()
 
     g = nx.Graph()
@@ -1039,18 +1039,140 @@ def a_star_visialize(state):
                 g.add_edge(child, vt[1])
 
 
+def bi_bfs_vizualize(state):
+    # finds the path to the goal state from a given state using a breadth first search algorithm
+    start_state = state
+    fringe_top = deque()
+    fringe_top.append((state, 0, [state, ]), )
+    fringe_bottom = deque()
+    fringe_bottom.append((goal, 0, [goal, ]), )
+    visited_top = {state, }
+    visited_bottom = {goal, }
+    fringe_t = {state, }
+
+    g = nx.Graph()
+
+    if parity_check(state) == 1:   #
+        return -1                 # if parity determines its not solveable
+
+    while len(fringe_top) is not 0 and len(fringe_bottom) is not 0:
+        vt = fringe_top.pop()  # your standard BFS algorithm
+        vb = fringe_bottom.pop()
+        if vb[0] in visited_top:
+            for state in fringe_top:
+                if state[0] == vb[0]:
+                    # print("both")
+                    # print(state[2])
+                    # print(vb[2])
+                    # print(state[2]+vb[2])
+                    g.add_edge(vb[2][0], state[2][len(state[2])-1])
+                    return g, (state[2]+vb[2])
+        if goal_test(vt[0]):
+            return g, vt[2]
+        if vb[0] == state:
+            return g, vb[2]
+        children = get_children(vt[0])
+        for child in children.keys():
+            if child not in visited_top:
+                ancestors = list(vt[2])
+                ancestors.append(vt[0])
+                fringe_top.appendleft((child, vt[1]+1, ancestors))
+                visited_top.add(child)
+                g.add_edge(child, vt[0])
+        children = get_children(vb[0])
+        for child in children.keys():
+            if child not in visited_bottom:
+                ancestors = list(vb[2])
+                ancestors.insert(0, vb[0])
+                fringe_bottom.appendleft((child, vb[1]+1, ancestors))
+                visited_bottom.add(child)
+                g.add_edge(vb[0], child)
+
+
+def solve_kdfs_visualize(start, k):
+    g = nx.Graph()
+    fringe = deque()
+    fringe.append((start, 0, [start, ], ""))
+    while len(fringe) is not 0:
+        v = fringe.pop()
+        if goal_test(v[0]):
+            return v[3], v[2], g
+        if v[1] <= k:
+            children = get_children(v[0])
+            for child in children:
+                if child not in v[2]:
+                    a = list(v[2])
+                    a.append(child)
+                    g.add_edge(v[0], child)
+                    fringe.append((child, v[1] + 1, a, v[3] + children.get(child)))
+    return None, None, None
+
+
+def id_dfs_visualize(start, max):
+    for k in range(taxicab_dist(start, goal), max+3):
+        sol, l, g = solve_kdfs_visualize(start, k)
+        if sol is not None:
+            return g, l
+    return None
+
+
+def bfs_visualize(state):
+    g = nx.Graph()
+    startState = state
+    start = (state, "", [state])
+    fringe = deque()
+    fringe.append(start)
+    visited = {state, }
+
+    # if parity_check(state) == 1:  #
+    #     return -1  # if parity determines its not solveable
+
+    while len(fringe) is not 0:
+        v = fringe.popleft()
+        if goal_test(v[0]):
+            return g, v[2]
+        children = get_children(v[0])
+        for child in children.keys():
+            if child not in visited:
+                a = list(v[2])
+                a.append(child)
+                fringe.append((child, v[1] + children.get(child, 0), a))
+                visited.add(child)
+                g.add_edge(v[0], child)
+    if len(fringe) is 0:
+        return -1, -1
+
+
 def visualize2():
 
-    state = "AFICDB0GEHJOLMKN"
+    filename = "16puzzle.txt"
+    file = open(filename, "r")
+    lines = file.readlines()
+    file.close()
+
+    state = lines[6].split(" ")[0].replace("\n", "")
     # Build a dataframe with 4 connections
     from_list = []
     to_list = []
 
-
     g, l = a_star_visialize(state)
+    draw_graph(g, l, 221, state)
 
+    g, l = bi_bfs_vizualize(state)
+    draw_graph(g, l, 222, state)
+
+    g, l = id_dfs_visualize(state, 12)
+    draw_graph(g, l, 223, state)
+
+    g, l = bfs_visualize(state)
+    draw_graph(g, l, 224, state)
+
+    plt.show()
+
+
+def draw_graph(g, l, subplot, state):
     edge_l = []
-    color_list = [".6"]*len(g.edges())
+    color_list = [".6"] * len(g.edges())
     l.append(goal)
     prev = l[0]
     for node in l:
@@ -1063,36 +1185,13 @@ def visualize2():
             color_list[index] = 'red'
         prev = node
 
-    # for e in range(0, len(g.edges())):
-    #     if e < len(color_list):
-    #         if color_list[e] != ".1":
-    #             color_list[e] = ".5"
-    #     else:
-    #         color_list.append(".5")
+    plt.subplot(subplot)
 
-
-    #print(g.edges())
-    #print(vt[4])
-    ##print(edge_l)
-
-    # plt.subplot(121)
-    #
-    # nx.draw(g, with_labels=True, font_weight='bold')
-    plt.subplot(111)
-
-
-    nx.draw(g, labels = {state: "start", goal:"finish"}, with_labels=True, font_size = 10, node_color='darkblue', node_size=10, edge_color=color_list, width=2.0,
-            edge_cmap=plt.cm.Blues, font_weight = "bold", font_color = "black", label = "Graph of all nodes proccesed and the correct path for A* search from " + state + " to " + goal+"." )
-
-
-    #nx.draw_shell(g, nlist=[range(5, 10), range(5)], with_labels=True, font_weight='bold')
-    options = {
-    'node_color': 'black',
-    'node_size': 10,
-    'width': 2,
-
-    }
-    plt.show()
+    labs = {state: "start", goal: "finish"},
+    nx.draw(g, with_labels=True, labels={state: "start", goal: "finish"}, font_size=7, node_color='darkblue',
+            node_size=10, edge_color=color_list, width=2.0,
+            edge_cmap=plt.cm.Blues, font_weight="bold", font_color="black",
+            label="Hello World")
 
 
 if __name__ == "__main__":
