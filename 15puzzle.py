@@ -1,6 +1,6 @@
 import sys
 import random
-# import xlsxwriter
+import xlsxwriter
 from collections import deque
 import time
 from heapq import heappush, heappop
@@ -24,118 +24,133 @@ def main():
     goal = "0ABCDEFGHIJKLMNO"
     size = 4
 
-    action = sys.argv[1]
-    state = sys.argv[2]
+    filename = sys.argv[1]
 
+    file = open(filename, "r")
+    lines = file.readlines()
+    file.close()
 
-    if action == "B":
-        try:
-            start = time.perf_counter()
-            path = solve_bfs_original(state)
-            end = time.perf_counter()
-            print("%s BFS %s" % (len(path), end - start))
-        except MemoryError:
-            print("BFS Memory Error")
-    elif action == "I":
-        try:
-            start = time.perf_counter()
-            path = id_dfs(state, taxicab_dist(state, goal))
-            end = time.perf_counter()
-            print("%s ID DFS %s" % (len(path), end - start))
-        except MemoryError:
-            print("ID DFS Memory Error")
-    elif action == "2":
-        try:
-            start = time.perf_counter()
-            path = solve_bfs_zoom(state)
-            end = time.perf_counter()
-            print("%s BI BFS %s" % (path, end - start))
-        except MemoryError:
-            print("A* Memory Error")
-    elif action == "A":
-        try:
-            start = time.perf_counter()
-            path = a_star_taxi(state)
-            end = time.perf_counter()
-            print("%s A* %s" % (path, end - start))
-        except MemoryError:
-            print("A* Memory Error")
-    elif action == "7":
-        try:
-            start = time.perf_counter()
-            path = a_star_multiplier(state, .7)
-            end = time.perf_counter()
-            print("%s A* MULTI %s" % (path, end - start))
-        except MemoryError:
-            print("A* MULTI Memory Error")
-        try:
-            start = time.perf_counter()
-            path = a_star_multiplier(state, .7)
-            end = time.perf_counter()
-            print("%s A* MULTI %s" % (path, end - start))
-        except MemoryError:
-            print("A* MULTI Memory Error")
-        try:
-            start = time.perf_counter()
-            path = a_star_multiplier(state, .7)
-            end = time.perf_counter()
-            print("%s A* MULTI %s" % (path, end - start))
-        except MemoryError:
-            print("A* MULTI Memory Error")
-    elif action == "!":
-        try:
-            start = time.perf_counter()
-            path = solve_bfs_original(state)
-            end = time.perf_counter()
-            print("%s BFS %s" % (len(path), end - start))
-        except MemoryError:
-            print("BFS Memory Error")
+    nps()
 
-        try:
-            start = time.perf_counter()
-            path = id_dfs(state, taxicab_dist(state, goal))
-            end = time.perf_counter()
-            print("%s ID DFS %s" % (len(path), end - start))
-        except MemoryError:
-            print("ID DFS Memory Error")
+    # multiplier_excel_1()
 
-        try:
-            start = time.perf_counter()
-            path = solve_bfs_zoom(state)
-            end = time.perf_counter()
-            print("%s BI BFS %s" % (path, end - start))
-        except MemoryError:
-            print("A* Memory Error")
+    # print(a_star_random("DACGEIFBHK0OLJMN"))
+    # print(a_star_random("DACGEIFBHK0OLJMN"))
+    # print(a_star_random("DACGEIFBHK0OLJMN"))
 
-        try:
-            start = time.perf_counter()
-            path = a_star_taxi(state)
-            end = time.perf_counter()
-            print("%s A* %s" % (path, end - start))
-        except MemoryError:
-            print("A* Memory Error")
-
-        try:
-            start = time.perf_counter()
-            path = a_star_multiplier(state, .7)
-            end = time.perf_counter()
-            print("%s A* MULTI %s" % (path, end - start))
-        except MemoryError:
-            print("A* MULTI Memory Error")
-        try:
-            start = time.perf_counter()
-            path = a_star_multiplier(state, .7)
-            end = time.perf_counter()
-            print("%s A* MULTI %s" % (path, end - start))
-        except MemoryError:
-            print("A* MULTI Memory Error")
-        try:
-            start = time.perf_counter()
-            path = a_star_multiplier(state, .7)
-            end = time.perf_counter()
-            print("%s A* MULTI %s" % (path, end - start))
-        except MemoryError:
-            print("A* MULTI Memory Error")
+    # for line in lines:
+    #     sep = line.split(" ")
+    #     action = sep[0].replace("\n", "")
+    #     state = sep[1].replace("\n", "")
+    #
+    #     if action == "B":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = solve_bfs_original(state)
+    #             end = time.perf_counter()
+    #             print("%s BFS %s" % (len(path), end - start))
+    #         except MemoryError:
+    #             print("BFS Memory Error")
+    #     elif action == "I":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = id_dfs(state, taxicab_dist(state, goal))
+    #             end = time.perf_counter()
+    #             print("%s ID DFS %s" % (len(path), end - start))
+    #         except MemoryError:
+    #             print("ID DFS Memory Error")
+    #     elif action == "2":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = solve_bfs_zoom(state)
+    #             end = time.perf_counter()
+    #             print("%s BI BFS %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* Memory Error")
+    #     elif action == "A":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_taxi(state)
+    #             end = time.perf_counter()
+    #             print("%s A* %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* Memory Error")
+    #     elif action == "7":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
+    #     elif action == "!":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = solve_bfs_original(state)
+    #             end = time.perf_counter()
+    #             print("%s BFS %s" % (len(path), end - start))
+    #         except MemoryError:
+    #             print("BFS Memory Error")
+    #
+    #         try:
+    #             start = time.perf_counter()
+    #             path = id_dfs(state, taxicab_dist(state, goal))
+    #             end = time.perf_counter()
+    #             print("%s ID DFS %s" % (len(path), end - start))
+    #         except MemoryError:
+    #             print("ID DFS Memory Error")
+    #
+    #         try:
+    #             start = time.perf_counter()
+    #             path = solve_bfs_zoom(state)
+    #             end = time.perf_counter()
+    #             print("%s BI BFS %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* Memory Error")
+    #
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_taxi(state)
+    #             end = time.perf_counter()
+    #             print("%s A* %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* Memory Error")
+    #
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
 
 
 # original basic a star search
@@ -198,7 +213,7 @@ def a_star_taxi(state):
 
 # a star using a random value as the second thing in the tuple
 def a_star_random(state):
-    fringe_top = [(taxicab_dist(state, goal) + 0, random.randint(1, 1000), state, 0, taxicab_dist(state, goal)), ]
+    fringe_top = [(taxicab_dist(state, goal) + 0, random.randint(1, 1000), state, 0, taxicab_dist(state, goal), [state, ]), ]
     visited_top = set()
 
     # if parity_check(state) == 1:
@@ -213,12 +228,15 @@ def a_star_random(state):
             continue
 
         if goal_test(vt[2]):
+            print(vt[5])
             return vt[3]
         children = get_children_taxi(vt[2])
         for child in children.keys():
             if child not in visited_top:
                 taxi = vt[4] + children.get(child)
-                heappush(fringe_top, ((vt[3]+1+taxi), random.randint(1, 1000), child, vt[3] + 1, taxi))
+                a = list(vt[5])
+                a.append(child)
+                heappush(fringe_top, ((vt[3]+1+taxi), random.randint(1, 1000), child, vt[3] + 1, taxi, a))
         visited_top.add(vt[2])
 
     if len(fringe_top) is 0:
@@ -315,10 +333,12 @@ def solve_kdfs(start, k):
 
 # ID DFS used for keeping track of nodes per second
 def id_dfs_nps(start, max):
+    total_nodes = 0
     for k in range(taxicab_dist(start, goal), max+3):
         sol, nodes = solve_kdfs_nps(start, k)
+        total_nodes += nodes
         if sol is not None:
-            return sol, nodes
+            return sol, total_nodes
     return None
 
 
@@ -339,7 +359,7 @@ def solve_kdfs_nps(start, k):
                     a.add(child)
                     fringe.append((child, v[1] + 1, a, v[3] + children.get(child)))
                     nodes += 1
-    return None, None
+    return None, nodes
 
 
 # regular BFS search
@@ -692,7 +712,7 @@ def print_puzzle(state):
 
 # method I messed with to get the estimate on the korf100
 def korf(m):
-    filename = "korf100.txt"
+    filename = "16puzzle.txt"
     file = open(filename, "r")
     lines = file.readlines()
     file.close()
@@ -704,17 +724,17 @@ def korf(m):
     size = 4
 
 
-    workbook = xlsxwriter.Workbook('Multiplier3.xlsx')
+    workbook = xlsxwriter.Workbook('Multiplier10.xlsx')
     worksheet = workbook.add_worksheet()
 
     worksheet.write(count, 0, "depth")
-    worksheet.write(count, 1, "2.5")
-    worksheet.write(count, 2, "3")
-    worksheet.write(count, 3, "4")
-    worksheet.write(count, 4, "5")
-    worksheet.write(count, 5, "6")
+    worksheet.write(count, 1, ".6")
+    worksheet.write(count, 2, ".6")
+    worksheet.write(count, 3, ".6")
+    worksheet.write(count, 4, ".6")
+    worksheet.write(count, 5, ".6")
 
-    for line in lines[:10]:
+    for line in lines[40:51]:
         sep = line.split(" ")
         size = 4
         state = sep[0].replace("\n", "")
@@ -723,7 +743,7 @@ def korf(m):
 
         worksheet.write(count+1, 0, count)
 
-        for x in range(1, 11):
+        for x in range(1, 6):
             try:
                 # start = time.process_time()
                 start = time.clock()
@@ -744,22 +764,30 @@ def korf(m):
 
 # method I used to put the A Start multiplier results in an excel sheet
 def multiplier_excel_1():
-    workbook = xlsxwriter.Workbook('Multiplier3.xlsx')
+    count = 0
+
+    filename = "16puzzle.txt"
+    file = open(filename, "r")
+    lines = file.readlines()
+    file.close()
+
+    workbook = xlsxwriter.Workbook('Multiplier6.xlsx')
     worksheet = workbook.add_worksheet()
 
     worksheet.write(count, 0, "depth")
-    worksheet.write(count, 1, "2")
-    worksheet.write(count, 1, "4")
-    worksheet.write(count, 1, "8")
-    worksheet.write(count, 1, "16")
-    worksheet.write(count, 1, "32")
-    worksheet.write(count, 1, "64")
-    worksheet.write(count, 1, "128")
+    # worksheet.write(count, 1, ".7")
+    worksheet.write(count, 3, ".6")
+    worksheet.write(count, 5, ".5")
+    worksheet.write(count, 7, ".4")
+    worksheet.write(count, 9, ".3")
+    worksheet.write(count, 11, ".2")
+    worksheet.write(count, 13, ".1")
 
-    for line in lines:
+    for line in lines[20:31]:
         sep = line.split(" ")
         size = 4
         state = sep[0].replace("\n", "")
+        sum_time = 0
 
         print("%s: (%s)" % (state, count))
 
@@ -768,11 +796,12 @@ def multiplier_excel_1():
         try:
             # start = time.process_time()
             start = time.clock()
-            path = a_star_multiplier(state, 2)  ###
+            path = a_star_multiplier(state, 1)  ###
             # end = time.process_time()
             end = time.clock()
             sum_time = sum_time + (end - start)
             worksheet.write(count, 1, path)  ###
+            worksheet.write(count, 2, round(end - start, 5))  ###
             print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
         except MemoryError:
             print("\tA Star")
@@ -780,23 +809,12 @@ def multiplier_excel_1():
         try:
             # start = time.process_time()
             start = time.clock()
-            path = a_star_multiplier(state, 4)  ###
-            # end = time.process_time()
-            end = time.clock()
-            sum_time = sum_time + (end - start)
-            worksheet.write(count, 2, path)  ###
-            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
-        except MemoryError:
-            print("\tA Star")
-
-        try:
-            # start = time.process_time()
-            start = time.clock()
-            path = a_star_multiplier(state, 8)  ###
+            path = a_star_multiplier(state, 1.1)  ###
             # end = time.process_time()
             end = time.clock()
             sum_time = sum_time + (end - start)
             worksheet.write(count, 3, path)  ###
+            worksheet.write(count, 4, round(end - start, 5))
             print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
         except MemoryError:
             print("\tA Star")
@@ -804,23 +822,12 @@ def multiplier_excel_1():
         try:
             # start = time.process_time()
             start = time.clock()
-            path = a_star_multiplier(state, 16)  ###
-            # end = time.process_time()
-            end = time.clock()
-            sum_time = sum_time + (end - start)
-            worksheet.write(count, 4, path)  ###
-            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
-        except MemoryError:
-            print("\tA Star")
-
-        try:
-            # start = time.process_time()
-            start = time.clock()
-            path = a_star_multiplier(state, 32)  ###
+            path = a_star_multiplier(state, 1.2)  ###
             # end = time.process_time()
             end = time.clock()
             sum_time = sum_time + (end - start)
             worksheet.write(count, 5, path)  ###
+            worksheet.write(count, 6, round(end - start, 5))
             print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
         except MemoryError:
             print("\tA Star")
@@ -828,23 +835,51 @@ def multiplier_excel_1():
         try:
             # start = time.process_time()
             start = time.clock()
-            path = a_star_multiplier(state, 64)  ###
-            # end = time.process_time()
-            end = time.clock()
-            sum_time = sum_time + (end - start)
-            worksheet.write(count, 6, path)  ###
-            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
-        except MemoryError:
-            print("\tA Star")
-
-        try:
-            # start = time.process_time()
-            start = time.clock()
-            path = a_star_multiplier(state, 128)  ###
+            path = a_star_multiplier(state, 1.3)  ###
             # end = time.process_time()
             end = time.clock()
             sum_time = sum_time + (end - start)
             worksheet.write(count, 7, path)  ###
+            worksheet.write(count, 8, round(end - start, 5))
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_multiplier(state, 1.4)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count, 9, path)  ###
+            worksheet.write(count, 10, round(end - start, 5))
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_multiplier(state, 1.5)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count, 11, path)  ###
+            worksheet.write(count, 12, round(end - start, 5))
+            print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            # start = time.process_time()
+            start = time.clock()
+            path = a_star_multiplier(state, 1.6)  ###
+            # end = time.process_time()
+            end = time.clock()
+            sum_time = sum_time + (end - start)
+            worksheet.write(count, 13, path)  ###
+            worksheet.write(count, 14, round(end - start, 5))
             print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
         except MemoryError:
             print("\tA Star")
@@ -918,6 +953,7 @@ def req_1():
 
     print("Total Time: %s" % round(sum_time, 5))
     workbook.close()
+
 
 # method for the nps exploration
 def nps():
