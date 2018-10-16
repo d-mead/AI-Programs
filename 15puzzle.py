@@ -9,10 +9,10 @@ from heapq import heappush, heappop
 # heappop(list)
 #import graph_tool
 # from graph_tool.all import *
-import pandas as pd
-import numpy as np
-import networkx as nx
-import matplotlib.pyplot as plt
+#import pandas as pd
+#import numpy as np #######
+#import networkx as nx ########
+#import matplotlib.pyplot as plt
 
 #sys.path.append('/Users/JackMead/Desktop/CompSci/PycharmProjects/AIPrograms/venv/lib/python3.7/site-packages/graph-tool-2.27/src')
 #from graph_tool import *
@@ -28,47 +28,10 @@ def main():
     memory = set()
     memorylist = []
 
-    goal = "0ABCDEFGHIJKLMNO"
-    size = 4
+    goal = "0ABCDEFGH"
+    size = 3
 
-    visualize2()
-
-    # filename = "16puzzle.txt"
-    # file = open(filename, "r")
-    # lines = file.readlines()
-    # file.close()
-    # goal = "0ABCDEFGHIJKLMNO"
-    # sum_time = 0
-    # count = 0
-    # size = 4
-    #
-    #
-    # for line in lines:
-    #
-    #     sep = line.split(" ")
-    #     size = 4
-    #     state = sep[0].replace("\n", "")
-    #
-    #     print("%s: (%s)" % (state, count))
-    #
-    #     #worksheet.write(count, 0, count)
-    #
-    #     try:
-    #         # start = time.process_time()
-    #         start = time.clock()
-    #         path = a_star_multiplier(state, .6) ###
-    #         # end = time.process_time()
-    #         end = time.clock()
-    #         sum_time = sum_time + (end - start)
-    #         #worksheet.write(count, 1, path) ###
-    #         print("\tA-STAR 2\t%s \t%s" % (path, round(end - start, 5)))
-    #     except MemoryError:
-    #         print("\tA Star")
-    #
-    #     count += 1
-    #
-    # print("Total Time: %s" % round(sum_time, 5))
-    #workbook.close()
+    run_all("8puzzles.txt")
 
 
 def a_star(state):
@@ -452,12 +415,18 @@ def solve_bfs_zoom(state):
             for state in fringe_top:
                 if state[0] == vb[0]:
                     return state[1] + vb[1]
+        if vt[0] in visited_bottom:
+            for state in fringe_bottom:
+                if state[0] == vt[0]:
+                    return state[1] + vt[1]
         if goal_test(vt[0]):
             return vt[1]
+        if vb[0] == state:
+            return vb[1]
         children = get_children(vt[0])
         for child in children.keys():
             if child not in visited_top:
-                fringe_top.appendleft((child, vb[1]+1))
+                fringe_top.appendleft((child, vt[1]+1))
                 visited_top.add(child)
         children = get_children(vb[0])
         for child in children.keys():
@@ -1007,7 +976,7 @@ def visualize():
     g.graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=10, output_size = (500, 500), output = "graph1.png")
 
 
-def a_star_visialize(state):
+def a_star_visualize(state):
     fringe_top = [(taxicab_dist(state, goal) + 0, state, 0, taxicab_dist(state, goal), [])]
     visited_top = set()
 
@@ -1039,7 +1008,7 @@ def a_star_visialize(state):
                 g.add_edge(child, vt[1])
 
 
-def bi_bfs_vizualize(state):
+def bi_bfs_visualize(state):
     # finds the path to the goal state from a given state using a breadth first search algorithm
     start_state = state
     fringe_top = deque()
@@ -1150,27 +1119,33 @@ def visualize2():
     lines = file.readlines()
     file.close()
 
-    state = lines[6].split(" ")[0].replace("\n", "")
+    length = 7
+
+    state = lines[length+1].split(" ")[0].replace("\n", "")
     # Build a dataframe with 4 connections
     from_list = []
     to_list = []
 
-    g, l = a_star_visialize(state)
-    draw_graph(g, l, 221, state)
+    plt.figure().suptitle("Search Algorithm Graphs for Path Length " + str(length))
 
-    g, l = bi_bfs_vizualize(state)
-    draw_graph(g, l, 222, state)
+    g, l = a_star_visualize(state)
+    draw_graph(g, l, 221, state, "A-Star")
+
+    plt.legend(('state', 'move'), loc='best', prop={'size': 6})
+
+    g, l = bi_bfs_visualize(state)
+    draw_graph(g, l, 222, state, "Bi-BFS")
 
     g, l = id_dfs_visualize(state, 12)
-    draw_graph(g, l, 223, state)
+    draw_graph(g, l, 223, state, "ID-DFS")
 
     g, l = bfs_visualize(state)
-    draw_graph(g, l, 224, state)
+    draw_graph(g, l, 224, state, "BFS")
 
     plt.show()
 
 
-def draw_graph(g, l, subplot, state):
+def draw_graph(g, l, subplot, state, title):
     edge_l = []
     color_list = [".6"] * len(g.edges())
     l.append(goal)
@@ -1187,11 +1162,112 @@ def draw_graph(g, l, subplot, state):
 
     plt.subplot(subplot)
 
+    plt.title(title, loc='center', size = 'medium')
+
     labs = {state: "start", goal: "finish"},
     nx.draw(g, with_labels=True, labels={state: "start", goal: "finish"}, font_size=7, node_color='darkblue',
             node_size=10, edge_color=color_list, width=2.0,
-            edge_cmap=plt.cm.Blues, font_weight="bold", font_color="black",
-            label="Hello World")
+            edge_cmap=plt.cm.Blues, font_weight="bold", font_color="black")
+
+
+def make_8puzzles():
+    # for x in range(0, 31):
+    #    state = goal
+    #    for m in range (0, x):
+    #        r = random.randint(1, 4)
+    #        if r is 1:
+    #            state = moveLeft(state)
+    #        elif r is 2:
+    #            state = moveRight(state)
+    #        elif r is 3:
+    #            state = moveUp(state)
+    #        else:
+    #            state = moveDown(state)
+    #    if a_star_taxi(state) == x:
+    #        file =
+
+    startState = "0ABCDEFGH"
+    goal = "0ABCDEFGH"
+    size = 3
+    start = (startState, "")
+    fringe = deque()
+    fringe.append(start)
+    visited = {startState: 0, }
+    h = {0: startState, }
+
+    while len(fringe) is not 0:
+        v = fringe.popleft()
+        children = get_children(v[0])
+        for child in children.keys():
+            if child not in visited.keys():
+                puz = (child, v[1] + children.get(child, 0))
+                fringe.append(puz)
+                visited[child] = len(puz[1])
+                if len(puz[1]) in h.keys():
+                    if random.randint(0, 100)<5:
+                        h[len(puz[1])] = child
+                else:
+                    h[len(puz[1])] = child
+    file = open("8puzzles.txt", "w")
+    for thing in h.values():
+        file.write(thing+"\n")
+    return visited
+
+
+def run_all(filename):
+    file = open(filename, "r")
+    lines = file.readlines()
+    file.close()
+    goal = lines[0].split()[0].replace("\n", "")
+    sum_time = 0
+    count = 0
+    size = 3
+
+    for line in lines:
+        sep = line.split(" ")
+        state = sep[0].replace("\n", "")
+
+        print("%s: (%s)" % (state, count))
+
+        try:
+            start = time.process_time()
+            path = solve_bfs_original(state) ###
+            end = time.process_time()
+            sum_time = sum_time + (end - start)
+            print("\tBFS\t\t%s \t%s" % (len(path), round(end - start, 5)))
+        except MemoryError:
+            print("\tBFS")
+
+        # try:
+        #     start = time.process_time()
+        #     path = id_dfs(state, count) ###
+        #     end = time.process_time()
+        #     sum_time = sum_time + (end - start)
+        #     print("\tID DFS\t%s \t%s" % (len(path), round(end - start, 5)))
+        # except MemoryError:
+        #     print("\ID DFS")
+
+        try:
+            start = time.process_time()
+            path = a_star_taxi(state) ###
+            end = time.process_time()
+            sum_time = sum_time + (end - start)
+            print("\tA-STAR\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tA Star")
+
+        try:
+            start = time.process_time()
+            path = solve_bfs_zoom(state) ###
+            end = time.process_time()
+            sum_time = sum_time + (end - start)
+            print("\tBI BFS\t%s \t%s" % (path, round(end - start, 5)))
+        except MemoryError:
+            print("\tBI BFS")
+
+        count += 1
+
+    print("Total Time: %s" % round(sum_time, 5))
 
 
 if __name__ == "__main__":

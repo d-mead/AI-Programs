@@ -378,7 +378,6 @@ def test_many_heap(list):
 
 
 def parityCheck(state):
-
     i = state.index("0")
     # state = state.replace("0", "")  # removes the 0 from the state string
 
