@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac51eb1-d9fa-49b2-88ef-715b8d84aa07" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/15tests.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/15PuzzleExercises.docx" beforeDir="false" afterPath="$PROJECT_DIR$/15PuzzleExercises.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/15puzzle.py" beforeDir="false" afterPath="$PROJECT_DIR$/15puzzle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplier2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Multiplier2.xlsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +50,7 @@
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.17" value="3" />
+          <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.23" value="1" />
@@ -62,31 +61,31 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="29" />
+          <entry key="project.opened" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="53094" />
+          <entry key="py" value="53835" />
           <entry key="txt" value="107" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="40" />
+          <entry key="PLAIN_TEXT" value="41" />
           <entry key="Python" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="py" value="25" />
-          <entry key="txt" value="40" />
+          <entry key="txt" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="107" />
-          <entry key="Python" value="53094" />
+          <entry key="Python" value="53835" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -97,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8040">
-              <caret line="536" selection-start-line="536" selection-end-line="552" selection-end-column="18" />
+            <state relative-caret-position="222">
+              <caret line="21" column="39" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="39" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <marker date="1539611636923" expanded="true" signature="7093:8587" ph="..." />
@@ -110,28 +109,48 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="353" column="21" lean-forward="true" selection-start-line="353" selection-start-column="21" selection-end-line="353" selection-end-column="21" />
+            <state relative-caret-position="19350">
+              <caret line="1290" column="59" selection-start-line="1290" selection-start-column="59" selection-end-line="1290" selection-end-column="59" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#35282#35787#0" />
-                <element signature="e#35822#35952#0" />
-                <element signature="e#35988#36995#0" />
-                <element signature="e#37026#37219#0" />
-                <element signature="e#37261#39110#0" />
-                <element signature="e#39152#40573#0" />
-                <marker date="1539712914799" expanded="true" signature="5496:5498" ph="..." />
-                <marker date="1539712914799" expanded="true" signature="7156:7222" ph="..." />
+                <element signature="e#41539#42044#0" />
+                <element signature="e#41645#42028#0" />
+                <element signature="e#41747#42028#0" />
+                <element signature="e#41828#42028#0" />
+                <element signature="e#41870#42028#0" />
+                <element signature="e#42080#42210#0" />
+                <element signature="e#42112#42194#0" />
+                <element signature="e#42247#43254#0" />
+                <element signature="e#42561#43204#0" />
+                <element signature="e#42605#43073#0" />
+                <element signature="e#42824#43073#0" />
+                <element signature="e#42873#43073#0" />
+                <element signature="e#43147#43204#0" />
+                <element signature="e#43285#43478#0" />
+                <element signature="e#43341#43427#0" />
+                <element signature="e#43520#45369#0" />
+                <element signature="e#43954#45291#0" />
+                <element signature="e#44030#45107#0" />
+                <element signature="e#44179#44327#0" />
+                <element signature="e#44220#44327#0" />
+                <element signature="e#44262#44327#0" />
+                <element signature="e#44491#44740#0" />
+                <element signature="e#44540#44740#0" />
+                <element signature="e#44842#45107#0" />
+                <element signature="e#44894#45107#0" />
+                <element signature="e#45181#45291#0" />
+                <element signature="e#45408#46829#0" />
+                <element signature="e#45918#46754#0" />
+                <element signature="e#46055#46149#0" />
+                <element signature="e#46092#46149#0" />
+                <element signature="e#46293#46442#0" />
+                <element signature="e#46338#46442#0" />
+                <element signature="e#46532#46754#0" />
+                <element signature="e#46580#46754#0" />
+                <marker date="1539741351131" expanded="true" signature="5033:5035" ph="..." />
+                <marker date="1539741351131" expanded="true" signature="6689:6755" ph="..." />
+                <marker date="1539741351131" expanded="true" signature="41602:42552" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/korf100.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -140,7 +159,7 @@
         <entry file="file://$PROJECT_DIR$/8puzzles.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+              <caret column="9" selection-start-column="9" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -178,7 +197,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/peg_solitare.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="285">
               <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -194,8 +213,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/16puzzle.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-77">
-              <caret line="16" column="16" selection-start-line="16" selection-end-line="16" selection-end-column="16" />
+            <state>
+              <caret column="16" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -220,9 +239,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>solve_bfs</find>
-      <find>print(</find>
-      <find>show_sequence</find>
       <find>show</find>
       <find>process_time</find>
       <find>hardest_length</find>
@@ -245,11 +261,14 @@
       <find>libgraphbr</find>
       <find>write</find>
       <find>txt</find>
-      <find>all</find>
       <find>bfs_ori</find>
       <find>solve_bfs_zoom</find>
       <find>process_time()</find>
       <find>id_DFS</find>
+      <find>al</find>
+      <find>test_many</find>
+      <find>randomstate()</find>
+      <find>all</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -301,8 +320,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="x" value="257" />
+    <option name="y" value="23" />
+    <option name="width" value="1646" />
+    <option name="height" value="1005" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -310,6 +331,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -326,7 +348,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -496,10 +517,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2184637" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16324382" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -508,11 +529,11 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3421687" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32771084" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.30361447" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32871288" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32673267" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.24950495" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32833788" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32673267" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -771,13 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/puzzles.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/words_6.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="565">
@@ -838,45 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8040">
-          <caret line="536" selection-start-line="536" selection-end-line="552" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1539611636923" expanded="true" signature="7093:8587" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ATBS practice/chapter5.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8puzzles.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/16puzzle.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-77">
-          <caret line="16" column="16" selection-start-line="16" selection-end-line="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/korf100.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -884,17 +859,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/peg_solitare.py">
+    <entry file="file://$PROJECT_DIR$/ATBS practice/chapter5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1537797972419" expanded="true" signature="66:71" ph="..." />
-            <marker date="1537797972419" expanded="true" signature="66:517" ph="..." />
-            <marker date="1537797972419" expanded="true" signature="66:519" ph="..." />
-            <marker date="1537797972419" expanded="true" signature="540:1168" ph="..." />
-          </folding>
+        <state relative-caret-position="45">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -908,6 +876,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/peg_solitare.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1537797972419" expanded="true" signature="66:71" ph="..." />
+            <marker date="1537797972419" expanded="true" signature="66:517" ph="..." />
+            <marker date="1537797972419" expanded="true" signature="66:519" ph="..." />
+            <marker date="1537797972419" expanded="true" signature="540:1168" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/puzzles.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="21" column="39" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1539611636923" expanded="true" signature="7093:8587" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/16puzzle.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/15tests.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -915,20 +929,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/8puzzles.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/15puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="353" column="21" lean-forward="true" selection-start-line="353" selection-start-column="21" selection-end-line="353" selection-end-column="21" />
+        <state relative-caret-position="19350">
+          <caret line="1290" column="59" selection-start-line="1290" selection-start-column="59" selection-end-line="1290" selection-end-column="59" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#35282#35787#0" />
-            <element signature="e#35822#35952#0" />
-            <element signature="e#35988#36995#0" />
-            <element signature="e#37026#37219#0" />
-            <element signature="e#37261#39110#0" />
-            <element signature="e#39152#40573#0" />
-            <marker date="1539712914799" expanded="true" signature="5496:5498" ph="..." />
-            <marker date="1539712914799" expanded="true" signature="7156:7222" ph="..." />
+            <element signature="e#41539#42044#0" />
+            <element signature="e#41645#42028#0" />
+            <element signature="e#41747#42028#0" />
+            <element signature="e#41828#42028#0" />
+            <element signature="e#41870#42028#0" />
+            <element signature="e#42080#42210#0" />
+            <element signature="e#42112#42194#0" />
+            <element signature="e#42247#43254#0" />
+            <element signature="e#42561#43204#0" />
+            <element signature="e#42605#43073#0" />
+            <element signature="e#42824#43073#0" />
+            <element signature="e#42873#43073#0" />
+            <element signature="e#43147#43204#0" />
+            <element signature="e#43285#43478#0" />
+            <element signature="e#43341#43427#0" />
+            <element signature="e#43520#45369#0" />
+            <element signature="e#43954#45291#0" />
+            <element signature="e#44030#45107#0" />
+            <element signature="e#44179#44327#0" />
+            <element signature="e#44220#44327#0" />
+            <element signature="e#44262#44327#0" />
+            <element signature="e#44491#44740#0" />
+            <element signature="e#44540#44740#0" />
+            <element signature="e#44842#45107#0" />
+            <element signature="e#44894#45107#0" />
+            <element signature="e#45181#45291#0" />
+            <element signature="e#45408#46829#0" />
+            <element signature="e#45918#46754#0" />
+            <element signature="e#46055#46149#0" />
+            <element signature="e#46092#46149#0" />
+            <element signature="e#46293#46442#0" />
+            <element signature="e#46338#46442#0" />
+            <element signature="e#46532#46754#0" />
+            <element signature="e#46580#46754#0" />
+            <marker date="1539741351131" expanded="true" signature="5033:5035" ph="..." />
+            <marker date="1539741351131" expanded="true" signature="6689:6755" ph="..." />
+            <marker date="1539741351131" expanded="true" signature="41602:42552" ph="..." />
           </folding>
         </state>
       </provider>
