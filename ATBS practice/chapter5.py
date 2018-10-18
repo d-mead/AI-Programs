@@ -4,6 +4,9 @@ for x in myCat.values():
     print(x)
 for x in myCat.keys():
     print(x)
+print("FWFGDS")
+for obj in myCat.items():
+    print(obj)
 for x in myCat.items():
     print(x)
 if 'fat' in myCat.values():
