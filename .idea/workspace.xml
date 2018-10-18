@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac51eb1-d9fa-49b2-88ef-715b8d84aa07" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/15PuzzleExercises.docx" beforeDir="false" afterPath="$PROJECT_DIR$/15PuzzleExercises.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/15puzzle.py" beforeDir="false" afterPath="$PROJECT_DIR$/15puzzle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/8_puzzle1.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/8_puzzle1.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/~$8_puzzle1.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/~$PuzzleExercises.docx" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +47,7 @@
     <session id="-1151945877">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="22" />
+          <entry key="project.closed" value="24" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="5" />
           <entry key="project.open.time.12" value="4" />
@@ -53,6 +57,7 @@
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.28" value="1" />
@@ -61,12 +66,12 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="30" />
+          <entry key="project.opened" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="53835" />
+          <entry key="py" value="54634" />
           <entry key="txt" value="107" />
         </counts>
       </usages-collector>
@@ -85,7 +90,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="107" />
-          <entry key="Python" value="53835" />
+          <entry key="Python" value="54634" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -96,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
+            <state relative-caret-position="225">
               <caret line="21" column="39" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="39" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -109,47 +114,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19350">
-              <caret line="1290" column="59" selection-start-line="1290" selection-start-column="59" selection-end-line="1290" selection-end-column="59" />
+            <state relative-caret-position="458">
+              <caret line="1189" column="55" selection-start-line="1189" selection-start-column="55" selection-end-line="1189" selection-end-column="55" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#41539#42044#0" />
-                <element signature="e#41645#42028#0" />
-                <element signature="e#41747#42028#0" />
-                <element signature="e#41828#42028#0" />
-                <element signature="e#41870#42028#0" />
-                <element signature="e#42080#42210#0" />
-                <element signature="e#42112#42194#0" />
-                <element signature="e#42247#43254#0" />
-                <element signature="e#42561#43204#0" />
-                <element signature="e#42605#43073#0" />
-                <element signature="e#42824#43073#0" />
-                <element signature="e#42873#43073#0" />
-                <element signature="e#43147#43204#0" />
-                <element signature="e#43285#43478#0" />
-                <element signature="e#43341#43427#0" />
-                <element signature="e#43520#45369#0" />
-                <element signature="e#43954#45291#0" />
-                <element signature="e#44030#45107#0" />
-                <element signature="e#44179#44327#0" />
-                <element signature="e#44220#44327#0" />
-                <element signature="e#44262#44327#0" />
-                <element signature="e#44491#44740#0" />
-                <element signature="e#44540#44740#0" />
-                <element signature="e#44842#45107#0" />
-                <element signature="e#44894#45107#0" />
-                <element signature="e#45181#45291#0" />
-                <element signature="e#45408#46829#0" />
-                <element signature="e#45918#46754#0" />
-                <element signature="e#46055#46149#0" />
-                <element signature="e#46092#46149#0" />
-                <element signature="e#46293#46442#0" />
-                <element signature="e#46338#46442#0" />
-                <element signature="e#46532#46754#0" />
-                <element signature="e#46580#46754#0" />
-                <marker date="1539741351131" expanded="true" signature="5033:5035" ph="..." />
-                <marker date="1539741351131" expanded="true" signature="6689:6755" ph="..." />
-                <marker date="1539741351131" expanded="true" signature="41602:42552" ph="..." />
+                <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
+                <marker date="1539819830213" expanded="true" signature="6991:7057" ph="..." />
+                <marker date="1539819830213" expanded="true" signature="42391:43341" ph="..." />
               </folding>
             </state>
           </provider>
@@ -525,13 +496,13 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32970297" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32771084" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3421687" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32673267" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34158415" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32871288" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32771084" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32673267" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.24950495" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.24455446" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32673267" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -617,25 +588,28 @@
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="goal" language="Python" />
-        <watch expression="child" language="Python" />
-        <watch expression="fringe_top" language="Python" />
-        <watch expression="vt" language="Python" />
-        <watch expression="child" language="Python" />
-        <watch expression="children.get(child)" language="Python" />
-        <watch expression="taxicab_dist(vt[1], goal)" language="Python" />
-        <watch expression="taxicab_dist(child, goal)" language="Python" />
-        <watch expression="vt[0]" language="Python" />
-        <watch expression="a" language="Python" />
-        <watch expression="b" language="Python" />
-        <watch expression="state" language="Python" />
-        <watch expression="vt[1]" language="Python" />
-        <watch expression="vt" language="Python" />
-        <watch expression="a_star_taxi(&quot;CABGFDHE0&quot;)" language="Python" />
+        <watch expression="colors[x]" language="Python" />
+        <watch expression="x" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>colors[x]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>x</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>color[x]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>vt</expression-string>
         <language-id>Python</language-id>
@@ -648,11 +622,6 @@
       </expression>
       <expression>
         <expression-string>a_star_taxi()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>x</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -673,16 +642,6 @@
       </expression>
       <expression>
         <expression-string>taxicab_dist(vt[1], goal)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>summ</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>taxicab_dist(list(children.keys())[3], goal)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -859,6 +818,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/puzzles.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="21" column="39" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1539611636923" expanded="true" signature="7093:8587" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/8puzzles.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/15tests.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ATBS practice/chapter5.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -890,31 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/puzzles.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="21" column="39" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1539611636923" expanded="true" signature="7093:8587" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/16puzzle.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -922,63 +888,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/15tests.txt">
+    <entry file="file://$PROJECT_DIR$/sample.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/8puzzles.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
+        <state relative-caret-position="75">
+          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/15puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19350">
-          <caret line="1290" column="59" selection-start-line="1290" selection-start-column="59" selection-end-line="1290" selection-end-column="59" />
+        <state relative-caret-position="458">
+          <caret line="1189" column="55" selection-start-line="1189" selection-start-column="55" selection-end-line="1189" selection-end-column="55" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#41539#42044#0" />
-            <element signature="e#41645#42028#0" />
-            <element signature="e#41747#42028#0" />
-            <element signature="e#41828#42028#0" />
-            <element signature="e#41870#42028#0" />
-            <element signature="e#42080#42210#0" />
-            <element signature="e#42112#42194#0" />
-            <element signature="e#42247#43254#0" />
-            <element signature="e#42561#43204#0" />
-            <element signature="e#42605#43073#0" />
-            <element signature="e#42824#43073#0" />
-            <element signature="e#42873#43073#0" />
-            <element signature="e#43147#43204#0" />
-            <element signature="e#43285#43478#0" />
-            <element signature="e#43341#43427#0" />
-            <element signature="e#43520#45369#0" />
-            <element signature="e#43954#45291#0" />
-            <element signature="e#44030#45107#0" />
-            <element signature="e#44179#44327#0" />
-            <element signature="e#44220#44327#0" />
-            <element signature="e#44262#44327#0" />
-            <element signature="e#44491#44740#0" />
-            <element signature="e#44540#44740#0" />
-            <element signature="e#44842#45107#0" />
-            <element signature="e#44894#45107#0" />
-            <element signature="e#45181#45291#0" />
-            <element signature="e#45408#46829#0" />
-            <element signature="e#45918#46754#0" />
-            <element signature="e#46055#46149#0" />
-            <element signature="e#46092#46149#0" />
-            <element signature="e#46293#46442#0" />
-            <element signature="e#46338#46442#0" />
-            <element signature="e#46532#46754#0" />
-            <element signature="e#46580#46754#0" />
-            <marker date="1539741351131" expanded="true" signature="5033:5035" ph="..." />
-            <marker date="1539741351131" expanded="true" signature="6689:6755" ph="..." />
-            <marker date="1539741351131" expanded="true" signature="41602:42552" ph="..." />
+            <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
+            <marker date="1539819830213" expanded="true" signature="6991:7057" ph="..." />
+            <marker date="1539819830213" expanded="true" signature="42391:43341" ph="..." />
           </folding>
         </state>
       </provider>

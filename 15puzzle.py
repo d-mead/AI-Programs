@@ -5,12 +5,14 @@ from collections import deque
 import time
 from heapq import heappush, heappop
 import pickle
+from colour import Color
+
 # import graph_tool
 # from graph_tool.all import *
 # import pandas as pd
-# import numpy as np
-# import networkx as nx
-# import matplotlib.pyplot as plt
+import numpy as np
+import networkx as nx
+import matplotlib.pyplot as plt
 
 # sys.path.append('/Users/JackMead/Desktop/CompSci/PycharmProjects/AIPrograms/venv/lib/python3.7/site-packages/graph-tool-2.27/src')
 # from graph_tool import *
@@ -23,126 +25,128 @@ def main():
     goal = "0ABCDEFGHIJKLMNO"
     size = 4
 
-    filename = sys.argv[1]
+    visualize2()
 
-    file = open(filename, "r")
-    lines = file.readlines()
-    file.close()
-
-
-    for line in lines:
-        sep = line.split(" ")
-        action = sep[0].replace("\n", "")
-        state = sep[1].replace("\n", "")
-
-        if action == "B":
-            try:
-                start = time.perf_counter()
-                path = solve_bfs_original(state)
-                end = time.perf_counter()
-                print("%s BFS %s" % (len(path), end - start))
-            except MemoryError:
-                print("BFS Memory Error")
-        elif action == "I":
-            try:
-                start = time.perf_counter()
-                path = id_dfs(state, taxicab_dist(state, goal))
-                end = time.perf_counter()
-                print("%s ID DFS %s" % (len(path), end - start))
-            except MemoryError:
-                print("ID DFS Memory Error")
-        elif action == "2":
-            try:
-                start = time.perf_counter()
-                path = solve_bfs_zoom(state)
-                end = time.perf_counter()
-                print("%s BI BFS %s" % (path, end - start))
-            except MemoryError:
-                print("A* Memory Error")
-        elif action == "A":
-            try:
-                start = time.perf_counter()
-                path = a_star_taxi(state)
-                end = time.perf_counter()
-                print("%s A* %s" % (path, end - start))
-            except MemoryError:
-                print("A* Memory Error")
-        elif action == "7":
-            try:
-                start = time.perf_counter()
-                path = a_star_multiplier(state, .7)
-                end = time.perf_counter()
-                print("%s A* MULTI %s" % (path, end - start))
-            except MemoryError:
-                print("A* MULTI Memory Error")
-            try:
-                start = time.perf_counter()
-                path = a_star_multiplier(state, .7)
-                end = time.perf_counter()
-                print("%s A* MULTI %s" % (path, end - start))
-            except MemoryError:
-                print("A* MULTI Memory Error")
-            try:
-                start = time.perf_counter()
-                path = a_star_multiplier(state, .7)
-                end = time.perf_counter()
-                print("%s A* MULTI %s" % (path, end - start))
-            except MemoryError:
-                print("A* MULTI Memory Error")
-        elif action == "!":
-            try:
-                start = time.perf_counter()
-                path = solve_bfs_original(state)
-                end = time.perf_counter()
-                print("%s BFS %s" % (len(path), end - start))
-            except MemoryError:
-                print("BFS Memory Error")
-
-            try:
-                start = time.perf_counter()
-                path = id_dfs(state, taxicab_dist(state, goal))
-                end = time.perf_counter()
-                print("%s ID DFS %s" % (len(path), end - start))
-            except MemoryError:
-                print("ID DFS Memory Error")
-
-            try:
-                start = time.perf_counter()
-                path = solve_bfs_zoom(state)
-                end = time.perf_counter()
-                print("%s BI BFS %s" % (path, end - start))
-            except MemoryError:
-                print("A* Memory Error")
-
-            try:
-                start = time.perf_counter()
-                path = a_star_taxi(state)
-                end = time.perf_counter()
-                print("%s A* %s" % (path, end - start))
-            except MemoryError:
-                print("A* Memory Error")
-
-            try:
-                start = time.perf_counter()
-                path = a_star_multiplier(state, .7)
-                end = time.perf_counter()
-                print("%s A* MULTI %s" % (path, end - start))
-            except MemoryError:
-                print("A* MULTI Memory Error")
-            try:
-                start = time.perf_counter()
-                path = a_star_multiplier(state, .7)
-                end = time.perf_counter()
-                print("%s A* MULTI %s" % (path, end - start))
-            except MemoryError:
-                print("A* MULTI Memory Error")
-            try:
-                start = time.perf_counter()
-                path = a_star_multiplier(state, .7)
-                end = time.perf_counter()
-                print("%s A* MULTI %s" % (path, end - start))
-            except MemoryError:
-                print("A* MULTI Memory Error")
+    # filename = sys.argv[1]
+    #
+    # file = open(filename, "r")
+    # lines = file.readlines()
+    # file.close()
+    #
+    #
+    # for line in lines:
+    #     sep = line.split(" ")
+    #     action = sep[0].replace("\n", "")
+    #     state = sep[1].replace("\n", "")
+    #
+    #     if action == "B":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = solve_bfs_original(state)
+    #             end = time.perf_counter()
+    #             print("%s BFS %s" % (len(path), end - start))
+    #         except MemoryError:
+    #             print("BFS Memory Error")
+    #     elif action == "I":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = id_dfs(state, taxicab_dist(state, goal))
+    #             end = time.perf_counter()
+    #             print("%s ID DFS %s" % (len(path), end - start))
+    #         except MemoryError:
+    #             print("ID DFS Memory Error")
+    #     elif action == "2":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = solve_bfs_zoom(state)
+    #             end = time.perf_counter()
+    #             print("%s BI BFS %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* Memory Error")
+    #     elif action == "A":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_taxi(state)
+    #             end = time.perf_counter()
+    #             print("%s A* %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* Memory Error")
+    #     elif action == "7":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
+    #     elif action == "!":
+    #         try:
+    #             start = time.perf_counter()
+    #             path = solve_bfs_original(state)
+    #             end = time.perf_counter()
+    #             print("%s BFS %s" % (len(path), end - start))
+    #         except MemoryError:
+    #             print("BFS Memory Error")
+    #
+    #         try:
+    #             start = time.perf_counter()
+    #             path = id_dfs(state, taxicab_dist(state, goal))
+    #             end = time.perf_counter()
+    #             print("%s ID DFS %s" % (len(path), end - start))
+    #         except MemoryError:
+    #             print("ID DFS Memory Error")
+    #
+    #         try:
+    #             start = time.perf_counter()
+    #             path = solve_bfs_zoom(state)
+    #             end = time.perf_counter()
+    #             print("%s BI BFS %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* Memory Error")
+    #
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_taxi(state)
+    #             end = time.perf_counter()
+    #             print("%s A* %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* Memory Error")
+    #
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
+    #         try:
+    #             start = time.perf_counter()
+    #             path = a_star_multiplier(state, .7)
+    #             end = time.perf_counter()
+    #             print("%s A* MULTI %s" % (path, end - start))
+    #         except MemoryError:
+    #             print("A* MULTI Memory Error")
 
 
 # original basic a star search
@@ -1050,13 +1054,13 @@ def bi_bfs_visualize(state):
         if vb[0] in visited_top:
             for state in fringe_top:
                 if state[0] == vb[0]:
-                    # g.add_edge(vb[2][0], state[2][len(state[2])-1])
+                    g.add_edge(vb[2][0], state[2][len(state[2])-1])
                     return g, (state[2] + vb[2])
 
         if vt[0] in visited_bottom:
             for state in fringe_bottom:
                 if state[0] == vt[0]:
-                    # g.add_edge(vt[2][0], state[2][len(state[2])-1])
+                    g.add_edge(vt[2][0], state[2][len(state[2])-1])
                     return g, (vt[2] + state[2])
 
         if goal_test(vt[0]):
@@ -1141,7 +1145,7 @@ def visualize2():
     lines = file.readlines()
     file.close()
 
-    length = 5
+    length = 6
 
     state = lines[length+1].split(" ")[0].replace("\n", "")
 
@@ -1169,6 +1173,24 @@ def draw_graph(g, l, subplot, state, title):
     color_list = [".6"] * len(g.edges())
     l.append(goal)
     prev = l[0]
+
+    red = Color("lightgrey")
+    colors = list(red.range_to(Color("black"), len(g.edges())))
+
+    print(str(colors[10]))
+
+    for x in range(0, len(g.edges())):
+        if str(colors[x])[0] == '#':
+            if len(str(colors[x])) == 4:
+                # print(str(str(colors[x])+str(colors[x])[1:]))
+                color_list[x] = (str(colors[x])+str(colors[x])[1:])[:5]+"FF"
+
+            else:
+                # print(str(colors[x]))
+                color_list[x] = str(colors[x])[:5]+"FF"
+
+    count = 0
+
     for node in l:
         edge_l.append((prev, node))
         if (prev, node) in list(g.edges()):
@@ -1177,15 +1199,15 @@ def draw_graph(g, l, subplot, state, title):
         elif (node, prev) in list(g.edges()):
             index = list(g.edges()).index((node, prev))
             color_list[index] = 'red'
+        count += 1
         prev = node
 
     plt.subplot(subplot)
 
     plt.title(title, loc='center', size = 'medium')
 
-    nx.draw(g, with_labels=True, labels={state: "start", goal: "finish"}, font_size=7, node_color='darkblue',
-            node_size=10, edge_color=color_list, width=2.0,
-            edge_cmap=plt.cm.Blues, font_weight="bold", font_color="black")
+    nx.draw(g, with_labels=True, labels={state: "start", goal: "finish"}, font_size=7, node_color='blue',
+            node_size=5, edge_color=color_list, width=1.5, font_weight="bold", font_color="black")
 
 
 def make_8puzzles():
@@ -1287,6 +1309,7 @@ def run_all(filename):
 
     workbook.close()
     print("Total Time: %s" % round(sum_time, 5))
+
 
 # tried the 100 in 1 second challenge from 8 puzzle for fun
 def one_hundred():
