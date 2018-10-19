@@ -12,10 +12,21 @@ import time
 def main():
             #  0      1       2        3       4
             #(name, size, direction, start, indexes)
-    cars = (("X", 2, 0, (3, 3), [(3, 3), (4, 3)]),
-            ("B", 2, 1, (5, 3), [(5, 3), (5, 4)]))
+    # cars = create_cars_list()
 
+    cars_0 = (("X", 2, 0, (2, 3), []),
+            #("A", 2, 0, (1, 1), []),
+            #("B", 3, 1, (1, 2), []),
+            ("C", 2, 1, (2, 5), []),
+            ("D", 3, 1, (4, 2), []),
+            ("E", 3, 0, (3, 6), []),
+            #("F", 2, 0, (5, 5), [])
+            )
 
+    cars = list()
+
+    for car in cars_0:
+        cars.append((car[0], car[1], car[2], car[3], calculate_indexes(car[3], car[1], car[2])))
 
     blocked = list()
     for car in cars:
@@ -29,15 +40,25 @@ def main():
 
     state[3].append(display_state_string(state))
 
+    display_state(state)
+
     bfs(state)
 
-def create_state():
+
+def create_cars_list():
     cars = list()
-    num_cars = input(prompt = "Number of cars: ")
+    num_cars = input("Number of cars: ")
     for x in range(0, int(num_cars)):
-        cars.append((input(prompt = "Name (A-Z): "), input(prompt = "Size (2 or 3): "),
-                     input(prompt = "Direction (horizontal = 0, verticle = 1: "),
-                     input(prompt = "Name: ")
+        name = input("Name (A-Z): ")
+        size = input("Size (2 or 3): ")
+        direction = input("Direction (horizontal = 0, vertical = 1): ")
+        starting_y = input("Starting row: ")
+        starting_x = input("Starting column: ")
+        starting_index = (int(starting_x), int(starting_y))
+        index_list = calculate_indexes(starting_index, int(size), int(direction))
+        cars.append((name, int(size), int(direction), starting_index, index_list))
+    return cars
+
 
 def calculate_indexes(start, size, direction):
     indexes = list()
@@ -45,7 +66,9 @@ def calculate_indexes(start, size, direction):
         for x in range(0, size):
             indexes.append((start[0]+x, start[1]))
     else:
-        
+        for y in range(0, size):
+            indexes.append((start[0], start[1]+y))
+    return indexes
 
 
 def bfs(state):
@@ -87,7 +110,11 @@ def display_state_string(state):
     board = [['·']*6 for i in range(6)]
     for car in state[0]:
         for cord in car[4]:
-            board[cord[1]-1][cord[0]-1] = car[0]
+            try:
+                board[cord[1]-1][cord[0]-1] = car[0]
+            except IndexError:
+                print("ITS OVER ANAKIN")
+
     for x in range(0, 6):
         row = board[x]
         if x == 2:
@@ -133,36 +160,54 @@ def get_car_moves(car, state):
         for x in range(car[3][0]+car[1], 7):
             if (x, car[3][1]) not in state[1]: # if its not blocked
                 shift = x-(car[3][0]+car[1])+1
-                car_moves.append((move_car(car, x-(car[3][0]+car[1])+1), car[0]+"R"+str(shift)))
+                if car[4][car[1]-1][0]+shift < 7:
+                    if not any(i in state[1] for i in move_car(car, x-(car[3][0]+car[1])+1)):
+                    # if set(state[1]).isdisjoint(set(move_car(car, x-(car[3][0]+car[1])+1))):
+                        car_moves.append((move_car(car, x-(car[3][0]+car[1])+1), car[0]+"R"+str(shift)))
             else:
                 break # no more searching this line
         for x in range(1, car[3][0]): # from row 1 to just before the car back
+            # if car[0] == "E":
+            #     a = 5
             if (x, car[3][1]) not in state[1]: # if its not blocked
                 shift = x-car[3][0]
-                car_moves.append((move_car(car, x-car[3][0]), car[0]+"L"+str(abs(shift))))
+                if car[4][0][0]+shift > 0:
+                    if car[0]+"L"+str(abs(shift)) == "EL2":
+                        a = 5
+                    if not any(i in state[1] for i in move_car(car, x-car[3][0])):
+                    #if set(state[1]).isdisjoint(set(move_car(car, x-car[3][0]))):
+                        car_moves.append((move_car(car, x-car[3][0]), car[0]+"L"+str(abs(shift))))
             else:
                 break # no more searching this line
     elif car[2] == 1:
+        if car[0] == "D":
+            a = 5
         for y in range(car[3][1]+car[1], 7):
             if (car[3][0], y) not in state[1]: # if its not blocked
                 shift = y-(car[3][1]+car[1])+1
-                car_moves.append((move_car(car, y-(car[3][1]+car[1])+1), car[0]+"D"+str(shift)))
+                if car[4][car[1]-1][0]+shift < 7:
+                    #if not any(i in state[1] for i in move_car(car, y-(car[3][1]+car[1])+1)):
+                    #if set(state[1]).isdisjoint(set(move_car(car, y-(car[3][1]+car[1])+1))):
+                    car_moves.append((move_car(car, y-(car[3][1]+car[1])+1), car[0]+"D"+str(shift)))
             else:
                 break # no more searching this line
         for y in range(1, car[3][1]): # from row 1 to just before the car back
             if (car[3][0], y) not in state[1]: # if its not blocked
                 shift = y-car[3][0]
-                car_moves.append((move_car(car, y-car[3][0]), car[0]+"U"+str(abs(shift))))
+                if car[4][0][1] + shift > 0:
+                    if not any(i in state[1] for i in move_car(car, y-car[3][0])):
+                    # if set(state[1]).isdisjoint(set(move_car(car, y-car[3][0]))):
+                        car_moves.append((move_car(car, y-car[3][0]), car[0]+"U"+str(abs(shift))))
             else:
                 break # no more searching this line
     return car_moves
 
 
 def move_car(car, x):
-    if car[2] == 0: # hor
+    if car[2] == 0 :# hor
         if car[1] == 2:
-            return car[0], car[1], car[2], (car[3][0]+x, car[3][1]), [(car[4][0][0]+x, car[4][0][1]),
-                                                                      (car[4][1][0]+x, car[4][1][1])]
+            return car[0],car[1],car[2],(car[3][0]+x,car[3][1]),[(car[4][0][0]+x,car[4][0][1]),
+                                                                (car[4][1][0]+x, car[4][1][1])]
         else:
             return car[0], car[1], car[2], (car[3][0] + x, car[3][1]), [(car[4][0][0] + x, car[4][0][1]),
                                                                         (car[4][1][0] + x, car[4][1][1]),
@@ -173,8 +218,8 @@ def move_car(car, x):
                                                                       (car[4][1][0], car[4][1][1]+x)]
         else:
             return car[0], car[1], car[2], (car[3][0], car[3][1]+x), [(car[4][0][0], car[4][0][1]+x),
-                                                                        (car[4][1][0], car[4][1][1]+x),
-                                                                        (car[4][2][0], car[4][2][1]+x)]
+                                                                      (car[4][1][0], car[4][1][1]+x),
+                                                                      (car[4][2][0], car[4][2][1]+x)]
 
 
 def finish(state):
