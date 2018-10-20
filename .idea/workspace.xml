@@ -67,7 +67,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="61070" />
+          <entry key="py" value="61805" />
           <entry key="txt" value="107" />
         </counts>
       </usages-collector>
@@ -86,7 +86,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="107" />
-          <entry key="Python" value="61070" />
+          <entry key="Python" value="61805" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -110,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="1277" column="15" selection-start-line="1277" selection-start-column="12" selection-end-line="1277" selection-end-column="15" />
+            <state relative-caret-position="207">
+              <caret line="1283" column="56" lean-forward="true" selection-start-line="1283" selection-start-column="56" selection-end-line="1283" selection-end-column="77" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
@@ -125,15 +125,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rushhour.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="178" column="24" lean-forward="true" selection-start-line="178" selection-start-column="24" selection-end-line="178" selection-end-column="24" />
+            <state relative-caret-position="334">
+              <caret line="168" column="28" selection-start-line="168" selection-start-column="28" selection-end-line="168" selection-end-column="28" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1539922615797" expanded="true" signature="1781:2004" ph="..." />
-                <marker date="1539922615797" expanded="true" signature="2019:2024" ph="..." />
-                <marker date="1539922615797" expanded="true" signature="2492:3280" ph="..." />
-                <marker date="1539922615797" expanded="true" signature="8589:8663" ph="..." />
-                <marker date="1539922615797" expanded="true" signature="8684:8689" ph="..." />
+                <marker date="1540001650081" expanded="true" signature="2524:2747" ph="..." />
+                <marker date="1540001650081" expanded="true" signature="2762:2767" ph="..." />
+                <marker date="1540001650081" expanded="true" signature="3241:4127" ph="..." />
+                <marker date="1540001650081" expanded="true" signature="3658:3663" ph="..." />
+                <marker date="1540001650081" expanded="true" signature="9194:9272" ph="..." />
+                <marker date="1540001650081" expanded="true" signature="9293:9298" ph="..." />
               </folding>
             </state>
           </provider>
@@ -257,6 +258,7 @@
     <replaceStrings>
       <replace />
       <replace>perf_counter()</replace>
+      <replace>blocked</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -304,7 +306,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="x" value="257" />
     <option name="y" value="23" />
     <option name="width" value="1646" />
@@ -502,16 +504,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1627907" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12164297" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32970297" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32771084" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.41445783" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3841584" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34059405" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32771084" />
@@ -592,15 +594,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>30</line>
-          <option name="timeStamp" value="249" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>175</line>
-          <option name="timeStamp" value="296" />
+          <line>155</line>
+          <option name="timeStamp" value="432" />
         </line-breakpoint>
       </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -611,66 +611,74 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
+        <watch expression="children" language="Python" />
         <watch expression="state" language="Python" />
-        <watch expression="board" language="Python" />
-        <watch expression="car" language="Python" />
-        <watch expression="car_moves" language="Python" />
-        <watch expression="move_car(car, x-car[3][0])" language="Python" />
+        <watch expression="state[0]" language="Python" />
         <watch expression="state[1]" language="Python" />
-        <watch expression="x" language="Python" />
-        <watch expression="(x, car[3][1])" language="Python" />
+        <watch expression="car" language="Python" />
+        <watch expression="get_car_moves(car, state)" language="Python" />
+        <watch expression="car[3][0]" language="Python" />
+        <watch expression="car[3][1]" language="Python" />
+        <watch expression="shift" language="Python" />
+        <watch expression="y-car[3][0]" language="Python" />
+        <watch expression="car_moves" language="Python" />
+        <watch expression="y" language="Python" />
+        <watch expression="car[4][0][1] + shift" language="Python" />
+        <watch expression="car[4][0][0]+shift" language="Python" />
+        <watch expression="blocked" language="Python" />
+        <watch expression="state" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>x</expression-string>
+        <expression-string>car[4][0][1] + shift</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>state[1]</expression-string>
+        <expression-string>car_moves</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>sort(state[1])</expression-string>
+        <expression-string>y-car[3][0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>state[1].sort()</expression-string>
+        <expression-string>car[3][1]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>(x, car[3][1])</expression-string>
+        <expression-string>y</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>move_car(car, x-car[3][0])</expression-string>
+        <expression-string>car[3][0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>(move_car(car, x-car[3][0])</expression-string>
+        <expression-string>car[3][1]+car[1]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>car[4]</expression-string>
+        <expression-string>state</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>board[cord[1]-1][cord[0]-1]</expression-string>
+        <expression-string>blocked</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>car[4][0][1] + shift  0:</expression-string>
+        <expression-string>any(i in state[1] for i in move_car(car, x-car[3][0])[4])</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -926,8 +934,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/15puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="1277" column="15" selection-start-line="1277" selection-start-column="12" selection-end-line="1277" selection-end-column="15" />
+        <state relative-caret-position="207">
+          <caret line="1283" column="56" lean-forward="true" selection-start-line="1283" selection-start-column="56" selection-end-line="1283" selection-end-column="77" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
@@ -939,15 +947,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rushhour.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="178" column="24" lean-forward="true" selection-start-line="178" selection-start-column="24" selection-end-line="178" selection-end-column="24" />
+        <state relative-caret-position="334">
+          <caret line="168" column="28" selection-start-line="168" selection-start-column="28" selection-end-line="168" selection-end-column="28" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1539922615797" expanded="true" signature="1781:2004" ph="..." />
-            <marker date="1539922615797" expanded="true" signature="2019:2024" ph="..." />
-            <marker date="1539922615797" expanded="true" signature="2492:3280" ph="..." />
-            <marker date="1539922615797" expanded="true" signature="8589:8663" ph="..." />
-            <marker date="1539922615797" expanded="true" signature="8684:8689" ph="..." />
+            <marker date="1540001650081" expanded="true" signature="2524:2747" ph="..." />
+            <marker date="1540001650081" expanded="true" signature="2762:2767" ph="..." />
+            <marker date="1540001650081" expanded="true" signature="3241:4127" ph="..." />
+            <marker date="1540001650081" expanded="true" signature="3658:3663" ph="..." />
+            <marker date="1540001650081" expanded="true" signature="9194:9272" ph="..." />
+            <marker date="1540001650081" expanded="true" signature="9293:9298" ph="..." />
           </folding>
         </state>
       </provider>
