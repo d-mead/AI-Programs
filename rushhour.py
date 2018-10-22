@@ -2,7 +2,7 @@ import sys
 import random
 from collections import deque
 import time
-# from heapq import heappush, heappop
+from heapq import heappush, heappop
 # import pickle
 
 # sys.path.append('/Users/JackMead/Desktop/CompSci/PycharmProjects/AIPrograms/venv/lib/python3.7/site-packages/graph-tool-2.27/src')
@@ -14,42 +14,68 @@ def main():
             #(name, size, direction, start, indexes)
     # cars = create_cars_list()
 
-    cars_0 = (("X", 2, 0, (2, 3), []),
-              ("A", 2, 0, (1, 1), []),
-              ("B", 3, 1, (1, 2), []),
-              ("C", 2, 1, (2, 5), []),
-              ("D", 3, 1, (4, 2), []),
-              ("E", 3, 0, (3, 6), []),
-              ("F", 2, 0, (5, 5), []),
-            )
+    # cars_0 = (("X", 2, 0, (2, 3), []),
+    #           ("A", 2, 0, (1, 1), []),
+    #           ("B", 3, 1, (1, 2), []),
+    #           ("C", 2, 1, (2, 5), []),
+    #           ("D", 3, 1, (4, 2), []),
+    #           ("E", 3, 0, (3, 6), []),
+    #           ("F", 2, 0, (5, 5), []),
+    #           ("G", 2, 0, (5, 1), [])
+    #         )
 
     # cars_0 = (("X", 2, 0, (2, 3), []),
     #           ("A", 2, 0, (2, 4), []),
     #           ("B", 2, 1, (2, 5), []),
     #           ("C", 2, 0, (3, 6), []),
     #           ("O", 3, 1, (4, 3), []),
-    #           ("P", 3, 1, (6, 4), []),
+    #           ("P", 2, 1, (6, 5), []),
     #          )
-    #
+
+    cars_0 = (("@", 2, 0, (2, 3), []),
+              ("A", 2, 1, (3, 4), []),
+              ("B", 2, 1, (6, 5), []),
+              ("R", 3, 0, (3, 6), []),
+              ("P", 3, 1, (4, 1), []),
+              # ("O", 3, 1, (1, 4), []),
+              ("Q", 3, 0, (4, 4), []),
+              )
+
     # cars_0 = (("X", 2, 0, (2, 3), []),
-    #           ("A", 2, 1, (3, 4), []),
+    #           ("A", 2, 0, (1, 1), []),
     #           ("B", 2, 1, (6, 5), []),
     #           ("R", 3, 0, (3, 6), []),
     #           ("P", 3, 1, (4, 1), []),
-    #           ("O", 3, 1, (1, 1), []),
-    #           ("Q", 3, 0, (4, 4), [])
+    #           ("O", 3, 1, (1, 4), []),
+    #           ("Q", 3, 0, (4, 4), []),
     #           )
 
-    cars = list()
+    # cars_0 = (("X", 2, 0, (3, 3), []),
+    #           ("A", 3, 1, (1, 1), []),
+    #           ("B", 3, 1, (2, 1), []),
+    #           ("C", 3, 0, (3, 1), []),
+    #           ("D", 2, 1, (6, 1), []),
+    #           ("E", 2, 0, (3, 2), []),
+    #           ("F", 3, 1, (5, 2), []),
+    #           # ("G", 2, 1, (6, 3), []),
+    #           ("H", 2, 0, (1, 4), []),
+    #           ("I", 2, 1, (3, 4), []),
+    #           # ("J", 2, 0, (4, 5), []),
+    #           ("K", 2, 0, (2, 6), []),
+    #           ("L", 2, 0, (4, 6), []),
+    #           )
+
+    cars = set()
 
     for car in cars_0:
-        cars.append((car[0], car[1], car[2], car[3], calculate_indexes(car[3], car[1], car[2])))
+        tup = (car[0], car[1], car[2], car[3], calculate_indexes(car[3], car[1], car[2]))
+        cars.add(tup)
 
     blocked = list()
     for car in cars:
         blocked.extend(car[4])
 
-    moves = list()
+    moves = set()
 
     states = list()
 
@@ -59,11 +85,14 @@ def main():
 
     display_state(state)
 
+    heuristic(state)
+
     # for s in get_children(state):
     #     display_state(s)
 
     start = time.perf_counter()
-    bfs(state)
+    # bfs(state)
+    a_star_taxi(state)
     end = time.perf_counter()
     print(round(end - start, 5))
 
@@ -84,14 +113,57 @@ def create_cars_list():
 
 
 def calculate_indexes(start, size, direction):
-    indexes = list()
+    indexes = set()
     if direction == 0:
         for x in range(0, size):
-            indexes.append((start[0]+x, start[1]))
+            indexes.add((start[0]+x, start[1]))
     else:
         for y in range(0, size):
-            indexes.append((start[0], start[1]+y))
-    return indexes
+            indexes.add((start[0], start[1]+y))
+    return tuple(indexes)
+
+
+def heuristic(state):
+    count = 0
+    red_car = 0
+    for car in state[0]:
+        if car[0] == "@":
+            red_car = car
+
+    # red_car = heappop(list(state[0]))
+
+    for x in range(red_car[3][0]+2, 7):
+        if (x, 3) in state[1]:
+            count += 1
+    return count
+
+
+def a_star_taxi(state):
+    fringe_top = [(heuristic(state)+0, state, 0, heuristic(state))]
+    visited_top = set()
+
+    while len(fringe_top) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+
+        # if vt[1] not in visited_top:
+        #     visited_top.add(vt[1])
+        # else:
+        #     continue
+
+        if goal_test(vt[1]):
+            return vt[2]
+
+        children = get_children(vt[1])
+        for child in children:
+            # if child not in visited_top:
+                # a = (vt[2]+1+taxicab_dist(child, goal))
+                # b = (1+vt[0]+children.get(child))
+            heur = vt[3] + heuristic(state)
+            heappush(fringe_top, ((vt[2]+1+heur), child, vt[2]+1, heur))
+                # visited_top.add(vt[1])
+
+    if len(fringe_top) is 0:
+        return -2
 
 
 def bfs(state):
@@ -128,27 +200,30 @@ def display_state(state):
             print(' '.join(row)+ ' →')
         else:
             print(' '.join(row))
-    print()
+    print(" ")
+    a=5
 
 
 def display_state_string(state):
-    string = ""
-    board = [['·']*6 for i in range(6)]
-    for car in state[0]:
-        for cord in car[4]:
-            try:
-                board[cord[1]-1][cord[0]-1] = car[0]
-            except IndexError:
-                a = 5
-                # print("ITS OVER ANAKIN")
-
-    for x in range(0, 6):
-        row = board[x]
-        if x == 2:
-            string += (' '.join(row)+ ' →\n')
-        else:
-            string += (' '.join(row)+ "\n")
-    return string
+    # print("d")
+    # string = ""
+    # board = [['·']*6 for i in range(6)]
+    # for car in state[0]:
+    #     for cord in car[4]:
+    #         try:
+    #             board[cord[1]-1][cord[0]-1] = car[0]
+    #         except IndexError:
+    #             a = 5
+    #             print("ITS OVER ANAKIN")
+    #
+    # for x in range(0, 6):
+    #     row = board[x]
+    #     if x == 2:
+    #         string += (' '.join(row)+ ' →\n')
+    #     else:
+    #         string += (' '.join(row)+ "\n")
+    # return string
+    return state
 
 
 def get_children(state):
@@ -156,14 +231,19 @@ def get_children(state):
     for car in state[0]: # looping through all the cars
         for car_move in get_car_moves(car, state):
 
-            new_cars = list(state[0])
+            new_cars = set(state[0])
             new_cars.remove(car)
-            new_cars.insert(state[0].index(car), car_move[0])
+            new_cars.add(car_move[0])
 
-            new_blocked = list(state[1])
-            for index in state[1]:
-                if index in car[4]:
-                    new_blocked.remove(index)
+            # new_blocked = list(state[1])
+            # for index in state[1]:
+            #     if index in car[4]:
+            #         new_blocked.remove(index)
+
+            # new_blocked = [x for x in list(state[1]) if x not in list(car[4])]
+
+            new_blocked = list(set(state[1])-set(car[4])) # opted
+
             new_blocked.extend(car_move[0][4])
 
             new_moves = list(state[2])
@@ -173,9 +253,10 @@ def get_children(state):
 
             new_state = (new_cars, new_blocked, new_moves, new_states)
 
-            new_state[3].append(display_state_string(new_state))
+            new_state[3].append(display_state_string(new_state)) # opted
 
             children.append(new_state)
+
     return children
 
 
@@ -195,32 +276,28 @@ def get_car_moves(car, state):
                     if not any(i in blocked for i in move_car(car, x-(car[3][0]+car[1])+1)[4]):
                         car_moves.append((move_car(car, x-(car[3][0]+car[1])+1), car[0]+"R"+str(shift)))
             else:
-                break # no more searching this line
+                break  # no more searching this line
         for x in range(car[3][0]-1, 0, -1): # from row 1 to just before the car back
-            # if car[0] == "E":
-            #     a = 5
             if (x, car[3][1]) not in blocked: # if its not blocked
                 shift = x-car[3][0]
                 if car[4][0][0]-shift > 0:
-                    # if car[0]+"L"+str(abs(shift)) == "EL2":
-                    #     a = 5
                     if not any(i in blocked for i in move_car(car, x-car[3][0])[4]):
                         car_moves.append((move_car(car, x-car[3][0]), car[0]+"L"+str(abs(shift))))
             else:
-                break # no more searching this line
+                break  # no more searching this line
     elif car[2] == 1:
         if car[0] == "C":
             a = 5
         for y in range(car[3][1]+car[1], 7):
-            if (car[3][0], y) not in blocked: # if its not blocked
+            if (car[3][0], y) not in blocked:  # if its not blocked
                 shift = y-(car[3][1]+car[1])+1
                 if car[4][car[1]-1][0]+shift < 7:
                     if not any(i in blocked for i in move_car(car, y-(car[3][1]+car[1])+1)[4]):
                         car_moves.append((move_car(car, y-(car[3][1]+car[1])+1), car[0]+"D"+str(shift)))
             else:
-                break # no more searching this line
-        for y in range(car[3][1]-1, 0, -1): # from row 1 to just before the car back
-            if (car[3][0], y) not in blocked: # if its not blocked
+                break  # no more searching this line
+        for y in range(car[3][1]-1, 0, -1):  # from row 1 to just before the car back
+            if (car[3][0], y) not in blocked:  # if its not blocked
                 shift = y-car[3][1]
                 if car[4][0][1] - shift > 0:
                     if not any(i in blocked for i in move_car(car, y-car[3][1])[4]):
@@ -231,36 +308,36 @@ def get_car_moves(car, state):
 
 
 def move_car(car, x):
-    if car[2] == 0 :# hor
+    if car[2] == 0 : #hor
         if car[1] == 2:
-            return car[0],car[1],car[2],(car[3][0]+x,car[3][1]),[(car[4][0][0]+x,car[4][0][1]),
-                                                                (car[4][1][0]+x, car[4][1][1])]
+            return car[0],car[1],car[2],(car[3][0]+x,car[3][1]),((car[4][0][0]+x,car[4][0][1]),
+                                                                (car[4][1][0]+x, car[4][1][1]))
         else:
-            return car[0], car[1], car[2], (car[3][0] + x, car[3][1]), [(car[4][0][0] + x, car[4][0][1]),
+            return car[0], car[1], car[2], (car[3][0] + x, car[3][1]), ((car[4][0][0] + x, car[4][0][1]),
                                                                         (car[4][1][0] + x, car[4][1][1]),
-                                                                        (car[4][2][0] + x, car[4][2][1])]
+                                                                        (car[4][2][0] + x, car[4][2][1]))
     else:
         if car[1] == 2:
-            return car[0], car[1], car[2], (car[3][0], car[3][1]+x), [(car[4][0][0], car[4][0][1]+x),
-                                                                      (car[4][1][0], car[4][1][1]+x)]
+            return car[0], car[1], car[2], (car[3][0], car[3][1]+x), ((car[4][0][0], car[4][0][1]+x),
+                                                                      (car[4][1][0], car[4][1][1]+x))
         else:
-            return car[0], car[1], car[2], (car[3][0], car[3][1]+x), [(car[4][0][0], car[4][0][1]+x),
+            return car[0], car[1], car[2], (car[3][0], car[3][1]+x), ((car[4][0][0], car[4][0][1]+x),
                                                                       (car[4][1][0], car[4][1][1]+x),
-                                                                      (car[4][2][0], car[4][2][1]+x)]
+                                                                      (car[4][2][0], car[4][2][1]+x))
 
 
 def finish(state):
     red_car = 0
     for car in state[0]:
-        if car[0] == "X":
+        if car[0] == "@":
             red_car = car
     distance = 5-red_car[3][0]
 
     new_car = move_car(red_car, distance)
 
-    new_cars = list(state[0])
+    new_cars = set(state[0])
     new_cars.remove(red_car)
-    new_cars.insert(state[0].index(red_car), new_car)
+    new_cars.add(new_car)
 
     new_blocked = list(state[1])
     for index in state[1]:
@@ -280,19 +357,22 @@ def finish(state):
     return new_state
 
 
-def display_all(s):
-    for state in s[3][1:]:
-        print(state)
-    print(", ".join(s[2]))
+def display_all(s, moves):
+    for state in s:
+        print(display_state(state))
+    print(", ".join(moves))
 
 
 def goal_test(state):
-    red_index = state[0][0][3]
-    for x in range(red_index[0]+2, 7): # from the end of the red car to the exit
+    red_car = 0
+    for car in state[0]:
+        if car[0] == "@":
+            red_car = car
+    for x in range(red_car[3][0]+2, 7): # from the end of the red car to the exit
         if (x, 3) in state[1]: # if one of those indexes is blocked
             return False # its not a winning state
     state = finish(state)
-    display_all(state)
+    display_all(state[3], state[2])
     return True
 
 
