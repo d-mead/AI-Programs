@@ -4,6 +4,10 @@ from collections import deque
 import time
 from heapq import heappush, heappop
 # import pickle
+import numpy as np
+import networkx as nx
+import matplotlib.pyplot as plt
+from colour import Color
 
 # sys.path.append('/Users/JackMead/Desktop/CompSci/PycharmProjects/AIPrograms/venv/lib/python3.7/site-packages/graph-tool-2.27/src')
 # from graph_tool import *
@@ -34,21 +38,20 @@ def main():
     #           ("Q", 3, 0, (4, 4), []),
     #           )
 
-
-    cars_0 = (("@", 2, 0, (3, 3), []),
-              ("A", 3, 1, (1, 1), []),
-              ("B", 3, 1, (2, 1), []),
-              ("C", 3, 0, (3, 1), []),
-              ("D", 2, 1, (6, 1), []),
-              ("E", 2, 0, (3, 2), []),
-              ("F", 3, 1, (5, 2), []),
-              ("G", 2, 1, (6, 3), []),
-              ("H", 2, 0, (1, 4), []),
-              ("I", 2, 1, (3, 4), []),
-              ("J", 2, 0, (4, 5), []),
-              ("K", 2, 0, (2, 6), []),
-              ("L", 2, 0, (4, 6), []),
-              )
+    # cars_0 = (("@", 2, 0, (3, 3), []),
+    #           ("A", 3, 1, (1, 1), []),
+    #           ("B", 3, 1, (2, 1), []),
+    #           ("C", 3, 0, (3, 1), []),
+    #           ("D", 2, 1, (6, 1), []),
+    #           ("E", 2, 0, (3, 2), []),
+    #           ("F", 3, 1, (5, 2), []),
+    #           ("G", 2, 1, (6, 3), []),
+    #           ("H", 2, 0, (1, 4), []),
+    #           ("I", 2, 1, (3, 4), []),
+    #           ("J", 2, 0, (4, 5), []),
+    #           ("K", 2, 0, (2, 6), []),
+    #           ("L", 2, 0, (4, 6), []),
+    #           )
 
     # cars_0 = (("@", 2, 0, (3, 3), []),
     #           ("A", 3, 0, (1, 1), []),
@@ -91,40 +94,54 @@ def main():
     #           ("M", 2, 0, (5, 6), []),
     #           )
 
-    # cars = list()
-    #
-    # for car in cars_0:
-    #     cars.append((car[0], car[1], car[2], car[3], calculate_indexes(car[3], car[1], car[2])))
-    #
-    # blocked = list()
-    # for car in cars:
-    #     blocked.extend(car[4])
-    #
-    # moves = set()
-    #
-    # states = list()
-    #
-    # state = tuple((cars, blocked, moves, states))
-    #
-    # state[3].append(display_state_string(state))
+    cars_0 = (("@", 2, 0, (1, 3), []),
+              ("A", 2, 1, (2, 1), []),
+              ("B", 2, 0, (3, 1), []),
+              ("C", 2, 0, (3, 2), []),
+              ("D", 2, 1, (6, 2), []),
+              ("E", 3, 1, (3, 3), []),
+              ("F", 2, 1, (4, 3), []),
+              ("G", 2, 0, (5, 4), []),
+              ("H", 2, 1, (1, 5), []),
+              ("I", 2, 0, (4, 5), []),
+              ("J", 2, 1, (6, 5), []),
+              ("K", 3, 0, (2, 6), []),
+              )
+
+    cars = list()
+
+    for car in cars_0:
+        cars.append((car[0], car[1], car[2], car[3], calculate_indexes(car[3], car[1], car[2])))
+
+    blocked = list()
+    for car in cars:
+        blocked.extend(car[4])
+
+    moves = set()
+
+    states = list()
+
+    state = tuple((cars, blocked, moves, states))
+
+    state[3].append(display_state_string(state))
 
     # for s in get_children(state):
     #     display_state(s)
 
-    states = read_file("jams.txt")
+    # states = read_file("jams.txt")
 
-    for state in states:
+    # for state in states:
 
-        display_state(state)
+    display_state(state)
 
-        start = time.perf_counter()
-        # bfs(state)
-        a_star_taxi(state)
-        end = time.perf_counter()
-        print(round(end - start, 5))
-
-        print()
-        print()
+    start = time.perf_counter()
+    # bfs(state)
+    a_star_taxi(state)
+    end = time.perf_counter()
+    print(round(end - start, 5))
+    #
+    #     print()
+    #     print()
 
 
 def read_file(filename):
@@ -444,14 +461,12 @@ def finish(state):
 
     new_state[3].append(display_state_string(new_state))
 
-    display_state(new_state)
-
     return new_state
 
 
 def display_all(s, moves):
-    # for state in s:
-    #     print(display_state(state))
+    for state in s:
+        print(display_state(state))
     print(", ".join(moves))
     print(len(moves))
 
@@ -468,6 +483,92 @@ def goal_test(state):
     display_all(state[3], state[2])
     return True
 
+
+def a_star_visualize(state):
+    fringe_top = [(heuristic(state) + 0, state, 0, heuristic(state), [])]
+    visited_top = set()
+
+    g = nx.Graph()
+
+    # if parity_check(state) == 1:
+    #     return -1
+
+    while len(fringe_top) is not 0:
+        vt = heappop(fringe_top)  # your standard BFS algorithm
+
+        if display_state_string_2(vt[1]) not in visited_top:
+            visited_top.add(display_state_string_2(vt[1]))
+        else:
+            continue
+
+        if goal_test(vt[1]):
+            return g, vt[4]
+
+        children = get_children(vt[1])
+        for child in children():
+            if display_state_string_2(child) not in visited_top:
+                # a = (vt[2]+1+taxicab_dist(child, goal))
+                # b = (1+vt[0]+children.get(child))
+                heur = vt[3] + heuristic(state)
+                ancestors = list(vt[4])
+                ancestors.append(vt[1])
+                visited_top.add(display_state_string_2(vt[1]))
+                heappush(fringe_top, ((vt[2] + 1 + heur), child, vt[2] + 1, heur, ancestors))
+                g.add_edge(child, vt[1])
+
+
+def visualize(state):
+
+    plt.figure().suptitle("Search Algorithm Graphs for Path Length " + str(length+1))
+
+    g, l = a_star_visualize(state)
+    draw_graph(g, l, 221, state, "A-Star")
+
+    plt.legend(('state', 'move'), loc='best', prop={'size': 6})
+
+    plt.show()
+
+
+def draw_graph(g, l, subplot, state, title):
+    edge_l = []
+    color_list = [".6"] * len(g.edges())
+    l.append(goal)
+    prev = l[0]
+
+    red = Color("lightgrey")
+    colors = list(red.range_to(Color("black"), len(g.edges())))
+
+    print(str(colors[10]))
+
+    for x in range(0, len(g.edges())):
+        if str(colors[x])[0] == '#':
+            if len(str(colors[x])) == 4:
+                # print(str(str(colors[x])+str(colors[x])[1:]))
+                color_list[x] = (str(colors[x])+str(colors[x])[1:])[:5]+"FF"
+
+            else:
+                # print(str(colors[x]))
+                color_list[x] = str(colors[x])[:5]+"FF"
+
+    count = 0
+
+    for node in l:
+        edge_l.append((prev, node))
+        if (prev, node) in list(g.edges()):
+            index = list(g.edges()).index((prev, node))
+            color_list[index] = "red"
+        elif (node, prev) in list(g.edges()):
+            index = list(g.edges()).index((node, prev))
+            color_list[index] = 'red'
+        count += 1
+        prev = node
+
+    plt.subplot(subplot)
+
+    plt.title(title, loc='center', size = 'medium')
+
+    nx.draw(g, with_labels=True, labels={state: "start", goal: "finish"}, font_size=7, node_color='blue',
+            node_size=5, edge_color=color_list, width=1.5, font_weight="bold", font_color="black")
 
 if __name__ == "__main__":
     # main func!
