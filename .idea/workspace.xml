@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac51eb1-d9fa-49b2-88ef-715b8d84aa07" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/jams.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rushhour.py" beforeDir="false" afterPath="$PROJECT_DIR$/rushhour.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,7 +47,7 @@
           <entry key="project.closed" value="25" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.11" value="5" />
-          <entry key="project.open.time.12" value="5" />
+          <entry key="project.open.time.12" value="6" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.17" value="3" />
@@ -61,31 +63,31 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="33" />
+          <entry key="project.opened" value="34" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="63575" />
+          <entry key="py" value="64385" />
           <entry key="txt" value="107" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="41" />
+          <entry key="PLAIN_TEXT" value="42" />
           <entry key="Python" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="py" value="25" />
-          <entry key="txt" value="41" />
+          <entry key="txt" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="107" />
-          <entry key="Python" value="63575" />
+          <entry key="Python" value="64385" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -94,23 +96,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2899">
-              <caret line="21" column="39" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <marker date="1539611636923" expanded="true" signature="7093:8587" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="206" column="17" lean-forward="true" selection-start-line="178" selection-end-line="206" selection-end-column="17" />
+            <state relative-caret-position="188">
+              <caret line="33" column="18" lean-forward="true" selection-start-line="31" selection-start-column="6" selection-end-line="33" selection-end-column="18" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
@@ -124,12 +113,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rushhour.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="165" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="165" selection-end-column="4" />
+            <state relative-caret-position="555">
+              <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1540251195930" expanded="true" signature="4810:4838" ph="..." />
+                <marker date="1540257080349" expanded="true" signature="13839:13842" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jams.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -218,7 +216,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>parity</find>
       <find>bfs</find>
       <find>reverse</find>
       <find>getChildren</find>
@@ -248,12 +245,14 @@
       <find>&quot;X&quot;</find>
       <find>print(</find>
       <find>state[0]</find>
+      <find>v</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>perf_counter()</replace>
       <replace>blocked</replace>
       <replace>list(car[4])</replace>
+      <replace>1</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -297,15 +296,14 @@
         <option value="$PROJECT_DIR$/15tests.txt" />
         <option value="$PROJECT_DIR$/15puzzle.py" />
         <option value="$PROJECT_DIR$/ATBS practice/chapter5.py" />
+        <option value="$PROJECT_DIR$/jams.txt" />
         <option value="$PROJECT_DIR$/rushhour.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="257" />
-    <option name="y" value="23" />
-    <option name="width" value="1646" />
-    <option name="height" value="1005" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -314,6 +312,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -330,7 +329,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -500,7 +498,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49786323" visible="true" weight="0.1484992" />
@@ -509,7 +507,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32970297" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34059405" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4089109" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.31188118" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32771084" />
@@ -590,63 +588,68 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>154</line>
+          <line>202</line>
           <option name="timeStamp" value="452" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>290</line>
+          <line>338</line>
           <option name="timeStamp" value="504" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>291</line>
+          <line>339</line>
           <option name="timeStamp" value="527" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>292</line>
+          <line>340</line>
           <option name="timeStamp" value="528" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>293</line>
+          <line>341</line>
           <option name="timeStamp" value="529" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>296</line>
+          <line>344</line>
           <option name="timeStamp" value="531" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>294</line>
+          <line>342</line>
           <option name="timeStamp" value="532" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>295</line>
+          <line>343</line>
           <option name="timeStamp" value="533" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>144</line>
+          <line>192</line>
           <option name="timeStamp" value="534" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>145</line>
+          <line>193</line>
           <option name="timeStamp" value="535" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>146</line>
+          <line>194</line>
           <option name="timeStamp" value="536" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rushhour.py</url>
-          <line>147</line>
+          <line>195</line>
           <option name="timeStamp" value="537" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/rushhour.py</url>
+          <line>141</line>
+          <option name="timeStamp" value="562" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -662,66 +665,66 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="children" language="Python" />
+        <watch expression="lines" language="Python" />
+        <watch expression="x" language="Python" />
+        <watch expression="count" language="Python" />
+        <watch expression="cars" language="Python" />
+        <watch expression="lines[count]" language="Python" />
+        <watch expression="blocked" language="Python" />
         <watch expression="state" language="Python" />
-        <watch expression="state[0]" language="Python" />
-        <watch expression="state[1]" language="Python" />
-        <watch expression="vt[1]" language="Python" />
-        <watch expression="vt[1][1]" language="Python" />
-        <watch expression="visited_top" language="Python" />
-        <watch expression="child" language="Python" />
+        <watch expression="states" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
+        <expression-string>states</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>state</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>blocked</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>lines[count]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>car</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>cars</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>count</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>x</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>lines</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>visited_top</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>vt[1][1]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>child</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>vt[1]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>car[1]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>car[4]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>car[4][car[1]-1][0]+shift</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>y-(car[3][1]+car[1])+1</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>shift</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>(car[3][0], y)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -905,10 +908,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8puzzles.txt">
+    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
+        <state relative-caret-position="225">
+          <caret line="21" column="39" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1539611636923" expanded="true" signature="7093:8587" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -964,21 +971,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8PuzzleScript236.py">
+    <entry file="file://$PROJECT_DIR$/8puzzles.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2899">
-          <caret line="21" column="39" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1539611636923" expanded="true" signature="7093:8587" ph="..." />
-          </folding>
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/15puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="206" column="17" lean-forward="true" selection-start-line="178" selection-end-line="206" selection-end-column="17" />
+        <state relative-caret-position="188">
+          <caret line="33" column="18" lean-forward="true" selection-start-line="31" selection-start-column="6" selection-end-line="33" selection-end-column="18" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
@@ -988,13 +991,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/jams.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rushhour.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="165" column="4" selection-start-line="165" selection-start-column="4" selection-end-line="165" selection-end-column="4" />
+        <state relative-caret-position="555">
+          <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1540251195930" expanded="true" signature="4810:4838" ph="..." />
+            <marker date="1540257080349" expanded="true" signature="13839:13842" ph="..." />
           </folding>
         </state>
       </provider>

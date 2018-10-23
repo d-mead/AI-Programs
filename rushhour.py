@@ -24,13 +24,6 @@ def main():
     #           ("O", 3, 1, (6, 1), [])
     #         )
 
-    # cars_0 = (("X", 2, 0, (2, 3), []),
-    #           ("A", 2, 0, (2, 4), []),
-    #           ("B", 2, 1, (2, 5), []),
-    #           ("C", 2, 0, (3, 6), []),
-    #           ("O", 3, 1, (4, 3), []),
-    #           ("P", 2, 1, (6, 5), []),
-    #          )
 
     # cars_0 = (("@", 2, 0, (2, 3), []),
     #           ("A", 2, 1, (3, 4), []),
@@ -41,28 +34,46 @@ def main():
     #           ("Q", 3, 0, (4, 4), []),
     #           )
 
-    # cars_0 = (("X", 2, 0, (2, 3), []),
-    #           ("A", 2, 0, (1, 1), []),
-    #           ("B", 2, 1, (6, 5), []),
-    #           ("R", 3, 0, (3, 6), []),
-    #           ("P", 3, 1, (4, 1), []),
-    #           ("O", 3, 1, (1, 4), []),
-    #           ("Q", 3, 0, (4, 4), []),
+
+    # cars_0 = (("@", 2, 0, (3, 3), []),
+    #           ("A", 3, 1, (1, 1), []),
+    #           ("B", 3, 1, (2, 1), []),
+    #           ("C", 3, 0, (3, 1), []),
+    #           ("D", 2, 1, (6, 1), []),
+    #           ("E", 2, 0, (3, 2), []),
+    #           ("F", 3, 1, (5, 2), []),
+    #           ("G", 2, 1, (6, 3), []),
+    #           ("H", 2, 0, (1, 4), []),
+    #           ("I", 2, 1, (3, 4), []),
+    #           ("J", 2, 0, (4, 5), []),
+    #           ("K", 2, 0, (2, 6), []),
+    #           ("L", 2, 0, (4, 6), []),
     #           )
 
-    cars_0 = (("@", 2, 0, (3, 3), []),
-              ("A", 3, 1, (1, 1), []),
-              ("B", 3, 1, (2, 1), []),
-              ("C", 3, 0, (3, 1), []),
-              ("D", 2, 1, (6, 1), []),
-              ("E", 2, 0, (3, 2), []),
-              ("F", 3, 1, (5, 2), []),
-              ("G", 2, 1, (6, 3), []),
-              ("H", 2, 0, (1, 4), []),
-              ("I", 2, 1, (3, 4), []),
-              ("J", 2, 0, (4, 5), []),
-              ("K", 2, 0, (2, 6), []),
-              ("L", 2, 0, (4, 6), []),
+    # cars_0 = (("@", 2, 0, (3, 3), []),
+    #           ("A", 3, 0, (1, 1), []),
+    #           ("B", 2, 1, (4, 1), []),
+    #           ("C", 3, 1, (5, 1), []),
+    #           ("D", 3, 1, (6, 1), []), # row 1
+    #           ("E", 2, 1, (1, 2), []),
+    #           ("F", 2, 0, (2, 2), []), # 14
+    #           ("G", 2, 0, (1, 4), []),
+    #           ("H", 2, 1, (3, 4), []),
+    #           ("I", 2, 1, (2, 5), []),
+    #           ("J", 2, 0, (3, 6), []),
+    #           ("K", 2, 0, (5, 6), []),
+    #           ("L", 2, 0, (5, 5), []),
+    #           )
+
+    cars_0 = (("@", 2, 0, (4, 3), []),
+              ("A", 3, 1, (3, 1), []),
+              ("B", 2, 0, (4, 1), []),
+              ("C", 3, 1, (6, 1), []),
+              ("D", 3, 1, (4, 4), []),  # row 1
+              ("E", 2, 0, (5, 4), []),
+              ("F", 2, 1, (1, 5), []),  # 14
+              ("G", 2, 0, (2, 5), []),
+              ("H", 2, 0, (5, 6), []),
               )
 
     cars = list()
@@ -82,16 +93,53 @@ def main():
 
     state[3].append(display_state_string(state))
 
-    display_state(state)
 
     # for s in get_children(state):
     #     display_state(s)
+
+    # states = read_file("jams.txt")
+
+    # state = states[0]
+
+    display_state(state)
 
     start = time.perf_counter()
     # bfs(state)
     a_star_taxi(state)
     end = time.perf_counter()
     print(round(end - start, 5))
+
+
+def read_file(filename):
+    file = open(filename, "r")
+    lines = file.readlines()
+    file.close()
+
+    states = list()
+
+    count = 1
+
+    for x in range(0, 40):
+        count += 3
+        cars = list()
+        car = lines[count].replace("\n", "").split(" ")
+        cars.append(("@", int(car[3]), int(car[2]), (int(car[0])+1, int(car[1])+1), calculate_indexes((int(car[0])+1, int(car[1])+1), int(car[3]), int(car[2]))))
+        count += 1
+        while "." not in lines[count]:
+            car = lines[count].split(" ")
+            cars.append((str(count), int(car[3]), int(car[2]), (int(car[0])+1, int(car[1])+1), calculate_indexes((int(car[0])+1, int(car[1])+1), int(car[3]), int(car[2]))))
+            count +=1
+        blocked = list()
+        for car in cars:
+            blocked.extend(car[4])
+
+        state = tuple((cars, blocked, set(), list()))
+
+        state[3].append(display_state_string(state))
+
+        states.append(state)
+
+    return states
 
 
 def create_cars_list():
@@ -393,6 +441,8 @@ def goal_test(state):
     state = finish(state)
     display_all(state[3], state[2])
     return True
+
+
 
 
 if __name__ == "__main__":
