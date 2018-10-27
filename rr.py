@@ -51,37 +51,40 @@ def main():
 
     utm_nodes = dict()
 
-    for node, loc in nodes.items():
-        utm_nodes[node] = utm.from_latlon(loc[0][0], loc[0][1])[0:2]
+    # for node, loc in nodes.items():
+    #     utm_nodes[node] = utm.from_latlon(loc[0][0], loc[0][1])[0:2]
 
     global minx, maxx, miny, maxy, scalew, scaleh, height, width, shift
-    minx = list(utm_nodes.values())[0][1]
-    maxx = list(utm_nodes.values())[0][1]
-    miny = list(utm_nodes.values())[0][0]
-    maxy = list(utm_nodes.values())[0][0]
+    minx = 500
+    maxx = -500
+    miny = 500
+    maxy = -500
     scalew = 10.0
     scaleh = 10.0
     shift = 0.0
 
-    for node, loc in utm_nodes.items():
-        if loc[0]<miny:
-            miny = loc[0]
-        if loc[0]>maxy:
-            maxy = loc[0]
-        if loc[1]<minx:
-            minx = loc[1]
-        if loc[1]>maxx:
-            maxx = loc[1]
+    for node, loc in nodes.items():
+        if loc[0][0]<miny:
+            miny = loc[0][0]
+
+        if loc[0][0]>maxy:
+            maxy = loc[0][0]
+
+        if loc[0][1]<minx:
+            minx = loc[0][1]
+
+        if loc[0][1]>maxx:
+            maxx = loc[0][1]
 
     print(miny, maxy, minx, maxx)
 
     height = abs(maxx-minx)
-    width = abs(maxy-miny)
+    width = abs(maxy)-abs(miny)
 
     print(height, width)
 
-    scalew = 921/width# 12
-    scaleh = 814/height# 10
+    scalew = 814/width# 12
+    scaleh = 921/height# 10
 
     start = "Chicago"
     start_id = names[start]
@@ -93,7 +96,7 @@ def draw(lines):
     global minx, maxx, miny, maxy, scalew, scaleh, height, width
     master = Tk()
 
-    w = Canvas(master, width=int(width)*scalew, height=int(height)*scaleh)
+    w = Canvas(master, width=int(height)*scaleh, height=int(width)*scalew)
     w.pack()
 
     image = ImageTk.PhotoImage(file="rrImage.png")
@@ -101,8 +104,10 @@ def draw(lines):
     w.create_image(0, 0, image=image, anchor=NW)
     print(image.height())
 
-    for line in lines[:20]:
+    for line in lines[::100]:
         print(line)
+
+    for line in lines:
         w.create_line(line)
 
     mainloop()
@@ -128,8 +133,7 @@ def full_send(start):
         for child in children:
             if child[1] not in visited:
                 heappush(fringe, (0, child[0], child[1], child[2], s[4] + child[0]))
-
-                lines.append(((abs(float(s[3][1]))+minx)*scaleh, abs((float(s[3][0]))+miny)*scalew, (abs(float(child[2][1]))+minx)*scaleh, abs((float(child[2][0]))+miny)*scalew))
+                lines.append(((abs(float(s[3][1]))+miny)*1, abs((float(s[3][0]))+minx)*1, (abs(float(child[2][1]))+miny)*1, abs((float(child[2][0]))+minx)*1))
                 #w.create_line((abs(float(s[3][1])) - 70) * 20, (abs(float(s[3][0])) - 30) * 20, (abs(float(child[2][1])) - 70) * 20, (abs(float(child[2][0])) - 30) * 20)
 
     if len(fringe) is 0:
