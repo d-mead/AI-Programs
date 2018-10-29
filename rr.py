@@ -30,12 +30,14 @@ def main():
     # with open("names_236.pkl", "rb") as infile:
     #     names = pickle.load(infile)
 
-    # start = "Albuquerque"  # sys.argv[1]
-    # end = "Dallas"  # sys.argv[2]
-    #
-    # start_id = names[start]
-    # end_id = names[end]
-    #
+    start = "Ciudad Juarez"  # sys.argv[1]
+    end = "Montreal" # sys.argv[2]
+
+    start_id = names[start]
+    end_id = names[end]
+
+
+
     # begin = time.perf_counter()
     # dij = dijkstra(start_id, end_id)
     # stop = time.perf_counter()
@@ -61,7 +63,7 @@ def main():
     maxy = -500
     scalew = 10.0
     scaleh = 10.0
-    shift = 0.0
+    shift = 5
 
     for node, loc in nodes.items():
         if loc[0][0]<miny:
@@ -86,21 +88,28 @@ def main():
     scalew = 814/width# 12
     scaleh = 921/height# 10
 
-    start = "Chicago"
-    start_id = names[start]
+    # start = "Chicago"
+    # start_id = names[start]
 
-    draw(full_send(start_id))
+    answer = a_star(start_id, end_id)
+
+    distance = answer[0]
+    red_lines = answer[1]
+    all_lines = answer[2]
+
+    print(answer)
+
+    draw(full_send(names["Chicago"]), red_lines, all_lines)
 
 
-def draw(lines):
+def draw(lines, red_lines, all_lines):
     global minx, maxx, miny, maxy, scalew, scaleh, height, width
     master = Tk()
 
-    w = Canvas(master, width=int(height)*scaleh, height=int(width)*scalew)
+    w = Canvas(master, width=int(height)*scaleh+2*shift, height=int(width)*scalew+2*shift)
     w.pack()
 
     image = ImageTk.PhotoImage(file="rrImage.png")
-    # backgroundLabel = master.Label(parent, image=image)
     w.create_image(0, 0, image=image, anchor=NW)
     print(image.height())
 
@@ -108,7 +117,13 @@ def draw(lines):
         print(line)
 
     for line in lines:
-        w.create_line(line)
+        w.create_line(line, fill="dimgrey")
+
+    for line in all_lines:
+        w.create_line(line, fill='mediumblue', width=1)
+
+    for line in red_lines:
+        w.create_line(line, fill='red', width=2)
 
     mainloop()
 
@@ -133,11 +148,16 @@ def full_send(start):
         for child in children:
             if child[1] not in visited:
                 heappush(fringe, (0, child[0], child[1], child[2], s[4] + child[0]))
-                lines.append(((abs(float(s[3][1]))+miny)*1, abs((float(s[3][0]))+minx)*1, (abs(float(child[2][1]))+miny)*1, abs((float(child[2][0]))+minx)*1))
+                sy = (-abs((float(s[3][1]))+maxy)+height)*scaleh+shift
+                sx = abs((float(s[3][0]))+maxx)*scalew+2*shift
+                ey = (-abs(float(child[2][1])+maxy)+height)*scaleh+shift
+                ex = abs((float(child[2][0]))+maxx)*scalew+2*shift
+                lines.append((sy, sx, ey, ex))
                 #w.create_line((abs(float(s[3][1])) - 70) * 20, (abs(float(s[3][0])) - 30) * 20, (abs(float(child[2][1])) - 70) * 20, (abs(float(child[2][0])) - 30) * 20)
 
     if len(fringe) is 0:
         return lines
+
 
 def draw_0():
     master = Tk()
@@ -152,13 +172,10 @@ def draw_0():
 
 
 def a_star(start, end):
-    master = Tk()
 
-    w = Canvas(master, width=800, height=400) #30 to 50 y, 70 to 100 x
-    w.pack()
-
-    fringe = [(0, 0, start, nodes[start][0],  0), ]
+    fringe = [(0, 0, start, nodes[start][0],  0, []), ]
     visited = set()
+    all_lines = set()
 
     end_y = nodes[end][0][0]
     end_x = nodes[end][0][1]
@@ -167,7 +184,7 @@ def a_star(start, end):
         s = heappop(fringe)
 
         if goal_test(s[2], end):  # if the state is won
-            return s[0]  # return the moves
+            return s[0], s[5], all_lines  # return the moves
 
         if s[2] in visited:
             continue
@@ -181,11 +198,16 @@ def a_star(start, end):
                     circle = calcd(child[2][0], child[2][1], end_y, end_x)
                 except ValueError:
                     circle = 0
-                heappush(fringe, (circle+s[4]+child[0], child[0], child[1], child[2], s[4]+child[0]))
-                #print(abs(float(s[3][1]))-70, abs(float(s[3][0]))-30, abs(float(child[2][1]))-70, abs(float(child[2][0]))-30)
-                w.create_line((abs(float(s[3][1]))-70)*20, (abs(float(s[3][0]))-30)*20, (abs(float(child[2][1]))-70)*20, (abs(float(child[2][0]))-30)*20)
-
-    mainloop()
+                red_lines = list(s[5])
+                sy = (-abs((float(s[3][1])) + maxy) + height) * scaleh + shift
+                sx = abs((float(s[3][0])) + maxx) * scalew + 2 * shift
+                ey = (-abs(float(child[2][1]) + maxy) + height) * scaleh + shift
+                ex = abs((float(child[2][0])) + maxx) * scalew + 2 * shift
+                red_lines.append((sy, sx, ey, ex))
+                all_lines.add((sy, sx, ey, ex))
+                heappush(fringe, (circle+s[4]+child[0], child[0], child[1], child[2], s[4]+child[0], red_lines))
+                # print(abs(float(s[3][1]))-70, abs(float(s[3][0]))-30, abs(float(child[2][1]))-70, abs(float(child[2][0]))-30)
+                # w.create_line((abs(float(s[3][1]))-70)*20, (abs(float(s[3][0]))-30)*20, (abs(float(child[2][1]))-70)*20, (abs(float(child[2][0]))-30)*20)
 
     if len(fringe) is 0:
         return -1
