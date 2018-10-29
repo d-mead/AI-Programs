@@ -63,7 +63,7 @@ def main():
     maxy = -500
     scalew = 10.0
     scaleh = 10.0
-    shift = 5
+    shift = 0
 
     for node, loc in nodes.items():
         if loc[0][0]<miny:
@@ -85,8 +85,8 @@ def main():
 
     print(height, width)
 
-    scalew = 814/width# 12
-    scaleh = 921/height# 10
+    scalew = 530/width# 12
+    scaleh = 600/height# 10
 
     # start = "Chicago"
     # start_id = names[start]
@@ -97,24 +97,53 @@ def main():
     red_lines = answer[1]
     all_lines = answer[2]
 
-    print(answer)
+    #print(answer)
 
     draw(full_send(names["Chicago"]), red_lines, all_lines)
+
+#
+# def draw_2(lines, red_lines, all_lines):
+#     global minx, maxx, miny, maxy, scalew, scaleh, height, width
+#     master = Tk()
+#
+#     w = Canvas(master, width=height * scaleh, height=width * scalew)
+#     w.pack()
+#
+#     image1 = ImageTk.PhotoImage(file="rrImage4.png")
+#     resized = image1.resize((800, 600), Image.ANTIALIAS)
+#     self.image = ImageTk.PhotoImage(resized)
+#     w.create_image(0, 0, image=image, anchor=NW)
+#     print(image.height())
+#
+#     # for line in lines[::100]:
+#     #     print(line)
+#
+#     for line in lines:
+#         w.create_line(line, fill="dimgrey")
+#
+#     for line in all_lines:
+#         w.create_line(line, fill='mediumblue', width=1)
+#
+#     for line in red_lines:
+#         w.create_line(line, fill='red', width=2)
+#
+#     mainloop()
 
 
 def draw(lines, red_lines, all_lines):
     global minx, maxx, miny, maxy, scalew, scaleh, height, width
     master = Tk()
 
-    w = Canvas(master, width=int(height)*scaleh+2*shift, height=int(width)*scalew+2*shift)
+    w = Canvas(master, width=height*scaleh, height=width*scalew)
     w.pack()
 
-    image = ImageTk.PhotoImage(file="rrImage.png")
+    image = ImageTk.PhotoImage(file="rrImage4.png")
     w.create_image(0, 0, image=image, anchor=NW)
     print(image.height())
 
-    for line in lines[::100]:
-        print(line)
+
+    # for line in lines[::100]:
+    #     print(line)
 
     for line in lines:
         w.create_line(line, fill="dimgrey")
@@ -148,10 +177,10 @@ def full_send(start):
         for child in children:
             if child[1] not in visited:
                 heappush(fringe, (0, child[0], child[1], child[2], s[4] + child[0]))
-                sy = (-abs((float(s[3][1]))+maxy)+height)*scaleh+shift
-                sx = abs((float(s[3][0]))+maxx)*scalew+2*shift
-                ey = (-abs(float(child[2][1])+maxy)+height)*scaleh+shift
-                ex = abs((float(child[2][0]))+maxx)*scalew+2*shift
+                sy = (-abs((float(s[3][1]))+maxy)+height)*scaleh-2
+                sx = abs((float(s[3][0]))+maxx)*scalew+8
+                ey = (-abs(float(child[2][1])+maxy)+height)*scaleh-2
+                ex = abs((float(child[2][0]))+maxx)*scalew+8
                 lines.append((sy, sx, ey, ex))
                 #w.create_line((abs(float(s[3][1])) - 70) * 20, (abs(float(s[3][0])) - 30) * 20, (abs(float(child[2][1])) - 70) * 20, (abs(float(child[2][0])) - 30) * 20)
 
@@ -199,10 +228,10 @@ def a_star(start, end):
                 except ValueError:
                     circle = 0
                 red_lines = list(s[5])
-                sy = (-abs((float(s[3][1])) + maxy) + height) * scaleh + shift
-                sx = abs((float(s[3][0])) + maxx) * scalew + 2 * shift
-                ey = (-abs(float(child[2][1]) + maxy) + height) * scaleh + shift
-                ex = abs((float(child[2][0])) + maxx) * scalew + 2 * shift
+                sy = (-abs((float(s[3][1])) + maxy) + height) * scaleh -2
+                sx = abs((float(s[3][0])) + maxx) * scalew + 8
+                ey = (-abs(float(child[2][1]) + maxy) + height) * scaleh -2
+                ex = abs((float(child[2][0])) + maxx) * scalew + 8
                 red_lines.append((sy, sx, ey, ex))
                 all_lines.add((sy, sx, ey, ex))
                 heappush(fringe, (circle+s[4]+child[0], child[0], child[1], child[2], s[4]+child[0], red_lines))
