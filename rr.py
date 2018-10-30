@@ -7,8 +7,10 @@ from tkinter import *
 import pickle
 # import pickle
 from PIL import ImageTk
-import utm
-
+# import matplotlib.pyplot as plt
+# import csv
+# import numpy as npbre
+# from mpl_toolkits.basemap import Basemap
 
 
 def main():
@@ -30,8 +32,8 @@ def main():
     # with open("names_236.pkl", "rb") as infile:
     #     names = pickle.load(infile)
 
-    start = "Ciudad Juarez"  # sys.argv[1]
-    end = "Montreal" # sys.argv[2]
+    start = sys.argv[1]
+    end = sys.argv[2]
 
     start_id = names[start]
     end_id = names[end]
@@ -85,65 +87,20 @@ def main():
 
     print(height, width)
 
-    scalew = 530/width# 12
-    scaleh = 600/height# 10
+    scalew = 814/width# 12
+    scaleh = 921/height# 10
 
     # start = "Chicago"
     # start_id = names[start]
 
-    answer = a_star(start_id, end_id)
-
-    distance = answer[0]
-    red_lines = answer[1]
-    all_lines = answer[2]
-
     #print(answer)
 
-    draw(full_send(names["Chicago"]), red_lines, all_lines)
-
-#
-# def draw_2(lines, red_lines, all_lines):
-#     global minx, maxx, miny, maxy, scalew, scaleh, height, width
-#     master = Tk()
-#
-#     w = Canvas(master, width=height * scaleh, height=width * scalew)
-#     w.pack()
-#
-#     image1 = ImageTk.PhotoImage(file="rrImage4.png")
-#     resized = image1.resize((800, 600), Image.ANTIALIAS)
-#     self.image = ImageTk.PhotoImage(resized)
-#     w.create_image(0, 0, image=image, anchor=NW)
-#     print(image.height())
-#
-#     # for line in lines[::100]:
-#     #     print(line)
-#
-#     for line in lines:
-#         w.create_line(line, fill="dimgrey")
-#
-#     for line in all_lines:
-#         w.create_line(line, fill='mediumblue', width=1)
-#
-#     for line in red_lines:
-#         w.create_line(line, fill='red', width=2)
-#
-#     mainloop()
+    draw(full_send(names["Chicago"]), start_id, end_id)
 
 
-def draw(lines, red_lines, all_lines):
+def draw_2(lines, red_lines, all_lines):
     global minx, maxx, miny, maxy, scalew, scaleh, height, width
     master = Tk()
-
-    w = Canvas(master, width=height*scaleh, height=width*scalew)
-    w.pack()
-
-    image = ImageTk.PhotoImage(file="rrImage4.png")
-    w.create_image(0, 0, image=image, anchor=NW)
-    print(image.height())
-
-
-    # for line in lines[::100]:
-    #     print(line)
 
     for line in lines:
         w.create_line(line, fill="dimgrey")
@@ -153,6 +110,69 @@ def draw(lines, red_lines, all_lines):
 
     for line in red_lines:
         w.create_line(line, fill='red', width=2)
+
+    m = Basemap(projection='merc', llcrnrlat=float(min(lat_td)) - 2, \
+                urcrnrlat=float(max(lat_lift)) + 2, llcrnrlon=float(max(long_td)) - 2, \
+                urcrnrlon=float(min(long_lift)) + 2, lat_ts=40, resolution='l')
+
+    lat_ = []
+    lon = []
+
+    x, y = m(lon, lat)
+
+    # dark grey : 4E4E4E
+    # naxy blue : 00137B
+    # red       : BB0000
+
+    m.plot(x, y, '-', markersize=5, linewidth=1, color=blue)
+
+    m.drawcoastlines()
+    m.fillcontinents(color='white')
+    m.drawmapboundary(fill_color='white')
+    m.drawstates(color='black')
+    m.drawcountries(color='black')
+    plt.title("#wedgez")
+    plt.show()
+
+    mainloop()
+
+
+def draw(lines, start_id, end_id):
+    global minx, maxx, miny, maxy, scalew, scaleh, height, width
+    master = Tk()
+
+    w = Canvas(master, width=height*scaleh, height=width*scalew)
+    w.pack()
+
+    # image = ImageTk.PhotoImage(file="rrImage.png")
+    # w.create_image(0, 0, image=image, anchor=NW)
+    # print(image.height())
+
+
+    # for line in lines[::100]:
+    #     print(line)
+
+    for line in lines:
+        w.create_line(line, fill="dimgrey")
+
+    answer = a_star_tk(start_id, end_id, w, 1)
+
+    begin = time.perf_counter()
+
+    distance = answer[0]
+    red_lines = answer[1]
+    all_lines = answer[2]
+
+    # for line in all_lines:
+    #     w.create_line(line, fill='mediumblue', width=1)
+
+    for line in red_lines:
+        w.create_line(line, fill='red', width=2)
+        # w.update()
+
+    stop = time.perf_counter()
+
+    w.create_text(700, 100, fill = 'black', width = 100, text = ("%s miles" % (round(distance, 2)), anchor = "nw")
 
     mainloop()
 
@@ -200,6 +220,84 @@ def draw_0():
     mainloop()
 
 
+def a_star_tk(start, end, w, m):
+
+    fringe = [(0, 0, start, nodes[start][0],  0, []), ]
+    visited = set()
+    all_lines = set()
+
+    end_y = nodes[end][0][0]
+    end_x = nodes[end][0][1]
+
+    while len(fringe) is not 0:
+        s = heappop(fringe)
+
+        if goal_test(s[2], end):  # if the state is won
+            return s[0], s[5], all_lines  # return the moves
+
+        if s[2] in visited:
+            continue
+
+        visited.add(s[2])
+
+        children = get_children(s[2])
+        for child in children:
+            if child[1] not in visited:
+                try:
+                    circle = calcd(child[2][0], child[2][1], end_y, end_x)
+                except ValueError:
+                    circle = 0
+                red_lines = list(s[5])
+                sy = (-abs((float(s[3][1])) + maxy) + height) * scaleh -2
+                sx = abs((float(s[3][0])) + maxx) * scalew + 8
+                ey = (-abs(float(child[2][1]) + maxy) + height) * scaleh -2
+                ex = abs((float(child[2][0])) + maxx) * scalew + 8
+                red_lines.append((sy, sx, ey, ex))
+                all_lines.add((sy, sx, ey, ex))
+                w.create_line((sy, sx, ey, ex), fill="mediumblue", width = 2)
+                heappush(fringe, (circle+(s[4]+child[0])*m, child[0], child[1], child[2], s[4]+child[0], red_lines))
+        w.update()
+                # print(abs(float(s[3][1]))-70, abs(float(s[3][0]))-30, abs(float(child[2][1]))-70, abs(float(child[2][0]))-30)
+                # w.create_line((abs(float(s[3][1]))-70)*20, (abs(float(s[3][0]))-30)*20, (abs(float(child[2][1]))-70)*20, (abs(float(child[2][0]))-30)*20)
+
+    if len(fringe) is 0:
+        return -1
+
+
+def dijkstra_tk(start, end, w):
+    fringe = [(0, start, 0, nodes[start][0], []), ]
+    visited = set()
+    all_lines = set()
+
+    while len(fringe) is not 0:
+        s = heappop(fringe)
+
+        if goal_test(s[1], end):  # if the state is won
+            return s[0], s[4], all_lines  # return the moves
+
+        if s[1] in visited:
+            continue
+
+        visited.add(s[1])
+
+        children = get_children(s[1])
+        for child in children:
+            if child[1] not in visited:
+                red_lines = list(s[4])
+                sy = (-abs((float(s[3][1])) + maxy) + height) * scaleh - 2
+                sx = abs((float(s[3][0])) + maxx) * scalew + 8
+                ey = (-abs(float(child[2][1]) + maxy) + height) * scaleh - 2
+                ex = abs((float(child[2][0])) + maxx) * scalew + 8
+                red_lines.append((sy, sx, ey, ex))
+                all_lines.add((sy, sx, ey, ex))
+                w.create_line((sy, sx, ey, ex), fill="mediumblue", width=2)
+                heappush(fringe, (s[2] + child[0], child[1], s[2] + child[0], child[2], red_lines))
+        w.update()
+
+    if len(fringe) is 0:
+        return -1
+
+
 def a_star(start, end):
 
     fringe = [(0, 0, start, nodes[start][0],  0, []), ]
@@ -240,6 +338,7 @@ def a_star(start, end):
 
     if len(fringe) is 0:
         return -1
+
 
 
 def dijkstra(start, end):
