@@ -7,13 +7,16 @@ from tkinter import *
 import pickle
 # import pickle
 from PIL import ImageTk
-import matplotlib.pyplot as plt
+# sys.path.append('/Users/JackMead/Desktop/CompSci/PycharmProjects/AIPrograms/venv/lib/python3.7/site-packages/basemap-1.1.0/build/lib.macosx-10.9-x86_64-3.7/mpl_toolkits')
+# from basemap import *
+import matplotlib.pyplot as pltpip
 import csv
 import numpy as npbre
-from mpl_toolkits.
 from mpl_toolkits.basemap import Basemap
 import random
 import keyboard
+
+
 
 
 def main():
@@ -154,7 +157,7 @@ def draw(lines, start_id, end_id):
     last_time = time.perf_counter()
 
     global delay
-    delay = 0
+    delay = .02
 
     # keyboard.add_hotkey('A', lambda: up())
     # keyboard.add_hotkey('S', lambda: down())
@@ -163,11 +166,11 @@ def draw(lines, start_id, end_id):
     lines_dict = dict()
 
     for line in lines:
-        lines_dict[line] = w.create_line(line, fill="dimgrey")
-        lines_dict[(line[2], line[3], line[0], line[1])] = w.create_line(line, fill="dimgrey")
+        lines_dict[line] = w.create_line(line, fill="black")
+        lines_dict[(line[2], line[3], line[0], line[1])] = w.create_line(line, fill="black")
 
-    answer = a_star_tk(start_id, end_id, w, .7)
-    #answer = dijkstra_tk(start_id, end_id, w)
+    answer = a_star_tk(start_id, end_id, w, .5)
+    # answer = dijkstra_tk(start_id, end_id, w)
 
     distance = answer[0]
     red_lines = answer[1]
@@ -178,9 +181,10 @@ def draw(lines, start_id, end_id):
     #     # w.create_line(line, fill='mediumblue', width=1)
 
     for line in red_lines:
-        # w.itemconfig(lines_dict[line], fill="red")
-        w.create_line(line, fill='red', width=2)
-        # w.update()
+        w.itemconfig(lines_dict[line], fill="green", width = 3)
+        w.itemconfig(lines_dict[(line[2], line[3], line[0], line[1])], fill="green", width = 3)
+        # w.create_line(line, fill='red', width=2)
+        w.update()
 
     w.create_text(700, 100, fill = 'black', width = 100, text = ("%s miles" % (round(distance, 2))), anchor = "nw")
 
@@ -190,6 +194,7 @@ def up():
     global delay
     delay = delay / 2
     print(delay)
+
 
 def down():
     global delay
@@ -254,7 +259,8 @@ def a_star_tk(start, end, w, m):
             ey = (-abs(float(s[6][1]) + maxy) + height) * scaleh - 2
             ex = abs((float(s[6][0])) + maxx) * scalew + 8
 
-            w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="navyblue", width=2)
+            w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="blue", width=2)
+            w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="blue", width=2)
 
         if goal_test(s[2], end):  # if the state is won
             return s[0]/m, s[5], all_lines  # return the moves
@@ -279,8 +285,9 @@ def a_star_tk(start, end, w, m):
                 red_lines.append((sy, sx, ey, ex))
                 all_lines.add((sy, sx, ey, ex))
                 # w.create_line((sy, sx, ey, ex), fill="mediumblue", width = 2)
-                w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="royalblue", width=2)
-                heappush(fringe, (circle+(s[4]+child[0])*m, child[0], child[1], child[2], s[4]+child[0], red_lines, s[3]))
+                w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="red", width=2)
+                w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
+                heappush(fringe, (-1*circle+(s[4]+child[0])*m, child[0], child[1], child[2], s[4]+child[0], red_lines, s[3]))
         redraw(w)
         # if random.randint(0, 1000) > 999:
         #     w.update()
@@ -298,6 +305,16 @@ def dijkstra_tk(start, end, w):
 
     while len(fringe) is not 0:
         s = heappop(fringe)
+
+        if len(s) > 5:
+
+            sy = (-abs((float(s[3][1])) + maxy) + height) * scaleh - 2
+            sx = abs((float(s[3][0])) + maxx) * scalew + 8
+            ey = (-abs(float(s[5][1]) + maxy) + height) * scaleh - 2
+            ex = abs((float(s[5][0])) + maxx) * scalew + 8
+
+            w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="blue", width=2)
+            w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="blue", width=2)
 
         if goal_test(s[1], end):  # if the state is won
             return s[0], s[4], all_lines  # return the moves
@@ -317,10 +334,10 @@ def dijkstra_tk(start, end, w):
                 ex = abs((float(child[2][0])) + maxx) * scalew + 8
                 red_lines.append((sy, sx, ey, ex))
                 all_lines.add((sy, sx, ey, ex))
-                w.create_line((sy, sx, ey, ex), fill="mediumblue", width=2)
-                heappush(fringe, (s[2] + child[0], child[1], s[2] + child[0], child[2], red_lines))
-        if random.randint(0, 1000) > 999:
-            w.update()
+                w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="red", width=2)
+                w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
+                heappush(fringe, (s[2] + child[0], child[1], s[2] + child[0], child[2], red_lines, s[3]))
+        redraw(w)
 
     if len(fringe) is 0:
         return -1
