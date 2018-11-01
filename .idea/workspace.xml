@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac51eb1-d9fa-49b2-88ef-715b8d84aa07" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rr.py" beforeDir="false" afterPath="$PROJECT_DIR$/rr.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,9 +43,9 @@
     <session id="-1151945877">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="25" />
+          <entry key="project.closed" value="26" />
           <entry key="project.open.time.10" value="3" />
-          <entry key="project.open.time.11" value="5" />
+          <entry key="project.open.time.11" value="6" />
           <entry key="project.open.time.12" value="6" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.15" value="1" />
@@ -61,31 +62,33 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="34" />
+          <entry key="project.opened" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="67791" />
+          <entry key="py" value="77744" />
           <entry key="txt" value="107" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="C++" value="1" />
           <entry key="PLAIN_TEXT" value="47" />
-          <entry key="Python" value="28" />
+          <entry key="Python" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="28" />
+          <entry key="h" value="1" />
+          <entry key="py" value="32" />
           <entry key="txt" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="107" />
-          <entry key="Python" value="67791" />
+          <entry key="Python" value="77744" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -96,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="283" column="13" lean-forward="true" selection-start-line="283" selection-start-column="13" selection-end-line="283" selection-end-column="13" />
+            <state relative-caret-position="252">
+              <caret line="1063" column="48" lean-forward="true" selection-start-line="1063" selection-start-column="48" selection-end-line="1063" selection-end-column="48" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
@@ -111,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rushhour.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1152">
-              <caret line="143" column="17" lean-forward="true" selection-start-line="143" selection-start-column="17" selection-end-line="143" selection-end-column="17" />
+            <state relative-caret-position="155">
+              <caret line="136" column="31" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <element signature="e#404#440#0" />
@@ -126,18 +129,44 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="79" column="56" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
+            <state relative-caret-position="330">
+              <caret line="145" column="8" selection-start-line="145" selection-start-column="8" selection-end-line="145" selection-end-column="8" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-                <marker date="1540318526905" expanded="true" signature="177:828" ph="..." />
-                <marker date="1540318526905" expanded="true" signature="177:830" ph="..." />
-                <marker date="1540318526905" expanded="true" signature="177:1439" ph="..." />
-                <marker date="1540318526905" expanded="true" signature="1464:1962" ph="..." />
-                <marker date="1540318526905" expanded="true" signature="1984:3020" ph="..." />
-                <marker date="1540318526905" expanded="true" signature="2063:2207" ph="..." />
-                <marker date="1540318526905" expanded="true" signature="3065:3276" ph="..." />
-                <marker date="1540318526905" expanded="true" signature="3850:3879" ph="..." />
+                <marker date="1541087883174" expanded="true" signature="5218:5478" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/include/python3.7m/pystate.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="229">
+              <caret line="234" column="25" selection-start-line="234" selection-start-column="25" selection-end-line="234" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/mpl_toolkits/basemap/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+              <folding>
+                <element signature="e#418#460#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/mpl_toolkits/basemap/proj.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,8 +175,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/word_ladder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5">
-              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+            <state relative-caret-position="33">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <marker date="1537888288664" expanded="true" signature="3469:4062" ph="..." />
@@ -159,8 +188,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rrNodes.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-258025">
-              <caret line="155" column="6" selection-start-line="155" selection-end-line="155" selection-end-column="6" />
+            <state relative-caret-position="235">
+              <caret line="20648" column="8" selection-start-line="20648" selection-start-column="8" selection-end-line="20648" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -168,8 +197,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rrEdges.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149321">
-              <caret line="24995" column="15" lean-forward="true" selection-start-line="24995" selection-start-column="15" selection-end-line="24995" selection-end-column="15" />
+            <state relative-caret-position="155">
+              <caret line="12830" column="15" selection-start-line="12830" selection-start-column="8" selection-end-line="12830" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -177,26 +206,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rrNodeCity.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="8" selection-start-column="8" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/8puzzles.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="9" selection-start-line="11" selection-end-line="11" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sample.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+            <state relative-caret-position="-24">
+              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -212,24 +223,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>al</find>
-      <find>test_many</find>
-      <find>randomstate()</find>
-      <find>all</find>
-      <find>TRY</find>
-      <find>zoom</find>
-      <find>A_star</find>
-      <find>X</find>
-      <find>&quot;X&quot;</find>
-      <find>print(</find>
-      <find>state[0]</find>
-      <find>v</find>
-      <find>0100276</find>
-      <find>0100318</find>
-      <find>0100319</find>
-      <find>0100317</find>
-      <find>0100338</find>
-      <find>heap</find>
       <find>0100339</find>
       <find>0100004</find>
       <find>0100147</find>
@@ -239,15 +232,34 @@
       <find>4700235</find>
       <find>4700400</find>
       <find>4700023</find>
-      <find>a_star</find>
-      <find>91000</find>
+      <find>0100265</find>
       <find>010000</find>
+      <find>91000</find>
+      <find>int</find>
+      <find>int(</find>
+      <find>alb</find>
+      <find>Ciu</find>
+      <find>mon</find>
+      <find>abs(</find>
+      <find>9100091</find>
+      <find>14.68673</find>
+      <find>3500060</find>
+      <find>60.84682</find>
+      <find>-60.02403</find>
+      <find>pick</find>
+      <find>a_star</find>
+      <find>print</find>
+      <find>print</find>
+      <find>pypro</find>
+      <find>dfs</find>
+      <find>bi</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>perf_counter()</replace>
       <replace>blocked</replace>
       <replace>list(car[4])</replace>
+      <replace>abs(float(</replace>
       <replace>1</replace>
     </replaceStrings>
   </component>
@@ -295,16 +307,19 @@
         <option value="$PROJECT_DIR$/rush_hr_solutions.txt" />
         <option value="$PROJECT_DIR$/rrNodes.txt" />
         <option value="$PROJECT_DIR$/rrEdges.txt" />
-        <option value="$PROJECT_DIR$/rrNodeCity.txt" />
         <option value="$PROJECT_DIR$/rushhour.py" />
         <option value="$PROJECT_DIR$/word_ladder.py" />
+        <option value="$PROJECT_DIR$/rrNodeCity.txt" />
+        <option value="/Library/Frameworks/Python.framework/Versions/3.7/include/python3.7m/pystate.h" />
+        <option value="/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/mpl_toolkits/basemap/__init__.py" />
         <option value="$PROJECT_DIR$/rr.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="831" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -370,7 +385,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="chapter5" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="_pydev_execfile" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Project1" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -378,11 +393,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ATBS practice" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ATBS practice/chapter5.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -455,19 +470,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.15puzzle" />
-      <item itemvalue="Python.chapter5" />
       <item itemvalue="Python.rushhour" />
       <item itemvalue="Python.rr" />
       <item itemvalue="Python.pydevd" />
+      <item itemvalue="Python._pydev_execfile" />
+      <item itemvalue="Python.15puzzle" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.rr" />
+        <item itemvalue="Python.15puzzle" />
+        <item itemvalue="Python._pydev_execfile" />
         <item itemvalue="Python.pydevd" />
         <item itemvalue="Python.rushhour" />
-        <item itemvalue="Python.chapter5" />
-        <item itemvalue="Python.15puzzle" />
       </list>
     </recent_temporary>
   </component>
@@ -494,23 +509,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="831" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49786323" visible="true" weight="0.1987315" />
-      <window_info id="Structure" order="1" sideWeight="0.50213677" side_tool="true" weight="0.1987315" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49658704" visible="true" weight="0.1987315" />
+      <window_info id="Structure" order="1" sideWeight="0.50344825" side_tool="true" weight="0.1987315" />
+      <window_info id="Favorites" order="2" sideWeight="0.50341296" side_tool="true" visible="true" weight="0.1987315" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32970297" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30120483" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.40963855" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20703654" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49964765" weight="0.36806494" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32771084" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32650602" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.2433735" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32673267" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3253012" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.26251692" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003524" side_tool="true" weight="0.37349397" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3253012" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -644,63 +659,63 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>79</line>
-          <option name="timeStamp" value="673" />
+          <line>509</line>
+          <option name="timeStamp" value="806" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>10</line>
-          <option name="timeStamp" value="675" />
+          <line>5</line>
+          <option name="timeStamp" value="818" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>14</line>
-          <option name="timeStamp" value="676" />
+          <line>485</line>
+          <option name="timeStamp" value="826" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>42</line>
-          <option name="timeStamp" value="677" />
+          <line>484</line>
+          <option name="timeStamp" value="827" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="678" />
+          <line>483</line>
+          <option name="timeStamp" value="828" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>44</line>
-          <option name="timeStamp" value="680" />
+          <line>275</line>
+          <option name="timeStamp" value="829" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="681" />
+          <line>276</line>
+          <option name="timeStamp" value="830" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>46</line>
-          <option name="timeStamp" value="682" />
+          <line>278</line>
+          <option name="timeStamp" value="831" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>62</line>
-          <option name="timeStamp" value="684" />
+          <line>277</line>
+          <option name="timeStamp" value="832" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>61</line>
-          <option name="timeStamp" value="685" />
+          <line>370</line>
+          <option name="timeStamp" value="848" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>64</line>
-          <option name="timeStamp" value="688" />
+          <line>329</line>
+          <option name="timeStamp" value="850" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>63</line>
-          <option name="timeStamp" value="689" />
+          <line>335</line>
+          <option name="timeStamp" value="851" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -716,87 +731,73 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="ids" language="Python" />
-        <watch expression="ide" language="Python" />
-        <watch expression="enumerate(names)" language="Python" />
-        <watch expression="names" language="Python" />
-        <watch expression="names.items()" language="Python" />
-        <watch expression="a_star(ids, ide)" language="Python" />
-        <watch expression="children" language="Python" />
-        <watch expression="child" language="Python" />
-        <watch expression="child[1]" language="Python" />
-        <watch expression="start" language="Python" />
-        <watch expression="end" language="Python" />
+        <watch expression="time.perf_counter()" language="Python" />
+        <watch expression="time.perf_counter()" language="Python" />
+        <watch expression="last_time" language="Python" />
+        <watch expression="s" language="Python" />
+        <watch expression="fringe" language="Python" />
+        <watch expression="red_lines" language="Python" />
+        <watch expression="all_lines" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>end</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>start</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>child[1]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
         <expression-string>child</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>children</expression-string>
+        <expression-string>all_lines</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>a_star(ids, ide)</expression-string>
+        <expression-string>red_lines</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>names.items()</expression-string>
+        <expression-string>fringe</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>names</expression-string>
+        <expression-string>s</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>enumerate(names)</expression-string>
+        <expression-string>time.perf_counter()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>ide</expression-string>
+        <expression-string>last_time</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(sy, sx, ey, ex)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>float(child[2][1])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>miny</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/chapter2.py" />
-    <entry file="file://$PROJECT_DIR$/chapter3.py" />
-    <entry file="file://$PROJECT_DIR$/chapter1.py" />
     <entry file="file://$PROJECT_DIR$/chapter5.py" />
     <entry file="file://$PROJECT_DIR$/chapter4.py" />
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/exerciesPart2.p.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.2/python_stubs/-1199943126/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1007,13 +1008,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rush_hr_solutions.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11355">
@@ -1028,29 +1022,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/15puzzle.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="283" column="13" lean-forward="true" selection-start-line="283" selection-start-column="13" selection-end-line="283" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
-            <marker date="1539819830213" expanded="true" signature="6991:7057" ph="..." />
-            <marker date="1539819830213" expanded="true" signature="42391:43341" ph="..." />
-          </folding>
+        <state relative-caret-position="488">
+          <caret line="1080" column="16" selection-start-line="1080" selection-start-column="16" selection-end-line="1080" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rushhour.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1152">
-          <caret line="143" column="17" lean-forward="true" selection-start-line="143" selection-start-column="17" selection-end-line="143" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#404#440#0" />
-            <marker date="1540305136794" expanded="true" signature="3741:4090" ph="..." />
-            <marker date="1540305136794" expanded="true" signature="17911:17913" ph="..." />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1061,38 +1043,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rrNodeCity.txt">
+    <entry file="file://$PROJECT_DIR$/sample.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="1080" column="16" selection-start-line="1080" selection-start-column="16" selection-end-line="1080" selection-end-column="16" />
+        <state relative-caret-position="75">
+          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rrEdges.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149321">
-          <caret line="24995" column="15" lean-forward="true" selection-start-line="24995" selection-start-column="15" selection-end-line="24995" selection-end-column="15" />
+        <state relative-caret-position="155">
+          <caret line="12830" column="15" selection-start-line="12830" selection-start-column="8" selection-end-line="12830" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rrNodes.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-258025">
-          <caret line="155" column="6" selection-start-line="155" selection-end-line="155" selection-end-column="6" />
+        <state relative-caret-position="235">
+          <caret line="20648" column="8" selection-start-line="20648" selection-start-column="8" selection-end-line="20648" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/include/python3.7m/pystate.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="234" column="25" selection-start-line="234" selection-start-column="25" selection-end-line="234" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/mpl_toolkits/basemap/proj.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/mpl_toolkits/basemap/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding>
+            <element signature="e#418#460#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/15puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="1063" column="48" lean-forward="true" selection-start-line="1063" selection-start-column="48" selection-end-line="1063" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
+            <marker date="1539819830213" expanded="true" signature="6991:7057" ph="..." />
+            <marker date="1539819830213" expanded="true" signature="42391:43341" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/word_ladder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5">
-          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        <state relative-caret-position="33">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <marker date="1537888288664" expanded="true" signature="3469:4062" ph="..." />
@@ -1100,20 +1115,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rrNodeCity.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-24">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rushhour.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="136" column="31" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#404#440#0" />
+            <marker date="1540305136794" expanded="true" signature="3741:4090" ph="..." />
+            <marker date="1540305136794" expanded="true" signature="17911:17913" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="79" column="56" selection-start-line="79" selection-start-column="56" selection-end-line="79" selection-end-column="56" />
+        <state relative-caret-position="330">
+          <caret line="145" column="8" selection-start-line="145" selection-start-column="8" selection-end-line="145" selection-end-column="8" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-            <marker date="1540318526905" expanded="true" signature="177:828" ph="..." />
-            <marker date="1540318526905" expanded="true" signature="177:830" ph="..." />
-            <marker date="1540318526905" expanded="true" signature="177:1439" ph="..." />
-            <marker date="1540318526905" expanded="true" signature="1464:1962" ph="..." />
-            <marker date="1540318526905" expanded="true" signature="1984:3020" ph="..." />
-            <marker date="1540318526905" expanded="true" signature="2063:2207" ph="..." />
-            <marker date="1540318526905" expanded="true" signature="3065:3276" ph="..." />
-            <marker date="1540318526905" expanded="true" signature="3850:3879" ph="..." />
+            <marker date="1541087883174" expanded="true" signature="5218:5478" ph="..." />
           </folding>
         </state>
       </provider>

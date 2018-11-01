@@ -4,17 +4,20 @@ import time
 import sys
 from heapq import heappush, heappop
 from tkinter import *
+from pythonds.basic.stack import Stack
 import pickle
 # import pickle
 from PIL import ImageTk
 # sys.path.append('/Users/JackMead/Desktop/CompSci/PycharmProjects/AIPrograms/venv/lib/python3.7/site-packages/basemap-1.1.0/build/lib.macosx-10.9-x86_64-3.7/mpl_toolkits')
 # from basemap import *
-import matplotlib.pyplot as pltpip
-import csv
-import numpy as npbre
-from mpl_toolkits.basemap import Basemap
-import random
-import keyboard
+
+# from mpl_toolkits.basemap import Basemap
+# import matplotlib.pyplot as plt
+# import csv
+# import numpy as npbre
+#
+# import random
+# #import keyboard
 
 
 
@@ -38,8 +41,8 @@ def main():
     # with open("names_236.pkl", "rb") as infile:
     #     names = pickle.load(infile)
 
-    start = sys.argv[1]
-    end = sys.argv[2]
+    start = "Vancouver" # sys.argv[1]
+    end = "San Jose" # sys.argv[2]
 
     start_id = names[start]
     end_id = names[end]
@@ -96,47 +99,7 @@ def main():
     # start_id = names[start]
 
     #print(answer)
-
     draw(full_send(names["Chicago"]), start_id, end_id)
-
-
-def draw_2(lines, red_lines, all_lines):
-    global minx, maxx, miny, maxy, scalew, scaleh, height, width
-    master = Tk()
-
-    for line in lines:
-        w.create_line(line, fill="dimgrey")
-
-    for line in all_lines:
-        w.create_line(line, fill='mediumblue', width=1)
-
-    for line in red_lines:
-        w.create_line(line, fill='red', width=2)
-
-    m = Basemap(projection='merc', llcrnrlat=float(min(lat_td)) - 2, \
-                urcrnrlat=float(max(lat_lift)) + 2, llcrnrlon=float(max(long_td)) - 2, \
-                urcrnrlon=float(min(long_lift)) + 2, lat_ts=40, resolution='l')
-
-    lat_ = []
-    lon = []
-
-    x, y = m(lon, lat)
-
-    # dark grey : 4E4E4E
-    # naxy blue : 00137B
-    # red       : BB0000
-
-    m.plot(x, y, '-', markersize=5, linewidth=1, color=blue)
-
-    m.drawcoastlines()
-    m.fillcontinents(color='white')
-    m.drawmapboundary(fill_color='white')
-    m.drawstates(color='black')
-    m.drawcountries(color='black')
-    plt.title("#wedgez")
-    plt.show()
-
-    mainloop()
 
 
 def draw(lines, start_id, end_id):
@@ -157,49 +120,78 @@ def draw(lines, start_id, end_id):
     last_time = time.perf_counter()
 
     global delay
-    delay = .02
+    delay = 0.1
 
     # keyboard.add_hotkey('A', lambda: up())
     # keyboard.add_hotkey('S', lambda: down())
+
+    m = 1
 
     global lines_dict
     lines_dict = dict()
 
     for line in lines:
-        lines_dict[line] = w.create_line(line, fill="black")
-        lines_dict[(line[2], line[3], line[0], line[1])] = w.create_line(line, fill="black")
+        lines_dict[line] = w.create_line(line, fill="grey")
+        lines_dict[(line[2], line[3], line[0], line[1])] = w.create_line(line, fill="grey")
 
-    answer = a_star_tk(start_id, end_id, w, .5)
+    s = StringVar(w, value='start')
+    e = StringVar(w, value='end')
+
+    button1 = Button(text="Clear", command=lambda: clear(w, lines), anchor=CENTER)
+    button1.configure(width=10, activebackground="green", relief=FLAT)
+    button1_window = w.create_window(700, 700, anchor=NW, window=button1)
+
+    buttona = Button(text="A*", command=lambda: do_a_star(start_id, end_id, w, m), anchor=CENTER)
+    buttona.configure(width=10, activebackground="green", relief=FLAT)
+    buttona_window = w.create_window(700, 750, anchor=NW, window=buttona)
+
+    textentrys = Entry(w, textvariable=s)
+    w.create_window(700, 736.5, window=textentrys, height=25, width=100)
+    textentrye = Entry(w, textvariable=e)
+    w.create_window(750, 736.5, window=textentrye, height=25, width=100)
+
+    # answer = a_star_tk(start_id, end_id, w, .5)
     # answer = dijkstra_tk(start_id, end_id, w)
+    # answer = dfs_tk(start_id, end_id, w)
 
-    distance = answer[0]
-    red_lines = answer[1]
-    all_lines = answer[2]
+    # distance = answer[0]
+    # red_lines = answer[1]
+    # all_lines = answer[2]
 
     # for line in all_lines:
     #     w.itemconfig(lines_dict[line], fill="mediumblue")
     #     # w.create_line(line, fill='mediumblue', width=1)
 
+    # for line in red_lines:
+    #     w.itemconfig(lines_dict[line], fill="green", width = 3)
+    #     w.itemconfig(lines_dict[(line[2], line[3], line[0], line[1])], fill="green", width = 3)
+    #     # w.create_line(line, fill='red', width=2)
+    #     w.update()
+
+    #w.create_text(700, 100, fill = 'black', width = 100, text = ("%s miles" % (round(distance, 2))), anchor = "nw")
+
+    mainloop()
+
+
+def clear(w, lines):
+    global lines_dict
+
+    for line in lines:
+        w.itemconfig(lines_dict[line], fill = "grey", width = 1)
+        w.itemconfig(lines_dict[(line[2], line[3], line[0], line[1])], fill = "grey", width = 1)
+
+
+def do_a_star(start_id, end_id, w, m):
+    answer = a_star_tk(start_id, end_id, w, .5)
+    display(w, answer[0], answer[1], answer[2])
+
+
+def display(w, distance, red_lines, all_lines):
     for line in red_lines:
         w.itemconfig(lines_dict[line], fill="green", width = 3)
         w.itemconfig(lines_dict[(line[2], line[3], line[0], line[1])], fill="green", width = 3)
         # w.create_line(line, fill='red', width=2)
         w.update()
-
-    w.create_text(700, 100, fill = 'black', width = 100, text = ("%s miles" % (round(distance, 2))), anchor = "nw")
-
-    mainloop()
-
-def up():
-    global delay
-    delay = delay / 2
-    print(delay)
-
-
-def down():
-    global delay
-    delay = delay * 2
-    print(delay)
 
 
 def full_send(start):
@@ -287,14 +279,124 @@ def a_star_tk(start, end, w, m):
                 # w.create_line((sy, sx, ey, ex), fill="mediumblue", width = 2)
                 w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="red", width=2)
                 w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
-                heappush(fringe, (-1*circle+(s[4]+child[0])*m, child[0], child[1], child[2], s[4]+child[0], red_lines, s[3]))
-        redraw(w)
+                heappush(fringe, (circle+(s[4]+child[0])*m, child[0], child[1], child[2], s[4]+child[0], red_lines, s[3]))
+                redraw(w)
         # if random.randint(0, 1000) > 999:
         #     w.update()
         #         # print(abs(float(s[3][1]))-70, abs(float(s[3][0]))-30, abs(float(child[2][1]))-70, abs(float(child[2][0]))-30)
                 # w.create_line((abs(float(s[3][1]))-70)*20, (abs(float(s[3][0]))-30)*20, (abs(float(child[2][1]))-70)*20, (abs(float(child[2][0]))-30)*20)
 
     if len(fringe) is 0:
+        return -1
+
+
+def bi_dijkstra_tk(start, end, w):
+    fringe = [(0, start, 0, nodes[start][0], []), ]
+    fringe_b = [(0, end, 0, nodes[end][0], []), ]
+    fringe_set = set()
+    fringe_set.add(start)
+    fringe_set_b = set()
+    fringe_set_b.add(end)
+    visited = set()
+    visited_b = set()
+    all_lines = set()
+
+    while len(fringe) is not 0:
+        s = heappop(fringe)
+        sb = heappop(fringe_b)
+
+        if s[1] in fringe_set:
+            fringe_set.remove(s[1])
+        if sb[1] in fringe_set_b:
+            fringe_set_b.remove(sb[1])
+
+        if len(s) > 5:
+
+            sy = (-abs((float(s[3][1])) + maxy) + height) * scaleh - 2
+            sx = abs((float(s[3][0])) + maxx) * scalew + 8
+            ey = (-abs(float(s[5][1]) + maxy) + height) * scaleh - 2
+            ex = abs((float(s[5][0])) + maxx) * scalew + 8
+
+            w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="blue", width=2)
+            w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="blue", width=2)
+
+        if len(sb) > 5:
+
+            sby = (-abs((float(sb[3][1])) + maxy) + height) * scaleh - 2
+            sbx = abs((float(sb[3][0])) + maxx) * scalew + 8
+            eby = (-abs(float(sb[5][1]) + maxy) + height) * scaleh - 2
+            ebx = abs((float(sb[5][0])) + maxx) * scalew + 8
+
+            w.itemconfig(lines_dict[(sby, sbx, eby, ebx)], fill="blue", width=2)
+            w.itemconfig(lines_dict[(eby, ebx, sby, sbx)], fill="blue", width=2)
+
+        if sb[1] in fringe_set:
+            print("yep1")
+            for v in fringe:
+                if v[1] == sb[1]:
+                    return sb[0]+v[0], v[4]+sb[4][::-1], all_lines
+
+        if s[1] in fringe_set_b:
+            print("yep")
+            for v in fringe_b:
+                if v[1] == s[1]:
+                    return s[0]+v[0], s[4]+v[4][::-1], all_lines
+
+        if goal_test(sb[1], start):
+            return sb[0], sb[4], all_lines  # return the moves
+
+        if goal_test(s[1], end):  # if the state is won
+            return s[0], s[4], all_lines  # return the moves
+
+        redraw(w)
+
+        go_t = True
+        go_b = True
+
+        if s[1] in visited:
+            go_t = False
+
+        if go_t:
+
+            visited.add(s[1])
+
+            children = get_children(s[1])
+            for child in children:
+                if child[1] not in visited:
+                    red_lines = list(s[4])
+                    sy = (-abs((float(s[3][1])) + maxy) + height) * scaleh - 2
+                    sx = abs((float(s[3][0])) + maxx) * scalew + 8
+                    ey = (-abs(float(child[2][1]) + maxy) + height) * scaleh - 2
+                    ex = abs((float(child[2][0])) + maxx) * scalew + 8
+                    red_lines.append((sy, sx, ey, ex))
+                    all_lines.add((sy, sx, ey, ex))
+                    w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="red", width=2)
+                    w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
+                    fringe_set.add(child[1])
+                    heappush(fringe, (s[2] + child[0], child[1], s[2] + child[0], child[2], red_lines, s[3]))
+
+        if sb[1] in visited_b:
+           go_b = False
+
+        if go_b:
+            visited_b.add(sb[1])
+
+            children = get_children(sb[1])
+            for child in children:
+                if child[1] not in visited_b:
+                    red_lines = list(sb[4])
+                    sy = (-abs((float(sb[3][1])) + maxy) + height) * scaleh - 2
+                    sx = abs((float(sb[3][0])) + maxx) * scalew + 8
+                    ey = (-abs(float(child[2][1]) + maxy) + height) * scaleh - 2
+                    ex = abs((float(child[2][0])) + maxx) * scalew + 8
+                    red_lines.append((sy, sx, ey, ex))
+                    all_lines.add((sy, sx, ey, ex))
+                    w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="red", width=2)
+                    w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
+                    fringe_set_b.add(child[1])
+                    heappush(fringe_b, (sb[2] + child[0], child[1], sb[2] + child[0], child[2], red_lines, sb[3]))
+
+    if len(fringe) is 0 and len(fringe_b) is 0:
         return -1
 
 
@@ -340,6 +442,59 @@ def dijkstra_tk(start, end, w):
         redraw(w)
 
     if len(fringe) is 0:
+        return -1
+
+
+def dfs_tk(start, end, w):
+    fringe = Stack()
+    fringe.push((0, start, nodes[start][0], 0, []))
+    visited = set()
+    all_lines = set()
+
+    end_y = nodes[end][0][0]
+    end_x = nodes[end][0][1]
+
+    while fringe.size() is not 0:
+        s = fringe.pop()
+
+        if len(s) > 5:
+            sy = (-abs((float(s[2][1])) + maxy) + height) * scaleh - 2
+            sx = abs((float(s[2][0])) + maxx) * scalew + 8
+            ey = (-abs(float(s[5][1]) + maxy) + height) * scaleh - 2
+            ex = abs((float(s[5][0])) + maxx) * scalew + 8
+
+            w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="blue", width=2)
+            w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="blue", width=2)
+
+        if goal_test(s[1], end):  # if the state is won
+            return s[0], s[4], all_lines  # return the moves
+
+        if s[1] in visited:
+            continue
+
+        visited.add(s[1])
+
+        children = get_children(s[1])
+        for child in children:
+            if child[1] not in visited:
+                red_lines = list(s[4])
+                sy = (-abs((float(s[2][1])) + maxy) + height) * scaleh - 2
+                sx = abs((float(s[2][0])) + maxx) * scalew + 8
+                ey = (-abs(float(child[2][1]) + maxy) + height) * scaleh - 2
+                ex = abs((float(child[2][0])) + maxx) * scalew + 8
+                red_lines.append((sy, sx, ey, ex))
+                all_lines.add((sy, sx, ey, ex))
+                # w.create_line((sy, sx, ey, ex), fill="mediumblue", width = 2)
+                w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="red", width=2)
+                w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
+                fringe.push((child[0], child[1], child[2], s[3] + child[0], red_lines, s[2]))
+        redraw(w)
+        # if random.randint(0, 1000) > 999:
+        #     w.update()
+        #         # print(abs(float(s[3][1]))-70, abs(float(s[3][0]))-30, abs(float(child[2][1]))-70, abs(float(child[2][0]))-30)
+        # w.create_line((abs(float(s[3][1]))-70)*20, (abs(float(s[3][0]))-30)*20, (abs(float(child[2][1]))-70)*20, (abs(float(child[2][0]))-30)*20)
+
+    if fringe.size() is 0:
         return -1
 
 
