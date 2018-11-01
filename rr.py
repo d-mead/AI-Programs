@@ -109,6 +109,8 @@ def draw(lines, start_id, end_id):
     w = Canvas(master, width=height*scaleh, height=width*scalew)
     w.pack()
 
+    w.config(background="black")
+
     # image = ImageTk.PhotoImage(file="rrImage.png")
     # w.create_image(0, 0, image=image, anchor=NW)
     # print(image.height())
@@ -134,21 +136,51 @@ def draw(lines, start_id, end_id):
         lines_dict[line] = w.create_line(line, fill="grey")
         lines_dict[(line[2], line[3], line[0], line[1])] = w.create_line(line, fill="grey")
 
-    s = StringVar(w, value='start')
-    e = StringVar(w, value='end')
+    s = StringVar(w, value='start city')
+    e = StringVar(w, value='end city')
 
-    button1 = Button(text="Clear", command=lambda: clear(w, lines), anchor=CENTER)
-    button1.configure(width=10, activebackground="green", relief=FLAT)
-    button1_window = w.create_window(700, 700, anchor=NW, window=button1)
+    start_window = w.create_window(750, 625, anchor = NW, window = OptionMenu(master, s, *list(names.keys())))
 
-    buttona = Button(text="A*", command=lambda: do_a_star(start_id, end_id, w, m), anchor=CENTER)
-    buttona.configure(width=10, activebackground="green", relief=FLAT)
-    buttona_window = w.create_window(700, 750, anchor=NW, window=buttona)
+    end_window = w.create_window(750, 650, anchor=NW, window=OptionMenu(master, e, *list(names.keys())))
 
-    textentrys = Entry(w, textvariable=s)
-    w.create_window(700, 736.5, window=textentrys, height=25, width=100)
-    textentrye = Entry(w, textvariable=e)
-    w.create_window(750, 736.5, window=textentrye, height=25, width=100)
+    global speed
+    speed = Scale(master, from_=-.5, to=.5, orient=HORIZONTAL, resolution=0.01)
+
+    speed_window = w.create_window(750, 675, anchor = NW, window=speed)
+
+    # textentry_s = Entry(w, textvariable=s)
+    # w.create_window(650, 625, window=textentry_s, height=25, width=100, anchor=NW)
+    #
+    # textentry_e = Entry(w, textvariable=e)
+    # w.create_window(760, 625, window=textentry_e, height=25, width=100, anchor = NW)
+
+    a_button = Button(text="A*", command=lambda: do_a_star(names[s.get()], names[e.get()], w, m), anchor=CENTER)
+    a_button.configure(width=10, activebackground="green", relief=FLAT)
+    a_button_window = w.create_window(650, 625, anchor=NW, window=a_button)
+
+    d_button = Button(text="Dijkstra", command=lambda: do_dij(names[s.get()], names[e.get()], w), anchor=CENTER)
+    d_button.configure(width=10, activebackground="green", relief=FLAT)
+    d_button_window = w.create_window(650, 650, anchor=NW, window=d_button)
+
+    db_button = Button(text="Bi Dijkstra", command=lambda: do_dij_bi(names[s.get()], names[e.get()], w), anchor=CENTER)
+    db_button.configure(width=10, activebackground="green", relief=FLAT)
+    db_button_window = w.create_window(650, 675, anchor=NW, window=db_button)
+
+    df_button = Button(text="DFS", command=lambda: do_dfs(names[s.get()], names[e.get()], w), anchor=CENTER)
+    df_button.configure(width=10, activebackground="green", relief=FLAT)
+    df_button_window = w.create_window(650, 700, anchor=NW, window=df_button)
+
+    t_button = Button(text="Terrible", command=lambda: do_bad(names[s.get()], names[e.get()], w), anchor=CENTER)
+    t_button.configure(width=10, activebackground="green", relief=FLAT)
+    t_button_window = w.create_window(650, 725, anchor=NW, window=t_button)
+
+    c_button = Button(text="Clear Map", command=lambda: clear(w, lines), anchor=CENTER)
+    c_button.configure(width=10, activebackground="green", relief=FLAT)
+    c_button_window = w.create_window(750, 725, anchor=NW, window=c_button)
+
+
+
+
 
     # answer = a_star_tk(start_id, end_id, w, .5)
     # answer = dijkstra_tk(start_id, end_id, w)
@@ -168,7 +200,9 @@ def draw(lines, start_id, end_id):
     #     # w.create_line(line, fill='red', width=2)
     #     w.update()
 
-    #w.create_text(700, 100, fill = 'black', width = 100, text = ("%s miles" % (round(distance, 2))), anchor = "nw")
+    global d
+    d = w.create_text(700, 100, fill = 'black', width = 100, text = "", anchor = "nw")
+
 
     mainloop()
 
@@ -182,7 +216,27 @@ def clear(w, lines):
 
 
 def do_a_star(start_id, end_id, w, m):
-    answer = a_star_tk(start_id, end_id, w, .5)
+    answer = a_star_tk(start_id, end_id, w, m)
+    display(w, answer[0], answer[1], answer[2])
+
+
+def do_dij(start_id, end_id, w):
+    answer = dijkstra_tk(start_id, end_id, w)
+    display(w, answer[0], answer[1], answer[2])
+
+
+def do_dij_bi(start_id, end_id, w):
+    answer = bi_dijkstra_tk(start_id, end_id, w)
+    display(w, answer[0], answer[1], answer[2])
+
+
+def do_dfs(start_id, end_id, w):
+    answer = dfs_tk(start_id, end_id, w)
+    display(w, answer[0], answer[1], answer[2])
+
+
+def do_bad(start_id, end_id, w):
+    answer = bad_tk(start_id, end_id, w, 10)
     display(w, answer[0], answer[1], answer[2])
 
 
@@ -191,7 +245,9 @@ def display(w, distance, red_lines, all_lines):
         w.itemconfig(lines_dict[line], fill="green", width = 3)
         w.itemconfig(lines_dict[(line[2], line[3], line[0], line[1])], fill="green", width = 3)
         # w.create_line(line, fill='red', width=2)
-        w.update()
+        redraw(w)
+    global d
+    w.itemconfig(d, text=("%s miles" % (round(distance, 2))))
 
 
 def full_send(start):
@@ -227,9 +283,17 @@ def full_send(start):
 
 def redraw(w):
     global last_time
-    if time.perf_counter() - last_time > delay:
-        last_time = time.perf_counter()
+    global speed
+    if speed.get()>=0:
+        time.sleep(speed.get())
         w.update()
+    else:
+        if time.perf_counter() - last_time > abs(speed.get()):
+            last_time = time.perf_counter()
+            w.update()
+    # if time.perf_counter() - last_time > speed.get()/100:
+    #     last_time = time.perf_counter()
+    #     w.update()
 
 
 def a_star_tk(start, end, w, m):
@@ -280,6 +344,64 @@ def a_star_tk(start, end, w, m):
                 w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="red", width=2)
                 w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
                 heappush(fringe, (circle+(s[4]+child[0])*m, child[0], child[1], child[2], s[4]+child[0], red_lines, s[3]))
+                redraw(w)
+        # if random.randint(0, 1000) > 999:
+        #     w.update()
+        #         # print(abs(float(s[3][1]))-70, abs(float(s[3][0]))-30, abs(float(child[2][1]))-70, abs(float(child[2][0]))-30)
+                # w.create_line((abs(float(s[3][1]))-70)*20, (abs(float(s[3][0]))-30)*20, (abs(float(child[2][1]))-70)*20, (abs(float(child[2][0]))-30)*20)
+
+    if len(fringe) is 0:
+        return -1
+
+
+def bad_tk(start, end, w, m):
+
+    fringe = [(0, 0, start, nodes[start][0],  0, []), ]
+    visited = set()
+    all_lines = set()
+
+    end_y = nodes[end][0][0]
+    end_x = nodes[end][0][1]
+
+    while len(fringe) is not 0:
+        s = heappop(fringe)
+
+        if len(s) > 6:
+
+            sy = (-abs((float(s[3][1])) + maxy) + height) * scaleh - 2
+            sx = abs((float(s[3][0])) + maxx) * scalew + 8
+            ey = (-abs(float(s[6][1]) + maxy) + height) * scaleh - 2
+            ex = abs((float(s[6][0])) + maxx) * scalew + 8
+
+            w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="blue", width=2)
+            w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="blue", width=2)
+
+        if goal_test(s[2], end):  # if the state is won
+            return s[0]/m, s[5], all_lines  # return the moves
+
+        if s[2] in visited:
+            continue
+
+        visited.add(s[2])
+
+        children = get_children(s[2])
+        for child in children:
+            if child[1] not in visited:
+                try:
+                    circle = calcd(child[2][0], child[2][1], end_y, end_x)
+                except ValueError:
+                    circle = 0
+                red_lines = list(s[5])
+                sy = (-abs((float(s[3][1])) + maxy) + height) * scaleh -2
+                sx = abs((float(s[3][0])) + maxx) * scalew + 8
+                ey = (-abs(float(child[2][1]) + maxy) + height) * scaleh -2
+                ex = abs((float(child[2][0])) + maxx) * scalew + 8
+                red_lines.append((sy, sx, ey, ex))
+                all_lines.add((sy, sx, ey, ex))
+                # w.create_line((sy, sx, ey, ex), fill="mediumblue", width = 2)
+                w.itemconfig(lines_dict[(sy, sx, ey, ex)], fill="red", width=2)
+                w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
+                heappush(fringe, (-100*circle+(s[4]+child[0])*m, child[0], child[1], child[2], s[4]+child[0], red_lines, s[3]))
                 redraw(w)
         # if random.randint(0, 1000) > 999:
         #     w.update()
