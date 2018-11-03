@@ -4,20 +4,26 @@ import time
 import sys
 from heapq import heappush, heappop
 from tkinter import *
-from pythonds.basic.stack import Stack
+# from pythonds.basic.stack import Stack
+import plotly.plotly as py
+import plotly.graph_objs as go
 import pickle
 # import pickle
 from PIL import ImageTk
 # sys.path.append('/Users/JackMead/Desktop/CompSci/PycharmProjects/AIPrograms/venv/lib/python3.7/site-packages/basemap-1.1.0/build/lib.macosx-10.9-x86_64-3.7/mpl_toolkits')
 # from basemap import *
 
-# from mpl_toolkits.basemap import Basemap
-# import matplotlib.pyplot as plt
-# import csv
-# import numpy as npbre
-#
-# import random
-# #import keyboard
+from mpl_toolkits.basemap import Basemap
+import matplotlib.pyplot as plt
+import csv
+import numpy as np
+import networkx as nx
+import pandas as pd
+from geographiclib.geodesic import Geodesic
+
+
+import random
+import keyboard
 
 
 
@@ -46,8 +52,6 @@ def main():
 
     start_id = names[start]
     end_id = names[end]
-
-
 
     # begin = time.perf_counter()
     # dij = dijkstra(start_id, end_id)
@@ -99,7 +103,79 @@ def main():
     # start_id = names[start]
 
     #print(answer)
-    draw(full_send(names["Chicago"]), start_id, end_id)
+    draw_3()
+    # draw(full_send(names["Chicago"]), start_id, end_id)
+
+
+def draw_3():
+    # set up orthographic map projection with
+    # perspective of satellite looking down at 50N, 100W.
+    # use low resolution coastlines.
+    map = Basemap(projection='merc', llcrnrlon = -133, llcrnrlat= 14, urcrnrlon=-57, urcrnrlat= 62, resolution='l')
+    # draw coastlines, country boundaries, fill continents.
+    map.drawcoastlines(linewidth=0.25)
+    map.drawcountries(linewidth=0.25)
+    map.fillcontinents(color='coral', lake_color='aqua')
+    # draw the edge of the map projection region (the projection limb)
+    map.drawmapboundary(fill_color='aqua')
+    # draw lat/lon grid lines every 30 degrees.
+    map.drawmeridians(np.arange(0, 360, 30))
+    map.drawparallels(np.arange(-90, 90, 30))
+    # make up some data on a regular lat/lon grid.
+    # nlats = 73;
+    # nlons = 145;
+    # delta = 2. * np.pi / (nlons - 1)
+    # lats = (0.5 * np.pi - delta * np.indices((nlats, nlons))[0, :, :])
+    # lons = (delta * np.indices((nlats, nlons))[1, :, :])
+    # wave = 0.75 * (np.sin(2. * lats) ** 8 * np.cos(4. * lons))
+    # mean = 0.5 * np.cos(2. * lats) * ((np.sin(2. * lats)) ** 2 + 2.)
+    # compute native map projection coordinates of lat/lon grid.
+    # x, y = map(lons * 180. / np.pi, lats * 180. / np.pi)
+    #     #     # # contour data over the map.
+    #     #     # cs = map.contour(x, y, wave + mean, 15, linewidths=1.5)
+
+
+    # lat = []
+    # lon = []
+    #
+    # x, y = map(lon, lat)
+    #
+    #
+    # plt.plot(x, y, 'o-', markersize=5, linewidth=1)
+
+    count = 0
+    total = len(edges.items())
+
+    print((count/total)*100)
+
+
+    for start, ends in list(edges.items())[::10]:
+        # print(nodes[start])
+        # print(ends)
+        count += 1
+        print((count / total) * 100)
+
+        for end in ends:
+            # print(nodes[start][0][1], nodes[start][0][0], end[2][1], end[2][0])
+            map.drawgreatcircle(nodes[start][0][1], nodes[start][0][0], end[2][1], end[2][0], linewidth=.5, color='r')
+
+    # map.drawgreatcircle(-60.119060, 46.166160, -100.000000, 21.940000, linewidth=.5, color='r')
+
+    plt.title('contour lines over filled continent background')
+    plt.show()
+
+# def draw_4():
+#     graph = nx.from_pandas_dataframe(routes_us, source='Source Airport', target='Dest Airport', edge_attr='number of flights', create_using=nx.DiGraph())
+
+
+def draw_2():
+    py.offline.plot()
+    py.offline.init_notebook_mode(connected=True)
+
+    py.offline.iplot({
+        "data": [go.Scatter(x=[1, 2, 3, 4], y=[4, 3, 2, 1])],
+        "layout": go.Layout(title="hello world")
+    })
 
 
 def draw(lines, start_id, end_id):
@@ -109,15 +185,13 @@ def draw(lines, start_id, end_id):
     w = Canvas(master, width=height*scaleh, height=width*scalew)
     w.pack()
 
-    w.config(background="black")
-
     # image = ImageTk.PhotoImage(file="rrImage.png")
     # w.create_image(0, 0, image=image, anchor=NW)
     # print(image.height())
 
-
     # for line in lines[::100]:
     #     print(line)
+
     global last_time
     last_time = time.perf_counter()
 
@@ -136,15 +210,17 @@ def draw(lines, start_id, end_id):
         lines_dict[line] = w.create_line(line, fill="grey")
         lines_dict[(line[2], line[3], line[0], line[1])] = w.create_line(line, fill="grey")
 
-    s = StringVar(w, value='start city')
-    e = StringVar(w, value='end city')
+    s = StringVar(w, value=list(names.keys())[0])
+    e = StringVar(w, value=list(names.keys())[1])
+
+    m = StringVar(w, value="1")
 
     start_window = w.create_window(750, 625, anchor = NW, window = OptionMenu(master, s, *list(names.keys())))
 
     end_window = w.create_window(750, 650, anchor=NW, window=OptionMenu(master, e, *list(names.keys())))
 
     global speed
-    speed = Scale(master, from_=-.5, to=.5, orient=HORIZONTAL, resolution=0.01)
+    speed = Scale(master, from_=-.25, to=.5, orient=HORIZONTAL, resolution=0.01)
 
     speed_window = w.create_window(750, 675, anchor = NW, window=speed)
 
@@ -154,9 +230,11 @@ def draw(lines, start_id, end_id):
     # textentry_e = Entry(w, textvariable=e)
     # w.create_window(760, 625, window=textentry_e, height=25, width=100, anchor = NW)
 
-    a_button = Button(text="A*", command=lambda: do_a_star(names[s.get()], names[e.get()], w, m), anchor=CENTER)
+    a_button = Button(text="A*", command=lambda: do_a_star(names[s.get()], names[e.get()], w, float(m.get())), anchor=CENTER)
     a_button.configure(width=10, activebackground="green", relief=FLAT)
     a_button_window = w.create_window(650, 625, anchor=NW, window=a_button)
+
+    m_window = w.create_window(615, 622, anchor=NW, window=Entry(master, textvariable=m, width=2))
 
     d_button = Button(text="Dijkstra", command=lambda: do_dij(names[s.get()], names[e.get()], w), anchor=CENTER)
     d_button.configure(width=10, activebackground="green", relief=FLAT)
@@ -178,10 +256,6 @@ def draw(lines, start_id, end_id):
     c_button.configure(width=10, activebackground="green", relief=FLAT)
     c_button_window = w.create_window(750, 725, anchor=NW, window=c_button)
 
-
-
-
-
     # answer = a_star_tk(start_id, end_id, w, .5)
     # answer = dijkstra_tk(start_id, end_id, w)
     # answer = dfs_tk(start_id, end_id, w)
@@ -201,7 +275,7 @@ def draw(lines, start_id, end_id):
     #     w.update()
 
     global d
-    d = w.create_text(700, 100, fill = 'black', width = 100, text = "", anchor = "nw")
+    d = w.create_text(700, 600, fill = 'black', width = 100, text = "", anchor = "nw")
 
 
     mainloop()
@@ -213,6 +287,7 @@ def clear(w, lines):
     for line in lines:
         w.itemconfig(lines_dict[line], fill = "grey", width = 1)
         w.itemconfig(lines_dict[(line[2], line[3], line[0], line[1])], fill = "grey", width = 1)
+        # w.redraw()
 
 
 def do_a_star(start_id, end_id, w, m):
@@ -275,7 +350,7 @@ def full_send(start):
                 ey = (-abs(float(child[2][1])+maxy)+height)*scaleh-2
                 ex = abs((float(child[2][0]))+maxx)*scalew+8
                 lines.append((sy, sx, ey, ex))
-                #w.create_line((abs(float(s[3][1])) - 70) * 20, (abs(float(s[3][0])) - 30) * 20, (abs(float(child[2][1])) - 70) * 20, (abs(float(child[2][0])) - 30) * 20)
+                # w.create_line((abs(float(s[3][1])) - 70) * 20, (abs(float(s[3][0])) - 30) * 20, (abs(float(child[2][1])) - 70) * 20, (abs(float(child[2][0])) - 30) * 20)
 
     if len(fringe) is 0:
         return lines
@@ -345,6 +420,7 @@ def a_star_tk(start, end, w, m):
                 w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
                 heappush(fringe, (circle+(s[4]+child[0])*m, child[0], child[1], child[2], s[4]+child[0], red_lines, s[3]))
                 redraw(w)
+
         # if random.randint(0, 1000) > 999:
         #     w.update()
         #         # print(abs(float(s[3][1]))-70, abs(float(s[3][0]))-30, abs(float(child[2][1]))-70, abs(float(child[2][0]))-30)
@@ -470,7 +546,7 @@ def bi_dijkstra_tk(start, end, w):
         if goal_test(s[1], end):  # if the state is won
             return s[0], s[4], all_lines  # return the moves
 
-        redraw(w)
+
 
         go_t = True
         go_b = True
@@ -496,6 +572,7 @@ def bi_dijkstra_tk(start, end, w):
                     w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
                     fringe_set.add(child[1])
                     heappush(fringe, (s[2] + child[0], child[1], s[2] + child[0], child[2], red_lines, s[3]))
+                    redraw(w)
 
         if sb[1] in visited_b:
            go_b = False
@@ -517,6 +594,7 @@ def bi_dijkstra_tk(start, end, w):
                     w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="red", width=2)
                     fringe_set_b.add(child[1])
                     heappush(fringe_b, (sb[2] + child[0], child[1], sb[2] + child[0], child[2], red_lines, sb[3]))
+                    redraw(w)
 
     if len(fringe) is 0 and len(fringe_b) is 0:
         return -1
@@ -589,7 +667,7 @@ def dfs_tk(start, end, w):
             w.itemconfig(lines_dict[(ey, ex, sy, sx)], fill="blue", width=2)
 
         if goal_test(s[1], end):  # if the state is won
-            return s[0], s[4], all_lines  # return the moves
+            return s[3], s[4], all_lines  # return the moves
 
         if s[1] in visited:
             continue
