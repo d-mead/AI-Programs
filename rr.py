@@ -5,8 +5,8 @@ import sys
 from heapq import heappush, heappop
 from tkinter import *
 # from pythonds.basic.stack import Stack
-import plotly.plotly as py
-import plotly.graph_objs as go
+# import plotly.plotly as py
+# import plotly.graph_objs as go
 import pickle
 # import pickle
 from PIL import ImageTk
@@ -115,9 +115,10 @@ def draw_3():
     # draw coastlines, country boundaries, fill continents.
     map.drawcoastlines(linewidth=0.25)
     map.drawcountries(linewidth=0.25)
-    map.fillcontinents(color='coral', lake_color='aqua')
+    map.bluemarble()
+    # map.fillcontinents(color='coral', lake_color='aqua')
     # draw the edge of the map projection region (the projection limb)
-    map.drawmapboundary(fill_color='aqua')
+    # map.drawmapboundary(fill_color='aqua')
     # draw lat/lon grid lines every 30 degrees.
     map.drawmeridians(np.arange(0, 360, 30))
     map.drawparallels(np.arange(-90, 90, 30))
@@ -134,6 +135,62 @@ def draw_3():
     #     #     # # contour data over the map.
     #     #     # cs = map.contour(x, y, wave + mean, 15, linewidths=1.5)
 
+    # position in decimal lat/lon
+
+    ids = list()
+    lats = list()
+    lons = list()
+
+    count = 0
+
+    for id, coord in nodes.items():
+        ids.append(id)
+        lats.append(coord[0][0])
+        lons.append(coord[0][1])
+        count += 1
+        # print(100 * count / len(nodes))
+
+    # lats = [37.96, 42.82]
+    # lons = [-121.29, -73.95]
+    # convert lat and lon to map projection
+    mx, my = map(lons, lats)
+
+    # The NetworkX part
+    # put map projection coordinates in pos dictionary
+    G = nx.DiGraph(dircted=False)
+
+    print(G.nodes)
+
+    print("yes")
+
+    count = 0
+
+    for start, ends in list(edges.items())[::2]:
+        for end in ends:
+            # if len(start) < 5:
+            #     print("ugh")
+            if len(end[1]) < 5:
+                G.add_edge(start, end)
+                # print(end)
+            else:
+                G.add_edge(start, end[1])
+        print(100*count/len(edges.keys()))
+        count += 1
+
+    # print(G.nodes)
+
+    pos = {}
+    count = 0
+    for node in nodes:
+        pos[node] = (mx[count], my[count])
+        count += 1
+        # print(100*count/len(nodes))
+
+    # print(G.edges)
+
+    # draw
+    nx.draw_networkx(G, pos, edgelist=G.edges, with_labels=False, node_size=0, node_color='blue', edge_color='white', arrowsize=0.01, width = .25)
+
 
     # lat = []
     # lon = []
@@ -143,25 +200,25 @@ def draw_3():
     #
     # plt.plot(x, y, 'o-', markersize=5, linewidth=1)
 
-    count = 0
-    total = len(edges.items())
-
-    print((count/total)*100)
-
-
-    for start, ends in list(edges.items())[::10]:
-        # print(nodes[start])
-        # print(ends)
-        count += 1
-        print((count / total) * 100)
-
-        for end in ends:
-            # print(nodes[start][0][1], nodes[start][0][0], end[2][1], end[2][0])
-            map.drawgreatcircle(nodes[start][0][1], nodes[start][0][0], end[2][1], end[2][0], linewidth=.5, color='r')
+    # count = 0
+    # total = len(edges.items())
+    #
+    # print((count/total)*100)
+    #
+    #
+    # for start, ends in list(edges.items())[::10]:
+    #     # print(nodes[start])
+    #     # print(ends)
+    #     count += 1
+    #     print((count / total) * 100)
+    #
+    #     for end in ends:
+    #         # print(nodes[start][0][1], nodes[start][0][0], end[2][1], end[2][0])
+    #         map.drawgreatcircle(nodes[start][0][1], nodes[start][0][0], end[2][1], end[2][0], linewidth=.5, color='r')
 
     # map.drawgreatcircle(-60.119060, 46.166160, -100.000000, 21.940000, linewidth=.5, color='r')
 
-    plt.title('contour lines over filled continent background')
+    plt.title('railroads')
     plt.show()
 
 # def draw_4():
