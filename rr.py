@@ -111,17 +111,18 @@ def draw_3():
     # set up orthographic map projection with
     # perspective of satellite looking down at 50N, 100W.
     # use low resolution coastlines.
-    map = Basemap(projection='merc', llcrnrlon = -133, llcrnrlat= 14, urcrnrlon=-57, urcrnrlat= 62, resolution='l')
+    # map = Basemap(projection='merc', llcrnrlon = -133, llcrnrlat= 14, urcrnrlon=-57, urcrnrlat= 62, resolution='l')
+    # map = Basemap(projection='stere', llcrnrlon=-133, llcrnrlat=14, urcrnrlon=-57, urcrnrlat=62, lon_0 = 96, lat_0 = -38, resolution='l')
+    map = Basemap(projection='lcc', resolution='l', width=5E6, height=5E6, lat_0=38, lon_0=-96)
+    # map = Basemap(projection='ortho', lat_0=45, lon_0=-100, resolution='l')
     # draw coastlines, country boundaries, fill continents.
     map.drawcoastlines(linewidth=0.25)
     map.drawcountries(linewidth=0.25)
-    map.bluemarble()
-    # map.fillcontinents(color='coral', lake_color='aqua')
+    # map.bluemarble()
+    map.fillcontinents(color='#001C35', lake_color='#012B51')
     # draw the edge of the map projection region (the projection limb)
-    # map.drawmapboundary(fill_color='aqua')
+    map.drawmapboundary(fill_color='#012B51')
     # draw lat/lon grid lines every 30 degrees.
-    map.drawmeridians(np.arange(0, 360, 30))
-    map.drawparallels(np.arange(-90, 90, 30))
     # make up some data on a regular lat/lon grid.
     # nlats = 73;
     # nlons = 145;
@@ -165,7 +166,7 @@ def draw_3():
 
     count = 0
 
-    for start, ends in list(edges.items())[::2]:
+    for start, ends in list(edges.items())[::100]:
         for end in ends:
             # if len(start) < 5:
             #     print("ugh")
@@ -189,7 +190,7 @@ def draw_3():
     # print(G.edges)
 
     # draw
-    nx.draw_networkx(G, pos, edgelist=G.edges, with_labels=False, node_size=0, node_color='blue', edge_color='white', arrowsize=0.01, width = .25)
+    nx.draw_networkx(G, pos, edgelist=G.edges, with_labels=False, node_size=0.1, node_color='blue', edge_color='lime', arrowsize=0.01, width = .25)
 
 
     # lat = []
@@ -220,6 +221,8 @@ def draw_3():
 
     plt.title('railroads')
     plt.show()
+
+    print("done")
 
 # def draw_4():
 #     graph = nx.from_pandas_dataframe(routes_us, source='Source Airport', target='Dest Airport', edge_attr='number of flights', create_using=nx.DiGraph())

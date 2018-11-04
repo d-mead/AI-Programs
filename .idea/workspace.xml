@@ -43,7 +43,7 @@
     <session id="-1151945877">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="28" />
+          <entry key="project.closed" value="29" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.11" value="6" />
           <entry key="project.open.time.12" value="6" />
@@ -54,6 +54,7 @@
           <entry key="project.open.time.19" value="2" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.23" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.28" value="1" />
@@ -62,12 +63,12 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="37" />
+          <entry key="project.opened" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="80970" />
+          <entry key="py" value="81236" />
           <entry key="txt" value="107" />
         </counts>
       </usages-collector>
@@ -88,7 +89,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="107" />
-          <entry key="Python" value="80970" />
+          <entry key="Python" value="81236" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -99,11 +100,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="191" column="145" selection-start-line="191" selection-start-column="145" selection-end-line="191" selection-end-column="145" />
+            <state relative-caret-position="266">
+              <caret line="122" column="7" selection-start-line="122" selection-start-column="7" selection-end-line="122" selection-end-column="70" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-                <marker date="1541309854502" expanded="true" signature="505:725" ph="..." />
+                <marker date="1541312874256" expanded="true" signature="505:725" ph="..." />
               </folding>
             </state>
           </provider>
@@ -112,8 +113,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="1200" column="34" lean-forward="true" selection-start-line="1200" selection-start-column="34" selection-end-line="1200" selection-end-column="34" />
+            <state relative-caret-position="17790">
+              <caret line="1200" column="34" selection-start-line="1200" selection-start-column="34" selection-end-line="1200" selection-end-column="34" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
@@ -127,7 +128,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
+            <state relative-caret-position="5835">
               <caret line="393" selection-start-line="393" selection-end-line="393" />
             </state>
           </provider>
@@ -310,7 +311,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -321,6 +322,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -332,7 +334,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -651,7 +652,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>770</line>
+          <line>773</line>
           <option name="timeStamp" value="806" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -661,57 +662,57 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>746</line>
+          <line>749</line>
           <option name="timeStamp" value="826" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>745</line>
+          <line>748</line>
           <option name="timeStamp" value="827" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>744</line>
+          <line>747</line>
           <option name="timeStamp" value="828" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>475</line>
+          <line>478</line>
           <option name="timeStamp" value="829" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>476</line>
+          <line>479</line>
           <option name="timeStamp" value="830" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>478</line>
+          <line>481</line>
           <option name="timeStamp" value="831" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>477</line>
+          <line>480</line>
           <option name="timeStamp" value="832" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>629</line>
+          <line>632</line>
           <option name="timeStamp" value="848" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>588</line>
+          <line>591</line>
           <option name="timeStamp" value="850" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>594</line>
+          <line>597</line>
           <option name="timeStamp" value="851" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>184</line>
+          <line>185</line>
           <option name="timeStamp" value="852" />
         </line-breakpoint>
       </breakpoints>
@@ -1065,6 +1066,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="122" column="7" selection-start-line="122" selection-start-column="7" selection-end-line="122" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+            <marker date="1541312874256" expanded="true" signature="505:725" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/15puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17790">
+          <caret line="1200" column="34" selection-start-line="1200" selection-start-column="34" selection-end-line="1200" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
+            <marker date="1539819830213" expanded="true" signature="6991:7057" ph="..." />
+            <marker date="1539819830213" expanded="true" signature="42391:43341" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5835">
+          <caret line="393" selection-start-line="393" selection-end-line="393" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/include/python3.7m/pystate.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3510">
@@ -1121,37 +1153,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="393" selection-start-line="393" selection-end-line="393" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/15puzzle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="1200" column="34" lean-forward="true" selection-start-line="1200" selection-start-column="34" selection-end-line="1200" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
-            <marker date="1539819830213" expanded="true" signature="6991:7057" ph="..." />
-            <marker date="1539819830213" expanded="true" signature="42391:43341" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="191" column="145" selection-start-line="191" selection-start-column="145" selection-end-line="191" selection-end-column="145" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <marker date="1541309854502" expanded="true" signature="505:725" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
