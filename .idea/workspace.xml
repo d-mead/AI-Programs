@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac51eb1-d9fa-49b2-88ef-715b8d84aa07" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rr.py" beforeDir="false" afterPath="$PROJECT_DIR$/rr.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,7 +67,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="81236" />
+          <entry key="py" value="81351" />
           <entry key="txt" value="107" />
         </counts>
       </usages-collector>
@@ -89,7 +88,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="107" />
-          <entry key="Python" value="81236" />
+          <entry key="Python" value="81351" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -100,11 +99,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="122" column="7" selection-start-line="122" selection-start-column="7" selection-end-line="122" selection-end-column="70" />
+            <state relative-caret-position="258">
+              <caret line="193" column="139" selection-start-line="193" selection-start-column="139" selection-end-line="193" selection-end-column="139" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-                <marker date="1541312874256" expanded="true" signature="505:725" ph="..." />
+                <marker date="1541337729888" expanded="true" signature="505:725" ph="..." />
               </folding>
             </state>
           </provider>
@@ -652,7 +651,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>773</line>
+          <line>774</line>
           <option name="timeStamp" value="806" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -662,52 +661,52 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>749</line>
+          <line>750</line>
           <option name="timeStamp" value="826" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>748</line>
+          <line>749</line>
           <option name="timeStamp" value="827" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>747</line>
+          <line>748</line>
           <option name="timeStamp" value="828" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>478</line>
+          <line>479</line>
           <option name="timeStamp" value="829" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>479</line>
+          <line>480</line>
           <option name="timeStamp" value="830" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>481</line>
+          <line>482</line>
           <option name="timeStamp" value="831" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>480</line>
+          <line>481</line>
           <option name="timeStamp" value="832" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>632</line>
+          <line>633</line>
           <option name="timeStamp" value="848" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>591</line>
+          <line>592</line>
           <option name="timeStamp" value="850" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>597</line>
+          <line>598</line>
           <option name="timeStamp" value="851" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1068,11 +1067,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="122" column="7" selection-start-line="122" selection-start-column="7" selection-end-line="122" selection-end-column="70" />
+        <state relative-caret-position="258">
+          <caret line="193" column="139" selection-start-line="193" selection-start-column="139" selection-end-line="193" selection-end-column="139" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-            <marker date="1541312874256" expanded="true" signature="505:725" ph="..." />
+            <marker date="1541337729888" expanded="true" signature="505:725" ph="..." />
           </folding>
         </state>
       </provider>

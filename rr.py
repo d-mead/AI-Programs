@@ -119,9 +119,9 @@ def draw_3():
     map.drawcoastlines(linewidth=0.25)
     map.drawcountries(linewidth=0.25)
     # map.bluemarble()
-    map.fillcontinents(color='#001C35', lake_color='#012B51')
+    map.fillcontinents(color='#08001d', lake_color='#010211')
     # draw the edge of the map projection region (the projection limb)
-    map.drawmapboundary(fill_color='#012B51')
+    map.drawmapboundary(fill_color="#010211")
     # draw lat/lon grid lines every 30 degrees.
     # make up some data on a regular lat/lon grid.
     # nlats = 73;
@@ -166,7 +166,7 @@ def draw_3():
 
     count = 0
 
-    for start, ends in list(edges.items())[::100]:
+    for start, ends in list(edges.items())[::5]:
         for end in ends:
             # if len(start) < 5:
             #     print("ugh")
@@ -190,7 +190,8 @@ def draw_3():
     # print(G.edges)
 
     # draw
-    nx.draw_networkx(G, pos, edgelist=G.edges, with_labels=False, node_size=0.1, node_color='blue', edge_color='lime', arrowsize=0.01, width = .25)
+    nx.draw_networkx(G, pos, with_labels=False, node_size=.25, node_color='#F8FF9C', alpha=.1, edge_color='lime', arrowsize=0.01, edgelist={})
+    nx.draw_networkx(G, pos, with_labels=False, node_size=.001, node_color='#F8FF9C', alpha=.9, edge_color='lime', arrowsize=0.01, width=.4)
 
 
     # lat = []
