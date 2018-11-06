@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ac51eb1-d9fa-49b2-88ef-715b8d84aa07" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rr.py" beforeDir="false" afterPath="$PROJECT_DIR$/rr.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,11 +43,11 @@
     <session id="-1151945877">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="29" />
+          <entry key="project.closed" value="30" />
           <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.11" value="6" />
           <entry key="project.open.time.12" value="6" />
-          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.17" value="3" />
           <entry key="project.open.time.18" value="1" />
@@ -62,25 +63,26 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="38" />
+          <entry key="project.opened" value="39" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="81351" />
+          <entry key="py" value="82236" />
           <entry key="txt" value="107" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="C++" value="1" />
-          <entry key="PLAIN_TEXT" value="47" />
+          <entry key="PLAIN_TEXT" value="49" />
           <entry key="Python" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="h" value="1" />
+          <entry key="pkl" value="2" />
           <entry key="py" value="35" />
           <entry key="txt" value="47" />
         </counts>
@@ -88,7 +90,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="107" />
-          <entry key="Python" value="81351" />
+          <entry key="Python" value="82236" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -99,11 +101,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="193" column="139" selection-start-line="193" selection-start-column="139" selection-end-line="193" selection-end-column="139" />
+            <state relative-caret-position="296">
+              <caret line="243" column="31" lean-forward="true" selection-start-line="243" selection-start-column="31" selection-end-line="243" selection-end-column="31" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-                <marker date="1541337729888" expanded="true" signature="505:725" ph="..." />
+                <marker date="1541476240407" expanded="true" signature="505:725" ph="..." />
               </folding>
             </state>
           </provider>
@@ -112,23 +114,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17790">
-              <caret line="1200" column="34" selection-start-line="1200" selection-start-column="34" selection-end-line="1200" selection-end-column="34" />
+            <state relative-caret-position="2302">
+              <caret line="1323" column="26" selection-start-line="1323" selection-start-column="26" selection-end-line="1323" selection-end-column="27" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
                 <marker date="1539819830213" expanded="true" signature="6991:7057" ph="..." />
                 <marker date="1539819830213" expanded="true" signature="42391:43341" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5835">
-              <caret line="393" selection-start-line="393" selection-end-line="393" />
             </state>
           </provider>
         </entry>
@@ -243,10 +236,10 @@
       <find>pick</find>
       <find>a_star</find>
       <find>print</find>
-      <find>print</find>
       <find>pypro</find>
       <find>dfs</find>
       <find>bi</find>
+      <find>pickl</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -310,7 +303,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -321,7 +314,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -333,6 +325,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -503,6 +496,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4959217" visible="true" weight="0.1987315" />
       <window_info id="Structure" order="1" sideWeight="0.50344825" side_tool="true" weight="0.1987315" />
@@ -517,7 +511,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3253012" />
       <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.34819278" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003524" side_tool="true" weight="0.37349397" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3253012" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32475248" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -651,7 +645,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>774</line>
+          <line>837</line>
           <option name="timeStamp" value="806" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -661,58 +655,53 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>750</line>
+          <line>813</line>
           <option name="timeStamp" value="826" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>749</line>
+          <line>812</line>
           <option name="timeStamp" value="827" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>748</line>
+          <line>811</line>
           <option name="timeStamp" value="828" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>479</line>
+          <line>542</line>
           <option name="timeStamp" value="829" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>480</line>
+          <line>543</line>
           <option name="timeStamp" value="830" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>482</line>
+          <line>545</line>
           <option name="timeStamp" value="831" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>481</line>
+          <line>544</line>
           <option name="timeStamp" value="832" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>633</line>
+          <line>696</line>
           <option name="timeStamp" value="848" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>592</line>
+          <line>655</line>
           <option name="timeStamp" value="850" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>598</line>
+          <line>661</line>
           <option name="timeStamp" value="851" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/rr.py</url>
-          <line>185</line>
-          <option name="timeStamp" value="852" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -793,7 +782,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/exerciesPart2.p.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.2/python_stubs/-1199943126/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17835">
@@ -1065,30 +1053,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="193" column="139" selection-start-line="193" selection-start-column="139" selection-end-line="193" selection-end-column="139" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <marker date="1541337729888" expanded="true" signature="505:725" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/15puzzle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17790">
-          <caret line="1200" column="34" selection-start-line="1200" selection-start-column="34" selection-end-line="1200" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
-            <marker date="1539819830213" expanded="true" signature="6991:7057" ph="..." />
-            <marker date="1539819830213" expanded="true" signature="42391:43341" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5835">
@@ -1152,6 +1116,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plt_1.pkl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/15puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2302">
+          <caret line="1323" column="26" selection-start-line="1323" selection-start-column="26" selection-end-line="1323" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1539819830213" expanded="true" signature="5335:5337" ph="..." />
+            <marker date="1539819830213" expanded="true" signature="6991:7057" ph="..." />
+            <marker date="1539819830213" expanded="true" signature="42391:43341" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="243" column="31" lean-forward="true" selection-start-line="243" selection-start-column="31" selection-end-line="243" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+            <marker date="1541476240407" expanded="true" signature="505:725" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -102,26 +102,36 @@ def main():
     # start = "Chicago"
     # start_id = names[start]
 
+    with open("plt_1.pkl", "rb") as infile:
+        a = pickle.load(infile)
+    plt.show()
+
     #print(answer)
-    draw_3()
+    # draw_3()
     # draw(full_send(names["Chicago"]), start_id, end_id)
 
 
 def draw_3():
+    plt.ion()
     # set up orthographic map projection with
     # perspective of satellite looking down at 50N, 100W.
     # use low resolution coastlines.
+
     # map = Basemap(projection='merc', llcrnrlon = -133, llcrnrlat= 14, urcrnrlon=-57, urcrnrlat= 62, resolution='l')
     # map = Basemap(projection='stere', llcrnrlon=-133, llcrnrlat=14, urcrnrlon=-57, urcrnrlat=62, lon_0 = 96, lat_0 = -38, resolution='l')
     map = Basemap(projection='lcc', resolution='l', width=5E6, height=5E6, lat_0=38, lon_0=-96)
     # map = Basemap(projection='ortho', lat_0=45, lon_0=-100, resolution='l')
-    # draw coastlines, country boundaries, fill continents.
-    map.drawcoastlines(linewidth=0.25)
-    map.drawcountries(linewidth=0.25)
-    # map.bluemarble()
+
+
+    map.drawcoastlines(linewidth=0.25, color="black")
+    map.drawcountries(linewidth=0.25, color="black")
     map.fillcontinents(color='#08001d', lake_color='#010211')
-    # draw the edge of the map projection region (the projection limb)
     map.drawmapboundary(fill_color="#010211")
+
+    # map.bluemarble()
+
+    # map.shadedrelief()
+
     # draw lat/lon grid lines every 30 degrees.
     # make up some data on a regular lat/lon grid.
     # nlats = 73;
@@ -143,6 +153,8 @@ def draw_3():
     lons = list()
 
     count = 0
+
+    a = plt.subplot(111)
 
     for id, coord in nodes.items():
         ids.append(id)
@@ -166,32 +178,72 @@ def draw_3():
 
     count = 0
 
-    for start, ends in list(edges.items())[::5]:
+    # nx.draw_networkx(G, pos, with_labels=False, node_size=.25, node_color='#F8FF9C', alpha=.1, edge_color='lime',
+    #                  arrowsize=0.01, edgelist={})
+    # nx.draw_networkx(G, pos, with_labels=False, node_size=.001, node_color='#F8FF9C', alpha=.9, edge_color='lime',
+    #                  arrowsize=0.01, width=.4)
+
+    plt.title('railroads')
+    # plt.draw()
+    # plt.pause(.1)
+
+    pos = {}
+
+    count = 0
+    for node in nodes:
+        G.add_node(node)
+        pos[node] = (mx[count], my[count])
+        count += 1
+
+    nx.draw_networkx_nodes(G, pos, with_labels=False, node_size=.25, node_color='#F8FF9C', alpha=.1)
+
+    plt.draw()
+    plt.pause(.1)
+
+    # print(G.nodes)
+
+    print("past show")
+
+    global speed
+    speed = 1000
+
+    for start, ends in list(edges.items())[::1]:
+        edgelist = set()
         for end in ends:
             # if len(start) < 5:
             #     print("ugh")
             if len(end[1]) < 5:
                 G.add_edge(start, end)
+                edgelist.add((start, end))
                 # print(end)
             else:
                 G.add_edge(start, end[1])
-        print(100*count/len(edges.keys()))
+                edgelist.add((start, end[1]))
+        # nx.draw_networkx_edges(G, pos, edgelist=edgelist, alpha=.9, edge_color='white', arrowsize=0.01, width=.5)
+        # if count%speed==0:
+        #     plt.draw()
+        #     plt.pause(.0000000000000001)
+        # print(100*count/len(edges.keys()))
         count += 1
 
-    # print(G.nodes)
 
-    pos = {}
-    count = 0
-    for node in nodes:
-        pos[node] = (mx[count], my[count])
-        count += 1
         # print(100*count/len(nodes))
 
     # print(G.edges)
 
     # draw
-    nx.draw_networkx(G, pos, with_labels=False, node_size=.25, node_color='#F8FF9C', alpha=.1, edge_color='lime', arrowsize=0.01, edgelist={})
-    nx.draw_networkx(G, pos, with_labels=False, node_size=.001, node_color='#F8FF9C', alpha=.9, edge_color='lime', arrowsize=0.01, width=.4)
+    # nx.draw_networkx(G, pos, with_labels=False, node_size=.25, node_color='#F8FF9C', alpha=.1, edge_color='lime',
+    #                  arrowsize=0.01, edgelist={})
+    nx.draw_networkx(G, pos, with_labels=False, node_size=.001, node_color='#F8FF9C', alpha=.9, edge_color='lime',
+                    arrowsize=0.01, width=.4)
+
+    plt.draw()
+    plt.pause(10)
+
+    with open("plt_2.pkl", "wb") as outfile:
+        pickle.dump(a, outfile)
+
+    plt.show()
 
 
     # lat = []
@@ -220,13 +272,24 @@ def draw_3():
 
     # map.drawgreatcircle(-60.119060, 46.166160, -100.000000, 21.940000, linewidth=.5, color='r')
 
-    plt.title('railroads')
-    plt.show()
-
     print("done")
 
 # def draw_4():
 #     graph = nx.from_pandas_dataframe(routes_us, source='Source Airport', target='Dest Airport', edge_attr='number of flights', create_using=nx.DiGraph())
+
+
+def redraw_2(plt):
+    global last_time
+    global speed
+    if speed>=0:
+        time.sleep(speed)
+        plt.draw()
+        time.sleep(.0000001)
+    else:
+        if time.perf_counter() - last_time > abs(speed):
+            last_time = time.perf_counter()
+            plt.draw()
+            time.sleep(.0000001)
 
 
 def draw_2():
