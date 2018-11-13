@@ -14,7 +14,8 @@ def main():
     global size, visited, very_visited, times, nodes, depths, fig, twos
 
     very_visited = 0
-    size = 9
+    visited = 0
+    size = 8
 
     times = []
     nodes = []
@@ -22,35 +23,55 @@ def main():
     twos = []
 
     # print(make_state(9))
-    # print(display(rotate(make_state(9))))
+    # print(display(make_state(8)))
     # print(is_valid(rotate(make_state(9))))
 
-    s = time.perf_counter()
-    # try_one_new(20)
-    n = int(sys.argv[1])
-    max = int(sys.argv[2])
+    # for n in range(16, 17):
+    #     size = n
+    #     print(n)
+    #     print(display(make_state(n)))
+    #     print()
 
-    try_one_3(n)
+    try_one_3_2(12)
 
-    # plot()
+    # test_code()
 
+    # s = time.perf_counter()
+    # n = int(sys.argv[1])
+    # max = int(sys.argv[2])
+    #
+    # # try_one_3(n)
+    #
+    # # plot()
+    #
     # deeper_update_skip(n, max)
+    #
+    # print(twos)
+    #
+    # # update()
+    #
+    # # try_many_3(n, 120)
+    #
+    # e = time.perf_counter()
+    #
+    # # plot()
+    # # plt.savefig(str(datetime.datetime.now()) + ".png")
+    # # plt.show()
+    # # print("yep")
 
-    print(twos)
 
-    # update()
-
-    # try_many_3(n, 120)
-
-    # try_many(4, 80)
-    e = time.perf_counter()
-
-
-
-    # plot()
-    # plt.savefig(str(datetime.datetime.now()) + ".png")
-    # plt.show()
-    # print("yep")
+def test_code():
+    print(climb_3(make_state(int(sys.argv[1]))))
+    solve_time = 0
+    size = int(sys.argv[1])#8
+    while solve_time < 2:
+        start = time.perf_counter()
+        state = climb_3(make_state(size))
+        end = time.perf_counter()
+        solve_time = end - start
+        print("%s: %s" % (size, solve_time))
+        size += 1
+    print("For size %s, the time was %s" % (size-1, solve_time))
 
 
 def plot():
@@ -221,6 +242,34 @@ def try_one_3(n):
     print()
 
 
+def try_one_3_2(n):
+    global size
+    global visited, very_visited, times, nodes, twos
+    visited = 0
+    state = make_state(n)#random_state(n)#[int(n/2)]*n#
+    print(n)
+    start = time.perf_counter()
+    size = n
+
+    solution, h = csp_2(state, full_invalids(state))
+
+    end = time.perf_counter()
+    # print(solution)
+
+    print(display(solution))
+
+    print("%s \t%s \t%s" % (round(end - start, 6), visited, is_valid(solution)))
+
+    very_visited += visited
+    times.append(round(end - start, 5))
+    if round(end - start, 5) > 2:
+        twos.append(n)
+    nodes.append(visited)
+    visited = 0
+
+    print()
+
+
 def deeper_update(min, max):
     global size, depths
     # depths = range(min, max + 1)
@@ -238,8 +287,8 @@ def deeper_update_skip(min, max):
     for n in range(min, max + 1):
         if n % 6 == 5 or n % 6 == 1:
             try_one_3(n)
-            depths.append(n)
-            update()
+            # depths.append(n)
+            # update()
         # if n > min + 5:
         #     update()
 
@@ -294,8 +343,8 @@ def get_sorted_values(state, var, depth):
 
 
 def rating(state, var, col, depth):
-    # count = invalids(state, var, col)
-    return random.random()
+    count = invalids(state, var, col)
+    return count #random.random()
 
 
 def is_valid_move(state, i, val):
@@ -314,23 +363,6 @@ def is_valid_move(state, i, val):
             if abs(i - row) == abs(val - col):
                 return False
 
-
-
-
-
-    # for delta in range(1, min(i, val)+1):
-    #     if ((i - delta), (val - delta)) in coords:
-    #         return False
-    # for delta in range(1, min(size - i - 1, val)+1):
-    #     if ((i + delta), (val - delta)) in coords:
-    #         return False
-    # for delta in range(1, min(i, size - val + 1)+1):
-    #     if ((i - delta), (val + delta)) in coords:
-    #         return False
-    # for delta in range(1, min(size - i - 1, size - val + 1)+1):
-    #     if ((i + delta), (val + delta)) in coords:
-    #         return False
-
     return True
 
 
@@ -340,7 +372,7 @@ def invalids(state, i, val):
         if row != i and col != -1:
             if col == val:
                 count += 1
-            if abs(i - row) == abs(val - col):
+            elif abs(i - row) == abs(val - col):
                 count += 1
     return count
 
@@ -390,20 +422,6 @@ def is_valid(state):
                 if col == val:
                     return False
 
-
-        # for delta in range(1, min(i, val)):
-        #     if ((i-delta), (val-delta)) in coords:
-        #         return False
-        # for delta in range(1, min(size-i-1, val)):
-        #     if ((i+delta), (val-delta)) in coords:
-        #         return False
-        # for delta in range(1, min(i, size-val+1)):
-        #     if ((i-delta), (val+delta)) in coords:
-        #         return False
-        # for delta in range(1, min(size-i-1, size-val+1)):
-        #     if ((i+delta), (val+delta)) in coords:
-        #         return False
-
     return True
 
 
@@ -421,7 +439,7 @@ def get_next_unassigned_var(state, depth):
 
 
 def get_next_rating(state, var, depth):
-    return count_valid_vals(state, var)#count_valids_in_row(state, var)#*random.randint(depth, size)
+    return 1/(count_valid_vals(state, var)+1)#count_valids_in_row(state, var)#*random.randint(depth, size)
 
 
 def count_valid_vals(state, var):
@@ -643,7 +661,7 @@ def climb_2(state):
         if h < top:
             state[next_state[0]] = next_state[1]
             top = h#full_invalids(state)
-            print(h)# print(top)
+            # print(h)# print(top)
         # else:
         #     a=5
         visited += 1
@@ -689,6 +707,26 @@ def causes(state, row, col):
     return count
 
 
+def csp_2(state, h):
+    global visited
+
+    if h < 1:
+        return state, h
+
+    var = next_row(state)
+
+    visited += 1
+
+    for nh, val in min_conflicts_list(state, var, h):
+        new_state = state[:]
+        new_state[var] = val
+        result = csp_2(new_state, nh)
+        if result is not None:
+            return result
+
+    return None
+
+
 def climb_3(state):
     global size, visited
     size = len(state)
@@ -705,7 +743,7 @@ def climb_3(state):
         if int(h) < best:
             best = h
             current[var] = value
-            print(best)
+            # print(best)
         # else:
         #     return climb_3(state)
 
@@ -741,6 +779,24 @@ def min_conflicts(state, var, h):
     return best_val, best_h
 
 
+def min_conflicts_list(state, var, h):
+    global size
+    var_h = conflicts(state, var, state[var])
+    moves = []
+    # best_h = int(h) - (var_h - conflicts(state, var, 0)) + random.random()
+    # best_val = 0
+
+    for col in range(0, size):
+        nh = int(h) - (var_h - conflicts(state, var, col)) + random.random()
+        moves.append((nh, col))
+        # nh += random.random()*(1/(nh+1))
+        # if nh < best_h:
+        #     best_h = nh
+        #     best_val = col
+
+    return sorted(moves, key=lambda x: x[0], reverse=False)
+
+
 def conflicts(state, var, val):
     count = 0
     for row, col in enumerate(state):
@@ -756,7 +812,7 @@ def next_row(state):
     global size
     max_c = 0
     max_var = 0
-    for var in range(1, size):
+    for var in range(0, size):
         c = conflicts(state, var, state[var])+random.random()
         # c += random.random()*c#math.pow(c, 2)
         if c > max_c:
