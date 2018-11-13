@@ -26,8 +26,6 @@ import random
 import keyboard
 
 
-
-
 def main():
     global edges, nodes, names
     edges, nodes = make_edges_dict("rrNodes.txt", "rrEdges.txt")
@@ -102,17 +100,18 @@ def main():
     # start = "Chicago"
     # start_id = names[start]
 
-    with open("plt_1.pkl", "rb") as infile:
-        a = pickle.load(infile)
-    plt.show()
+    # with open("plt_1.pkl", "rb") as infile:
+    #     a = pickle.load(infile)
+    # plt.show()
 
     #print(answer)
-    # draw_3()
+    draw_3()
     # draw(full_send(names["Chicago"]), start_id, end_id)
 
 
 def draw_3():
     plt.ion()
+    plt.figure(figsize=(7, 7))
     # set up orthographic map projection with
     # perspective of satellite looking down at 50N, 100W.
     # use low resolution coastlines.
@@ -122,11 +121,15 @@ def draw_3():
     map = Basemap(projection='lcc', resolution='l', width=5E6, height=5E6, lat_0=38, lon_0=-96)
     # map = Basemap(projection='ortho', lat_0=45, lon_0=-100, resolution='l')
 
+    node_color = "white"  # "#F8FF9C"
+    edge_color = "red"  # "lime"
 
     map.drawcoastlines(linewidth=0.25, color="black")
     map.drawcountries(linewidth=0.25, color="black")
-    map.fillcontinents(color='#08001d', lake_color='#010211')
-    map.drawmapboundary(fill_color="#010211")
+    map.drawstates(linewidth=0.15, color="dimgrey")
+    # map.fillcontinents(color='#08001d', lake_color='#010211')
+    map.fillcontinents(color='grey', lake_color='#85C1E9')
+    map.drawmapboundary(fill_color="#85C1E9")
 
     # map.bluemarble()
 
@@ -195,7 +198,7 @@ def draw_3():
         pos[node] = (mx[count], my[count])
         count += 1
 
-    nx.draw_networkx_nodes(G, pos, with_labels=False, node_size=.25, node_color='#F8FF9C', alpha=.1)
+    nx.draw_networkx_nodes(G, pos, with_labels=False, node_size=.25, node_color=node_color, alpha=.1)
 
     plt.draw()
     plt.pause(.1)
@@ -204,26 +207,30 @@ def draw_3():
 
     print("past show")
 
-    global speed
-    speed = 1000
+    begin = time.perf_counter()
 
-    for start, ends in list(edges.items())[::1]:
-        edgelist = set()
+    global speed
+    speed = 1
+
+    count = 0
+
+    for start, ends in list(edges.items())[::10]:
+        # edgelist = set()
         for end in ends:
             # if len(start) < 5:
             #     print("ugh")
             if len(end[1]) < 5:
                 G.add_edge(start, end)
-                edgelist.add((start, end))
+                # edgelist.add((start, end))
                 # print(end)
             else:
                 G.add_edge(start, end[1])
-                edgelist.add((start, end[1]))
-        # nx.draw_networkx_edges(G, pos, edgelist=edgelist, alpha=.9, edge_color='white', arrowsize=0.01, width=.5)
+                # edgelist.add((start, end[1]))
+        # nx.draw_networkx_edges(G, pos, edgelist=edgelist, alpha=.9, edge_color=edge_color, arrowsize=0.01, width=.5)
         # if count%speed==0:
         #     plt.draw()
         #     plt.pause(.0000000000000001)
-        # print(100*count/len(edges.keys()))
+        print(100*count/len(edges.keys()))
         count += 1
 
 
@@ -234,16 +241,22 @@ def draw_3():
     # draw
     # nx.draw_networkx(G, pos, with_labels=False, node_size=.25, node_color='#F8FF9C', alpha=.1, edge_color='lime',
     #                  arrowsize=0.01, edgelist={})
-    nx.draw_networkx(G, pos, with_labels=False, node_size=.001, node_color='#F8FF9C', alpha=.9, edge_color='lime',
-                    arrowsize=0.01, width=.4)
+    nx.draw_networkx_edges(G, pos, edgelist=G.edges, alpha=.9, edge_color=edge_color, arrowsize=0.01, width=.5)
+    # nx.draw_networkx(G, pos, with_labels=False, node_size=.001, node_color='#F8FF9C', alpha=.9, edge_color=edge_color,
+    #                 arrowsize=0.01, width=.4)
 
     plt.draw()
-    plt.pause(10)
 
-    with open("plt_2.pkl", "wb") as outfile:
-        pickle.dump(a, outfile)
+    end = time.perf_counter()
+    print(begin - end)
+
+    plt.pause(10)
+    # with open("plt_2.pkl", "wb") as outfile:
+    #     pickle.dump(a, outfile)
 
     plt.show()
+
+
 
 
     # lat = []

@@ -1151,19 +1151,19 @@ def visualize2():
 
     plt.figure().suptitle("Search Algorithm Graphs for Path Length " + str(length+1))
 
-    g, l = a_star_visualize(state)
-    draw_graph(g, l, 221, state, "A-Star")
-
-    plt.legend(('state', 'move'), loc='best', prop={'size': 6})
-
-    g, l = bi_bfs_visualize(state)
-    draw_graph(g, l, 222, state, "Bi-BFS")
-
+    # g, l = a_star_visualize(state)
+    # draw_graph(g, l, 111, state, "A-Star")
+    #
+    # plt.legend(('state', 'move'), loc='best', prop={'size': 6})
+    #
+    # g, l = bi_bfs_visualize(state)
+    # draw_graph(g, l, 111, state, "Bi-BFS")
+    #
     g, l = id_dfs_visualize(state, 12)
-    draw_graph(g, l, 223, state, "ID-DFS")
+    draw_graph(g, l, 111, state, "ID-DFS")
 
-    g, l = bfs_visualize(state)
-    draw_graph(g, l, 224, state, "BFS")
+    # g, l = bfs_visualize(state)
+    # draw_graph(g, l, 111, state, "BFS")
 
     plt.show()
 
@@ -1177,7 +1177,7 @@ def draw_graph(g, l, subplot, state, title):
     red = Color("lightgrey")
     colors = list(red.range_to(Color("black"), len(g.edges())))
 
-    print(str(colors[10]))
+    # print(str(colors[10]))
 
     for x in range(0, len(g.edges())):
         if str(colors[x])[0] == '#':
@@ -1206,7 +1206,7 @@ def draw_graph(g, l, subplot, state, title):
 
     plt.title(title, loc='center', size = 'medium')
 
-    nx.draw(g, with_labels=True, labels={state: "start", goal: "finish"}, font_size=7, node_color='blue',
+    nx.draw_kamada_kawai(g, with_labels=True, labels={state: "start", goal: "finish"}, font_size=7, node_color='blue',
             node_size=5, edge_color=color_list, width=1.5, font_weight="bold", font_color="black")
 
 

@@ -135,6 +135,7 @@ def main():
     display_state(state)
 
     start = time.perf_counter()
+    start = time.perf_counter()
     # bfs(state)
     a_star_taxi(state)
     end = time.perf_counter()
