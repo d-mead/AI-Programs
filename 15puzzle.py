@@ -1149,7 +1149,7 @@ def visualize2():
 
     state = lines[length+1].split(" ")[0].replace("\n", "")
 
-    plt.figure().suptitle("Search Algorithm Graphs for Path Length " + str(length+1))
+    plt.figure().suptitle("15 Puzzle Search Algorithm Graphs for Path Length " + str(length+1))
 
     # g, l = a_star_visualize(state)
     # draw_graph(g, l, 111, state, "A-Star")
@@ -1160,10 +1160,10 @@ def visualize2():
     # draw_graph(g, l, 111, state, "Bi-BFS")
     #
     g, l = id_dfs_visualize(state, 12)
-    draw_graph(g, l, 111, state, "ID-DFS")
+    draw_graph(g, l, 111, state, "ID-DFS\n" + str(len(g.nodes())) + " nodes")
 
     # g, l = bfs_visualize(state)
-    # draw_graph(g, l, 111, state, "BFS")
+    # draw_graph(g, l, 111, state, "BFS\n" + str(len(g.nodes())) + " nodes")
 
     plt.show()
 
@@ -1204,7 +1204,7 @@ def draw_graph(g, l, subplot, state, title):
 
     plt.subplot(subplot)
 
-    plt.title(title, loc='center', size = 'medium')
+    plt.title(title, loc='center', size = 'medium', pad=-5)
 
     nx.draw_kamada_kawai(g, with_labels=True, labels={state: "start", goal: "finish"}, font_size=7, node_color='blue',
             node_size=5, edge_color=color_list, width=1.5, font_weight="bold", font_color="black")
