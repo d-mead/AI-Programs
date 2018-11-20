@@ -5,8 +5,8 @@ import time
 # from heapq import heappush, heappop
 import random
 
-# import networkx as nx
-# import matplotlib.pyplot as plt2
+import networkx as nx
+import matplotlib.pyplot as plt2
 
 
 def main():
@@ -20,11 +20,11 @@ def main():
     nodes = []
     depths = []
 
-    test_code()
+    # test_code()
 
     # live_graph()
 
-    # visualize()
+    visualize()
 
     # table()
 
@@ -980,7 +980,7 @@ def visualize():
 
     length = 6
 
-    size = 75
+    size = 50
 
     # state = lines[length+1].split(" ")[0].replace("\n", "")
 
@@ -998,7 +998,7 @@ def visualize():
     print(sol)
     print(is_valid(sol))
     print(visited)
-    draw_graph(g, 111, str(sol), "Backtracking (optimized)\n" + str(visited) + " node")
+    draw_graph(g, 111, str(sol), "Backtracking (optimized)\n" + str(visited) + " nodes")
 
     # g, l = bfs_visualize(state)
     # draw_graph(g, l, 111, state, "BFS")
@@ -1040,7 +1040,7 @@ def draw_graph(g, subplot, state, title):
 
     # nx.draw_kamada_kawai(g, with_labels=False, font_size=7, node_color='blue', node_size=5, edge_color=color_list,
     #                      width=1.5, font_weight="bold", font_color="black")
-    nx.draw_kamada_kawai(g, with_labels=True, labels={state: "solution", start: ""}, font_size=7, node_color='blue', node_size=3, edge_color=color_list,
+    nx.draw_kamada_kawai(g, with_labels=True, labels={state: "solution", start: "start"}, font_size=7, node_color='blue', node_size=3, edge_color=color_list,
                          width=1.5, font_weight="bold", font_color="black")
 
     # nx.draw_kamada_kawai(g, with_labels=False, font_size=7, node_color='blue', node_size=5, edge_color=color_list, width=1.5, font_weight="bold", font_color="black")
