@@ -10,10 +10,11 @@ def main():
     sys.setrecursionlimit(500000)
     global sets, neighbors, visited
     visited = 0
-    # states = read_file("sudoku_puzzles_1.txt")
-    # state = states[61]
+    states = read_file("sudoku_puzzles_1.txt")
+    state = states[0]
     # solve(state)
-    record()
+    solve_2(state)
+    # record()
 
 
 def record():
@@ -42,25 +43,50 @@ def record():
 
 def make_list(state):
     options = []
-    for char in state:
+    for i, char in enumerate(state):
         if char != ".":
             options.append(char)
         else:
+            options.append(available(state, i))
+    return options
 
 
-def avalable(state, i):
+def available(state, i):
     global neighbors
     neighs = []
     symbols = "123456789abcdefghijklmnopqrstuvwxyz"
-    options = symbols[:math.sqrt(len(state))]
+    options = symbols[:int(math.sqrt(len(state)))]
     char = state[i]
-    for n in neighbors:
-        if i in n:
-            neighs.extend(list(n))
-    for n in neighs:
+    # for n in neighbors:
+    #     if i in n:
+    #         neighs.extend(list(n))
+    for n in neighbors[i]:
         c = state[n]
         if c != ".":
-            options.replace(c, "")
+            options = options.replace(c, "")
+    return options
+
+
+def propagate(state):
+    solved = []
+    for i, options in enumerate(state):
+        if len(options) == 1:
+            solved.append(i)
+
+
+
+def solve_2(state):
+    global sets, neighbors, visited
+    sets = constrained_sets(state)
+    neighbors = make_neighbors(state)
+    count = count_symbols(state)
+
+    l = make_list(state[4])
+
+    state = l
+
+    print(state)
+
 
 def solve(state):
     global sets, neighbors, visited
