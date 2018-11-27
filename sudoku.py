@@ -2,33 +2,80 @@ import sys
 import time
 import random
 import math
+import xlsxwriter
+import datetime
 
 
 def main():
     sys.setrecursionlimit(500000)
     global sets, neighbors, visited
     visited = 0
-    states = read_file("sudoku_puzzles_1.txt")
-    state = states[3]
-    # display(state)
-    # sets = constrained_sets(state)
-    # neighbors = make_neighbors(state)
-    # count = count_symbols(state)
-    # print(csp(state))
-    #
-    # print(count)
-    solve(state)
+    # states = read_file("sudoku_puzzles_1.txt")
+    # state = states[61]
+    # solve(state)
+    record()
 
+
+def record():
+    global visited
+    workbook = xlsxwriter.Workbook(str(datetime.datetime.now()) + '.xlsx')
+    worksheet = workbook.add_worksheet()
+    worksheet.write(0, 0, "number")
+    worksheet.write(0, 1, "runtime")
+    worksheet.write(0, 2, "visited")
+    count = 0
+    for state in read_file("sudoku_puzzles_1.txt"):
+        print(count)
+        start = time.perf_counter()
+        solve(state)
+        end = time.perf_counter()
+        worksheet.write(count, 0, str(count))
+        worksheet.write(count, 1, round(end-start, 5))
+        worksheet.write(count, 2, visited)
+        # print(round(end - start, 5))
+        # print(visited)
+        visited = 0
+        count += 1
+
+    workbook.close()
+
+
+def make_list(state):
+    options = []
+    for char in state:
+        if char != ".":
+            options.append(char)
+        else:
+
+
+def avalable(state, i):
+    global neighbors
+    neighs = []
+    symbols = "123456789abcdefghijklmnopqrstuvwxyz"
+    options = symbols[:math.sqrt(len(state))]
+    char = state[i]
+    for n in neighbors:
+        if i in n:
+            neighs.extend(list(n))
+    for n in neighs:
+        c = state[n]
+        if c != ".":
+            options.replace(c, "")
 
 def solve(state):
-    global sets, neighbors
-    display(state)
+    global sets, neighbors, visited
+    # display(state)
     sets = constrained_sets(state)
     neighbors = make_neighbors(state)
     count = count_symbols(state)
+
+    start = time.perf_counter()
     solution = csp(state)
+    end = time.perf_counter()
     if solution:
         display(solution)
+    print(round(end-start, 5))
+    print(visited)
 
 
 def csp(state):
@@ -66,7 +113,7 @@ def get_next_unassigned_var(state):
     width = state[2]
     symbol_set = state[3]
     puzzle = state[4]
-    for i in range(0, n):
+    for i in range(0, n*n):
         if puzzle[i] == ".":
             return i
     return -1
@@ -85,8 +132,12 @@ def get_sorted_values(state, var):
     if var == -1:
         return vals
 
+    n_symbols = []
+    for n in neighbors[var]:
+        n_symbols.append(puzzle[n])
+
     for val in symbol_set:
-        if val not in neighbors[var]:
+        if val not in n_symbols:
             vals.append(val)
 
     return vals
