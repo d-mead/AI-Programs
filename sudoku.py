@@ -4,6 +4,9 @@ import random
 import math
 import xlsxwriter
 import datetime
+from collections import deque
+import copy
+from random import shuffle
 
 
 def main():
@@ -11,10 +14,38 @@ def main():
     global sets, neighbors, visited
     visited = 0
     states = read_file("sudoku_puzzles_1.txt")
-    state = states[0]
+    # state = states[54]
     # solve(state)
-    solve_2(state)
+    # solve_one(state)
+    a = time.perf_counter()
+    solve_file("sudoku_puzzles_1.txt")
+    b = time.perf_counter()
+    print("total time: %s" % round(b - a, 5))
     # record()
+
+
+def solve_file(filename):
+    global visited
+    count = 0
+    for state in read_file(filename):
+        print("Board Number: %s" % count)
+        start = time.perf_counter()
+        solve_2(state)
+        end = time.perf_counter()
+        print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
+        print()
+        visited = 0
+        count += 1
+
+
+def solve_one(state):
+    global visited
+    start = time.perf_counter()
+    solve_2(state)
+    end = time.perf_counter()
+    print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
+    print()
+    visited = 0
 
 
 def record():
@@ -28,8 +59,10 @@ def record():
     for state in read_file("sudoku_puzzles_1.txt"):
         print(count)
         start = time.perf_counter()
-        solve(state)
+        solve_2(state)
         end = time.perf_counter()
+        print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
+        print()
         worksheet.write(count, 0, str(count))
         worksheet.write(count, 1, round(end-start, 5))
         worksheet.write(count, 2, visited)
@@ -42,13 +75,16 @@ def record():
 
 
 def make_list(state):
-    options = []
+    global visited
+    visited += 1
+    options = dict()
     for i, char in enumerate(state):
         if char != ".":
-            options.append(char)
+            options[i] = char
         else:
-            options.append(available(state, i))
-    return options
+            options[i] = available(state, i)
+    sorted_options = dict(sorted(options.items(), key=lambda kv: (len(kv[1]), kv[0])))
+    return sorted_options
 
 
 def available(state, i):
@@ -68,11 +104,75 @@ def available(state, i):
 
 
 def propagate(state):
-    solved = []
-    for i, options in enumerate(state):
+    global visited, neighbors
+    visited += 1
+    solved = deque()
+    s = state.copy()
+    for i, options in s.items():
         if len(options) == 1:
             solved.append(i)
+            # print(i)
+        # else:
+        #     break
+    i = 0
+    while len(solved) != 0:
+        i = solved.pop()
+    # for i in solved:
+        for n in neighbors[i]:
+            if s[i] in s[n]:
+                if len(s[n]) == 1:
+                    # print(".", end="")
+                    return None
+                s[n] = s[n].replace(s[i], "")
+                if len(s[n]) == 1:
+                    # if n not in solved:
+                    solved.append(n)
+    
 
+
+
+    # s = dict(sorted(s.items(), key=lambda kv: (len(kv[1]), kv[0])))
+
+    # if len(solved) != len(state):
+    #     sn = propagate(state)
+    #     if sn:
+    #         return sn
+    return s
+
+
+def csp_2(state):  # state is just the dict of available locations
+    global visited
+
+    if state is None:
+        return None
+
+    # vals = list(state.values())
+
+    # if goal_test_string(dict_to_string_initial(state)):#len(vals[len(vals)-1]) == 1:
+    #     return state
+
+    var = -1#vals[0]
+    # varis = []
+    for index, options in state.items():
+        if len(options) > 1:
+            var = index
+            # varis.append(index)
+            break
+
+    if var == -1:
+        return state
+
+    # var = varis[random.randint(0, len(varis)-1)]
+
+    options = list(state[var])
+    # shuffle(options)
+    for val in options:
+        # new_options = state.copy
+        new_state = state.copy()
+        new_state[var] = val
+        result = csp_2(propagate(new_state))
+        if result is not None:
+            return result
 
 
 def solve_2(state):
@@ -85,7 +185,32 @@ def solve_2(state):
 
     state = l
 
-    print(state)
+    solution = csp_2(state)
+
+    display_s_string(dict_to_string_initial(solution))
+
+
+def dict_to_string(s_dict):
+    s_list = [""]*len(list(s_dict.keys()))
+    for var, val in s_dict.items():
+        s_list[var] = val
+
+    s_string = "".join(s_list)
+
+    return s_string
+
+
+def dict_to_string_initial(s_dict):
+    s_list = [""]*len(list(s_dict.keys()))
+    for var, val in s_dict.items():
+        if len(val) == 1:
+            s_list[var] = val
+        else:
+            s_list[var] = "."
+
+    s_string = "".join(s_list)
+
+    return s_string
 
 
 def solve(state):
@@ -242,6 +367,7 @@ def make_neighbors(state):
             if i in s:
                 for neighbor in s:
                     neighbors.add(neighbor)
+        neighbors.remove(i)
         l.append(list(neighbors))
 
     return l
@@ -272,6 +398,18 @@ def display(state):
             count += 1
         print()
     print()
+
+
+def display_s_string(state):
+    n = int(math.sqrt(len(state)))
+    puzzle = state
+    count = 0
+    for x in range(0, n):
+        for y in range(0, n):
+            print(puzzle[count], end=" ")
+            count += 1
+        print()
+    # print()
 
 
 def display_nums(n):
@@ -323,6 +461,17 @@ def goal_test(state):
     #         if s.count(symbol_set) != 1:
     #             return False
     # return True
+
+
+def goal_test_string(state):
+    n = int(math.sqrt(len(state)))
+    symbol_set = "123456789abcdefghijklmnopqrstuvwxyz"[:n]
+    puzzle = state
+
+    for symbol in symbol_set:
+        if puzzle.count(symbol) != n:
+            return False
+    return True
 
 
 if __name__ == "__main__":
