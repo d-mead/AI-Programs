@@ -11,14 +11,14 @@ from random import shuffle
 
 def main():
     sys.setrecursionlimit(500000)
-    global sets, neighbors, visited
+    global sets, neighbors, visited, symbol_set
     visited = 0
-    states = read_file("sudoku_puzzles_1.txt")
+    # states = read_file("sudoku_puzzles_2_hard.txt")
     # state = states[54]
     # solve(state)
     # solve_one(state)
     a = time.perf_counter()
-    solve_file("sudoku_puzzles_1.txt")
+    solve_file("sudoku_puzzles_4_large.txt")
     b = time.perf_counter()
     print("total time: %s" % round(b - a, 5))
     # record()
@@ -27,15 +27,23 @@ def main():
 def solve_file(filename):
     global visited
     count = 0
-    for state in read_file(filename):
+    for state in read_file(filename):#[60:]:
+        make_symbols(int(math.sqrt(len(state[4]))))
         print("Board Number: %s" % count)
         start = time.perf_counter()
-        solve_2(state)
+        s = solve_2(state)
         end = time.perf_counter()
         print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
+        print(goal_test_string(dict_to_string_initial(s)))
         print()
         visited = 0
         count += 1
+
+
+def make_symbols(n):
+    global symbol_set
+    symbols = "123456789abcdefghijklmnopqrstuvwxyz"
+    symbol_set = symbols[:n]
 
 
 def solve_one(state):
@@ -83,7 +91,7 @@ def make_list(state):
             options[i] = char
         else:
             options[i] = available(state, i)
-    sorted_options = dict(sorted(options.items(), key=lambda kv: (len(kv[1]), kv[0])))
+    sorted_options = options#  dict(sorted(options.items(), key=lambda kv: (len(kv[1]), kv[0])))
     return sorted_options
 
 
@@ -104,39 +112,53 @@ def available(state, i):
 
 
 def propagate(state):
-    global visited, neighbors
+    global visited, neighbors, sets, symbol_set
     visited += 1
     solved = deque()
+    # s = copy.deepcopy(state)
     s = state.copy()
     for i, options in s.items():
         if len(options) == 1:
             solved.append(i)
-            # print(i)
         # else:
         #     break
     i = 0
     while len(solved) != 0:
         i = solved.pop()
-    # for i in solved:
         for n in neighbors[i]:
             if s[i] in s[n]:
                 if len(s[n]) == 1:
-                    # print(".", end="")
                     return None
                 s[n] = s[n].replace(s[i], "")
                 if len(s[n]) == 1:
-                    # if n not in solved:
                     solved.append(n)
-    
-
-
 
     # s = dict(sorted(s.items(), key=lambda kv: (len(kv[1]), kv[0])))
 
-    # if len(solved) != len(state):
-    #     sn = propagate(state)
-    #     if sn:
-    #         return sn
+    return s
+
+
+def propagate_2(state):
+    global sets, visited, neighbors, symbol_set
+
+    if not state:
+        return None
+
+    s = state.copy()
+    for group in sets:
+        for symbol in symbol_set:
+            i_found = -1
+            for i in group:
+                if symbol in s[i]:
+                    if i_found == -1:
+                        i_found = i
+                    elif i_found > -1:
+                        i_found = -2
+            if i_found > -1:
+                s[i_found] = symbol
+
+    s = propagate(s)
+
     return s
 
 
@@ -157,7 +179,7 @@ def csp_2(state):  # state is just the dict of available locations
         if len(options) > 1:
             var = index
             # varis.append(index)
-            break
+            # break
 
     if var == -1:
         return state
@@ -170,9 +192,20 @@ def csp_2(state):  # state is just the dict of available locations
         # new_options = state.copy
         new_state = state.copy()
         new_state[var] = val
-        result = csp_2(propagate(new_state))
-        if result is not None:
-            return result
+        # result = csp_2(propagate_2(propagate(state)))
+        # if result:
+        #     return result
+        result = propagate(new_state)
+        if result:
+            result = propagate_2(result)
+            if result:
+                result = csp_2(result)
+                if result:
+                    return result
+
+        # result = csp_2(propagate_2(propagate(new_state)))
+        # if result is not None:
+        #     return result
 
 
 def solve_2(state):
@@ -188,6 +221,8 @@ def solve_2(state):
     solution = csp_2(state)
 
     display_s_string(dict_to_string_initial(solution))
+
+    return solution
 
 
 def dict_to_string(s_dict):
