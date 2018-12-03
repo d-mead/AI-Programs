@@ -13,21 +13,24 @@ def main():
     sys.setrecursionlimit(500000)
     global sets, neighbors, visited, symbol_set
     visited = 0
+
     # states = read_file("sudoku_puzzles_2_hard.txt")
     # state = states[54]
     # solve(state)
     # solve_one(state)
+
     a = time.perf_counter()
-    solve_file("sudoku_puzzles_4_large.txt")
+    solve_file("sudoku_puzzles_1.txt")
     b = time.perf_counter()
     print("total time: %s" % round(b - a, 5))
-    # record()
+
+    # record("sudoku_puzzles_1.txt")
 
 
 def solve_file(filename):
     global visited
     count = 0
-    for state in read_file(filename):#[60:]:
+    for state in read_file(filename)[:]:
         make_symbols(int(math.sqrt(len(state[4]))))
         print("Board Number: %s" % count)
         start = time.perf_counter()
@@ -56,7 +59,7 @@ def solve_one(state):
     visited = 0
 
 
-def record():
+def record(filename):
     global visited
     workbook = xlsxwriter.Workbook(str(datetime.datetime.now()) + '.xlsx')
     worksheet = workbook.add_worksheet()
@@ -64,8 +67,9 @@ def record():
     worksheet.write(0, 1, "runtime")
     worksheet.write(0, 2, "visited")
     count = 0
-    for state in read_file("sudoku_puzzles_1.txt"):
-        print(count)
+    for state in read_file(filename)[:]:
+        make_symbols(int(math.sqrt(len(state[4]))))
+        print("Board Number: %s" % count)
         start = time.perf_counter()
         solve_2(state)
         end = time.perf_counter()
@@ -84,14 +88,14 @@ def record():
 
 def make_list(state):
     global visited
-    visited += 1
+    # visited += 1
     options = dict()
     for i, char in enumerate(state):
         if char != ".":
             options[i] = char
         else:
             options[i] = available(state, i)
-    sorted_options = options#  dict(sorted(options.items(), key=lambda kv: (len(kv[1]), kv[0])))
+    sorted_options = options#dict(sorted(options.items(), key=lambda kv: (len(kv[1]), kv[0])))
     return sorted_options
 
 
@@ -113,7 +117,7 @@ def available(state, i):
 
 def propagate(state):
     global visited, neighbors, sets, symbol_set
-    visited += 1
+    # visited += 1
     solved = deque()
     # s = copy.deepcopy(state)
     s = state.copy()
@@ -135,7 +139,7 @@ def propagate(state):
 
     # s = dict(sorted(s.items(), key=lambda kv: (len(kv[1]), kv[0])))
 
-    return s
+    return s, (state != s) #true if they changed
 
 
 def propagate_2(state):
@@ -157,7 +161,10 @@ def propagate_2(state):
             if i_found > -1:
                 s[i_found] = symbol
 
-    s = propagate(s)
+    s, b = propagate(s)
+
+    while b:
+        s, b = propagate(s)
 
     return s
 
@@ -175,6 +182,9 @@ def csp_2(state):  # state is just the dict of available locations
 
     var = -1#vals[0]
     # varis = []
+
+    visited += 1
+
     for index, options in state.items():
         if len(options) > 1:
             var = index
@@ -192,11 +202,17 @@ def csp_2(state):  # state is just the dict of available locations
         # new_options = state.copy
         new_state = state.copy()
         new_state[var] = val
+        # r, b = propagate_2(propagate(state)[0])
+        # if b:
+        #     result = csp_2(r)
+        #     if result:
+        #         return result
         # result = csp_2(propagate_2(propagate(state)))
         # if result:
         #     return result
         result = propagate(new_state)
         if result:
+            result = result[0]
             result = propagate_2(result)
             if result:
                 result = csp_2(result)
