@@ -19,12 +19,12 @@ def main():
     # solve(state)
     # solve_one(state)
 
-    a = time.perf_counter()
-    solve_file("sudoku_puzzles_1.txt")
-    b = time.perf_counter()
-    print("total time: %s" % round(b - a, 5))
+    # a = time.perf_counter()
+    # solve_file("sudoku_puzzles_1.txt")
+    # b = time.perf_counter()
+    # print("total time: %s" % round(b - a, 5))
 
-    # record("sudoku_puzzles_1.txt")
+    record("sudoku_puzzles_1.txt")
 
 
 def solve_file(filename):
@@ -115,31 +115,35 @@ def available(state, i):
     return options
 
 
-def propagate(state):
+def propagate(state, solved):
     global visited, neighbors, sets, symbol_set
-    # visited += 1
-    solved = deque()
-    # s = copy.deepcopy(state)
+
+    if state is None:
+        return None
+
     s = state.copy()
-    for i, options in s.items():
-        if len(options) == 1:
-            solved.append(i)
-        # else:
-        #     break
-    i = 0
+
     while len(solved) != 0:
         i = solved.pop()
+        c = s[i]
         for n in neighbors[i]:
-            if s[i] in s[n]:
-                if len(s[n]) == 1:
+            c2 = s[n]
+            if c in c2:
+                c2l = len(c2)
+                if c2l == 1:
                     return None
-                s[n] = s[n].replace(s[i], "")
-                if len(s[n]) == 1:
+                s[n] = c2.replace(c, "")
+                if c2l == 2:
+                    # if n in solved:
+                    #     print("A")
                     solved.append(n)
+        if goal_test_dict(s):
+            print("C")
+            return s
 
     # s = dict(sorted(s.items(), key=lambda kv: (len(kv[1]), kv[0])))
 
-    return s, (state != s) #true if they changed
+    return s#, (state != s) #true if they changed
 
 
 def propagate_2(state):
@@ -148,80 +152,188 @@ def propagate_2(state):
     if not state:
         return None
 
+    if goal_test_dict(state):
+        return state
+
+    solved = deque()
+
     s = state.copy()
     for group in sets:
         for symbol in symbol_set:
             i_found = -1
             for i in group:
-                if symbol in s[i]:
+                c = s[i]
+                if symbol in c:
                     if i_found == -1:
                         i_found = i
                     elif i_found > -1:
                         i_found = -2
+                        break
             if i_found > -1:
-                s[i_found] = symbol
+                if len(s[i_found]) > 1:
+                    s[i_found] = symbol
+                    solved.append(i_found)
+    if goal_test_dict(s):
+        print("B")
+        return s
 
-    s, b = propagate(s)
+    r = propagate(s, solved)
 
-    while b:
-        s, b = propagate(s)
+    return r
+
+
+def prop_2(state):
+    global sets, visited, neighbors, symbol_set
+
+    if not state:
+        return None
+
+    s = state.copy()
+
+    solved = deque()
+
+    for group in sets:
+        vars = "".join([s[x] for x in group])
+
+        for symbol in symbol_set:
+            if vars.count(symbol) == 1:
+                for i in group:
+                    if symbol in s[i]:
+                        if len(s[i]) > 1:
+                            s[i] = symbol
+                            solved.append(i)
+                            break
+
+    s = propagate(s, solved)
 
     return s
 
 
+def propagate_3(state):
+    global sets, visited, neighbors, symbol_set
+
+    if not state:
+        return None
+
+    if goal_test_dict(state):
+        print("D")
+        return state
+
+    solved = deque()
+
+    s = state.copy()
+
+    for group in sets:
+
+        vals = [s[x] for x in list(group)]
+
+        dups = [x for x in vals if vals.count(x) > 1]
+
+        if len(dups) > 0:
+            d = dups[0]
+            if len(dups) == len(d):
+                for i in group:
+                    ops = s[i]
+                    if ops != d:
+                        for char in d:
+                            if char in ops:
+                                s[i].replace(char, "")
+                                if len(s[i]) == 1:
+                                    solved.append(i)
+
+    if goal_test_dict(state):
+        print("E")
+        return state
+
+    s = propagate(s, solved)
+
+    return s
+
+        # if len(dups) > 1:
+        #     a = 5
+
+
+
+
+    # for group in sets:
+    #     for i in group:
+    #         ci = s[i]
+    #         for i2 in group:
+    #             ci2 = s[i2]
+    #             if i2 != i:
+    #                 if ci == ci2:
+    #                     if len(ci) == 2:
+    #                         for i3 in group:
+    #                             if i3 != i and i3 != i2:
+    #                                 for char in ci:
+    #                                     s[i3] = s[i3].replace(char, "")
+    #                                     if len(s[i3]) == 1:
+    #                                         solved.append(i3)
+    #                 # else:
+    #                 #     si = strintersect(s[i], s[i2])
+    #                 #     if len(si) == 2:
+    #                 #         b = True
+    #                 #         for char in si:
+    #                 #             for i3 in group:
+    #                 #                 if i3 != i2 and i3 != i:
+    #                 #                     if char in s[i3]:
+    #                 #                         b = False
+    #                 #                         break
+    #                 #         if b:
+    #                 #             s[i] = si
+    #                 #             s[i2] = si
+    #
+    #
+    #
+    # # r = propagate_2(s)
+    # r = propagate(s, solved)
+    #
+    # return r
+
+
+def strintersect(a, b):
+    out = ""
+    for c in a:
+        if c in b:
+            out += c
+        if len(out) > 2:
+            return "-"
+
+    return out
+
+
 def csp_2(state):  # state is just the dict of available locations
-    global visited
+    global visited, sol
 
     if state is None:
         return None
-
-    # vals = list(state.values())
-
-    # if goal_test_string(dict_to_string_initial(state)):#len(vals[len(vals)-1]) == 1:
-    #     return state
-
     var = -1#vals[0]
     # varis = []
 
     visited += 1
 
+    options = []
+
     for index, options in state.items():
         if len(options) > 1:
             var = index
+            options = list(options)
+            break
             # varis.append(index)
             # break
 
     if var == -1:
         return state
 
-    # var = varis[random.randint(0, len(varis)-1)]
-
-    options = list(state[var])
-    # shuffle(options)
     for val in options:
         # new_options = state.copy
         new_state = state.copy()
         new_state[var] = val
-        # r, b = propagate_2(propagate(state)[0])
-        # if b:
-        #     result = csp_2(r)
-        #     if result:
-        #         return result
-        # result = csp_2(propagate_2(propagate(state)))
-        # if result:
-        #     return result
-        result = propagate(new_state)
-        if result:
-            result = result[0]
-            result = propagate_2(result)
-            if result:
-                result = csp_2(result)
-                if result:
-                    return result
 
-        # result = csp_2(propagate_2(propagate(new_state)))
-        # if result is not None:
-        #     return result
+        result = csp_2(propagate_3(propagate_2(propagate(new_state, deque([var])))))
+
+        if result is not None:
+            return result
 
 
 def solve_2(state):
@@ -239,6 +351,13 @@ def solve_2(state):
     display_s_string(dict_to_string_initial(solution))
 
     return solution
+
+
+def goal_test_dict(s_dict):
+    for options in list(s_dict.values()):
+        if len(options) != 1:
+            return False
+    return True
 
 
 def dict_to_string(s_dict):
