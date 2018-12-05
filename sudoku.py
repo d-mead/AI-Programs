@@ -11,7 +11,9 @@ from random import shuffle
 
 def main():
     sys.setrecursionlimit(500000)
-    global sets, neighbors, visited, symbol_set
+    global sets, neighbors, visited, symbol_set, sum_time, sum_visited
+    sum_time = 0
+    sum_visited = 0
     visited = 0
 
     # states = read_file("sudoku_puzzles_2_hard.txt")
@@ -19,16 +21,16 @@ def main():
     # solve(state)
     # solve_one(state)
 
-    # a = time.perf_counter()
-    # solve_file("sudoku_puzzles_1.txt")
-    # b = time.perf_counter()
-    # print("total time: %s" % round(b - a, 5))
+    a = time.perf_counter()
+    solve_file("sudoku_puzzles_1.txt")
+    b = time.perf_counter()
+    print("total time: %s\t\ttotal calls: %s" % (round(sum_time, 5), sum_visited))
 
-    record("sudoku_puzzles_1.txt")
+    # record("sudoku_puzzles_1.txt")
 
 
 def solve_file(filename):
-    global visited
+    global visited, sum_time, sum_visited
     count = 0
     for state in read_file(filename)[:]:
         make_symbols(int(math.sqrt(len(state[4]))))
@@ -37,10 +39,13 @@ def solve_file(filename):
         s = solve_2(state)
         end = time.perf_counter()
         print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
+        sum_time += end-start
+        sum_visited += visited
         print(goal_test_string(dict_to_string_initial(s)))
         print()
         visited = 0
         count += 1
+    # print(sum_time)
 
 
 def make_symbols(n):
@@ -138,7 +143,7 @@ def propagate(state, solved):
                     #     print("A")
                     solved.append(n)
         if goal_test_dict(s):
-            print("C")
+            # print("C")
             return s
 
     # s = dict(sorted(s.items(), key=lambda kv: (len(kv[1]), kv[0])))
@@ -173,8 +178,12 @@ def propagate_2(state):
                 if len(s[i_found]) > 1:
                     s[i_found] = symbol
                     solved.append(i_found)
+                    # s = propagate(state, deque([i_found]))
+                    # if s!= None:
+                    #     return s
+
     if goal_test_dict(s):
-        print("B")
+        # print("B")
         return s
 
     r = propagate(s, solved)
@@ -216,7 +225,7 @@ def propagate_3(state):
         return None
 
     if goal_test_dict(state):
-        print("D")
+        # print("D")
         return state
 
     solved = deque()
@@ -242,53 +251,12 @@ def propagate_3(state):
                                     solved.append(i)
 
     if goal_test_dict(state):
-        print("E")
+        # print("E")
         return state
 
     s = propagate(s, solved)
 
     return s
-
-        # if len(dups) > 1:
-        #     a = 5
-
-
-
-
-    # for group in sets:
-    #     for i in group:
-    #         ci = s[i]
-    #         for i2 in group:
-    #             ci2 = s[i2]
-    #             if i2 != i:
-    #                 if ci == ci2:
-    #                     if len(ci) == 2:
-    #                         for i3 in group:
-    #                             if i3 != i and i3 != i2:
-    #                                 for char in ci:
-    #                                     s[i3] = s[i3].replace(char, "")
-    #                                     if len(s[i3]) == 1:
-    #                                         solved.append(i3)
-    #                 # else:
-    #                 #     si = strintersect(s[i], s[i2])
-    #                 #     if len(si) == 2:
-    #                 #         b = True
-    #                 #         for char in si:
-    #                 #             for i3 in group:
-    #                 #                 if i3 != i2 and i3 != i:
-    #                 #                     if char in s[i3]:
-    #                 #                         b = False
-    #                 #                         break
-    #                 #         if b:
-    #                 #             s[i] = si
-    #                 #             s[i2] = si
-    #
-    #
-    #
-    # # r = propagate_2(s)
-    # r = propagate(s, solved)
-    #
-    # return r
 
 
 def strintersect(a, b):
@@ -307,6 +275,7 @@ def csp_2(state):  # state is just the dict of available locations
 
     if state is None:
         return None
+
     var = -1#vals[0]
     # varis = []
 
@@ -334,6 +303,10 @@ def csp_2(state):  # state is just the dict of available locations
 
         if result is not None:
             return result
+        # else:
+        #     return None
+
+    return None
 
 
 def solve_2(state):
