@@ -36,12 +36,12 @@ def solve_file(filename):
         make_symbols(int(math.sqrt(len(state[4]))))
         print("Board Number: %s" % count)
         start = time.perf_counter()
-        s = solve_2(state)
+        s, t = solve_2(state)
         end = time.perf_counter()
-        print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
-        sum_time += end-start
+        # print("Time: %s \t Calls: %s" % (t, visited))
+        sum_time += t
         sum_visited += visited
-        print(goal_test_string(dict_to_string_initial(s)))
+        # print(goal_test_string(dict_to_string_initial(s)))
         print()
         visited = 0
         count += 1
@@ -74,12 +74,12 @@ def record(filename):
     count = 0
     for state in read_file(filename)[:]:
         make_symbols(int(math.sqrt(len(state[4]))))
-        print("Board Number: %s" % count)
-        start = time.perf_counter()
-        solve_2(state)
-        end = time.perf_counter()
-        print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
-        print()
+        # print("Board Number: %s" % count)
+
+        sol, t = solve_2(state)
+
+        # print("Time: %s \t Calls: %s" % (t, visited))
+        # print()
         worksheet.write(count, 0, str(count))
         worksheet.write(count, 1, round(end-start, 5))
         worksheet.write(count, 2, visited)
@@ -121,7 +121,9 @@ def available(state, i):
 
 
 def propagate(state, solved):
-    global visited, neighbors, sets, symbol_set
+    global visited, neighbors, sets, symbol_set, changed
+
+    changed = False
 
     if state is None:
         return None
@@ -134,31 +136,25 @@ def propagate(state, solved):
         for n in neighbors[i]:
             c2 = s[n]
             if c in c2:
-                c2l = len(c2)
-                if c2l == 1:
+                s[n] = s[n].replace(c, "")
+                if len(s[n]) == 0:
                     return None
-                s[n] = c2.replace(c, "")
-                if c2l == 2:
-                    # if n in solved:
-                    #     print("A")
+                if len(s[n]) == 1:
                     solved.append(n)
+            changed = True
         if goal_test_dict(s):
-            # print("C")
             return s
 
-    # s = dict(sorted(s.items(), key=lambda kv: (len(kv[1]), kv[0])))
-
-    return s#, (state != s) #true if they changed
+    return s
 
 
 def propagate_2(state):
-    global sets, visited, neighbors, symbol_set
+    global sets, visited, neighbors, symbol_set, changed
+
+    changed = False
 
     if not state:
         return None
-
-    if goal_test_dict(state):
-        return state
 
     solved = deque()
 
@@ -173,22 +169,21 @@ def propagate_2(state):
                         i_found = i
                     elif i_found > -1:
                         i_found = -2
-                        break
+                        # break
             if i_found > -1:
                 if len(s[i_found]) > 1:
                     s[i_found] = symbol
+                    changed = True
                     solved.append(i_found)
-                    # s = propagate(state, deque([i_found]))
-                    # if s!= None:
+                    s = propagate(s, [i_found])
+                    if s is None:
+                        return None
+                    # if goal_test_dict(s):
                     #     return s
 
-    if goal_test_dict(s):
-        # print("B")
-        return s
+    # r = propagate(s, solved)
 
-    r = propagate(s, solved)
-
-    return r
+    return s
 
 
 def prop_2(state):
@@ -197,23 +192,49 @@ def prop_2(state):
     if not state:
         return None
 
+    if goal_test_dict(state):
+        return state
+
     s = state.copy()
 
-    solved = deque()
+    solved = []
 
-    for group in sets:
-        vars = "".join([s[x] for x in group])
+    for group in sets: # count the number of each possible symbols
+        options = dict()
+        for i in group:
+            syms = s[i]
+            al = [s[x] for x in group]
+            if len(syms) != 1:
+                if group == [3, 12, 21, 30, 39, 48, 57, 66, 75]:
+                    a = 5
+                for char in syms:
+                    if char not in al:
+                        if char not in options:
+                            options[char] = 1
+                        else:
+                            options[char] = options[char] + 1
 
-        for symbol in symbol_set:
-            if vars.count(symbol) == 1:
-                for i in group:
-                    if symbol in s[i]:
-                        if len(s[i]) > 1:
-                            s[i] = symbol
-                            solved.append(i)
-                            break
+        singles = []
+        for i, val in options.items():
+            if val == 1:
+                singles.append(i)
 
-    s = propagate(s, solved)
+        for single in singles:
+            for i in group:
+                if single in s[i]:
+                    x = s[i]
+                    s[i] = single
+                    solved.append(i)
+                    r = propagate(s, [i])
+                    if r is None:
+                        return None
+                    s = r
+                    # break
+
+    # s = propagate(s, solved)
+
+    if not s:
+        return None
 
     return s
 
@@ -238,21 +259,15 @@ def propagate_3(state):
 
         dups = [x for x in vals if vals.count(x) > 1]
 
-        if len(dups) > 0:
-            d = dups[0]
-            if len(dups) == len(d):
+        for d in dups:
+            if dups.count(d) == len(d):
                 for i in group:
-                    ops = s[i]
-                    if ops != d:
+                    if s[i] != d:
                         for char in d:
-                            if char in ops:
-                                s[i].replace(char, "")
+                            if char in s[i]:
+                                s[i] = s[i].replace(char, "")
                                 if len(s[i]) == 1:
                                     solved.append(i)
-
-    if goal_test_dict(state):
-        # print("E")
-        return state
 
     s = propagate(s, solved)
 
@@ -273,11 +288,13 @@ def strintersect(a, b):
 def csp_2(state):  # state is just the dict of available locations
     global visited, sol
 
-    if state is None:
+    if not state:
         return None
 
-    var = -1#vals[0]
-    # varis = []
+    if goal_test_dict(state):
+        return state
+
+    var = -1
 
     visited += 1
 
@@ -288,29 +305,25 @@ def csp_2(state):  # state is just the dict of available locations
             var = index
             options = list(options)
             break
-            # varis.append(index)
-            # break
 
     if var == -1:
         return state
 
     for val in options:
-        # new_options = state.copy
         new_state = state.copy()
         new_state[var] = val
 
-        result = csp_2(propagate_3(propagate_2(propagate(new_state, deque([var])))))
+        result = csp_2(propagate_3(propagate_2(propagate(new_state, [var]))))
 
         if result is not None:
             return result
-        # else:
-        #     return None
 
     return None
 
 
 def solve_2(state):
-    global sets, neighbors, visited
+    global sets, neighbors, visited, changed
+    changed = True
     sets = constrained_sets(state)
     neighbors = make_neighbors(state)
     count = count_symbols(state)
@@ -319,11 +332,30 @@ def solve_2(state):
 
     state = l
 
+    solved = []
+
+    start = time.perf_counter()
+
+    for i, val in state.items():
+        if len(val) == 1:
+            solved.append(i)
+
+    state = propagate(state, solved)
+
+    while changed:
+        state = propagate_2(state)
+
     solution = csp_2(state)
 
-    display_s_string(dict_to_string_initial(solution))
+    end = time.perf_counter()
 
-    return solution
+    # print(dict_to_string_initial(solution))
+
+    # display_s_string(dict_to_string_initial(solution))
+
+    print("%s\t%s\t%s\t%s" % (int(math.sqrt(len(state))), dict_to_string_initial(solution), round(end-start, 5), visited))
+
+    return solution, round(end-start, 5)
 
 
 def goal_test_dict(s_dict):
