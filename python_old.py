@@ -1,219 +1,62 @@
 import sys
 import time
+import random
 import math
-# import xlsxwriter
-# import datetime
+import xlsxwriter
+import datetime
 from collections import deque
+import copy
+from random import shuffle
 
 
 def main():
     sys.setrecursionlimit(500000)
-    global sets, neighbors, visited, symbol_set, sum_time, sum_visited
-    sum_time = 0
-    sum_visited = 0
+    global sets, neighbors, visited, symbol_set
     visited = 0
-
+    # states = read_file("sudoku_puzzles_2_hard.txt")
+    # state = states[54]
+    # solve(state)
+    # solve_one(state)
     a = time.perf_counter()
-    solve_file(sys.argv[1])#"sudoku_puzzles_4_large.txt")
+    solve_file("sudoku_puzzles_1.txt")
     b = time.perf_counter()
-    print(round(sum_time, 5))
-    print(sum_visited)
+    print("total time: %s" % round(b - a, 5))
+    # record()
 
 
 def solve_file(filename):
-    global visited, sum_time, sum_visited
+    global visited
     count = 0
-    for state in read_file(filename)[:]:
+    for state in read_file(filename):#[60:]:
         make_symbols(int(math.sqrt(len(state[4]))))
-
-        # print("Board Number: %s" % count)
-
-        s, t = solve_2(state)
-
-        sum_time += t
-        sum_visited += visited
-
+        print("Board Number: %s" % count)
+        start = time.perf_counter()
+        s = solve_2(state)
+        end = time.perf_counter()
+        print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
+        print(goal_test_string(dict_to_string_initial(s)))
+        print()
         visited = 0
         count += 1
 
 
-def propagate(state, solved):
-    global visited, neighbors, sets, symbol_set, changed
-
-    changed = False
-
-    if state is None:
-        return None
-
-    s = state#.copy()
-
-    while len(solved) != 0:
-        i = solved.pop()
-        c = s[i]
-        for n in neighbors[i]:
-            c2 = s[n]
-            if c in c2:
-                s[n] = s[n].replace(c, "")
-                if len(s[n]) == 0:
-                    return None
-                if len(s[n]) == 1:
-                    solved.append(n)
-            changed = True
-
-    return s
-
-
-def propagate_2(state):
-    global sets, visited, neighbors, symbol_set, changed
-
-    changed = False
-
-    if not state:
-        return None
-
-    solved = []
-
-    s = state#.copy()
-    for group in sets:
-        for symbol in symbol_set:
-            i_found = -1
-            for i in group:
-                c = s[i]
-                if symbol in c:
-                    if i_found == -1:
-                        i_found = i
-                    elif i_found > -1:
-                        i_found = -2
-                        break
-            if i_found > -1:
-                if len(s[i_found]) > 1:
-                    s[i_found] = symbol
-                    changed = True
-                    solved.append(i_found)
-                    s = propagate(s, [i_found])
-                    if s is None:
-                        return None
-
-    return s
-
-
-def propagate_3(state): # opt C
-    global sets, visited, neighbors, symbol_set
-
-    if not state:
-        return None
-
-    solved = deque()
-
-    s = state#.copy()
-
-    for group in sets:
-
-        vals = [s[x] for x in list(group)]
-
-        dups = [x for x in vals if vals.count(x) > 1]
-
-        for d in dups:
-            if dups.count(d) == len(d):
-                for i in group:
-                    if s[i] != d:
-                        one = d[0]
-                        two = d[1]
-                        if one in s[i]:
-                            s[i] = s[i].replace(one, '')
-                            if len(s[i]) == 1:
-                                solved.append(i)
-                        elif two in s[i]:
-                            s[i] = s[i].replace(two, '')
-                            if len(s[i]) == 1:
-                                solved.append(i)
-        s = propagate(s, solved)
-        if not s:
-            return None
-        solved = []
-
-    s = propagate(s, solved)
-
-    return s
-
-
-def csp_2(state):
-    global visited, sol
-
-    if not state:
-        return None
-
-    var = -1
-
-    visited += 1
-
-    options = []
-
-    for index, options in state.items():
-        if len(options) > 1:
-            var = index
-            options = list(options)
-            break
-
-    if var == -1:
-        return state
-
-    for val in options:
-        new_state = state.copy()
-        new_state[var] = val
-
-        result = csp_2(propagate_3(propagate_2(propagate(new_state, [var]))))
-
-        if result is not None:
-            return result
-
-    return None
-
-
-def solve_2(state):
-    global sets, neighbors, visited, changed
-    changed = True
-    sets = constrained_sets(state)
-    neighbors = make_neighbors(state)
-    count = count_symbols(state)
-
-    l = make_list(state[4])
-
-    state = l
-
-    solved = []
-
-    start = time.perf_counter()
-
-    state = propagate(state, solved)
-
-    while changed:
-        state = propagate_2(state)
-
-    solution = csp_2(state)
-
-    end = time.perf_counter()
-
-    print("%s\t%s\t%s\t\t%s" % (int(math.sqrt(len(state))), dict_to_string_initial(solution), round(end-start, 5), visited))
-
-    return solution, round(end-start, 5)
-
-
 def make_symbols(n):
     global symbol_set
-    symbols = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    symbols = "123456789abcdefghijklmnopqrstuvwxyz"
     symbol_set = symbols[:n]
 
 
 def solve_one(state):
     global visited
-    s, t = solve_2(state)
-    # print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
+    start = time.perf_counter()
+    solve_2(state)
+    end = time.perf_counter()
+    print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
     print()
     visited = 0
 
 
-def record(filename):
+def record():
     global visited
     workbook = xlsxwriter.Workbook(str(datetime.datetime.now()) + '.xlsx')
     worksheet = workbook.add_worksheet()
@@ -221,14 +64,18 @@ def record(filename):
     worksheet.write(0, 1, "runtime")
     worksheet.write(0, 2, "visited")
     count = 0
-    for state in read_file(filename)[:]:
-        make_symbols(int(math.sqrt(len(state[4]))))
-
-        sol, t = solve_2(state)
-
+    for state in read_file("sudoku_puzzles_1.txt"):
+        print(count)
+        start = time.perf_counter()
+        solve_2(state)
+        end = time.perf_counter()
+        print("Time: %s \t Calls: %s" % (round(end - start, 5), visited))
+        print()
         worksheet.write(count, 0, str(count))
         worksheet.write(count, 1, round(end-start, 5))
         worksheet.write(count, 2, visited)
+        # print(round(end - start, 5))
+        # print(visited)
         visited = 0
         count += 1
 
@@ -237,22 +84,26 @@ def record(filename):
 
 def make_list(state):
     global visited
-    # visited += 1
+    visited += 1
     options = dict()
     for i, char in enumerate(state):
         if char != ".":
             options[i] = char
         else:
             options[i] = available(state, i)
-    return options
+    sorted_options = options#  dict(sorted(options.items(), key=lambda kv: (len(kv[1]), kv[0])))
+    return sorted_options
 
 
 def available(state, i):
     global neighbors
     neighs = []
-    symbols = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    symbols = "123456789abcdefghijklmnopqrstuvwxyz"
     options = symbols[:int(math.sqrt(len(state)))]
     char = state[i]
+    # for n in neighbors:
+    #     if i in n:
+    #         neighs.extend(list(n))
     for n in neighbors[i]:
         c = state[n]
         if c != ".":
@@ -260,13 +111,38 @@ def available(state, i):
     return options
 
 
-def p_2(state):
+def propagate(state):
+    global visited, neighbors, sets, symbol_set
+    visited += 1
+    solved = deque()
+    # s = copy.deepcopy(state)
+    s = state.copy()
+    for i, options in s.items():
+        if len(options) == 1:
+            solved.append(i)
+        # else:
+        #     break
+    i = 0
+    while len(solved) != 0:
+        i = solved.pop()
+        for n in neighbors[i]:
+            if s[i] in s[n]:
+                if len(s[n]) == 1:
+                    return None
+                s[n] = s[n].replace(s[i], "")
+                if len(s[n]) == 1:
+                    solved.append(n)
+
+    # s = dict(sorted(s.items(), key=lambda kv: (len(kv[1]), kv[0])))
+
+    return s
+
+
+def propagate_2(state):
     global sets, visited, neighbors, symbol_set
 
     if not state:
         return None
-
-    solved = []
 
     s = state.copy()
     for group in sets:
@@ -280,21 +156,73 @@ def p_2(state):
                         i_found = -2
             if i_found > -1:
                 s[i_found] = symbol
-                solved.append(i_found)
 
-    s = propagate(s, solved)
+    s = propagate(s)
 
     return s
 
 
+def csp_2(state):  # state is just the dict of available locations
+    global visited
+
+    if state is None:
+        return None
+
+    # vals = list(state.values())
+
+    # if goal_test_string(dict_to_string_initial(state)):#len(vals[len(vals)-1]) == 1:
+    #     return state
+
+    var = -1#vals[0]
+    # varis = []
+    for index, options in state.items():
+        if len(options) > 1:
+            var = index
+            # varis.append(index)
+            # break
+
+    if var == -1:
+        return state
+
+    # var = varis[random.randint(0, len(varis)-1)]
+
+    options = list(state[var])
+    # shuffle(options)
+    for val in options:
+        # new_options = state.copy
+        new_state = state.copy()
+        new_state[var] = val
+        # result = csp_2(propagate_2(propagate(state)))
+        # if result:
+        #     return result
+        result = propagate(new_state)
+        if result:
+            result = propagate_2(result)
+            if result:
+                result = csp_2(result)
+                if result:
+                    return result
+
+        # result = csp_2(propagate_2(propagate(new_state)))
+        # if result is not None:
+        #     return result
 
 
+def solve_2(state):
+    global sets, neighbors, visited
+    sets = constrained_sets(state)
+    neighbors = make_neighbors(state)
+    count = count_symbols(state)
 
-def goal_test_dict(s_dict):
-    for options in list(s_dict.values()):
-        if len(options) != 1:
-            return False
-    return True
+    l = make_list(state[4])
+
+    state = l
+
+    solution = csp_2(state)
+
+    display_s_string(dict_to_string_initial(solution))
+
+    return solution
 
 
 def dict_to_string(s_dict):
@@ -406,7 +334,7 @@ def read_file(filename):
     lines = [x.replace("\n", "") for x in file.readlines()]
     file.close()
 
-    symbols = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    symbols = "123456789abcdefghijklmnopqrstuvwxyz"
 
     states = []
 
@@ -528,6 +456,28 @@ def display_nums(n):
         print()
 
 
+def display_cool(state):
+    n = state[0]
+    puzzle = state[4]
+    height= state[1]
+    width= state[2]
+    count = 0
+    for x in range(0, n):
+        for y in range(0, n):
+            if (y+1) % width == 0:
+                print(puzzle[count], end="  !  ")
+            else:
+                print(puzzle[count], end="   ")
+            count += 1
+        if (x+1) % height == 0:
+            print()
+            print("".join(["_"]*n))
+            print()
+        else:
+            print()
+            print()
+
+
 def goal_test(state):
     n = state[0]
     height = state[1]
@@ -540,10 +490,17 @@ def goal_test(state):
             return False
     return True
 
+    # for s in sets:
+    #     for symbol in symbol_set:
+    #         check_set =
+    #         if s.count(symbol_set) != 1:
+    #             return False
+    # return True
+
 
 def goal_test_string(state):
     n = int(math.sqrt(len(state)))
-    symbol_set = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[:n]
+    symbol_set = "123456789abcdefghijklmnopqrstuvwxyz"[:n]
     puzzle = state
 
     for symbol in symbol_set:

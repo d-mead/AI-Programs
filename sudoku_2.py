@@ -156,8 +156,6 @@ def checkSets(state): #THIS IS TE PROBLEM FIX
     for sets in groups:
         x = dict()
         for index in sets:
-            if sets == {3, 12, 21, 30, 39, 48, 57, 66, 75}:
-                a = 5
             v = state[index]
             if len(v)!=1:
                 for i in v:
@@ -166,7 +164,6 @@ def checkSets(state): #THIS IS TE PROBLEM FIX
                     else:
                         x[i] = x[i]+1
         unique = ''
-
         for i in x:
             if x[i]==1:
                 unique = unique+i
