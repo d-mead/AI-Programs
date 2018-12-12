@@ -2,23 +2,22 @@ import sys
 from collections import deque
 import os
 
+
 def main():
-    sys.setrecursionlimit(500000)
-    global comp
+    # global comp
 
-    state = sys.argv[1]#'.........'
-
+    state = sys.argv[1]#
     play(state)
-
-# 255,168 total games: 131,184 x wins, 77,904 o wins, 46,080 ties
 
 
 def play(state):
     global human, comp
     if state.count(".") == 9:
-        human = input("X or O: ").lower() # if empty board, ask if they are x or o
+        human = input("X or O: ").lower()  # if empty board, ask if they are x or o
         if human == 'x':
             comp = 'o'
+            display(state)
+            state = human_move(state)
         else:
             comp = 'x'
     else:
@@ -32,11 +31,6 @@ def play(state):
     print("you are %s's" % human)
     print()
 
-    if human == 'x':
-        display(state)
-        state = human_move(state)
-        # display(state)
-
     while end_test(state) == '.':
         display(state)
         moves = comp_move(state)
@@ -49,9 +43,7 @@ def play(state):
         state = human_move(state)
 
     print()
-
     end = end_test(state)
-
     print(("X Wins" if end == 'x' else "O Wins" if end == 'o' else 'Draw') + "!")
 
 
@@ -64,20 +56,126 @@ def best_move(d, state):
 
 def comp_move(state):
     global human, comp
-    print("computer's turn...")
-    print()
-    dots = [i for i, var in enumerate(state) if var == "."]
+
+    dots = get_empty(state)
     moves = dict()
 
     for dot in dots:
         move = state[:dot] + comp + state[dot+1:]
-        moves[dot] = evaluate(move, human)
+        moves[dot] = minimax(move, comp, False)#evaluate(move, comp, True)##mini(state, human)##
 
     for dot, eval in moves.items():
-        print("%s:\t%s" % (dot, ('W' if eval > 0 else "L" if eval < 0 else "T")))
+        print("%s:\t%s" % (dot, "W" if eval == 1 else "T" if eval == 0 else "L"))
     print()
 
     return moves
+
+
+def minimax(state, player, maxing):
+    global comp, human
+    end = end_test(state)
+    if end != ".":
+        if end == comp:
+            return 1
+        elif end == 'd':
+            return 0
+        else:
+            return -1
+
+    dots = get_empty(state)
+    boards = boards_from(state, dots, opposite(player))
+
+    if maxing:
+        value = -1000
+        for move in boards:
+            value = max(value, minimax(move, comp, not maxing))
+        return value
+    else:
+        value = 1000
+        for move in boards:
+            value = min(value, minimax(move, human, not maxing))
+        return value
+
+
+def boards_from(state, dots, player):
+    boards = []
+    for dot in dots:
+        boards.append(fill(state, dot, player))
+    return boards
+
+
+def fill(state, dot, val):
+    return state[:dot] + val + state[dot + 1:]
+
+
+def get_empty(state):
+    return [i for i, var in enumerate(state) if var == "."]
+
+
+def opposite(val):
+    if val == 'x':
+        return 'o'
+    return 'x'
+
+
+def evaluate(state, val, maxing):
+    global human, comp
+    value = 0
+    end = end_test(state)
+    if end != ".":
+        if end == comp:
+            return 1
+        elif end == 'd':
+            return 0
+        else:  # end == 'o'
+            return -1
+
+    best_eval = 0
+    best_move = ""
+
+    dots = [i for i, var in enumerate(state) if var == "."]
+    for dot in dots:
+        move = state[:dot]+val+state[dot+1:]
+        eval = evaluate(move, opposite(val), not maxing)
+        value += eval
+        if maxing:
+            if eval < best_eval:
+                best_eval = eval
+                # best_move = move
+        else:
+            if eval > best_eval:
+                best_eval = eval
+                # best_move = move
+
+    return value
+
+
+def minimax(state, player, maxing):
+    global comp
+    end = end_test(state)
+    if end != ".":
+        if end == comp:
+            return 1
+        elif end == 'd':
+            return 0
+        else:
+            return -1
+
+    dots = get_empty(state)
+
+    if maxing:
+        value = -100000
+        for dot in dots:
+            move = state[:dot] + player + state[dot + 1:]
+            value = max(value, minimax(move, opposite(player), not maxing))
+        return value
+    else:
+        value = 100000
+        dots = [i for i, var in enumerate(state) if var == "."]
+        for dot in dots:
+            move = state[:dot] + player + state[dot + 1:]
+            value = min(value, minimax(move, opposite(player), not maxing))
+        return value
 
 
 def human_move(state):
@@ -91,25 +189,95 @@ def human_move(state):
     return state
 
 
-def evaluate(state, val):
-    global human, comp
-    value = 0
-    end = end_test(state)
-    if end != ".":
-        if end == comp:
-            return 1
-        elif end == 'd':
-            return 0
-        else: # end == 'o'
-            return -1
 
+
+# def minimax(state, val):
+#     global human, comp
+#
+#     best_move = -1
+#     result = 'L'
+#
+#     dots = [i for i, var in enumerate(state) if var == "."]
+#     for dot in dots:
+#         move = state[:dot]+val+state[dot+1:]
+#         end = end_test(move)
+#         if end != '.':
+#             if end_test == comp:
+#                 best_move = move
+#                 return move, 'W'
+#             elif end_test == 'd':
+#                 best_move = move
+#                 result = "T"
+#             else:
+#                 if best_move == -1:
+#                     best_move = move
+#             return best_move, result
+#         else:
+#             if val == 'x':
+#                 return minimax(move, 'o')
+#             else:
+#                 return minimax(move, 'x')
+
+
+def mini(state, val):
+    min_rate = 10000000
+    min_dot = -1
     dots = [i for i, var in enumerate(state) if var == "."]
     for dot in dots:
-        if val == 'x':
-            value += evaluate(state[:dot]+val+state[dot+1:], 'o')
+        move = state[:dot]+val+state[dot+1:]
+        end = end_test(move)
+        rate = 0
+        if end != '.':
+            if end == val:
+                rate = 2
+            elif end == 'd':
+                rate = 1
+            else:
+                rate = 0
         else:
-            value += evaluate(state[:dot] + val + state[dot + 1:], 'x')
-    return value
+            if val == 'x':
+                rate += maxi(move, 'o')
+            else:
+                rate += maxi(move, 'x')
+
+        if rate < min_rate:
+            min_rate = rate
+            min_dot = dot
+
+    return min_rate
+
+
+def maxi(state, val):
+    max_rate = 0
+    max_dot = -1
+    dots = [i for i, var in enumerate(state) if var == "."]
+    for dot in dots:
+        move = state[:dot] + val + state[dot + 1:]
+        end = end_test(move)
+        rate = 0
+        if end != '.':
+            if end == val:
+                rate = 2
+            elif end == 'd':
+                rate = 1
+            else:
+                rate = 0
+        else:
+            if val == 'x':
+                rate += mini(move, 'o')
+            else:
+                rate += mini(move, 'x')
+
+        if rate > max_rate:
+            max_rate = rate
+            max_dot = dot
+
+    return max_rate
+
+
+
+
+    # return value
 
 
 def all_possible(state, val):
@@ -119,7 +287,6 @@ def all_possible(state, val):
     draws = set()
     queue = deque()
     queue.append((state, val))
-    count = 0
 
     while len(queue) > 0:
         temp, va = queue.pop()
@@ -133,11 +300,8 @@ def all_possible(state, val):
             elif end == "d":
                 draws.add(temp)
             endings.append(temp)
-            if temp in queue:
-                print("A")
         else:
             dots = [i for i, var in enumerate(temp) if var == "."]
-
             for dot in dots:
                 move = temp[:dot] + va + temp[dot+1:]
                 if va == "x":
@@ -170,17 +334,9 @@ def end_test(state):
     return "."
 
 
-def rand_place(state, val):
-    for i, var in state:
-        if var == ".":
-            state[i] = val
-    return state
-
-
 def display(state):
-    # print(state)
     for row in range(0, 3):
-        print(" ".join(state[row * 3 : (row + 1) * 3]))
+        print(" ".join(state[row * 3 : (row + 1) * 3]) + "\t" + " ".join([str(row*3), str(row*3+1), str(row*3+2)]))
     print()
 
 
