@@ -1,13 +1,13 @@
 import sys
-from collections import deque
-import os
 
 
 def main():
-    # global comp
 
-    state = sys.argv[1]#
+    state = sys.argv[1]
+
     play(state)
+
+    # all_possible(state, 'x')
 
 
 def play(state):
@@ -33,8 +33,7 @@ def play(state):
 
     while end_test(state) == '.':
         display(state)
-        moves = comp_move(state)
-        state = best_move(moves, state)
+        state = comp_move(state)
         display(state)
 
         if end_test(state) != '.':
@@ -42,33 +41,52 @@ def play(state):
 
         state = human_move(state)
 
-    print()
     end = end_test(state)
-    print(("X Wins" if end == 'x' else "O Wins" if end == 'o' else 'Draw') + "!")
-
-
-def best_move(d, state):
-    global comp
-    moves = list(sorted(d.items(), key=lambda kv: kv[1], reverse=True))
-    dot = moves[0][0]
-    return state[:dot] + comp + state[dot+1:]
+    print(("I Win" if end == comp else "You Win" if end == human else 'Draw') + "!")
+    print()
 
 
 def comp_move(state):
     global human, comp
+
+    print("my turn")
+    print()
 
     dots = get_empty(state)
     moves = dict()
 
     for dot in dots:
         move = state[:dot] + comp + state[dot+1:]
-        moves[dot] = minimax(move, comp, False)#evaluate(move, comp, True)##mini(state, human)##
+        moves[dot] = minimax(move, comp, False)
 
     for dot, eval in moves.items():
-        print("%s:\t%s" % (dot, "W" if eval == 1 else "T" if eval == 0 else "L"))
+        print("%s:\t%s" % (dot, "Win" if eval == 1 else "Tie" if eval == 0 else "Loss"))
     print()
 
-    return moves
+    moves = list(sorted(moves.items(), key=lambda kv: kv[1], reverse=True))
+
+    dot = moves[0][0]
+
+    print("i'll choose %s" % dot)
+    print()
+
+    return fill(state, dot, comp)#state[:dot] + comp + state[dot+1:]
+
+
+def human_move(state):
+    global human, comp
+    print("your turn")
+    print("your options are " + ", ".join([str(x) for x in get_empty(state)]))
+    i = int(input("your move: "))
+    print()
+    while i not in get_empty(state):
+        print("Not a valid space")
+        print("your options are " + ", ".join([str(x) for x in get_empty(state)]))
+        i = int(input("your move: "))
+
+    state = state[:i] + human + state[i+1:]
+
+    return state
 
 
 def minimax(state, player, maxing):
@@ -118,202 +136,46 @@ def opposite(val):
     return 'x'
 
 
-def evaluate(state, val, maxing):
-    global human, comp
-    value = 0
-    end = end_test(state)
-    if end != ".":
-        if end == comp:
-            return 1
-        elif end == 'd':
-            return 0
-        else:  # end == 'o'
-            return -1
-
-    best_eval = 0
-    best_move = ""
-
-    dots = [i for i, var in enumerate(state) if var == "."]
-    for dot in dots:
-        move = state[:dot]+val+state[dot+1:]
-        eval = evaluate(move, opposite(val), not maxing)
-        value += eval
-        if maxing:
-            if eval < best_eval:
-                best_eval = eval
-                # best_move = move
-        else:
-            if eval > best_eval:
-                best_eval = eval
-                # best_move = move
-
-    return value
-
-
-def minimax(state, player, maxing):
-    global comp
-    end = end_test(state)
-    if end != ".":
-        if end == comp:
-            return 1
-        elif end == 'd':
-            return 0
-        else:
-            return -1
-
-    dots = get_empty(state)
-
-    if maxing:
-        value = -100000
-        for dot in dots:
-            move = state[:dot] + player + state[dot + 1:]
-            value = max(value, minimax(move, opposite(player), not maxing))
-        return value
-    else:
-        value = 100000
-        dots = [i for i, var in enumerate(state) if var == "."]
-        for dot in dots:
-            move = state[:dot] + player + state[dot + 1:]
-            value = min(value, minimax(move, opposite(player), not maxing))
-        return value
-
-
-def human_move(state):
-    global human, comp
-    i = int(input("your turn: "))
-    if state[i] != ".":
-        print("ERROR")
-    else:
-        state = state[:i] + human + state[i+1:]
-
-    return state
-
-
-
-
-# def minimax(state, val):
-#     global human, comp
-#
-#     best_move = -1
-#     result = 'L'
-#
-#     dots = [i for i, var in enumerate(state) if var == "."]
-#     for dot in dots:
-#         move = state[:dot]+val+state[dot+1:]
-#         end = end_test(move)
-#         if end != '.':
-#             if end_test == comp:
-#                 best_move = move
-#                 return move, 'W'
-#             elif end_test == 'd':
-#                 best_move = move
-#                 result = "T"
-#             else:
-#                 if best_move == -1:
-#                     best_move = move
-#             return best_move, result
-#         else:
-#             if val == 'x':
-#                 return minimax(move, 'o')
-#             else:
-#                 return minimax(move, 'x')
-
-
-def mini(state, val):
-    min_rate = 10000000
-    min_dot = -1
-    dots = [i for i, var in enumerate(state) if var == "."]
-    for dot in dots:
-        move = state[:dot]+val+state[dot+1:]
-        end = end_test(move)
-        rate = 0
-        if end != '.':
-            if end == val:
-                rate = 2
-            elif end == 'd':
-                rate = 1
-            else:
-                rate = 0
-        else:
-            if val == 'x':
-                rate += maxi(move, 'o')
-            else:
-                rate += maxi(move, 'x')
-
-        if rate < min_rate:
-            min_rate = rate
-            min_dot = dot
-
-    return min_rate
-
-
-def maxi(state, val):
-    max_rate = 0
-    max_dot = -1
-    dots = [i for i, var in enumerate(state) if var == "."]
-    for dot in dots:
-        move = state[:dot] + val + state[dot + 1:]
-        end = end_test(move)
-        rate = 0
-        if end != '.':
-            if end == val:
-                rate = 2
-            elif end == 'd':
-                rate = 1
-            else:
-                rate = 0
-        else:
-            if val == 'x':
-                rate += mini(move, 'o')
-            else:
-                rate += mini(move, 'x')
-
-        if rate > max_rate:
-            max_rate = rate
-            max_dot = dot
-
-    return max_rate
-
-
-
-
-    # return value
-
-
 def all_possible(state, val):
+    from collections import deque
+
     endings = []
-    x_wins = set()
-    o_wins = set()
+    x_wins = {5: 0, 7: 0, 9: 0}
+    o_wins = {6: 0, 8: 0}
     draws = set()
+    visited = set()
+    visited.add(state)
     queue = deque()
-    queue.append((state, val))
+    queue.append((state, val, 0))
 
     while len(queue) > 0:
-        temp, va = queue.pop()
+        temp, va, depth = queue.pop()
 
         end = end_test(temp)
         if end != ".":
-            if end == "x":
-                x_wins.add(temp)
-            elif end == "o":
-                o_wins.add(temp)
-            elif end == "d":
-                draws.add(temp)
+            if temp not in visited:
+                if end == "x":
+                    x_wins[depth] += 1
+                elif end == "o":
+                    o_wins[depth] += 1
+                elif end == "d":
+                    draws.add(temp)
             endings.append(temp)
+            visited.add(temp)
         else:
             dots = [i for i, var in enumerate(temp) if var == "."]
             for dot in dots:
                 move = temp[:dot] + va + temp[dot+1:]
                 if va == "x":
-                    queue.append((move, 'o'))
+                    queue.append((move, 'o', depth+1))
                 else:
-                    queue.append((move, 'x'))
+                    queue.append((move, 'x', depth+1))
 
     display(state)
     print()
     print("Endings:\t%s" % len(endings))
-    print("X Wins: \t%s" % len(x_wins))
-    print("O Wins: \t%s" % len(o_wins))
+    print("X Wins: \t%s" % x_wins)
+    print("O Wins: \t%s" % o_wins)
     print("Draws:  \t%s" % len(draws))
 
 
@@ -334,7 +196,26 @@ def end_test(state):
     return "."
 
 
+# X Win: x, O Win: o, Full: d, Not Done: .
+def end_test(state):
+    l = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
+         [0, 3, 6], [1, 4, 7], [2, 5, 8],
+         [0, 4, 8], [2, 4, 6]]
+
+    for li in l:
+        if state[li[0]] == state[li[1]] == state[li[2]]:
+            if state[li[0]] == 'x' or state[li[0]] == 'o':
+                return state[li[0]]
+
+    if state.count(".") == 0:
+        return "d"
+
+    return "."
+
+
 def display(state):
+    print("current board:")
+    print()
     for row in range(0, 3):
         print(" ".join(state[row * 3 : (row + 1) * 3]) + "\t" + " ".join([str(row*3), str(row*3+1), str(row*3+2)]))
     print()
