@@ -10,7 +10,8 @@ SIZE = 100
 
 
 def main():
-    play_many_games(BLANK, 100)
+    play_many_games(BLANK, 10)
+    # smart_game(BLANK)
     # random_game(BLANK)
     # best_move_setup()
 
@@ -35,56 +36,102 @@ def determine_best_move(state, token, max_depth):
     # limit the valid moves for the opponent
     # increase your number of valid moves
     global bad, good, sides
-    # fringe = deque([(x, 0, token, 0) for x in get_valid_moves(state, token)])
-    # # (spot, depth, token, rating)
-    # best_rate = -1
-    # best_spot = -1
-    #
-    # while len(fringe) > 0:
-    #     spot, depth, token, total_rating = fringe.pop()
-    #     this_move = move(state, token, spot)
-    #     rat, valids = rate(this_move, token, spot)
-    #     total_rating += rat
-    #     if total_rating > best_rate:
-    #         best_rate = total_rating
-    #         best_spot = spot
-    #
-    #     if depth < max_depth:
-    #         for valid in valids:
-    #             fringe.append((valid, depth+1, opposite(token), total_rating))
+    valids = get_valid_moves(state, token)
+    fringe = deque([(x, 0, token, 0, x) for x in valids])
+    # (spot, depth, token, rating, original)
+    visited = set()
+    best_rate = -1
+    best_spot = valids[0]
+    ratings = dict(zip(valids, [0]*len(valids)))
 
-    valid_moves = get_valid_moves(state, token)
-    ratings = dict()
-    okay_moves = []
-    for mov in valid_moves:
-        # valids = get_valid_moves(move(state, token, move))
+    while len(fringe) > 0:
+        spot, depth, token, total_rating, original_spot = fringe.pop()
+        this_move = move(state, token, spot)
+        if this_move in visited:
+            continue
 
-        if mov in good:
-            return mov
-        if mov in sides:
-            return mov
-        if mov not in bad:
-            okay_moves.append(mov)
-
-    if len(okay_moves) > 0:
-        return okay_moves[random.randint(0, len(okay_moves) - 1)]
-    return valid_moves[random.randint(0, len(valid_moves)-1)]
+        rating = rate(state, token)
 
 
-def rate(state, token, spot):
+
+        if depth < max_depth:
+            for valid in valids:
+                fringe.append((valid, depth+1, opposite(token), total_rating, original_spot))
+
+    return best_spot
+
+def boards_at_depth(state, token, max_depth):
+    boards = []
+    valids = get_valid_moves(state, token)
+    fringe = deque([(move(state, token, x), 0, token) for x in valids)
+
+    while len(fringe) > 0:
+        this_state, depth, token = fringe.pop()
+        if depth == max_depth:
+            for valid in get_valid_moves(this_state, opposite(token)):
+                boards.append(move(this_state, opposite(token), valid))
+            
+
+
+def rate_layer(state, token):
+    # new_state = move(state, token, spot)
+    valids = get_valid_moves(state, token)
+    if valids:
+        best_rate = -100
+        best_spot = valids[0]
+        for valid in valids:
+            new_move = move(state, token, valid)
+            rating = rate(state, token)
+            if rating > best_rate:
+                best_rate = rating
+                best_spot = valid
+
+        return best_spot, best_rate
+
+    return -1, -100
+
+
+def rate(state, token):
     global good, bad, sides, maxing
-    rate = 0
+    rate = 1
     valids = get_valid_moves(state, token)
     opposite_valids = get_valid_moves(state, opposite(token))
-    rate = len(valids)-len(opposite_valids)
-    if spot in good:
-        rate *= 5
-    elif rate in sides:
-        rate *= 3
-    elif rate in bad:
-        rate *= .5
 
-    return rate, valids
+    cap = capture(state, token) * 1
+    mob = mobility(state, token) * 1
+    svs = spot_value(state, token) * 1
+
+    return cap + mob + svs
+
+def capture(state, token):
+    g = state.count(token)
+    b = state.count(opposite(token))
+    return 100 * ((g-b)/(g+b))
+
+
+def mobility(state, token):
+    g = len(get_valid_moves(state, token))
+    b = len(get_valid_moves(state, opposite(token)))
+    return 100 * ((g-b)/(g+b))
+
+
+def spot_value(state, token):
+    global good, bad, sides
+    value = 0
+    tokens = [x for x in range(0, 100) if state[x] == token]
+    for x in tokens:
+        if x in good:
+            value += 2
+        elif x in sides:
+            value += 1
+        elif x in bad:
+            value -= 2
+
+    if value < 0:
+        return 0
+
+    return 100 * value/len(tokens)
+
 
 
 def best_move_setup():
@@ -101,21 +148,21 @@ def smart_move(state, token):
     valid_moves = get_valid_moves(state, token)
 
     if valid_moves:
-        # print(token + "'s turn")
-        # print("valid moves: " + ", ".join([str(x) for x in valid_moves]))
+        print(token + "'s turn")
+        print("valid moves: " + ", ".join([str(x) for x in valid_moves]))
         skip = False
         spot = determine_best_move(state, token, 0)#valid_moves[random.randint(0, len(valid_moves) - 1)]
         moves.append(spot)
-        # print('I choose %s ' % spot)
-        # print()
+        print('I choose %s ' % spot)
+        print()
         new_state = move(state, token, spot)
         return new_state
     if not skip:
         if state.count('.') != 64:
             moves.append(-1)
-            # print(token + "'s turn")
-            # print("no valid moves available: skip")
-            # print()
+            print(token + "'s turn")
+            print("no valid moves available: skip")
+            print()
             skip = True
         else:
             cont = False
@@ -131,21 +178,21 @@ def random_move(state, token):
     valid_moves = get_valid_moves(state, token)
 
     if valid_moves:
-        # print(token + "'s turn")
-        # print("valid moves: " + ", ".join([str(x) for x in valid_moves]))
+        print(token + "'s turn")
+        print("valid moves: " + ", ".join([str(x) for x in valid_moves]))
         skip = False
         spot = valid_moves[random.randint(0, len(valid_moves) - 1)]
         moves.append(spot)
-        # print('I choose %s ' % spot)
-        # print()
+        print('I choose %s ' % spot)
+        print()
         new_state = move(state, token, spot)
         return new_state
     if not skip:
         if state.count('.') != 64:
             moves.append(-1)
-            # print(token + "'s turn")
-            # print("no valid moves available: skip")
-            # print()
+            print(token + "'s turn")
+            print("no valid moves available: skip")
+            print()
             skip = True
         else:
             cont = False
@@ -163,18 +210,18 @@ def smart_game(state):
     moves = []
 
     while state:
-        # display(state)
+        display(state)
         state = random_move(state, '@')
         if not cont:
             break
 
-        # display(state)
+        display(state)
         state = smart_move(state, 'o')
         if not cont:
             break
 
-    # print("Game Over")
-    # print("Final Score:")
+    print("Game Over")
+    print("Final Score:")
     print("o: %s  @: %s" % (state.count('o'), state.count('@')))
     total_moves = 64 - state.count('.')
     print("o: %s%%  @: %s%%" % (
