@@ -5,12 +5,23 @@ from heapq import heappush, heappop
 from collections import deque
 
 BLANK = "???????????........??........??........??...@o...??...o@...??........??........??........???????????"
+OTHER = "???????????........??........??.@...@..??.ooo@...??...@@...??...@....??........??........???????????"
 DIRECTIONS = [1, -1, 10, -10, 11, -11, 9, -9]
 SIZE = 100
 
+# ??????????. . . . . . . . ??. . . . . . . . ??. @ . . . @ . . ??. o o o @ . . . ??. . . @ @ . . . ??. . . @ . . . . ??. . . . . . . . ??. . . . . . . .??????????
+
 
 def main():
-    play_many_games(BLANK, 10)
+    # print("??????????. . . . . . . . ??. . . . . . . . ??. @ . . . @ . . ??. o o o @ . . . ??. . . @ @ . . . ??. . . @ . . . . ??. . . . . . . . ??. . . . . . . .??????????".replace(" ", ""))
+    # display(OTHER)
+    global maxing
+    maxing = '@'
+    best_move_setup()
+    # boards = minimax_to_depth(OTHER, '@', 3)
+    determine_best_move(OTHER, '@', 4)
+
+    # play_many_games(BLANK, 10)
     # smart_game(BLANK)
     # random_game(BLANK)
     # best_move_setup()
@@ -44,33 +55,100 @@ def determine_best_move(state, token, max_depth):
     best_spot = valids[0]
     ratings = dict(zip(valids, [0]*len(valids)))
 
-    while len(fringe) > 0:
-        spot, depth, token, total_rating, original_spot = fringe.pop()
-        this_move = move(state, token, spot)
-        if this_move in visited:
-            continue
+    for valid in valids:
+        this_move = move(state, token, valid)
+        best_rate = -1
+        results_at_depths = minimax_to_depth(this_move, opposite(token), max_depth)
+        for result, path in results_at_depths:
+            rating = rate(result, token)
+            if rating > best_rate:
+                best_rate = rating
+        ratings[valid] = best_rate
 
-        rating = rate(state, token)
+    for mov, rating in ratings.items():
+        print("%s: %s" % (mov, rating))
 
-
-
-        if depth < max_depth:
-            for valid in valids:
-                fringe.append((valid, depth+1, opposite(token), total_rating, original_spot))
+    display(move(state, token, best_spot))
 
     return best_spot
 
+
 def boards_at_depth(state, token, max_depth):
     boards = []
+    visited = set()
     valids = get_valid_moves(state, token)
-    fringe = deque([(move(state, token, x), 0, token) for x in valids)
+    if not valids:
+        valids = []
+    fringe = deque([(move(state, token, x), 1, token) for x in valids])
 
     while len(fringe) > 0:
         this_state, depth, token = fringe.pop()
+        if this_state in visited:
+            continue
+        visited.add(this_state)
         if depth == max_depth:
             for valid in get_valid_moves(this_state, opposite(token)):
                 boards.append(move(this_state, opposite(token), valid))
-            
+        elif depth < max_depth:
+            for valid in get_valid_moves(this_state, opposite(token)):
+                fringe.append((move(this_state, opposite(token), valid), depth+1, opposite(token)))
+
+    # for board in boards:
+    #     display(board)
+    return boards
+
+
+def minimax_to_depth(state, token, max_depth):
+    global maxing
+    boards = []
+    visited = set()
+    valids = get_valid_moves(state, token)
+
+    fringe = deque([(move(state, token, x), 1, token, [state, move(state, token, x)]) for x in valids])
+
+    while len(fringe) > 0:
+        this_state, depth, token, so_far = fringe.pop()
+
+        # if this_state in visited:
+        #     continue
+        visited.add(this_state)
+        if depth == max_depth:
+            valids = get_valid_moves(this_state, opposite(token))
+            if valids:
+                for valid in valids:
+                    boards.append((move(this_state, opposite(token), valid), so_far))
+            else:
+                boards.append((this_state, so_far))
+        elif depth < max_depth:
+            best_rating = -1
+            best_move = this_state
+            valids = get_valid_moves(this_state, opposite(token))
+            if valids:
+                for valid in valids:
+                    mov = move(this_state, opposite(token), valid)
+                    rating = rate(mov, opposite(token))
+                    if token == maxing:
+                        if rating > best_rating:
+                            best_rating = rating
+                            best_move = mov
+                    else:
+                        if rating < best_rating:
+                            best_rating = rating
+                            best_move = mov
+                sf = list(so_far)
+                sf.append(best_move)
+                fringe.append((best_move, depth + 1, opposite(token), sf))
+            # else:
+            #     print("A")
+            #     display(this_state)
+
+    # for board, path in boards:
+    #     print("new path: ")
+    #     # for b in path:
+    #     #     display(b)
+    #     display(board)
+
+    return boards
 
 
 def rate_layer(state, token):
@@ -103,22 +181,37 @@ def rate(state, token):
 
     return cap + mob + svs
 
+
 def capture(state, token):
     g = state.count(token)
     b = state.count(opposite(token))
+    if g == b == 0:
+        return 0
     return 100 * ((g-b)/(g+b))
 
 
 def mobility(state, token):
-    g = len(get_valid_moves(state, token))
-    b = len(get_valid_moves(state, opposite(token)))
+    t = get_valid_moves(state, token)
+    if t:
+        g = len(t)
+    else:
+        g = 0
+    o = get_valid_moves(state, opposite(token))
+    if o:
+        b = len(o)
+    else:
+        b = 0
+    if g == b == 0:
+        return 0
     return 100 * ((g-b)/(g+b))
 
 
 def spot_value(state, token):
     global good, bad, sides
     value = 0
-    tokens = [x for x in range(0, 100) if state[x] == token]
+    if len(state) < 99:
+        print("B")
+    tokens = [x for x in range(0, 99) if state[x] == token]
     for x in tokens:
         if x in good:
             value += 2
@@ -131,7 +224,6 @@ def spot_value(state, token):
         return 0
 
     return 100 * value/len(tokens)
-
 
 
 def best_move_setup():
@@ -338,7 +430,7 @@ def get_valid_moves(state, token):
             changing_index = move_index
 
     if len(valid_move_indecies) == 0:
-        return False
+        return []
 
     return valid_move_indecies
 
