@@ -10,7 +10,7 @@ SIZE = 100
 
 
 def main():
-    play_many_games(BLANK, 10000)
+    play_many_games(BLANK, 100)
     # random_game(BLANK)
     # best_move_setup()
 
@@ -18,12 +18,15 @@ def main():
 def play_many_games(state, count):
     start = time.perf_counter()
     o_wins = 0
+    tot_pct = 0
     for x in range(0, count):
-        win = random_game(state)
+        win, pct = smart_game(state)
+        tot_pct += pct
         if win == 'o':
             o_wins += 1
     end = time.perf_counter()
     print("total: %s " % (o_wins*100/count))
+    print("avg %%: %s " % (round(tot_pct/count, 5)))
     print("time: %s " % round(end-start, 5))
 
 
@@ -32,40 +35,40 @@ def determine_best_move(state, token, max_depth):
     # limit the valid moves for the opponent
     # increase your number of valid moves
     global bad, good, sides
-    fringe = deque([(x, 0, token, 0) for x in get_valid_moves(state, token)])
-    # (spot, depth, token, rating)
-    best_rate = -1
-    best_spot = -1
-
-    while len(fringe) > 0:
-        spot, depth, token, total_rating = fringe.pop()
-        this_move = move(state, token, spot)
-        rat, valids = rate(this_move, token, spot)
-        total_rating += rat
-        if total_rating > best_rate:
-            best_rate = total_rating
-            best_spot = spot
-
-        if depth < max_depth:
-            for valid in valids:
-                fringe.append((valid, depth+1, opposite(token), total_rating))
-
-    # valid_moves = get_valid_moves(state, token)
-    # ratings = dict()
-    # okay_moves = []
-    # for mov in valid_moves:
-    #     # valids = get_valid_moves(move(state, token, move))
+    # fringe = deque([(x, 0, token, 0) for x in get_valid_moves(state, token)])
+    # # (spot, depth, token, rating)
+    # best_rate = -1
+    # best_spot = -1
     #
-    #     if mov in good:
-    #         return mov
-    #     if mov in sides:
-    #         return mov
-    #     if mov not in bad:
-    #         okay_moves.append(mov)
+    # while len(fringe) > 0:
+    #     spot, depth, token, total_rating = fringe.pop()
+    #     this_move = move(state, token, spot)
+    #     rat, valids = rate(this_move, token, spot)
+    #     total_rating += rat
+    #     if total_rating > best_rate:
+    #         best_rate = total_rating
+    #         best_spot = spot
     #
-    # if len(okay_moves) > 0:
-    #     return okay_moves[random.randint(0, len(okay_moves) - 1)]
-    # return valid_moves[random.randint(0, len(valid_moves)-1)]
+    #     if depth < max_depth:
+    #         for valid in valids:
+    #             fringe.append((valid, depth+1, opposite(token), total_rating))
+
+    valid_moves = get_valid_moves(state, token)
+    ratings = dict()
+    okay_moves = []
+    for mov in valid_moves:
+        # valids = get_valid_moves(move(state, token, move))
+
+        if mov in good:
+            return mov
+        if mov in sides:
+            return mov
+        if mov not in bad:
+            okay_moves.append(mov)
+
+    if len(okay_moves) > 0:
+        return okay_moves[random.randint(0, len(okay_moves) - 1)]
+    return valid_moves[random.randint(0, len(valid_moves)-1)]
 
 
 def rate(state, token, spot):
@@ -89,7 +92,7 @@ def best_move_setup():
     bad = set([a1_to_index(x) for x in ['b2', 'b7', 'g2', 'g7']])
     good = set([a1_to_index(x) for x in ['a1', 'a8', 'h1', 'h8']])
     sides = set(list(range(21, 81, 10)) + list(range(12, 18)) + list(range(28, 88, 10)) + list(range(82, 88)))
-    maxing == 'o'
+    maxing = 'o'
 
 
 def smart_move(state, token):
@@ -101,7 +104,7 @@ def smart_move(state, token):
         # print(token + "'s turn")
         # print("valid moves: " + ", ".join([str(x) for x in valid_moves]))
         skip = False
-        spot = determine_best_move(state, token)#valid_moves[random.randint(0, len(valid_moves) - 1)]
+        spot = determine_best_move(state, token, 0)#valid_moves[random.randint(0, len(valid_moves) - 1)]
         moves.append(spot)
         # print('I choose %s ' % spot)
         # print()
@@ -181,7 +184,7 @@ def smart_game(state):
     # print(moves)
     print()
 
-    return "o" if state.count('o') > state.count('@') else '@'
+    return ("o" if state.count('o') > state.count('@') else '@'), round(state.count('o') * 100 / total_moves, 4)
 
 
 def random_game(state):
