@@ -1,125 +1,46 @@
 import random
 import sys
-import time
-from heapq import heappush, heappop
-from collections import deque
+import math
 
-BLANK = "???????????........??........??........??...@o...??...o@...??........??........??........???????????"
+BLANK = "???????????........??........??........??...o@...??...@o...??........??........??........???????????"
 DIRECTIONS = [1, -1, 10, -10, 11, -11, 9, -9]
 SIZE = 100
 
 
 def main():
-    play_many_games(BLANK, 10000)
-    # random_game(BLANK)
-    # best_move_setup()
+    random_game(BLANK)
 
 
-def play_many_games(state, count):
-    start = time.perf_counter()
-    o_wins = 0
-    for x in range(0, count):
-        win = random_game(state)
-        if win == 'o':
-            o_wins += 1
-    end = time.perf_counter()
-    print("total: %s " % (o_wins*100/count))
-    print("time: %s " % round(end-start, 5))
-
-
-def determine_best_move(state, token, max_depth):
-    # good and bad spots
-    # limit the valid moves for the opponent
-    # increase your number of valid moves
-    global bad, good, sides
-    fringe = deque([(x, 0, token, 0) for x in get_valid_moves(state, token)])
-    # (spot, depth, token, rating)
-    best_rate = -1
-    best_spot = -1
-
-    while len(fringe) > 0:
-        spot, depth, token, total_rating = fringe.pop()
-        this_move = move(state, token, spot)
-        rat, valids = rate(this_move, token, spot)
-        total_rating += rat
-        if total_rating > best_rate:
-            best_rate = total_rating
-            best_spot = spot
-
-        if depth < max_depth:
-            for valid in valids:
-                fringe.append((valid, depth+1, opposite(token), total_rating))
-
-    # valid_moves = get_valid_moves(state, token)
-    # ratings = dict()
-    # okay_moves = []
-    # for mov in valid_moves:
-    #     # valids = get_valid_moves(move(state, token, move))
-    #
-    #     if mov in good:
-    #         return mov
-    #     if mov in sides:
-    #         return mov
-    #     if mov not in bad:
-    #         okay_moves.append(mov)
-    #
-    # if len(okay_moves) > 0:
-    #     return okay_moves[random.randint(0, len(okay_moves) - 1)]
-    # return valid_moves[random.randint(0, len(valid_moves)-1)]
-
-
-def rate(state, token, spot):
-    global good, bad, sides, maxing
-    rate = 0
-    valids = get_valid_moves(state, token)
-    opposite_valids = get_valid_moves(state, opposite(token))
-    rate = len(valids)-len(opposite_valids)
-    if spot in good:
-        rate *= 5
-    elif rate in sides:
-        rate *= 3
-    elif rate in bad:
-        rate *= .5
-
-    return rate, valids
-
-
-def best_move_setup():
-    global bad, good, sides, maxing
-    bad = set([a1_to_index(x) for x in ['b2', 'b7', 'g2', 'g7']])
-    good = set([a1_to_index(x) for x in ['a1', 'a8', 'h1', 'h8']])
-    sides = set(list(range(21, 81, 10)) + list(range(12, 18)) + list(range(28, 88, 10)) + list(range(82, 88)))
-    maxing == 'o'
-
-
-def smart_move(state, token):
+def random_game(state):
     global skip, cont, moves
-    # cont = True
-    valid_moves = get_valid_moves(state, token)
+    skip = False
+    cont = True
+    moves = []
 
-    if valid_moves:
-        # print(token + "'s turn")
-        # print("valid moves: " + ", ".join([str(x) for x in valid_moves]))
-        skip = False
-        spot = determine_best_move(state, token)#valid_moves[random.randint(0, len(valid_moves) - 1)]
-        moves.append(spot)
-        # print('I choose %s ' % spot)
-        # print()
-        new_state = move(state, token, spot)
-        return new_state
-    if not skip:
-        if state.count('.') != 64:
-            moves.append(-1)
-            # print(token + "'s turn")
-            # print("no valid moves available: skip")
-            # print()
-            skip = True
-        else:
-            cont = False
-        return state
+    while state:
+        display(state)
+        state = random_move(state, '@')
+        if not cont:
+            break
+
+        display(state)
+        state = random_move(state, 'o')
+        if not cont:
+            break
+
+    print("Game Over")
+    print("Final Score:")
+    print("o: %s  @: %s" % (state.count('o'), state.count('@')))
+    total_moves = 64 - state.count('.')
+    print("o: %s%%  @: %s%%" % (round(state.count('o')*100 / total_moves, 4), round(state.count('@')*100 / total_moves, 4)))
+    if state.count('@') > state.count('o'):
+        print("@ wins")
+    elif state.count('@') < state.count('o'):
+        print('o wins')
     else:
-        cont = False
-        return state
+        print('draw')
+    # print(("o" if state.count('o') > state.count('@') else ('@' if state.count('@') > state.count('o') else '@') + " wins!"))
+    print(moves)
 
 
 def random_move(state, token):
@@ -128,21 +49,21 @@ def random_move(state, token):
     valid_moves = get_valid_moves(state, token)
 
     if valid_moves:
-        # print(token + "'s turn")
-        # print("valid moves: " + ", ".join([str(x) for x in valid_moves]))
+        print(token + "'s turn")
+        print("valid moves: " + ", ".join([str(x) for x in valid_moves]))
         skip = False
         spot = valid_moves[random.randint(0, len(valid_moves) - 1)]
         moves.append(spot)
-        # print('I choose %s ' % spot)
-        # print()
+        print('I choose %s ' % spot)
+        print()
         new_state = move(state, token, spot)
         return new_state
     if not skip:
         if state.count('.') != 64:
             moves.append(-1)
-            # print(token + "'s turn")
-            # print("no valid moves available: skip")
-            # print()
+            print(token + "'s turn")
+            print("no valid moves available: skip")
+            print()
             skip = True
         else:
             cont = False
@@ -150,69 +71,6 @@ def random_move(state, token):
     else:
         cont = False
         return state
-
-
-def smart_game(state):
-    best_move_setup()
-    global skip, cont, moves
-    skip = False
-    cont = True
-    moves = []
-
-    while state:
-        # display(state)
-        state = random_move(state, '@')
-        if not cont:
-            break
-
-        # display(state)
-        state = smart_move(state, 'o')
-        if not cont:
-            break
-
-    # print("Game Over")
-    # print("Final Score:")
-    print("o: %s  @: %s" % (state.count('o'), state.count('@')))
-    total_moves = 64 - state.count('.')
-    print("o: %s%%  @: %s%%" % (
-    round(state.count('o') * 100 / total_moves, 4), round(state.count('@') * 100 / total_moves, 4)))
-    print(("o" if state.count('o') > state.count('@') else '@') + " wins!")
-
-    # print(moves)
-    print()
-
-    return "o" if state.count('o') > state.count('@') else '@'
-
-
-def random_game(state):
-    best_move_setup()
-    global skip, cont, moves
-    skip = False
-    cont = True
-    moves = []
-
-    while state:
-        # display(state)
-        state = random_move(state, '@')
-        if not cont:
-            break
-
-        # display(state)
-        state = random_move(state, 'o')
-        if not cont:
-            break
-
-    # print("Game Over")
-    # print("Final Score:")
-    print("o: %s  @: %s" % (state.count('o'), state.count('@')))
-    total_moves = 64 - state.count('.')
-    print("o: %s%%  @: %s%%" % (round(state.count('o')*100 / total_moves, 4), round(state.count('@')*100 / total_moves, 4)))
-    print(("o" if state.count('o') > state.count('@') else '@') + " wins!")
-
-    # print(moves)
-    print()
-
-    return "o" if state.count('o') > state.count('@') else '@'
 
 
 def move(state, token, spot):
@@ -398,16 +256,15 @@ def display_old(state):
     letters = ["A", "B", "C", "D", "E", "F", "G", "H"]
 
     for x in range(1, 9):
-        to_print = letters[x-1] + "\t" + " ".join(state[x * 10 + 1:(x + 1) * 10 - 1]) + " \t" + " ".join(
+        to_print = " ".join(state[x * 10 + 1:(x + 1) * 10 - 1]) + " \t" + " ".join(
             [(str(x * 10 + y) + (" " if len(str(x * 10 + y)) == 1 else "")) for y in
-             range(1, 9)])  #
+             range(1, 9)])  # letters[x-1] + "\t" +
         print(to_print)
         # print(letters[x] + "\t" + " ".join(state[x*8:(x+1)*8]) + " \t" + " ".join([(str(x*8+y)+ (" " if len(str(x*8+y)) == 1 else "")) for y in range(0, 8)]))
         # print((" ".join(state[x*8:(x+1)*8])) + " \t" + " ".join([(str(x*8+y)+ (" " if len(str(x*8+y)) == 1 else "")) for y in range(0, 8)])
     print()
-    print("\t1 2 3 4 5 6 7 8")
     print(" o: %s  @: %s" % (state.count('o'), state.count('@')))
-
+    # print("\t1 2 3 4 5 6 7 8")
     print()
 
 
