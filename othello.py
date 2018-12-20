@@ -9,19 +9,15 @@ OTHER = "???????????........??........??.@...@..??.ooo@...??...@@...??...@....??
 DIRECTIONS = [1, -1, 10, -10, 11, -11, 9, -9]
 SIZE = 100
 
-# ??????????. . . . . . . . ??. . . . . . . . ??. @ . . . @ . . ??. o o o @ . . . ??. . . @ @ . . . ??. . . @ . . . . ??. . . . . . . . ??. . . . . . . .??????????
-
 
 def main():
-    # print("??????????. . . . . . . . ??. . . . . . . . ??. @ . . . @ . . ??. o o o @ . . . ??. . . @ @ . . . ??. . . @ . . . . ??. . . . . . . . ??. . . . . . . .??????????".replace(" ", ""))
-    # display(OTHER)
-    global maxing
-    maxing = '@'
+    # global maxing
+    # maxing = 'o'
     best_move_setup()
     # boards = minimax_to_depth(OTHER, '@', 3)
-    determine_best_move(OTHER, '@', 4)
+    # determine_best_move(OTHER, 'o', 4)
 
-    # play_many_games(BLANK, 10)
+    play_many_games(BLANK, 100)
     # smart_game(BLANK)
     # random_game(BLANK)
     # best_move_setup()
@@ -29,17 +25,45 @@ def main():
 
 def play_many_games(state, count):
     start = time.perf_counter()
-    o_wins = 0
+    wins = 0
     tot_pct = 0
     for x in range(0, count):
         win, pct = smart_game(state)
         tot_pct += pct
-        if win == 'o':
-            o_wins += 1
+        if win == '@':
+            wins += 1
     end = time.perf_counter()
-    print("total: %s " % (o_wins*100/count))
+    print("total: %s " % (wins*100/count))
     print("avg %%: %s " % (round(tot_pct/count, 5)))
     print("time: %s " % round(end-start, 5))
+
+
+def eval_until_2(state, token):
+    start = time.perf_counter()
+    global bad, good, sides
+    valids = get_valid_moves(state, token)
+    ratings = dict(zip(valids, [0] * len(valids)))
+    max_depth = 1
+    
+
+    while time.perf_counter() - start < 1.8:
+        for valid in valids:
+            this_move = move(state, token, valid)
+            best_rate = rate(this_move, token, valid)
+            ratings[valid] = best_rate
+        max_depth += 1
+        break
+
+    best_mov = -1
+    best_rating = -100000
+
+    for mov, rating in ratings.items():
+        print("%s: %s" % (mov, rating))
+        if rating > best_rating:
+            best_rating = rating
+            best_mov = mov
+
+    return best_mov
 
 
 def determine_best_move(state, token, max_depth):
@@ -51,8 +75,9 @@ def determine_best_move(state, token, max_depth):
     fringe = deque([(x, 0, token, 0, x) for x in valids])
     # (spot, depth, token, rating, original)
     visited = set()
-    best_rate = -1
-    best_spot = valids[0]
+    total_best_rate = -1
+    total_best_spot = valids[0]
+    # best_spot =
     ratings = dict(zip(valids, [0]*len(valids)))
 
     for valid in valids:
@@ -63,39 +88,23 @@ def determine_best_move(state, token, max_depth):
             rating = rate(result, token)
             if rating > best_rate:
                 best_rate = rating
+        if best_rate > total_best_rate:
+            total_best_rate = best_rate
+            total_best_spot = valid
         ratings[valid] = best_rate
+
+    best_mov = -1
+    best_rating = -100000
 
     for mov, rating in ratings.items():
         print("%s: %s" % (mov, rating))
-
-    display(move(state, token, best_spot))
-
-    return best_spot
+        if rating > best_rating:
+            best_mov = mov
 
 
-def boards_at_depth(state, token, max_depth):
-    boards = []
-    visited = set()
-    valids = get_valid_moves(state, token)
-    if not valids:
-        valids = []
-    fringe = deque([(move(state, token, x), 1, token) for x in valids])
+    # display(move(state, token, best_spot))
 
-    while len(fringe) > 0:
-        this_state, depth, token = fringe.pop()
-        if this_state in visited:
-            continue
-        visited.add(this_state)
-        if depth == max_depth:
-            for valid in get_valid_moves(this_state, opposite(token)):
-                boards.append(move(this_state, opposite(token), valid))
-        elif depth < max_depth:
-            for valid in get_valid_moves(this_state, opposite(token)):
-                fringe.append((move(this_state, opposite(token), valid), depth+1, opposite(token)))
-
-    # for board in boards:
-    #     display(board)
-    return boards
+    return best_mov
 
 
 def minimax_to_depth(state, token, max_depth):
@@ -120,14 +129,14 @@ def minimax_to_depth(state, token, max_depth):
             else:
                 boards.append((this_state, so_far))
         elif depth < max_depth:
-            best_rating = -1
+            best_rating = rate(this_state, opposite(token))
             best_move = this_state
             valids = get_valid_moves(this_state, opposite(token))
             if valids:
                 for valid in valids:
                     mov = move(this_state, opposite(token), valid)
                     rating = rate(mov, opposite(token))
-                    if token == maxing:
+                    if token != maxing:
                         if rating > best_rating:
                             best_rating = rating
                             best_move = mov
@@ -169,61 +178,51 @@ def rate_layer(state, token):
     return -1, -100
 
 
-def rate(state, token):
+def rate(state, token, spot):
     global good, bad, sides, maxing
     rate = 1
-    valids = get_valid_moves(state, token)
-    opposite_valids = get_valid_moves(state, opposite(token))
+    # valids = get_valid_moves(state, token)
+    # opposite_valids = get_valid_moves(state, opposite(token))
 
-    cap = capture(state, token) * 1
-    mob = mobility(state, token) * 1
-    svs = spot_value(state, token) * 1
+    cap = capture(state, token, spot) * 2
+    mob = 0#mobility(state, token, spot) * 1
+    svs = spot_value(state, token, spot) * 2
+    # print("cap" + str(mob))
 
     return cap + mob + svs
 
 
-def capture(state, token):
-    g = state.count(token)
-    b = state.count(opposite(token))
-    if g == b == 0:
-        return 0
-    return 100 * ((g-b)/(g+b))
+def capture(state, token, spot):
+    mov = move(state, token, spot)
+    return 5 * mov.count(token) - state.count(token)
 
 
-def mobility(state, token):
-    t = get_valid_moves(state, token)
+def mobility(state, token, spot):
+    mov = move(state, token, spot)
+    t = get_valid_moves(mov, token)
     if t:
-        g = len(t)
+        return 2 * len(t)
     else:
-        g = 0
-    o = get_valid_moves(state, opposite(token))
-    if o:
-        b = len(o)
-    else:
-        b = 0
-    if g == b == 0:
         return 0
-    return 100 * ((g-b)/(g+b))
 
 
-def spot_value(state, token):
+def spot_value(state, token, spot):
     global good, bad, sides
     value = 0
-    if len(state) < 99:
-        print("B")
-    tokens = [x for x in range(0, 99) if state[x] == token]
-    for x in tokens:
-        if x in good:
-            value += 2
-        elif x in sides:
-            value += 1
-        elif x in bad:
-            value -= 2
 
-    if value < 0:
-        return 0
+    # mov = move(state, token, spot)
+    # for t in [x for x in range(0, 99) if mov[x] == token]:
+    #     if t in bad:
+    #         value += -10
 
-    return 100 * value/len(tokens)
+    if spot in good:
+        value += 5
+    elif spot in sides:
+        value += 4
+    elif spot in sides:
+        value -= 5
+
+    return 5 * value
 
 
 def best_move_setup():
@@ -231,7 +230,7 @@ def best_move_setup():
     bad = set([a1_to_index(x) for x in ['b2', 'b7', 'g2', 'g7']])
     good = set([a1_to_index(x) for x in ['a1', 'a8', 'h1', 'h8']])
     sides = set(list(range(21, 81, 10)) + list(range(12, 18)) + list(range(28, 88, 10)) + list(range(82, 88)))
-    maxing = 'o'
+    # maxing = 'o'
 
 
 def smart_move(state, token):
@@ -243,7 +242,7 @@ def smart_move(state, token):
         print(token + "'s turn")
         print("valid moves: " + ", ".join([str(x) for x in valid_moves]))
         skip = False
-        spot = determine_best_move(state, token, 0)#valid_moves[random.randint(0, len(valid_moves) - 1)]
+        spot = eval_until_2(state, token)#determine_best_move(state, token, 3)#valid_moves[random.randint(0, len(valid_moves) - 1)]
         moves.append(spot)
         print('I choose %s ' % spot)
         print()
@@ -262,6 +261,38 @@ def smart_move(state, token):
     else:
         cont = False
         return state
+
+
+def smart_game(state):
+    best_move_setup()
+    global skip, cont, moves
+    skip = False
+    cont = True
+    moves = []
+
+    while state:
+        display(state)
+        state = smart_move(state, '@')
+        if not cont:
+            break
+
+        display(state)
+        state = random_move(state, 'o')
+        if not cont:
+            break
+
+    print("Game Over")
+    print("Final Score:")
+    print("o: %s  @: %s" % (state.count('o'), state.count('@')))
+    total_moves = 64 - state.count('.')
+    print("o: %s%%  @: %s%%" % (
+    round(state.count('o') * 100 / total_moves, 4), round(state.count('@') * 100 / total_moves, 4)))
+    print(("o" if state.count('o') > state.count('@') else '@') + " wins!")
+
+    # print(moves)
+    print()
+
+    return ("o" if state.count('o') > state.count('@') else '@'), round(state.count('@') * 100 / total_moves, 4)
 
 
 def random_move(state, token):
@@ -294,67 +325,39 @@ def random_move(state, token):
         return state
 
 
-def smart_game(state):
-    best_move_setup()
-    global skip, cont, moves
-    skip = False
-    cont = True
-    moves = []
+def a1_to_index(input):
+    letters = ["A", "B", "C", "D", "E", "F", "G", "H"]
 
-    while state:
-        display(state)
-        state = random_move(state, '@')
-        if not cont:
-            break
-
-        display(state)
-        state = smart_move(state, 'o')
-        if not cont:
-            break
-
-    print("Game Over")
-    print("Final Score:")
-    print("o: %s  @: %s" % (state.count('o'), state.count('@')))
-    total_moves = 64 - state.count('.')
-    print("o: %s%%  @: %s%%" % (
-    round(state.count('o') * 100 / total_moves, 4), round(state.count('@') * 100 / total_moves, 4)))
-    print(("o" if state.count('o') > state.count('@') else '@') + " wins!")
-
-    # print(moves)
-    print()
-
-    return ("o" if state.count('o') > state.count('@') else '@'), round(state.count('o') * 100 / total_moves, 4)
+    return (letters.index(input[0].upper())+1) * 10 + int(input[1])
 
 
-def random_game(state):
-    best_move_setup()
-    global skip, cont, moves
-    skip = False
-    cont = True
-    moves = []
+def index_to_a1(index):
+    letters = ["A", "B", "C", "D", "E", "F", "G", "H"]
 
-    while state:
-        # display(state)
-        state = random_move(state, '@')
-        if not cont:
-            break
+    return letters[int(index/10) - 1] + str(index % 10)
 
-        # display(state)
-        state = random_move(state, 'o')
-        if not cont:
-            break
 
-    # print("Game Over")
-    # print("Final Score:")
-    print("o: %s  @: %s" % (state.count('o'), state.count('@')))
-    total_moves = 64 - state.count('.')
-    print("o: %s%%  @: %s%%" % (round(state.count('o')*100 / total_moves, 4), round(state.count('@')*100 / total_moves, 4)))
-    print(("o" if state.count('o') > state.count('@') else '@') + " wins!")
+def boards_at_depth(state, token, max_depth):
+    boards = []
+    visited = set()
+    valids = get_valid_moves(state, token)
+    if not valids:
+        valids = []
+    fringe = deque([(move(state, token, x), 1, token) for x in valids])
 
-    # print(moves)
-    print()
+    while len(fringe) > 0:
+        this_state, depth, token = fringe.pop()
+        if this_state in visited:
+            continue
+        visited.add(this_state)
+        if depth == max_depth:
+            for valid in get_valid_moves(this_state, opposite(token)):
+                boards.append(move(this_state, opposite(token), valid))
+        elif depth < max_depth:
+            for valid in get_valid_moves(this_state, opposite(token)):
+                fringe.append((move(this_state, opposite(token), valid), depth+1, opposite(token)))
 
-    return "o" if state.count('o') > state.count('@') else '@'
+    return boards
 
 
 def move(state, token, spot):
@@ -451,106 +454,9 @@ def display(state):
     print()
     print(" o: %s  @: %s" % (state.count('o'), state.count('@')))
     print()
-
-
-
-# beyond this point is old code no longer in use
-
-
-def play(state):
-    display(state)
-    human = input("your token (o or @): ")
-    comp = opposite(human)
-    global skip
-    skip = False
-
-    while state:
-        state = computer_move(state, comp)
-        if state:
-            display(state)
-        else:
-            break
-
-        state = human_move(state, human)
-        if state:
-            display(state)
-        else:
-            break
-
-    if state.count('.') == 0:
-        print("Game Over")
-        print("Final Score:")
-        print("o: %s \t @: %s" % (state.count('o'), state.count('@')))
-        print("o wins!" if state.count('o') > state.count('@') else "@ wins!")
-
-
-def a1_to_index(input):
-    letters = ["A", "B", "C", "D", "E", "F", "G", "H"]
-
-    return (letters.index(input[0].upper())+1) * 10 + int(input[1])
-
-
-def index_to_a1(index):
-    letters = ["A", "B", "C", "D", "E", "F", "G", "H"]
-
-    return letters[int(index/10) - 1] + str(index % 10)
-
-
-def computer_move(state, token):
-    global skip
-    valid_moves = get_valid_moves(state, token)
-    print("my turn")
-    if valid_moves:
-        skip = False
-        spot = valid_moves[random.randint(0, len(valid_moves)-1)]
-        print('i choose %s ' % index_to_a1(spot))
-        new_state = move(state, token, spot)
-        return new_state
-    if not skip:
-        print("no available moves: I'll skip")
-        skip = True
-        return state
-    else:
-        return False
-
-
-def human_move(state, token):
-    global skip
-    valid_moves = get_valid_moves(state, token)
-    print("your turn")
-    if valid_moves:
-        skip = False
-        # print("your options are %s" % ", ".join([str(x) for x in valid_moves]))
-        # inp =
-        print("your options are %s" % ", ".join([index_to_a1(x) for x in valid_moves]))
-        spot = a1_to_index(input("your move: "))
-        while spot not in valid_moves:
-            spot = a1_to_index(input("\033[91minvalid move. \033[0m \nyour move: "))
-        new_state = move(state, token, spot)
-        return new_state
-    if not skip:
-        print("no avalable moves: you must skip")
-        skip = True
-        return state
-    else:
-        return False
-
-
-def display_old(state):
-    letters = ["A", "B", "C", "D", "E", "F", "G", "H"]
-
-    for x in range(1, 9):
-        to_print = letters[x-1] + "\t" + " ".join(state[x * 10 + 1:(x + 1) * 10 - 1]) + " \t" + " ".join(
-            [(str(x * 10 + y) + (" " if len(str(x * 10 + y)) == 1 else "")) for y in
-             range(1, 9)])  #
-        print(to_print)
-        # print(letters[x] + "\t" + " ".join(state[x*8:(x+1)*8]) + " \t" + " ".join([(str(x*8+y)+ (" " if len(str(x*8+y)) == 1 else "")) for y in range(0, 8)]))
-        # print((" ".join(state[x*8:(x+1)*8])) + " \t" + " ".join([(str(x*8+y)+ (" " if len(str(x*8+y)) == 1 else "")) for y in range(0, 8)])
-    print()
-    print("\t1 2 3 4 5 6 7 8")
-    print(" o: %s  @: %s" % (state.count('o'), state.count('@')))
-
-    print()
+    pct = int(100*(state.count('@')/(state.count('@') + state.count('o'))))
+    print("|                       |                        |                        |                        |")
+    print("".join(["#"]*pct))
 
 
 if __name__ == "__main__":
