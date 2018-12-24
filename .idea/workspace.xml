@@ -7,165 +7,11 @@
       <change afterPath="$PROJECT_DIR$/../../../AOC/day_1.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../../AOC/day_2.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../../AOC/day_2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Project1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/15PuzzleExercises.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 19:09:59.870435.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 19:11:07.672587.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 19:12:13.311315.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 19:12:27.441631.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 19:12:40.541981.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 19:28:26.155596.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 19:29:55.596012.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 19:32:38.958209.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 20:30:42.692166.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 20:40:50.528575.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-12 20:56:52.807483.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-13 12:56:40.259058.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-13 13:13:03.044892.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-13 13:15:37.758505.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-13 13:16:31.594252.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-13 13:18:11.218357.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-13 13:28:18.488159.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-13 14:06:34.908105.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-13 14:08:24.293765.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-13 14:10:00.571444.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:33:19.052739.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:33:33.044261.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:36:04.320305.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:38:51.239168.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:42:25.364585.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:43:09.750907.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:43:43.794658.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:44:33.988822.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:48:34.771614.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:49:18.396585.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:51:12.397486.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 14:56:00.648545.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 15:00:20.901241.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 15:01:35.531606.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 15:05:04.474114.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 16:29:57.591644.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 16:31:58.599720.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 22:23:26.997858.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 22:24:06.248395.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 22:25:05.737454.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 22:28:45.202954.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 22:33:10.121591.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-14 23:12:27.342589.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 11:02:56.626564.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 11:07:27.376113.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 16:09:34.971564.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 16:34:23.776816.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 16:35:47.699627.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 18:15:59.430271.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 18:16:43.988249.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 18:56:43.678289.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 19:48:25.983757.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 19:56:41.611742.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 19:57:31.334914.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 19:58:26.283749.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 20:00:37.021391.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 20:00:48.807416.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 21:49:30.805249.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 22:01:10.099572.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 22:06:25.746038.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 22:27:25.091108.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 22:29:25.669745.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 22:34:11.520620.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 22:42:54.228255.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 22:53:14.363236.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 23:03:12.432614.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 23:31:59.860861.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 23:32:33.014259.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-15 23:33:34.113291.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-27 11:27:48.393305.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-29 13:04:59.007787.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-29 13:08:36.971935.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-11-29 13:11:04.692210.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-01 15:08:17.702380.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-01 15:11:12.098007.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-01 15:13:35.749474.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-01 15:15:35.830789.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-01 15:19:50.621040.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-01 15:21:09.950814.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-01 15:24:49.720781.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-01 15:26:18.641095.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-01 15:26:58.189747.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-01 15:43:46.203790.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 00:15:54.198970.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 00:18:44.350805.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 00:19:57.901769.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 00:21:18.643163.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 00:22:42.622970.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 00:23:32.347479.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 00:25:34.675797.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 09:36:02.862754.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 09:37:28.237084.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 10:16:51.047816.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 10:19:25.912809.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 10:20:32.897704.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 10:21:13.364261.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 10:22:37.055681.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 10:23:31.980585.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-03 10:25:19.162860.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-04 10:54:49.697521.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-04 10:57:51.719678.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-04 10:58:30.261786.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-04 11:03:32.285319.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-04 11:08:23.183052.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-04 14:10:11.982408.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-04 14:13:02.799368.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-04 14:13:46.925257.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-04 14:16:11.869411.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-05 14:29:34.380817.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018-12-07 14:29:48.715199.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8_puzzle1.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8puz1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8puz2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8puz3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8puz4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/8puz5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/A*_21.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/APUSH2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/All Length 8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BFS 8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BI BFS 16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Decreasing1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Decreasing2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Figure_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Figure_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Figure_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ID DFS:BFS 6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ID DFS:BFS 6png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IMG_0892.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Increasing1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Increasing2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Increasing3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplier1.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplier10.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplier2.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplier3.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplier4.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplier5.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplier6.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplier7.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Multiplier8.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random1 (Autosaved).xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Random1.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spreadsheet1.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spreadsheet2.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/edges.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/edges_236.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/length9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nqueenswritten236.docx" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../AOC/day_3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../AOC/day_3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../AOC/day_4.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../AOC/day_4.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/othello.py" beforeDir="false" afterPath="$PROJECT_DIR$/othello.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/path1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rrImage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rrImage2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rrImage3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rrImage4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rrMapCoarse.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -177,7 +23,7 @@
     <SUITE FILE_PATH="coverage/AIPrograms$sudoku.coverage" NAME="sudoku Coverage Results" MODIFIED="1544391003147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AIPrograms$python_old.coverage" NAME="python_old Coverage Results" MODIFIED="1544211885800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AIPrograms$tictactoe.coverage" NAME="tictactoe Coverage Results" MODIFIED="1544573961841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/AIPrograms$othello.coverage" NAME="othello Coverage Results" MODIFIED="1545419591204" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AIPrograms$othello.coverage" NAME="othello Coverage Results" MODIFIED="1545658467295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AIPrograms$sudoku_2.coverage" NAME="sudoku_2 Coverage Results" MODIFIED="1544240318110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AIPrograms$othello_random.coverage" NAME="othello_random Coverage Results" MODIFIED="1545147530795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -186,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/othello.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="334" column="20" selection-start-line="334" selection-start-column="20" selection-end-line="334" selection-end-column="20" />
+            <state relative-caret-position="360">
+              <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -198,7 +44,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/othello_random.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
+            <state relative-caret-position="60">
               <caret line="4" column="65" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="65" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -210,7 +56,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4665">
+            <state relative-caret-position="4875">
               <caret line="325" column="83" selection-start-line="325" selection-start-column="83" selection-end-line="325" selection-end-column="83" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -222,7 +68,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/python_old.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
+            <state relative-caret-position="1395">
               <caret line="93" column="40" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="40" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -234,7 +80,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sudoku_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2715">
+            <state relative-caret-position="2760">
               <caret line="184" selection-start-line="184" selection-end-line="184" />
               <folding>
                 <element signature="e#51#62#0" expanded="true" />
@@ -290,7 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>argv</find>
       <find>checkSets</find>
       <find>improvementC</find>
       <find>.</find>
@@ -318,8 +163,9 @@
       <find>rate(</find>
       <find>a1_to</find>
       <find>maxing</find>
-      <find>A</find>
       <find>Game</find>
+      <find>minimax</find>
+      <find>A</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -414,7 +260,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -426,6 +271,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -644,11 +490,12 @@
       <workItem from="1545169544106" duration="4607000" />
       <workItem from="1545319402345" duration="18489000" />
       <workItem from="1545620934334" duration="7000" />
+      <workItem from="1545626597417" duration="5351000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143260000" />
+    <option name="totallyTimeSpent" value="148611000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -663,13 +510,13 @@
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7893175" visible="true" weight="0.1512247" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7893175" visible="true" weight="0.15282215" />
       <window_info id="Structure" order="1" sideWeight="0.2106825" side_tool="true" weight="0.19799894" />
       <window_info id="Favorites" order="2" sideWeight="0.5040783" side_tool="true" weight="0.1987315" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4985694" weight="0.36633664" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49964765" weight="0.37349397" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4985694" visible="true" weight="0.37128714" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49964765" weight="0.37326732" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3253012" />
@@ -1101,18 +948,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/othello.py</url>
-          <line>94</line>
-          <option name="timeStamp" value="2013" />
+          <line>82</line>
+          <option name="timeStamp" value="2026" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/othello.py</url>
-          <line>334</line>
-          <option name="timeStamp" value="2023" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/othello.py</url>
-          <line>191</line>
-          <option name="timeStamp" value="2024" />
+          <line>73</line>
+          <option name="timeStamp" value="2028" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1132,11 +974,29 @@
         <watch expression="resulting_state = maxi_to_depth(this_move, opposite(token), depth)" language="Python" />
         <watch expression="[x for x in range(0, 99) if state[x] == token]" language="Python" />
         <watch expression="state" language="Python" />
+        <watch expression="x" language="Python" />
+        <watch expression="display(state)" language="Python" />
+        <watch expression="token" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>token</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>display(state)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>x</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>state</expression-string>
         <language-id>Python</language-id>
@@ -1169,21 +1029,6 @@
       </expression>
       <expression>
         <expression-string>rate(move(state, opposite(token), 26), opposite(token))</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>spot_value(move(state, opposite(token), 26), opposite(token))</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>svs(move(state, opposite(token), 26), opposite(token))</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>mobility(move(state, opposite(token), 26), opposite(token))</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1524,8 +1369,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/othello.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="334" column="20" selection-start-line="334" selection-start-column="20" selection-end-line="334" selection-end-column="20" />
+        <state relative-caret-position="360">
+          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -1534,7 +1379,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/othello_random.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
+        <state relative-caret-position="60">
           <caret line="4" column="65" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="65" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -1544,7 +1389,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/15puzzle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4665">
+        <state relative-caret-position="4875">
           <caret line="325" column="83" selection-start-line="325" selection-start-column="83" selection-end-line="325" selection-end-column="83" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -1554,7 +1399,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/python_old.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
+        <state relative-caret-position="1395">
           <caret line="93" column="40" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="40" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -1564,7 +1409,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sudoku_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2715">
+        <state relative-caret-position="2760">
           <caret line="184" selection-start-line="184" selection-end-line="184" />
           <folding>
             <element signature="e#51#62#0" expanded="true" />
