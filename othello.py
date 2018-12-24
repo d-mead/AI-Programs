@@ -5,22 +5,16 @@ from heapq import heappush, heappop
 from collections import deque
 
 BLANK = "???????????........??........??........??...@o...??...o@...??........??........??........???????????"
-OTHER = "???????????........??........??.@...@..??.ooo@...??...@@...??...@....??........??........???????????"
+OTHER = "???????????........??........??.@...@..??.ooo@...??...@@...??...@....??...@....??........???????????"
 DIRECTIONS = [1, -1, 10, -10, 11, -11, 9, -9]
 SIZE = 100
 
 
 def main():
-    # global maxing
-    # maxing = 'o'
+    global maxing
+    maxing = '@'
     best_move_setup()
-    # boards = minimax_to_depth(OTHER, '@', 3)
-    # determine_best_move(OTHER, 'o', 4)
-
-    play_many_games(BLANK, 100)
-    # smart_game(BLANK)
-    # random_game(BLANK)
-    # best_move_setup()
+    smart_gan
 
 
 def play_many_games(state, count):
@@ -43,22 +37,46 @@ def eval_until_2(state, token):
     global bad, good, sides
     valids = get_valid_moves(state, token)
     ratings = dict(zip(valids, [0] * len(valids)))
-    max_depth = 1
-    
+    # max_depth = 1
+    last_checked_for_move = dict(zip(valids, [move(state, token, valid) for valid in valids]))
+    depth = 0
 
     while time.perf_counter() - start < 1.8:
+        depth += 2
         for valid in valids:
-            this_move = move(state, token, valid)
-            best_rate = rate(this_move, token, valid)
-            ratings[valid] = best_rate
-        max_depth += 1
-        break
+            # min max down until the depth in review
+                # use the rate_move method at each turn to find the next best move
+            # rate the resulting state as a whole
+            # this whole state rating at depth d after each move option will be the rating for the move 'valid'
+            # compare these 'result state' ratings to eachother and choose the best one
+            # this min max path down to the specified depth will be the path taken if both players are choosing what
+                # my rating system considers to be the best moves
+            if depth == 0:
+                ratings[valid] = rate_compare(last_checked_for_move[valid], token, state)
+            else:
+                if last_checked_for_move[valid].count('.') > 0:
+                    deeper_move = maxi_to_depth(last_checked_for_move[valid], token, depth)#maxi_to_depth(last_checked_for_move[valid])
+                    ratings[valid] = rate_compare(deeper_move, token, state)
+                    last_checked_for_move[valid] = deeper_move
 
+            # this_move = move(state, token, valid)
+            # best_rate = rate_move(this_move, token, valid)
+            # ratings[valid] = best_rate
+            # resulting_state = maxi_to_depth(this_move, opposite(token), depth)
+            # ratings[valid] = best_rate
+
+            # minimax_to_depth(state, token, 3)
+        # if depth > 25:#1000 in set(ratings.values()):#depth > 10:
+            # print("A")
+            # break
+    print("depth: %s: " % depth)
+    # display(maxi_to_depth(state, token, depth))
     best_mov = -1
     best_rating = -100000
 
     for mov, rating in ratings.items():
         print("%s: %s" % (mov, rating))
+        # display(move(state, token, mov))
         if rating > best_rating:
             best_rating = rating
             best_mov = mov
@@ -103,6 +121,75 @@ def determine_best_move(state, token, max_depth):
 
 
     # display(move(state, token, best_spot))
+
+    return best_mov
+
+
+def mini(state, token):
+    # return the lowest rated move from the avalable moves
+    valids = get_valid_moves(state, token)
+    if len(valids) == 0:
+        if state.count(token) > state.count(opposite(token)):
+            return -1000000, -1
+        else:
+            return 1000000, -1
+    min_rate = 100000
+    best_spot = -1
+    for valid in get_valid_moves(state, token):
+        rating = rate_move(state, token, valid)
+        if rating < min_rate:
+            min_rate = rating
+            best_spot = valid
+    return move(state, token, best_spot)#, min_rate
+
+
+def maxi(state, token):
+    # return the lowest rated move from the avalable moves
+    valids = get_valid_moves(state, token)
+    if len(valids) == 0:
+        # return state
+        if state.count(token) > 3*state.count(opposite(token)):
+            return state
+        else:
+            return state
+    max_rate = -100000
+    best_spot = -1
+    moves = []
+    for valid in get_valid_moves(state, token):
+        rating = rate_move(state, token, valid)
+        moves.append(move(state, token, valid))
+        # if rating > max_rate:
+        #     max_rate = rating
+        #     best_spot = valid
+    return moves# move(state, token, best_spot)#, max_rate
+
+
+def maxi_to_depth(state, token, depth):
+    to_check = []
+    visited = set()
+    next = deque()
+    next.append(state)
+    for d in range(0, depth):
+        while len(next) > 0:
+            this_state = next.pop()
+            if this_state in visited:
+                continue
+            for nex in maxi(state, token):
+                next.append(nex)
+                visited.add(nex)
+    for nex in next:
+        to_check.append(nex)
+
+    best_rating = -10000
+    best_mov = state
+
+    for check in to_check:
+        this_rate = rate_compare(check, token, state)
+        if this_rate > best_rating:
+            best_rating = this_rate
+            best_mov = check
+
+            # token = opposite(token)
 
     return best_mov
 
@@ -178,35 +265,94 @@ def rate_layer(state, token):
     return -1, -100
 
 
-def rate(state, token, spot):
+def rate_compare(state, token, prev):
     global good, bad, sides, maxing
     rate = 1
     # valids = get_valid_moves(state, token)
     # opposite_valids = get_valid_moves(state, opposite(token))
+    if len(get_valid_moves(state, token)) == 0:
+        t = state.count(token)+1
+        o = state.count(opposite(token))+1
+        if t >= 3*o:
+            return 10000# * t/(o+t)
+        else:
+            return -10000# * t/(o+t)
 
-    cap = capture(state, token, spot) * 2
-    mob = 0#mobility(state, token, spot) * 1
-    svs = spot_value(state, token, spot) * 2
+    cap = capture_compare(state, token, prev) * (100-state.count('.'))/10
+    mob = 0#mobility_compare(state, token, prev) * 1
+    svs = spot_value_compare(state, token) * 3
     # print("cap" + str(mob))
 
     return cap + mob + svs
 
 
-def capture(state, token, spot):
+def rate_move(state, token, spot):
+    global good, bad, sides, maxing
+    rate = 1
+    mov = move(state, token, spot)
+    if len(get_valid_moves(mov, token)) == 0:
+        t = state.count(token)
+        o = state.count(opposite(token))
+        if t >= 3*o:
+            return 10000# * t/(o+t)
+        else:
+            return -10000# * t/(o+t)
+    # valids = get_valid_moves(state, token)
+    # opposite_valids = get_valid_moves(state, opposite(token))
+
+    cap = capture_move(state, token, spot) * (100 - state.count('.'))/10
+    mob = 0#mobility_move(state, token, spot) * 5
+    svs = spot_value_move(state, token, spot) * 3
+    # print("cap" + str(mob))
+
+    return cap + mob + svs
+
+
+def capture_compare(state, token, prev):
+    return 5 * state.count(token) - prev.count(token)
+
+
+def mobility_compare(state, token, prev):
+    return 5*len(get_valid_moves(state, token)) - len(get_valid_moves(prev, token))
+
+
+def spot_value_compare(state, token):
+    global good, bad, sides
+    value = 0
+    # print(len(state))
+    # if len(state) == 2:
+    #     print("B")
+    ts = [x for x in range(0, 100) if state[x] == token]
+    # if len(ts) == 0:
+        # print("A")
+    for t in ts:
+        if t in good:
+            value += 100
+        if t in sides:
+            value += 2
+        if t in bad:
+            value += -2
+    return value
+
+
+
+
+
+def capture_move(state, token, spot):
     mov = move(state, token, spot)
     return 5 * mov.count(token) - state.count(token)
 
 
-def mobility(state, token, spot):
+def mobility_move(state, token, spot):
     mov = move(state, token, spot)
     t = get_valid_moves(mov, token)
     if t:
-        return 2 * len(t)
+        return 3 * len(t)
     else:
         return 0
 
 
-def spot_value(state, token, spot):
+def spot_value_move(state, token, spot):
     global good, bad, sides
     value = 0
 
@@ -216,21 +362,21 @@ def spot_value(state, token, spot):
     #         value += -10
 
     if spot in good:
-        value += 5
+        value += 100
     elif spot in sides:
-        value += 4
-    elif spot in sides:
-        value -= 5
+        value += 2
+    elif spot in bad:
+        value -= 2
 
     return 5 * value
 
 
 def best_move_setup():
     global bad, good, sides, maxing
-    bad = set([a1_to_index(x) for x in ['b2', 'b7', 'g2', 'g7']])
-    good = set([a1_to_index(x) for x in ['a1', 'a8', 'h1', 'h8']])
-    sides = set(list(range(21, 81, 10)) + list(range(12, 18)) + list(range(28, 88, 10)) + list(range(82, 88)))
-    # maxing = 'o'
+    bad = {22, 27, 77, 71}
+    good = {11, 18, 81, 88}
+    sides = {31, 41, 51, 61, 71, 12, 13, 14, 15, 16, 17, 28, 38, 48, 58, 68, 78, 82, 83, 84, 85, 86, 87, 21, 12, 17, 71, 82, 87, 78}
+    maxing = '@'
 
 
 def smart_move(state, token):
@@ -451,9 +597,9 @@ def display(state):
              range(1, 9)])
         print(to_print)
 
-    print()
+    # print()
     print(" o: %s  @: %s" % (state.count('o'), state.count('@')))
-    print()
+    # print()
     pct = int(100*(state.count('@')/(state.count('@') + state.count('o'))))
     print("|                       |                        |                        |                        |")
     print("".join(["#"]*pct))
