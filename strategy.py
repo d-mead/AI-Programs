@@ -7,17 +7,28 @@ import math
 
 BLANK = "???????????........??........??........??...@o...??...o@...??........??........??........???????????"
 OTHER = "???????????........??........??.@...@..??.oooo...??...@@...??...@....??...@....??........???????????"
+ROWS  = "???????????@@@@@@@@??@.......??@.......??@..@o...??@..o@...??@.......??@.......??@.......???????????"
 
 DIRECTIONS = [1, -1, 10, -10, 11, -11, 9, -9]
 SIZE = 100
 
+# global aa, bb, cc, dd, ee
+# aa = {33, 34, 35, 36, 43, 44, 45, 46, 53, 54, 55, 56, 63, 64, 65, 66}
+# bb = {32, 42, 52, 62, 23, 24, 25, 26, 37, 47, 57, 67, 73, 74, 75, 76}
+# cc = {31, 41, 51, 61, 13, 14, 15, 16, 38, 48, 58, 68, 83, 84, 85, 86}
+# dd = {21, 22, 12, 17, 27, 28, 78, 77, 87, 82, 72, 71}
+# ee = {11, 18, 81, 88}
+
 
 class Strategy:
     def best_strategy(self, board, player, best_move, still_running):
+        # time.sleep(1)
+        best_move_setup()
         best_move.value = get_valid_moves(board, player)[0]
-        time.sleep(.25)
-        if still_running.value:
-            best_move.value = get_best_move(board, opposite(player))
+        d = 1
+        while still_running:
+            best_move.value = maxmin(board, player, d)[0]
+            d += 1
 
 
 def main():
@@ -27,11 +38,6 @@ def main():
     # display(OTHER)
     # minimax_to_depth(OTHER, "@", 20)
     smart_game(BLANK)
-    # display(OTHER)
-    # result, score = maxmin(OTHER, '@', 4)
-    # display(result)
-    # print(score)
-    # board_score(result)
 
 
 def play_many_games(state, count):
@@ -65,9 +71,9 @@ def maxmin(board, player, depth):
         else:
             next_player = '?'
         if next_player == '?':
-            possible_moves.append((mov, board_score(board)*1000))
+            possible_moves.append((spot, 10000000 if board.count('@') > 3*board.count('o') else -1000000))
         else:
-            possible_moves.append((mov, maxmin(mov, next_player, depth-1)[1]))
+            possible_moves.append((spot, maxmin(mov, next_player, depth-1)[1]))
     if len(possible_moves) > 0:
         return best[player](possible_moves, key=lambda x: x[1])
     else:
@@ -78,10 +84,12 @@ def board_score(board):
     moves_left = board.count('.')
     m_weight = math.pow(int(moves_left/10), 2)
     t_weight = 50
-    c_weight = math.pow(4-int(moves_left/10), 3)
+    c_weight = math.pow(2-int(moves_left/10), 2)
+    r_weight = 100
     mobility =  (len(get_valid_moves(board, '@')) - len(get_valid_moves(board, 'o')))   * m_weight
     territory = (score_territory(board, '@') - score_territory(board, 'o'))             * t_weight
     count =     board.count('@') - board.count('o')                                     * c_weight
+    rows =      score_rows(board, '@') - score_rows(board, 'o')                         * r_weight
 
     # print(mobility)
     # print(territory)
@@ -90,18 +98,33 @@ def board_score(board):
     return mobility + territory + count
 
 
+def score_rows(board, player):
+    score = 0
+    spots = set([x for x in range(0, 100) if board[x] == player])
+    for x in range(11, 82, 10):
+        if set(range(x, x+8)).issubset(spots):
+            score += 1
+    for x in range(11, 19):
+        if set(range(x, 90, 10)).issubset(spots):
+            score += 1
+    return score
+
+
 def score_territory(board, player):
     global aa, bb, cc, dd, ee
     score = 0
     for spot in [x for x in range(0, 100) if board[x] == player]:
         if spot in aa:
-            score += 0
+            score += 1
         elif spot in bb:
             score += -1
         elif spot in cc:
-            score += 1
+            if board.count(".") > 6:
+                score += 1
+            else:
+                score -= 3
         elif spot in dd:
-            score += -3
+            score += -10
         elif spot in ee:
             score += 3
     return score
@@ -120,7 +143,15 @@ def smart_move(state, token):
         # moves.append(spot)
         # print('I choose %s ' % spot)
         print()
-        new_state, score = maxmin(state, token, 3)#move(state, token, spot)
+        begin = time.perf_counter()
+        thresh = 2
+        depth = 1
+        spot, score = maxmin(state, token, 1)
+        while time.perf_counter() - begin < thresh-1:
+            spot, score = maxmin(state, token, depth)
+            depth += 1
+        print(depth)
+        new_state = move(state, token, spot)# new_state, score = maxmin(state, token, 3)#move(state, token, spot)
         print(score)
         return new_state
     if not skip:
@@ -145,6 +176,7 @@ def best_move_setup():
     cc = {31, 41, 51, 61, 13, 14, 15, 16, 38, 48, 58, 68, 83, 84, 85, 86}
     dd = {21, 22, 12, 17, 27, 28, 78, 77, 87, 82, 72, 71}
     ee = {11, 18, 81, 88}
+
     # bads = {22, 27, 77, 72, 12, 21, 22,  17, 27, 28,  71, 72, 82,  87, 77, 78, 33, 34, 35, 36, 43, 44, 45 ,46, 53, 54 ,55, 56, 63, 64 ,65, 66}
     # corners = {11, 18, 81, 88}
     # brackets = {13, 23, 33, 32, 31,  16, 26, 36, 37, 37,  68, 67, 66, 76, 86,  83, 73, 63, 62, 61}
