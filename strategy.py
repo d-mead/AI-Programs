@@ -12,6 +12,18 @@ ROWS  = "???????????@@@@@@@@??@.......??@.......??@..@o...??@..o@...??@.......??
 DIRECTIONS = [1, -1, 10, -10, 11, -11, 9, -9]
 SIZE = 100
 
+global WEIGHTS
+WEIGHTS = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 100, -20, 20,  5,  5, 20, -20, 100, 0,
+     0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
+     0,  20,  -5, 15,  3,  3, 15,  -5,  20, 0,
+     0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
+     0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
+     0,  20,  -5, 15,  3,  3, 15,  -5,  20, 0,
+     0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
+     0, 100, -20, 20,  5,  5, 20, -20, 100, 0,
+     0,   0,   0,  0,  0,  0,  0,   0,   0, 0)
+
 # global aa, bb, cc, dd, ee
 # aa = {33, 34, 35, 36, 43, 44, 45, 46, 53, 54, 55, 56, 63, 64, 65, 66}
 # bb = {32, 42, 52, 62, 23, 24, 25, 26, 37, 47, 57, 67, 73, 74, 75, 76}
@@ -36,6 +48,7 @@ def main():
     maxing = '@'
     best_move_setup()
     # display(OTHER)
+    # best_move_setup()
     # minimax_to_depth(OTHER, "@", 20)
     smart_game(BLANK)
 
@@ -71,7 +84,7 @@ def maxmin(board, player, depth):
         else:
             next_player = '?'
         if next_player == '?':
-            possible_moves.append((spot, 10000000 if board.count('@') > 3*board.count('o') else -1000000))
+            possible_moves.append((spot, 10000000 if board.count('@') > board.count('o') else -1000000))
         else:
             possible_moves.append((spot, maxmin(mov, next_player, depth-1)[1]))
     if len(possible_moves) > 0:
@@ -82,13 +95,13 @@ def maxmin(board, player, depth):
 
 def board_score(board):
     moves_left = board.count('.')
-    m_weight = math.pow(int(moves_left/10), 2)
-    t_weight = 50
-    c_weight = math.pow(2-int(moves_left/10), 2)
+    m_weight = 150 if moves_left > 10 else 0
+    c_weight = 100 if moves_left < 10 else -10
+    t_weight = 100 if moves_left > 10 else 25
     r_weight = 100
     mobility =  (len(get_valid_moves(board, '@')) - len(get_valid_moves(board, 'o')))   * m_weight
     territory = (score_territory(board, '@') - score_territory(board, 'o'))             * t_weight
-    count =     board.count('@') - board.count('o')                                     * c_weight
+    count =     (board.count('@') - board.count('o'))                                     * c_weight
     rows =      score_rows(board, '@') - score_rows(board, 'o')                         * r_weight
 
     # print(mobility)
@@ -101,12 +114,28 @@ def board_score(board):
 def score_rows(board, player):
     score = 0
     spots = set([x for x in range(0, 100) if board[x] == player])
-    for x in range(11, 82, 10):
-        if set(range(x, x+8)).issubset(spots):
-            score += 1
-    for x in range(11, 19):
-        if set(range(x, 90, 10)).issubset(spots):
-            score += 1
+    if set(range(11, 19)).issubset(spots) or set(range(81, 89)).issubset(spots) or set(range(11, 82, 10)).issubset(spots) or set(range(18, 89, 10)).issubset(spots):
+        score += 2
+
+    if set(range(12, 18)).issubset(spots) or set(range(82, 88)).issubset(spots) or set(range(21, 81, 10)).issubset(spots) or set(range(28, 88, 10)).issubset(spots):
+        score += -1
+
+    op = opposite(player)
+    op_spots = set([x for x in range(0, 100) if board[x] == op])
+
+    if set(range(12, 18)).issubset(op_spots) or set(range(82, 88)).issubset(op_spots) or set(range(21, 81, 10)).issubset(op_spots) or set(range(28, 88, 10)).issubset(op_spots):
+        score += 1
+
+    if set(range(11, 19)).issubset(op_spots) or set(range(81, 89)).issubset(op_spots) or set(range(11, 82, 10)).issubset(op_spots) or set(range(18, 89, 10)).issubset(op_spots):
+        score += -2
+
+
+    # for x in range(11, 82, 10):
+    #     if set(range(x, x+8)).issubset(spots):
+    #         score += 1
+    # for x in range(11, 19):
+    #     if set(range(x, 90, 10)).issubset(spots):
+    #         score += 1
     return score
 
 
@@ -114,19 +143,20 @@ def score_territory(board, player):
     global aa, bb, cc, dd, ee
     score = 0
     for spot in [x for x in range(0, 100) if board[x] == player]:
-        if spot in aa:
-            score += 1
-        elif spot in bb:
-            score += -1
-        elif spot in cc:
-            if board.count(".") > 6:
-                score += 1
-            else:
-                score -= 3
-        elif spot in dd:
-            score += -10
-        elif spot in ee:
-            score += 3
+        score += WEIGHTS[spot]
+        # if spot in aa:
+        #     score += 3
+        # elif spot in bb:
+        #     score += -1
+        # elif spot in cc:
+        #     if board.count(".") > 4:
+        #         score += 1
+        #     else:
+        #         score -= 3
+        # elif spot in dd:
+        #     score += -10
+        # elif spot in ee:
+        #     score += 5
     return score
 
 
@@ -171,7 +201,21 @@ def smart_move(state, token):
 
 def best_move_setup():
     global aa, bb, cc, dd, ee
-    aa = {33, 34, 35, 36, 43, 44, 45, 46, 53, 54, 55, 56, 63, 64, 65, 66}
+
+    weightings = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 120, -20, 20,  5,  5, 20, -20, 120, 0,
+     0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
+     0,  20,  -5, 15,  3,  3, 15,  -5,  20, 0,
+     0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
+     0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
+     0,  20,  -5, 15,  3,  3, 15,  -5,  20, 0,
+     0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
+     0, 120, -20, 20,  5,  5, 20, -20, 120, 0,
+     0,   0,   0,  0,  0,  0,  0,   0,   0, 0)
+
+    print(weightings)
+
+    aa = {13, 23, 33, 32, 31, 16, 16, 36, 37, 38, 61, 62, 63, 73, 83, 86, 76, 66, 67, 68}#{33, 34, 35, 36, 43, 44, 45, 46, 53, 54, 55, 56, 63, 64, 65, 66}
     bb = {32, 42, 52, 62, 23, 24, 25, 26, 37, 47, 57, 67, 73, 74, 75, 76}
     cc = {31, 41, 51, 61, 13, 14, 15, 16, 38, 48, 58, 68, 83, 84, 85, 86}
     dd = {21, 22, 12, 17, 27, 28, 78, 77, 87, 82, 72, 71}
