@@ -43,16 +43,16 @@ SEEN = dict()
 SEEN[PAR_1] = 100000
 SEEN[PAR_1] = 100000
 
-global WEIGHTS
+# global WEIGHTS, WEIGHTS_O
 WEIGHTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-     0, 140, -30, 20,  5,  5, 20, -30, 140, 0,
+     0, 140, -30, 50,  5,  5, 50, -30, 140, 0,
      0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
-     0,  20,  -5, 15,  3,  3, 15,  -5,  20, 0,
+     0,  50,  -5, 15,  3,  3, 15,  -5,  50, 0,
      0,   5,  -5,  3,  3,  3,  6,  -5,   5, 0,
      0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
-     0,  20,  -5, 15,  3,  6, 15,  -5,  20, 0,
+     0,  50,  -5, 15,  3,  6, 15,  -5,  50, 0,
      0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
-     0, 140, -30, 20,  5,  5, 20, -30, 140, 0,
+     0, 140, -30, 50,  5,  5, 50, -30, 140, 0,
      0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
 
 WEIGHTS_O = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -210,7 +210,7 @@ def board_score(board):
 
     # print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, SEEN[board]))
 
-    WEIGHTS = WEIGHTS_O
+    WEIGHTS = list(WEIGHTS_O)
 
     return mobility + territory + count + shots + frontier + lines
 
