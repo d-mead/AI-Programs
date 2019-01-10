@@ -43,7 +43,7 @@ SEEN = dict()
 SEEN[PAR_1] = 100000
 SEEN[PAR_1] = 100000
 
-# global WEIGHTS, WEIGHTS_O
+global WEIGHTS
 WEIGHTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
      0, 140, -30, 50,  5,  5, 50, -30, 140, 0,
      0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
@@ -188,8 +188,8 @@ def board_score(board):
         WEIGHTS[82] = 50
 
     moves_left = board.count('.')
-    m_weight = 700 if moves_left > 10 else 0
-    c_weight = 300 if moves_left < 15 else -50
+    m_weight = 500 if moves_left > 10 else 0
+    c_weight = 300 if moves_left < 15 else -150
     t_weight = 175 if moves_left > 5 else 50
     s_weight = 200 if moves_left > 10 else 100
     f_weight = 200 if moves_left > 5 else 50
@@ -210,7 +210,7 @@ def board_score(board):
 
     # print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, SEEN[board]))
 
-    WEIGHTS = list(WEIGHTS_O)
+    WEIGHTS = WEIGHTS_O
 
     return mobility + territory + count + shots + frontier + lines
 
