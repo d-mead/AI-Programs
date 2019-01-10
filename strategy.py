@@ -5,24 +5,68 @@ from heapq import heappush, heappop
 from collections import deque
 import math
 
-BLANK = "???????????........??........??........??...@o...??...o@...??........??........??........???????????"
+BLANK = "??????????" \
+        "?........?" \
+        "?........?" \
+        "?........?" \
+        "?...@o...?" \
+        "?...o@...?" \
+        "?........?" \
+        "?........?" \
+        "?........?" \
+        "??????????"
 OTHER = "???????????........??........??.@...@..??.oooo...??...@@...??...@....??...@....??........???????????"
 ROWS  = "???????????@@@@@@@@??@.......??@.......??@..@o...??@..o@...??@.......??@.......??@.......???????????"
+FRONT = "???????????........??oooooooo??@@@@@@@@??........??........??........??........??........???????????"
+SHOTS = "???????????oooo....??o.......??o.......??........??........??........??........??......oo???????????"
+PAR_1 = "???????????........??........??........??...@@@..??...o@...??........??........??........???????????"
+PAR_2 = "???????????........??........??........??...@@@..??...o@o..??....@...??........??........???????????"
+FRONT2= "??????????" \
+        "?........?" \
+        "?........?" \
+        "?.....oo.?" \
+        "?..@@@@o.?" \
+        "?..@@@@o.?" \
+        "?..ooooo.?" \
+        "?........?" \
+        "?........?" \
+        "??????????"
+
 
 DIRECTIONS = [1, -1, 10, -10, 11, -11, 9, -9]
 SIZE = 100
 
+HUNDRED = False
+
+SEEN = dict()
+
+SEEN[PAR_1] = 100000
+SEEN[PAR_1] = 100000
+
 global WEIGHTS
-WEIGHTS = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-     0, 100, -20, 20,  5,  5, 20, -20, 100, 0,
-     0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
+WEIGHTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 140, -30, 20,  5,  5, 20, -30, 140, 0,
+     0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
      0,  20,  -5, 15,  3,  3, 15,  -5,  20, 0,
+     0,   5,  -5,  3,  3,  3,  6,  -5,   5, 0,
      0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
-     0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
+     0,  20,  -5, 15,  3,  6, 15,  -5,  20, 0,
+     0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
+     0, 140, -30, 20,  5,  5, 20, -30, 140, 0,
+     0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
+
+WEIGHTS_O = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 140, -30, 20,  5,  5, 20, -30, 140, 0,
+     0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
      0,  20,  -5, 15,  3,  3, 15,  -5,  20, 0,
-     0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
-     0, 100, -20, 20,  5,  5, 20, -20, 100, 0,
-     0,   0,   0,  0,  0,  0,  0,   0,   0, 0)
+     0,   5,  -5,  3,  3,  3,  6,  -5,   5, 0,
+     0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
+     0,  20,  -5, 15,  3,  6, 15,  -5,  20, 0,
+     0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
+     0, 140, -30, 20,  5,  5, 20, -30, 140, 0,
+     0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
+
+BORDER = {11, 12, 13, 14, 15, 16, 17, 18, 21, 31, 41, 51, 61, 71, 81, 82, 83, 84, 85, 86, 87, 88, 78, 68, 58, 48, 38, 28}
 
 # global aa, bb, cc, dd, ee
 # aa = {33, 34, 35, 36, 43, 44, 45, 46, 53, 54, 55, 56, 63, 64, 65, 66}
@@ -46,11 +90,21 @@ class Strategy:
 def main():
     global maxing
     maxing = '@'
-    best_move_setup()
+    # best_move_setup()
     # display(OTHER)
     # best_move_setup()
     # minimax_to_depth(OTHER, "@", 20)
+    # display(SHOTS)
+    # print(score_shots(SHOTS, '@'))
+    # display(BLANK)
+    # display(PAR_1)
+    # display(PAR_2)
+    # print(score_frontier(FRONT2, '@') - score_frontier(FRONT2, 'o'))
+    # display(FRONT2)
+    # board_score(FRONT2)
     smart_game(BLANK)
+    # with open('seen.txt', 'w') as file:  # Use file to refer to the file object
+    #     file.write(SEEN)
 
 
 def play_many_games(state, count):
@@ -84,31 +138,176 @@ def maxmin(board, player, depth):
         else:
             next_player = '?'
         if next_player == '?':
-            possible_moves.append((spot, 10000000 if board.count('@') > board.count('o') else -1000000))
+            a = board.count('@')
+            o = board.count('o')
+            if o == 0:
+                possible_moves.append((spot, 999999999))
+                print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+                HUNDRED = True
+            elif a > 3*o:
+                possible_moves.append((spot, 500000000))
+            elif a > o:
+                possible_moves.append((spot, 100000000+board_score(mov)))
+            else:
+                possible_moves.append((spot, -100000000+board_score(mov)))
+            # possible_moves.append((spot, 1000000000 if board.count('@') > 3*board.count('o') else 10000000 if board.count('@') > board.count('o') else 0 if board.count('@') == board.count('o') else -1000000))
         else:
             possible_moves.append((spot, maxmin(mov, next_player, depth-1)[1]))
     if len(possible_moves) > 0:
         return best[player](possible_moves, key=lambda x: x[1])
     else:
-        return ('d', 'd')
+        a = board.count('@')
+        o = board.count('o')
+        if o == 0:
+            return None, 999999999
+        elif a > 3 * o:
+            return None, 500000000
+        elif a > o:
+            return None, 100000000 + board_score(board)
+        else:
+            return None, -100000000 + board_score(board)
 
 
 def board_score(board):
+    global WEIGHTS, WEIGHTS_O
+    if board in SEEN.keys():
+        # print('a')
+        return SEEN[board]
+
+    if board[11] == '@':
+        WEIGHTS[12] = 50
+        WEIGHTS[21] = 50
+    if board[18] == '@':
+        WEIGHTS[17] = 50
+        WEIGHTS[28] = 50
+    if board[88] == '@':
+        WEIGHTS[87] = 50
+        WEIGHTS[78] = 50
+    if board[81] == '@':
+        WEIGHTS[71] = 50
+        WEIGHTS[82] = 50
+
     moves_left = board.count('.')
-    m_weight = 150 if moves_left > 10 else 0
-    c_weight = 100 if moves_left < 10 else -10
-    t_weight = 100 if moves_left > 10 else 25
-    r_weight = 100
+    m_weight = 700 if moves_left > 10 else 0
+    c_weight = 300 if moves_left < 15 else -50
+    t_weight = 175 if moves_left > 5 else 50
+    s_weight = 200 if moves_left > 10 else 100
+    f_weight = 200 if moves_left > 5 else 50
+    # k_weight = -150
+    l_weight = 300
+    # r_weight = 100
+
     mobility =  (len(get_valid_moves(board, '@')) - len(get_valid_moves(board, 'o')))   * m_weight
     territory = (score_territory(board, '@') - score_territory(board, 'o'))             * t_weight
-    count =     (board.count('@') - board.count('o'))                                     * c_weight
-    rows =      score_rows(board, '@') - score_rows(board, 'o')                         * r_weight
+    count =     (board.count('@') - board.count('o'))                                   * c_weight
+    shots =     (score_shots(board, '@') - score_shots(board, 'o'))                     * s_weight
+    frontier =  (score_frontier(board, 'o') - score_frontier(board, '@'))               * f_weight
+    lines =     (score_lines(board, 'o') - score_lines(board, '@'))                            * l_weight
+    # keep =      (score_keep(board, '@') - score_keep(board, 'o'))                       * k_weight
+    # rows =      score_rows(board, '@') - score_rows(board, 'o')                         * r_weight
 
-    # print(mobility)
-    # print(territory)
-    # print(count)
+    SEEN[board] = mobility + territory + count + shots + frontier + lines
 
-    return mobility + territory + count
+    # print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, SEEN[board]))
+
+    WEIGHTS = WEIGHTS_O
+
+    return mobility + territory + count + shots + frontier + lines
+
+
+def score_lines(board, player):
+    score = 0
+    spots = set([x for x in range(0, 100) if board[x] == player])
+    spots = spots.difference(BORDER)
+    directions = [1, 10, -1, -10]
+    for spot in spots:
+        for direction in directions:
+            count = 0
+            look = spot
+            while board[look] == player:
+                count += 1
+                look += direction
+            if count > 3:
+                score += 1
+    return score
+
+
+def score_keep(board, player):
+    spots = set([x for x in range(0, 100) if board[x] == player])
+    opponent_moves = get_valid_moves(board, opposite(player))
+    score = 0
+    for move_spot in opponent_moves:
+        mov = move(board, opposite(player), move_spot)
+        move_spots = set([x for x in range(0, 100) if board[x] == player])
+        for spot in spots:
+            if spot in move_spots:
+                score += 1
+
+    return score
+
+
+def score_frontier(board, player):
+    score = 0
+    spots = set([x for x in range(0, 100) if board[x] == player])
+    directions = [1, 10, -1, -10]
+    for spot in spots:
+        for direction in directions:
+            if board[spot+direction] == '.':
+                score += 1
+    return score
+
+
+def score_shots(board, player):
+    score = 0
+    if board[11] == player:
+        for check in range(11, 71, 10):
+            if board[check] == player:
+                score += 1
+            else:
+                break
+        for check in range(11, 17):
+            if board[check] == player:
+                score += 1
+            else:
+                break
+
+    if board[18] == player:
+        for check in range(18, 78, 10):
+            if board[check] == player:
+                score += 1
+            else:
+                break
+        for check in range(18, 12, -1):
+            if board[check] == player:
+                score += 1
+            else:
+                break
+
+    if board[88] == player:
+        for check in range(88, 28, -10):
+            if board[check] == player:
+                score += 1
+            else:
+                break
+        for check in range(88, 82, -1):
+            if board[check] == player:
+                score += 1
+            else:
+                break
+
+    if board[81] == player:
+        for check in range(81, 21, -10):
+            if board[check] == player:
+                score += 1
+            else:
+                break
+        for check in range(82, 87):
+            if board[check] == player:
+                score += 1
+            else:
+                break
+
+    return score
 
 
 def score_rows(board, player):
@@ -129,13 +328,6 @@ def score_rows(board, player):
     if set(range(11, 19)).issubset(op_spots) or set(range(81, 89)).issubset(op_spots) or set(range(11, 82, 10)).issubset(op_spots) or set(range(18, 89, 10)).issubset(op_spots):
         score += -2
 
-
-    # for x in range(11, 82, 10):
-    #     if set(range(x, x+8)).issubset(spots):
-    #         score += 1
-    # for x in range(11, 19):
-    #     if set(range(x, 90, 10)).issubset(spots):
-    #         score += 1
     return score
 
 
@@ -144,19 +336,7 @@ def score_territory(board, player):
     score = 0
     for spot in [x for x in range(0, 100) if board[x] == player]:
         score += WEIGHTS[spot]
-        # if spot in aa:
-        #     score += 3
-        # elif spot in bb:
-        #     score += -1
-        # elif spot in cc:
-        #     if board.count(".") > 4:
-        #         score += 1
-        #     else:
-        #         score -= 3
-        # elif spot in dd:
-        #     score += -10
-        # elif spot in ee:
-        #     score += 5
+
     return score
 
 
@@ -171,18 +351,18 @@ def smart_move(state, token):
         skip = False
         # spot = maxmin(state, token, 2)
         # moves.append(spot)
-        # print('I choose %s ' % spot)
         print()
         begin = time.perf_counter()
-        thresh = 2
-        depth = 1
+        thresh = 1
+        depth = 2
         spot, score = maxmin(state, token, 1)
-        while time.perf_counter() - begin < thresh-1:
+        while time.perf_counter() - begin < thresh:
             spot, score = maxmin(state, token, depth)
             depth += 1
         print(depth)
         new_state = move(state, token, spot)# new_state, score = maxmin(state, token, 3)#move(state, token, spot)
         print(score)
+        print('I choose %s ' % spot)
         return new_state
     if not skip:
         if state.count('.') != 64:
@@ -213,7 +393,7 @@ def best_move_setup():
      0, 120, -20, 20,  5,  5, 20, -20, 120, 0,
      0,   0,   0,  0,  0,  0,  0,   0,   0, 0)
 
-    print(weightings)
+    # print(weightings)
 
     aa = {13, 23, 33, 32, 31, 16, 16, 36, 37, 38, 61, 62, 63, 73, 83, 86, 76, 66, 67, 68}#{33, 34, 35, 36, 43, 44, 45, 46, 53, 54, 55, 56, 63, 64, 65, 66}
     bb = {32, 42, 52, 62, 23, 24, 25, 26, 37, 47, 57, 67, 73, 74, 75, 76}
