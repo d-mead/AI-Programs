@@ -21,16 +21,6 @@ FRONT = "???????????........??oooooooo??@@@@@@@@??........??........??........??
 SHOTS = "???????????oooo....??o.......??o.......??........??........??........??........??......oo???????????"
 PAR_1 = "???????????........??........??........??...@@@..??...o@...??........??........??........???????????"
 PAR_2 = "???????????........??........??........??...@@@..??...o@o..??....@...??........??........???????????"
-FRONT2= "??????????" \
-        "?........?" \
-        "?........?" \
-        "?.....oo.?" \
-        "?..@@@@o.?" \
-        "?..@@@@o.?" \
-        "?..ooooo.?" \
-        "?........?" \
-        "?........?" \
-        "??????????"
 
 
 DIRECTIONS = [1, -1, 10, -10, 11, -11, 9, -9]
@@ -53,17 +43,6 @@ WEIGHTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
      0,  50,  -5, 15,  3,  6, 15,  -5,  50, 0,
      0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
      0, 140, -30, 50,  5,  5, 50, -30, 140, 0,
-     0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
-
-WEIGHTS_O = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-     0, 140, -30, 20,  5,  5, 20, -30, 140, 0,
-     0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
-     0,  20,  -5, 15,  3,  3, 15,  -5,  20, 0,
-     0,   5,  -5,  3,  3,  3,  6,  -5,   5, 0,
-     0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
-     0,  20,  -5, 15,  3,  6, 15,  -5,  20, 0,
-     0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
-     0, 140, -30, 20,  5,  5, 20, -30, 140, 0,
      0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
 
 BORDER = {11, 12, 13, 14, 15, 16, 17, 18, 21, 31, 41, 51, 61, 71, 81, 82, 83, 84, 85, 86, 87, 88, 78, 68, 58, 48, 38, 28}
@@ -174,23 +153,23 @@ def board_score(board):
         # print('a')
         return SEEN[board]
 
-    if board[11] == '@':
-        WEIGHTS[12] = 50
-        WEIGHTS[21] = 50
-    if board[18] == '@':
-        WEIGHTS[17] = 50
-        WEIGHTS[28] = 50
-    if board[88] == '@':
-        WEIGHTS[87] = 50
-        WEIGHTS[78] = 50
-    if board[81] == '@':
-        WEIGHTS[71] = 50
-        WEIGHTS[82] = 50
+    # if board[11] == '@':
+    #     WEIGHTS[12] = 50
+    #     WEIGHTS[21] = 50
+    # if board[18] == '@':
+    #     WEIGHTS[17] = 50
+    #     WEIGHTS[28] = 50
+    # if board[88] == '@':
+    #     WEIGHTS[87] = 50
+    #     WEIGHTS[78] = 50
+    # if board[81] == '@':
+    #     WEIGHTS[71] = 50
+    #     WEIGHTS[82] = 50
 
     moves_left = board.count('.')
     m_weight = 500 if moves_left > 10 else 0
     c_weight = 300 if moves_left < 15 else -150
-    t_weight = 175 if moves_left > 5 else 50
+    t_weight = 250 #if moves_left > 5 else 50
     s_weight = 200 if moves_left > 10 else 100
     f_weight = 200 if moves_left > 5 else 50
     # k_weight = -150
@@ -209,8 +188,6 @@ def board_score(board):
     SEEN[board] = mobility + territory + count + shots + frontier + lines
 
     # print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, SEEN[board]))
-
-    WEIGHTS = WEIGHTS_O
 
     return mobility + territory + count + shots + frontier + lines
 
