@@ -11,7 +11,18 @@
       <change afterPath="$PROJECT_DIR$/../../../AOC/day_3.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../../AOC/day_4.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../../AOC/day_4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/othello.py" beforeDir="false" afterPath="$PROJECT_DIR$/othello.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../AOC/day_5.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../AOC/day_5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../AOC/day_6.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../AOC/day_6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/15PuzzleExercises.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/APUSH2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/edges.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/edges_236.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/othello.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plt_1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/strategy.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,17 +34,18 @@
     <SUITE FILE_PATH="coverage/AIPrograms$sudoku.coverage" NAME="sudoku Coverage Results" MODIFIED="1544391003147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AIPrograms$python_old.coverage" NAME="python_old Coverage Results" MODIFIED="1544211885800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AIPrograms$tictactoe.coverage" NAME="tictactoe Coverage Results" MODIFIED="1544573961841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/AIPrograms$othello.coverage" NAME="othello Coverage Results" MODIFIED="1545658467295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AIPrograms$othello.coverage" NAME="othello Coverage Results" MODIFIED="1546872681867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AIPrograms$strategy.coverage" NAME="strategy Coverage Results" MODIFIED="1547234779969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AIPrograms$sudoku_2.coverage" NAME="sudoku_2 Coverage Results" MODIFIED="1544240318110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/AIPrograms$othello_random.coverage" NAME="othello_random Coverage Results" MODIFIED="1545147530795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/othello.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/othello_random.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+            <state relative-caret-position="180">
+              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -41,23 +53,34 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/othello_random.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/strategy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="65" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="65" />
+            <state relative-caret-position="231">
+              <caret line="166" column="26" lean-forward="true" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#4086#4365#0" />
+                <element signature="e#4272#4365#0" />
+                <element signature="e#4402#4681#0" />
+                <element signature="e#4718#4997#0" />
+                <element signature="e#5051#5330#0" />
+                <element signature="e#3590#6053#0" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="mock:///Users/JackMead/Library/Caches/PyCharm2018.3/snapshots/AIPrograms26.pstat">
+          <provider selected="true" editor-type-id="profiler-session-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4875">
-              <caret line="325" column="83" selection-start-line="325" selection-start-column="83" selection-end-line="325" selection-end-column="83" />
+            <state relative-caret-position="254">
+              <caret line="1321" column="34" selection-start-line="1321" selection-start-column="34" selection-end-line="1321" selection-end-column="34" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -68,7 +91,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/python_old.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1395">
+            <state relative-caret-position="1275">
               <caret line="93" column="40" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="40" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -80,7 +103,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sudoku_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2760">
+            <state relative-caret-position="2715">
               <caret line="184" selection-start-line="184" selection-end-line="184" />
               <folding>
                 <element signature="e#51#62#0" expanded="true" />
@@ -136,16 +159,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>checkSets</find>
-      <find>improvementC</find>
-      <find>.</find>
-      <find>goal_test_string</find>
-      <find>&quot;1236</find>
-      <find>abc</find>
-      <find>Fals</find>
-      <find>False</find>
-      <find>121</find>
-      <find>Fal</find>
       <find>s</find>
       <find>s[</find>
       <find>2</find>
@@ -162,10 +175,20 @@
       <find>rate</find>
       <find>rate(</find>
       <find>a1_to</find>
-      <find>maxing</find>
       <find>Game</find>
       <find>minimax</find>
       <find>A</find>
+      <find>10000</find>
+      <find>maxing</find>
+      <find>5000</find>
+      <find>add</find>
+      <find>add_lo</find>
+      <find>-1000</find>
+      <find>best_move</find>
+      <find>setup</find>
+      <find>'d'</find>
+      <find>pkl</find>
+      <find>WEIGHT</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -186,7 +209,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/exercisesPart1.py" />
         <option value="$PROJECT_DIR$/sample.txt" />
         <option value="$PROJECT_DIR$/puzzle8.py" />
         <option value="$PROJECT_DIR$/puzzles.txt" />
@@ -237,12 +259,13 @@
         <option value="$PROJECT_DIR$/tictactoe.py" />
         <option value="$PROJECT_DIR$/othello_random.py" />
         <option value="$PROJECT_DIR$/othello.py" />
+        <option value="$PROJECT_DIR$/strategy.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -297,7 +320,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.othello">
+  <component name="RunManager" selected="Python.strategy">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="Project1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -364,7 +387,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="python_old" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="strategy" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Project1" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -377,7 +400,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python_old.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/strategy.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -455,18 +478,18 @@
     <list>
       <item itemvalue="Python.sudoku" />
       <item itemvalue="Python.sudoku_2" />
-      <item itemvalue="Python.python_old" />
       <item itemvalue="Python.tictactoe" />
       <item itemvalue="Python.othello" />
       <item itemvalue="Python.othello_random" />
+      <item itemvalue="Python.strategy" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.strategy" />
         <item itemvalue="Python.othello" />
         <item itemvalue="Python.othello_random" />
         <item itemvalue="Python.tictactoe" />
         <item itemvalue="Python.sudoku_2" />
-        <item itemvalue="Python.python_old" />
       </list>
     </recent_temporary>
   </component>
@@ -490,12 +513,14 @@
       <workItem from="1545169544106" duration="4607000" />
       <workItem from="1545319402345" duration="18489000" />
       <workItem from="1545620934334" duration="7000" />
-      <workItem from="1545626597417" duration="5351000" />
+      <workItem from="1545626597417" duration="5449000" />
+      <workItem from="1546871759110" duration="12905000" />
+      <workItem from="1546906778857" duration="33303000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148611000" />
+    <option name="totallyTimeSpent" value="194917000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -508,15 +533,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7893175" visible="true" weight="0.15282215" />
-      <window_info id="Structure" order="1" sideWeight="0.2106825" side_tool="true" weight="0.19799894" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.78811884" visible="true" weight="0.115548454" />
+      <window_info id="Structure" order="1" sideWeight="0.21188119" side_tool="true" visible="true" weight="0.115548454" />
       <window_info id="Favorites" order="2" sideWeight="0.5040783" side_tool="true" weight="0.1987315" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4985694" visible="true" weight="0.37128714" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49964765" weight="0.37326732" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4985694" weight="0.34059405" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49964765" weight="0.4807229" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3253012" />
@@ -947,14 +971,9 @@
           <option name="timeStamp" value="1832" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/othello.py</url>
-          <line>82</line>
-          <option name="timeStamp" value="2026" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/othello.py</url>
-          <line>73</line>
-          <option name="timeStamp" value="2028" />
+          <url>file://$PROJECT_DIR$/strategy.py</url>
+          <line>456</line>
+          <option name="timeStamp" value="2030" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -967,81 +986,77 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="this_state" language="Python" />
-        <watch expression="valids" language="Python" />
-        <watch expression="fringe" language="Python" />
-        <watch expression="rating" language="Python" />
-        <watch expression="resulting_state = maxi_to_depth(this_move, opposite(token), depth)" language="Python" />
-        <watch expression="[x for x in range(0, 99) if state[x] == token]" language="Python" />
-        <watch expression="state" language="Python" />
-        <watch expression="x" language="Python" />
-        <watch expression="display(state)" language="Python" />
-        <watch expression="token" language="Python" />
+        <watch expression="board" language="Python" />
+        <watch expression="player" language="Python" />
+        <watch expression="depth" language="Python" />
+        <watch expression="get_valid_moves(board, player)" language="Python" />
+        <watch expression="possible_moves" language="Python" />
+        <watch expression="spot" language="Python" />
+        <watch expression="move" language="Python" />
+        <watch expression="next_players_moves" language="Python" />
+        <watch expression="next_player" language="Python" />
+        <watch expression="possible_moves" language="Python" />
+        <watch expression="display(board)" language="Python" />
+        <watch expression="WEIGHTS" language="Python" />
+        <watch expression="WEIGHTS_O" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>token</expression-string>
+        <expression-string>WEIGHTS_O</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>display(state)</expression-string>
+        <expression-string>WEIGHTS</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>x</expression-string>
+        <expression-string>display(board)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>state</expression-string>
+        <expression-string>possible_moves</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>[x for x in range(0, 99) if state[x] == token]</expression-string>
+        <expression-string>next_player</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>resulting_state = maxi_to_depth(this_move, opposite(token), depth)</expression-string>
+        <expression-string>next_players_moves</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>rating</expression-string>
+        <expression-string>spot</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>rate(move(state, opposite(token), 21), opposite(token))</expression-string>
+        <expression-string>move</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>rate()</expression-string>
+        <expression-string>get_valid_moves(board, player)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>rate(move(state, opposite(token), 26), opposite(token))</expression-string>
+        <expression-string>depth</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/8puzzle_test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ATBS practice/chapter4.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="547">
@@ -1367,39 +1382,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/othello.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/othello.py" />
     <entry file="file://$PROJECT_DIR$/othello_random.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="65" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="65" />
+        <state relative-caret-position="180">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/15puzzle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4875">
-          <caret line="325" column="83" selection-start-line="325" selection-start-column="83" selection-end-line="325" selection-end-column="83" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/python_old.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
+        <state relative-caret-position="1275">
           <caret line="93" column="40" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="40" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -1409,7 +1405,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sudoku_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2760">
+        <state relative-caret-position="2715">
           <caret line="184" selection-start-line="184" selection-end-line="184" />
           <folding>
             <element signature="e#51#62#0" expanded="true" />
@@ -1442,6 +1438,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="43" column="256" selection-start-line="43" selection-start-column="256" selection-end-line="43" selection-end-column="256" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/15puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="1321" column="34" selection-start-line="1321" selection-start-column="34" selection-end-line="1321" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="166" column="26" lean-forward="true" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#4086#4365#0" />
+            <element signature="e#4272#4365#0" />
+            <element signature="e#4402#4681#0" />
+            <element signature="e#4718#4997#0" />
+            <element signature="e#5051#5330#0" />
+            <element signature="e#3590#6053#0" />
+          </folding>
         </state>
       </provider>
     </entry>
