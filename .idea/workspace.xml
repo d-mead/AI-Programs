@@ -15,13 +15,6 @@
       <change afterPath="$PROJECT_DIR$/../../../AOC/day_5.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../../AOC/day_6.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../../AOC/day_6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/15PuzzleExercises.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/APUSH2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/edges.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/edges_236.pkl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/othello.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plt_1.pkl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/strategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/strategy.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,30 +49,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/strategy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="166" column="26" lean-forward="true" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
+            <state relative-caret-position="245">
+              <caret line="108" column="56" selection-start-line="108" selection-start-column="56" selection-end-line="108" selection-end-column="56" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-                <element signature="e#4086#4365#0" />
-                <element signature="e#4272#4365#0" />
-                <element signature="e#4402#4681#0" />
-                <element signature="e#4718#4997#0" />
-                <element signature="e#5051#5330#0" />
-                <element signature="e#3590#6053#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="mock:///Users/JackMead/Library/Caches/PyCharm2018.3/snapshots/AIPrograms26.pstat">
-          <provider selected="true" editor-type-id="profiler-session-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/15puzzle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
+            <state relative-caret-position="19605">
               <caret line="1321" column="34" selection-start-line="1321" selection-start-column="34" selection-end-line="1321" selection-end-column="34" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -283,6 +265,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -294,7 +277,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -516,11 +498,12 @@
       <workItem from="1545626597417" duration="5449000" />
       <workItem from="1546871759110" duration="12905000" />
       <workItem from="1546906778857" duration="33303000" />
+      <workItem from="1547234767340" duration="148000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="194917000" />
+    <option name="totallyTimeSpent" value="195065000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -532,14 +515,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.78811884" visible="true" weight="0.115548454" />
-      <window_info id="Structure" order="1" sideWeight="0.21188119" side_tool="true" visible="true" weight="0.115548454" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.78649634" visible="true" weight="0.116595134" />
+      <window_info id="Structure" order="1" sideWeight="0.21350364" side_tool="true" visible="true" weight="0.116595134" />
       <window_info id="Favorites" order="2" sideWeight="0.5040783" side_tool="true" weight="0.1987315" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4985694" weight="0.34059405" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4985694" visible="true" weight="0.33975902" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49964765" weight="0.4807229" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -972,7 +956,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/strategy.py</url>
-          <line>456</line>
+          <line>439</line>
           <option name="timeStamp" value="2030" />
         </line-breakpoint>
       </breakpoints>
@@ -1393,6 +1377,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/15puzzle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19605">
+          <caret line="1321" column="34" selection-start-line="1321" selection-start-column="34" selection-end-line="1321" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/python_old.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1275">
@@ -1441,28 +1435,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/15puzzle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="1321" column="34" selection-start-line="1321" selection-start-column="34" selection-end-line="1321" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/strategy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="166" column="26" lean-forward="true" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
+        <state relative-caret-position="245">
+          <caret line="108" column="56" selection-start-line="108" selection-start-column="56" selection-end-line="108" selection-end-column="56" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#4086#4365#0" />
-            <element signature="e#4272#4365#0" />
-            <element signature="e#4402#4681#0" />
-            <element signature="e#4718#4997#0" />
-            <element signature="e#5051#5330#0" />
-            <element signature="e#3590#6053#0" />
           </folding>
         </state>
       </provider>

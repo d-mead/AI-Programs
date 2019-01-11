@@ -69,21 +69,7 @@ class Strategy:
 def main():
     global maxing
     maxing = '@'
-    # best_move_setup()
-    # display(OTHER)
-    # best_move_setup()
-    # minimax_to_depth(OTHER, "@", 20)
-    # display(SHOTS)
-    # print(score_shots(SHOTS, '@'))
-    # display(BLANK)
-    # display(PAR_1)
-    # display(PAR_2)
-    # print(score_frontier(FRONT2, '@') - score_frontier(FRONT2, 'o'))
-    # display(FRONT2)
-    # board_score(FRONT2)
     smart_game(BLANK)
-    # with open('seen.txt', 'w') as file:  # Use file to refer to the file object
-    #     file.write(SEEN)
 
 
 def play_many_games(state, count):
@@ -121,15 +107,12 @@ def maxmin(board, player, depth):
             o = board.count('o')
             if o == 0:
                 possible_moves.append((spot, 999999999))
-                print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-                HUNDRED = True
             elif a > 3*o:
                 possible_moves.append((spot, 500000000))
             elif a > o:
                 possible_moves.append((spot, 100000000+board_score(mov)))
             else:
                 possible_moves.append((spot, -100000000+board_score(mov)))
-            # possible_moves.append((spot, 1000000000 if board.count('@') > 3*board.count('o') else 10000000 if board.count('@') > board.count('o') else 0 if board.count('@') == board.count('o') else -1000000))
         else:
             possible_moves.append((spot, maxmin(mov, next_player, depth-1)[1]))
     if len(possible_moves) > 0:
