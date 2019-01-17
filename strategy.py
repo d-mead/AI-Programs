@@ -58,18 +58,26 @@ BORDER = {11, 12, 13, 14, 15, 16, 17, 18, 21, 31, 41, 51, 61, 71, 81, 82, 83, 84
 class Strategy:
     def best_strategy(self, board, player, best_move, still_running):
         # time.sleep(1)
+
         best_move_setup()
         best_move.value = get_valid_moves(board, player)[0]
         d = 1
         while still_running:
-            best_move.value = maxmin(board, player, d)[0]
+            best_move.value = maxmin_ab_2(board, player, d, -999999999999, 999999999999)[0]
             d += 1
 
 
 def main():
-    global maxing
-    maxing = '@'
-    smart_game(BLANK)
+    # global maxing, cou
+    # cou = 0
+    # maxing = '@'
+    # smart_game(BLANK)
+    # print(cou)
+    begin = time.perf_counter()
+    print(maxmin_ab_2(BLANK, "@", 7, -999999999999, 999999999999))
+    # print(maxmin(BLANK, "@", 6))
+    end = time.perf_counter()
+    print(end-begin)
 
 
 def play_many_games(state, count):
@@ -92,6 +100,7 @@ def maxmin(board, player, depth):
     best = {'o': min, '@': max}
     if depth == 0:  # if we've reached the desired depth
         return (None, board_score(board))  # return the score
+
     possible_moves = []  # empty list of possible moves
     for spot in get_valid_moves(board, player):
         mov = move(board, player, spot)
@@ -110,13 +119,98 @@ def maxmin(board, player, depth):
             elif a > 3*o:
                 possible_moves.append((spot, 500000000))
             elif a > o:
-                possible_moves.append((spot, 100000000+board_score(mov)))
+                possible_moves.append((spot, 100000000 + board_score(mov)))
             else:
-                possible_moves.append((spot, -100000000+board_score(mov)))
+                possible_moves.append((spot, -100000000 + board_score(mov)))
         else:
             possible_moves.append((spot, maxmin(mov, next_player, depth-1)[1]))
     if len(possible_moves) > 0:
         return best[player](possible_moves, key=lambda x: x[1])
+    else:
+        a = board.count('@')
+        o = board.count('o')
+        if o == 0:
+            return None, 999999999
+        elif a > 3 * o:
+            return None, 500000000
+        elif a > o:
+            return None, 100000000 + board_score(board)
+        else:
+            return None, -100000000 + board_score(board)
+
+
+def maxmin_ab_2(board, player, depth, a, b):
+    # print("AAAAAAAA")
+    global cou
+    opponent = {'o':'@', '@': 'o'}[player]
+    best = {'o': min, '@': max}
+    if depth == 0:  # if we've reached the desired depth
+        return (None, board_score(board))  # return the score
+
+    possible_moves = []  # empty list of possible moves
+    if player == '@':
+        value = -999999999999
+        for spot in get_valid_moves(board, player):
+            mov = move(board, player, spot)
+            next_players_moves = get_valid_moves(mov, opponent)
+            if len(next_players_moves) != 0:
+                next_player = opponent
+            elif len(get_valid_moves(board, player)) != 0:
+                next_player = player
+            else:
+                next_player = '?'
+            if next_player == '?':
+                a = board.count('@')
+                o = board.count('o')
+                if o == 0:
+                    possible_moves.append((spot, 999999999))
+                elif a > 3*o:
+                    possible_moves.append((spot, 500000000))
+                elif a > o:
+                    possible_moves.append((spot, 100000000 + board_score(mov)))
+                else:
+                    possible_moves.append((spot, -100000000 + board_score(mov)))
+            else:
+                this_val = maxmin_ab_2(mov, next_player, depth-1, a, b)[1]
+                value = max(value, this_val)
+                a = max(a, value)
+                possible_moves.append((spot, this_val))
+                if a >= b:
+                    break
+
+    else:
+        value = 999999999999
+        for spot in get_valid_moves(board, player):
+            mov = move(board, player, spot)
+            next_players_moves = get_valid_moves(mov, opponent)
+            if len(next_players_moves) != 0:
+                next_player = opponent
+            elif len(get_valid_moves(board, player)) != 0:
+                next_player = player
+            else:
+                next_player = '?'
+            if next_player == '?':
+                a = board.count('@')
+                o = board.count('o')
+                if o == 0:
+                    possible_moves.append((spot, 999999999))
+                elif a > 3 * o:
+                    possible_moves.append((spot, 500000000))
+                elif a > o:
+                    possible_moves.append((spot, 100000000 + board_score(mov)))
+                else:
+                    possible_moves.append((spot, -100000000 + board_score(mov)))
+            else:
+                this_val = maxmin_ab_2(mov, next_player, depth - 1, a, b)[1]
+                value = min(value, this_val)
+                b = min(b, value)
+                possible_moves.append((spot, this_val))
+                if a >= b:
+                    break
+
+    if len(possible_moves) > 0:
+        return best[player](possible_moves, key=lambda x: x[1])
+
     else:
         a = board.count('@')
         o = board.count('o')
@@ -136,23 +230,10 @@ def board_score(board):
         # print('a')
         return SEEN[board]
 
-    # if board[11] == '@':
-    #     WEIGHTS[12] = 50
-    #     WEIGHTS[21] = 50
-    # if board[18] == '@':
-    #     WEIGHTS[17] = 50
-    #     WEIGHTS[28] = 50
-    # if board[88] == '@':
-    #     WEIGHTS[87] = 50
-    #     WEIGHTS[78] = 50
-    # if board[81] == '@':
-    #     WEIGHTS[71] = 50
-    #     WEIGHTS[82] = 50
-
     moves_left = board.count('.')
     m_weight = 500 if moves_left > 10 else 0
     c_weight = 300 if moves_left < 15 else -150
-    t_weight = 250 #if moves_left > 5 else 50
+    t_weight = 250 #if moves_left > 5 else 25
     s_weight = 200 if moves_left > 10 else 100
     f_weight = 200 if moves_left > 5 else 50
     # k_weight = -150
@@ -314,8 +395,8 @@ def smart_move(state, token):
         print()
         begin = time.perf_counter()
         thresh = 1
-        depth = 2
-        spot, score = maxmin(state, token, 1)
+        depth = 3
+        spot, score = maxmin_ab_2(state, token, 2, -999999999999, 999999999999)
         while time.perf_counter() - begin < thresh:
             spot, score = maxmin(state, token, depth)
             depth += 1
@@ -530,9 +611,6 @@ def territory_score(state, token):
         elif territory in bb or dd:
             score -= 10
     return score
-
-
-
 
 
 def smart_game(state):
