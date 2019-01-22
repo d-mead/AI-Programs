@@ -251,13 +251,12 @@ def board_score(board):
 
     moves_left = board.count('.')
     m_weight = 800 if moves_left > 10 else 0
-    c_weight = 300 if moves_left < 15 else -150
+    c_weight = 300 if moves_left < 15 else -300
     t_weight = 75 if moves_left > 5 else 25
     s_weight = 200 if moves_left > 10 else 100
     f_weight = 200 if moves_left > 5 else 50
-    # k_weight = 150
+    k_weight = 150
     l_weight = 300
-    i_weight = 100
     # r_weight = 100
 
     mobility =  (len(get_valid_moves(board, '@')) - len(get_valid_moves(board, 'o')))   * m_weight
@@ -266,19 +265,14 @@ def board_score(board):
     shots =     (score_shots(board, '@') - score_shots(board, 'o'))                     * s_weight
     frontier =  (score_frontier(board, 'o') - score_frontier(board, '@'))               * f_weight
     lines =     0#(score_lines(board, 'o') - score_lines(board, '@'))                            * l_weight
-    inner =     (score_inner(board, '@') - score_inner(board, 'o'))                     * i_weight
     # keep =      (score_keep(board, '@') - score_keep(board, 'o'))                       * k_weight
     # rows =      score_rows(board, '@') - score_rows(board, 'o')                         * r_weight
 
-    SEEN[board] = mobility + territory + count + shots + frontier + lines + inner
+    SEEN[board] = mobility + territory + count + shots + frontier + lines
 
-    # print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, SEEN[board]))
+    print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, SEEN[board]))
 
-    return mobility + territory + count + shots + frontier + lines + inner
-
-
-def score_ls(board, player):
-    ls = [12, 21, 22]
+    return mobility + territory + count + shots + frontier + lines
 
 
 def score_lines(board, player):
@@ -309,17 +303,6 @@ def score_keep(board, player):
             if spot in move_spots:
                 score += 1
 
-    return score
-
-
-def score_inner(board, player):
-    score = 0
-    spots = set([x for x in range(0, 100) if board[x] == player])
-    directions = [1, 10, -1, -10]
-    for spot in spots:
-        for direction in directions:
-            if board[spot + direction] == player:
-                score += 1
     return score
 
 
