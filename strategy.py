@@ -29,6 +29,7 @@ SIZE = 100
 HUNDRED = False
 
 SEEN = dict()
+VALID_MOVES = dict()
 
 SEEN[PAR_1] = 100000
 SEEN[PAR_1] = 100000
@@ -68,16 +69,23 @@ class Strategy:
 
 
 def main():
-    # global maxing, cou
+    global maxing, cou
     # cou = 0
-    # maxing = '@'
-    # smart_game(BLANK)
+    maxing = '@'
+    smart_game(BLANK)
     # print(cou)
-    begin = time.perf_counter()
-    print(maxmin_ab_2(BLANK, "@", 7, -999999999999, 999999999999))
-    # print(maxmin(BLANK, "@", 6))
-    end = time.perf_counter()
-    print(end-begin)
+    # for d in range(1, 8):
+    #     print(d)
+    #     begin = time.perf_counter()
+    #     print(maxmin_ab_2(BLANK, "@", d, -999999999999, 999999999999))
+    #     # print(maxmin(BLANK, "@", 6))
+    #     end = time.perf_counter()
+    #     print(end - begin)
+
+    print(len(VALID_MOVES))
+    print(len(SEEN))
+    # with open('seen.txt', 'w') as f:
+    #     f.write(str(SEEN))
 
 
 def play_many_games(state, count):
@@ -245,7 +253,7 @@ def board_score(board):
     count =     (board.count('@') - board.count('o'))                                   * c_weight
     shots =     (score_shots(board, '@') - score_shots(board, 'o'))                     * s_weight
     frontier =  (score_frontier(board, 'o') - score_frontier(board, '@'))               * f_weight
-    lines =     (score_lines(board, 'o') - score_lines(board, '@'))                            * l_weight
+    lines =     0#(score_lines(board, 'o') - score_lines(board, '@'))                            * l_weight
     # keep =      (score_keep(board, '@') - score_keep(board, 'o'))                       * k_weight
     # rows =      score_rows(board, '@') - score_rows(board, 'o')                         * r_weight
 
@@ -396,10 +404,10 @@ def smart_move(state, token):
         begin = time.perf_counter()
         thresh = 1
         depth = 3
-        spot, score = maxmin_ab_2(state, token, 2, -999999999999, 999999999999)
-        while time.perf_counter() - begin < thresh:
-            spot, score = maxmin(state, token, depth)
-            depth += 1
+        spot, score = maxmin_ab_2(state, token, 6, -999999999999, 999999999999)
+        # while time.perf_counter() - begin < thresh:
+        #     spot, score = maxmin(state, token, depth)
+        #     depth += 1
         print(depth)
         new_state = move(state, token, spot)# new_state, score = maxmin(state, token, 3)#move(state, token, spot)
         print(score)
@@ -757,6 +765,9 @@ def flip_board(state, spot):
 
 
 def get_valid_moves(state, token):
+    if (state+token) in VALID_MOVES.keys():
+        return VALID_MOVES[(state+token)]
+
     opposite_token = opposite(token)
 
     empty_spots = [x for x in range(0, len(state)) if state[x] == '.']
@@ -785,6 +796,8 @@ def get_valid_moves(state, token):
     if len(valid_move_indecies) == 0:
         return []
 
+    VALID_MOVES[(state+token)] = valid_move_indecies
+
     return valid_move_indecies
 
 
@@ -807,7 +820,6 @@ def display(state):
     pct = int(100*(state.count(maxing)/(state.count(maxing) + state.count(opposite(maxing)))))
     print("|                       |                        |                        |                        |")
     print("".join(["#"]*pct))
-
 
 if __name__ == "__main__":
     main()
