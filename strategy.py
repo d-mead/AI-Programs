@@ -35,43 +35,23 @@ SEEN[PAR_1] = 100000
 SEEN[PAR_1] = 100000
 
 global WEIGHTS
-# WEIGHTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-#      0, 140, -10, -5, -5, -5, -5, -10, 140, 0,
-#      0, -10, -10, -5, -5, -5, -5, -10, -10, 0,
-#      0,  -5,  -5, 15,  3,  3, 15,  -5,  -5, 0,
-#      0,  -5,  -5,  3,  3,  3,  6,  -5,  -5, 0,
-#      0,  -5,  -5,  3,  3,  3,  3,  -5,  -5, 0,
-#      0,  -5,  -5, 15,  3,  6, 15,  -5,  -5, 0,
-#      0, -10, -10, -5, -5, -5, -5, -10, -10, 0,
-#      0, 140, -10, -5, -5, -5, -5, -10, 140, 0,
-#      0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
 
 WEIGHTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
      0, 170, -30, 50,  5,  5, 50, -30, 170, 0,
-     0, -30, -20,  5, -5, -5,  5, -20, -30, 0,
+     0, -30, -50,  5, -5, -5,  5, -50, -30, 0,
      0,  50,   5, 15,  3,  3, 15,   5,  50, 0,
      0,   5,  -5,  3,  3,  3,  6,  -5,   5, 0,
      0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
      0,  50,   5, 15,  3,  6, 15,   5,  50, 0,
-     0, -30, -20,  5, -5, -5,  5, -20, -30, 0,
+     0, -30, -50,  5, -5, -5,  5, -50, -30, 0,
      0, 170, -30, 50,  5,  5, 50, -30, 170, 0,
      0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
 
 BORDER = {11, 12, 13, 14, 15, 16, 17, 18, 21, 31, 41, 51, 61, 71, 81, 82, 83, 84, 85, 86, 87, 88, 78, 68, 58, 48, 38, 28}
 
-# global aa, bb, cc, dd, ee
-# aa = {33, 34, 35, 36, 43, 44, 45, 46, 53, 54, 55, 56, 63, 64, 65, 66}
-# bb = {32, 42, 52, 62, 23, 24, 25, 26, 37, 47, 57, 67, 73, 74, 75, 76}
-# cc = {31, 41, 51, 61, 13, 14, 15, 16, 38, 48, 58, 68, 83, 84, 85, 86}
-# dd = {21, 22, 12, 17, 27, 28, 78, 77, 87, 82, 72, 71}
-# ee = {11, 18, 81, 88}
-
 
 class Strategy:
     def best_strategy(self, board, player, best_move, still_running):
-        # time.sleep(1)
-
-        best_move_setup()
         best_move.value = get_valid_moves(board, player)[0]
         d = 1
         done = False
@@ -83,23 +63,11 @@ class Strategy:
 
 
 def main():
-    global maxing, cou
-    # cou = 0
-    maxing = '@'
-    smart_game(BLANK)
-    # print(cou)
-    # for d in range(1, 8):
-    #     print(d)
-    #     begin = time.perf_counter()
-    #     print(maxmin_ab_2(BLANK, "@", d, -999999999999, 999999999999))
-    #     # print(maxmin(BLANK, "@", 6))
-    #     end = time.perf_counter()
-    #     print(end - begin)
-
-    print(len(VALID_MOVES))
-    print(len(SEEN))
-    # with open('seen.txt', 'w') as f:
-    #     f.write(str(SEEN))
+    # global maxing
+    # maxing = '@'
+    display(SHOTS)
+    print(score_shots(SHOTS, 'o'))
+    # smart_game(BLANK)
 
 
 def play_many_games(state, count):
@@ -254,69 +222,33 @@ def board_score(board):
 
     moves_left = board.count('.')
     m_weight = 2000 if moves_left > 5 else 0
-    c_weight = 300 if moves_left < 15 else -300
+    c_weight = 600 if moves_left < 5 else 0 if moves_left < 10 else -300
     t_weight = 75 if moves_left > 5 else 25
-    s_weight = 200 if moves_left > 10 else 100
+    s_weight = 2000 if moves_left > 10 else 100
     f_weight = 200 if moves_left > 5 else 50
-    k_weight = 150
-    l_weight = 300
-    # r_weight = 100
 
     mobility =  (len(get_valid_moves(board, '@')) - len(get_valid_moves(board, 'o')))   * m_weight
     territory = (score_territory(board, '@') - score_territory(board, 'o'))             * t_weight
     count =     (board.count('@') - board.count('o'))                                   * c_weight
     shots =     (score_shots(board, '@') - score_shots(board, 'o'))                     * s_weight
     frontier =  (score_frontier(board, 'o') - score_frontier(board, '@'))               * f_weight
-    lines =     0#(score_lines(board, 'o') - score_lines(board, '@'))                            * l_weight
+    # lines =   (score_lines(board, 'o') - score_lines(board, '@'))                       * l_weight
     # keep =      (score_keep(board, '@') - score_keep(board, 'o'))                       * k_weight
     # rows =      score_rows(board, '@') - score_rows(board, 'o')                         * r_weight
 
-    SEEN[board] = mobility + territory + count + shots + frontier + lines
+    SEEN[board] = mobility + territory + count + shots + frontier
 
-    print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\nTOTAL: %s" % (mobility, territory, count, shots, frontier, lines, SEEN[board]))
+    print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nTOTAL: %s" % (mobility, territory, count, shots, frontier, SEEN[board]))
 
-    return mobility + territory + count + shots + frontier + lines
+    return mobility + territory + count + shots + frontier
 
 
-def score_lines(board, player):
+def score_territory(board, player):
+    global aa, bb, cc, dd, ee
     score = 0
-    spots = set([x for x in range(0, 100) if board[x] == player])
-    spots = spots.difference(BORDER)
-    directions = [1, 10, -1, -10]
-    for spot in spots:
-        for direction in directions:
-            count = 0
-            look = spot
-            while board[look] == player:
-                count += 1
-                look += direction
-            if count > 3:
-                score += 1
-    return score
+    for spot in [x for x in range(0, 100) if board[x] == player]:
+        score += WEIGHTS[spot]
 
-
-def score_keep(board, player):
-    spots = set([x for x in range(0, 100) if board[x] == player])
-    opponent_moves = get_valid_moves(board, opposite(player))
-    score = 0
-    for move_spot in opponent_moves:
-        mov = move(board, opposite(player), move_spot)
-        move_spots = set([x for x in range(0, 100) if board[x] == player])
-        for spot in spots:
-            if spot in move_spots:
-                score += 1
-
-    return score
-
-
-def score_frontier(board, player):
-    score = 0
-    spots = set([x for x in range(0, 100) if board[x] == player])
-    directions = [1, 10, -1, -10]
-    for spot in spots:
-        for direction in directions:
-            if board[spot+direction] == '.':
-                score += 1
     return score
 
 
@@ -373,6 +305,48 @@ def score_shots(board, player):
     return score
 
 
+def score_frontier(board, player):
+    score = 0
+    spots = set([x for x in range(0, 100) if board[x] == player])
+    directions = [1, 10, -1, -10]
+    for spot in spots:
+        for direction in directions:
+            if board[spot+direction] == '.':
+                score += 1
+    return score
+
+
+def score_lines(board, player):
+    score = 0
+    spots = set([x for x in range(0, 100) if board[x] == player])
+    spots = spots.difference(BORDER)
+    directions = [1, 10, -1, -10]
+    for spot in spots:
+        for direction in directions:
+            count = 0
+            look = spot
+            while board[look] == player:
+                count += 1
+                look += direction
+            if count > 3:
+                score += 1
+    return score
+
+
+def score_keep(board, player):
+    spots = set([x for x in range(0, 100) if board[x] == player])
+    opponent_moves = get_valid_moves(board, opposite(player))
+    score = 0
+    for move_spot in opponent_moves:
+        mov = move(board, opposite(player), move_spot)
+        move_spots = set([x for x in range(0, 100) if board[x] == player])
+        for spot in spots:
+            if spot in move_spots:
+                score += 1
+
+    return score
+
+
 def score_rows(board, player):
     score = 0
     spots = set([x for x in range(0, 100) if board[x] == player])
@@ -394,15 +368,6 @@ def score_rows(board, player):
     return score
 
 
-def score_territory(board, player):
-    global aa, bb, cc, dd, ee
-    score = 0
-    for spot in [x for x in range(0, 100) if board[x] == player]:
-        score += WEIGHTS[spot]
-
-    return score
-
-
 def smart_move(state, token):
     global skip, cont, moves
     # cont = True
@@ -412,18 +377,9 @@ def smart_move(state, token):
         print(token + "'s turn")
         print("valid moves: " + ", ".join([str(x) for x in valid_moves]))
         skip = False
-        # spot = maxmin(state, token, 2)
-        # moves.append(spot)
         print()
-        begin = time.perf_counter()
-        thresh = 1
-        depth = 3
         spot, score = maxmin_ab_2(state, token, 5, -999999999999, 999999999999)
-        # while time.perf_counter() - begin < thresh:
-        #     spot, score = maxmin(state, token, depth)
-        #     depth += 1
-        print(depth)
-        new_state = move(state, token, spot)# new_state, score = maxmin(state, token, 3)#move(state, token, spot)
+        new_state = move(state, token, spot)
         print(score)
         print('I choose %s ' % spot)
         return new_state
@@ -442,201 +398,7 @@ def smart_move(state, token):
         return state
 
 
-def best_move_setup():
-    global aa, bb, cc, dd, ee
-
-    weightings = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-     0, 120, -20, 20,  5,  5, 20, -20, 120, 0,
-     0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
-     0,  20,  -5, 15,  3,  3, 15,  -5,  20, 0,
-     0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
-     0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
-     0,  20,  -5, 15,  3,  3, 15,  -5,  20, 0,
-     0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
-     0, 120, -20, 20,  5,  5, 20, -20, 120, 0,
-     0,   0,   0,  0,  0,  0,  0,   0,   0, 0)
-
-    # print(weightings)
-
-    aa = {13, 23, 33, 32, 31, 16, 16, 36, 37, 38, 61, 62, 63, 73, 83, 86, 76, 66, 67, 68}#{33, 34, 35, 36, 43, 44, 45, 46, 53, 54, 55, 56, 63, 64, 65, 66}
-    bb = {32, 42, 52, 62, 23, 24, 25, 26, 37, 47, 57, 67, 73, 74, 75, 76}
-    cc = {31, 41, 51, 61, 13, 14, 15, 16, 38, 48, 58, 68, 83, 84, 85, 86}
-    dd = {21, 22, 12, 17, 27, 28, 78, 77, 87, 82, 72, 71}
-    ee = {11, 18, 81, 88}
-
-    # bads = {22, 27, 77, 72, 12, 21, 22,  17, 27, 28,  71, 72, 82,  87, 77, 78, 33, 34, 35, 36, 43, 44, 45 ,46, 53, 54 ,55, 56, 63, 64 ,65, 66}
-    # corners = {11, 18, 81, 88}
-    # brackets = {13, 23, 33, 32, 31,  16, 26, 36, 37, 37,  68, 67, 66, 76, 86,  83, 73, 63, 62, 61}
-    # sides = {31, 41, 51, 61, 13, 14, 15, 16, 38, 48, 58, 68, 83, 84, 85, 86}
-
-
-def get_best_move(state, token):
-    best_score = -1001
-    best_move = 0
-    depth = 7#state.count(".")
-    valid_spots = get_valid_moves(state, token)
-    for valid_spot in valid_spots:
-        mov = move(state, token, valid_spot)
-        result = maxi_to_depth(mov, opposite(token), depth+1)
-        score = score_board(result, token)
-        # display(result)
-        # print(score)
-        score += add_loction(valid_spot) * 10
-        # score += (8-(valid_spot/10)) * 100
-        if score > best_score:
-            best_score = score
-            best_move = valid_spot
-        print("%s: %s" % (valid_spot, score))
-
-    r = maxi_to_depth(move(state, token, best_move), opposite(token), depth+1)
-    s = score_board(r, token)
-    print(r, s)
-
-    return best_move
-
-
-def maxi(state, token):
-    global corners
-    valid_spots = get_valid_moves(state, token)
-    best_score = -50000
-    best_move = state
-    if len(valid_spots) == 0:
-        return state, 1000
-
-    for valid_spot in valid_spots:
-        mov = move(state, token, valid_spot)
-        score = score_board(mov, token)
-        if score > best_score:
-            best_score = score
-            best_move = mov
-
-    return best_move, best_score
-
-
-def maxi_to_depth(state, token, depth):
-    for x in range(0, depth):
-        state, score = maxi(state, token)
-        if score == 1000:
-            break
-        token = opposite(token)
-
-    return state
-
-
-def minimax_to_depth(state, token, depth):
-    # dictionary mapping moves to worst score
-    # from 0 to depth/2:
-    #   find the best move for the current token
-    #   for each subsequent move for the next token:
-    #       score it and if it is worse than the worst score in its original move dictionary
-    #       swap it in to the dictionary
-    # return the best of the worst scores
-    move_to_worst_score = dict()
-    fringe = deque()
-    next_fringe = deque()
-    original_token = token
-    for valid_token in get_valid_moves(state, token):
-        move_to_worst_score[valid_token] = 10000
-        fringe.append((move(state, token, valid_token), valid_token))
-    if len(get_valid_moves(state, token)) > 0:
-        for x in range(0, int(depth/2)):  # goes down depth/2 (each itteration is two move levels)
-            while len(fringe) > 0:  # while the current fringe ( black dots ) isn't empty;
-                prev_mov, original = fringe.pop()  # pop the examiing move and direivative move off the fringe
-                token = opposite(token)  # swap the token
-                valid_moves = get_valid_moves(prev_mov, token)
-                if len(valid_moves) == 0:
-                    break
-                for next_spot in valid_moves:  # looping through all of the next white moves:
-                    this_mov = move(prev_mov, token, next_spot)  # make the current move
-                    this_score = score_board(this_mov, original_token)  # score it
-
-                    if this_score < move_to_worst_score[original]:  # if this score is the worst for the derivative move:
-                        move_to_worst_score[original] = this_score  # swap it out in the dictionary
-                    # display(this_mov)
-                    next_mov = maxi(this_mov, opposite(token))  # the next move is the maximum for the black dot
-                    next_fringe.append((next_mov, original))  # add this maximum black dot to the next layer to examine
-                token = opposite(token)
-            while len(next_fringe) > 0:
-                fringe.append(next_fringe.pop())
-
-    # for spot, score in move_to_worst_score.items():
-    #     print(spot)
-    #     print(score)
-    #     display(move(state, token, spot))
-    #     print()
-
-    best_score = -100000
-    best_spot = 0
-
-    for spot, score in move_to_worst_score.items():
-        score += add_loction(spot)*10
-        score += (8-(spot/10)) * 1000
-        print("%s: %s" % (spot, score))
-        if score  > best_score:
-            best_score = score
-            best_spot = spot
-
-    return best_spot
-
-
-def add_loction(spot):
-    global aa, bb, cc, dd, ee
-    if spot in ee:
-        return 200
-    elif spot in cc:
-        return 100
-    elif spot in bb or dd:
-        return -100
-    return 0
-
-
-def score_board(state, token):
-    score = 0
-    if len(get_valid_moves(state, token)) == 0:
-        if len(get_valid_moves(state, opposite(token))) == 0:
-            if state.count(token) >= 3*state.count(opposite(token)):
-                return 100000*(state.count(token)/(state.count(token)+state.count(opposite(token))))
-            elif state.count(token) >= state.count(opposite(token)):
-                return 50000 * (state.count(token) / (state.count(token) + state.count(opposite(token))))
-            else:
-                return -900
-
-    # if state.count('.') < 5:
-    #     capture_score(state, token) * 2
-    # else:
-    if state.count('.') < 5:
-        score += state.count(token)
-    else:
-        score -= (2*state.count(token)-state.count(opposite(token)))
-    score += territory_score(state, token) * 15
-    # score -= territory_score(state, opposite(token)) * 15
-    # score +=
-    # score += mobility_score(state, token) * -1
-    return score
-
-
-def mobility_score(state, token):
-    return 10-len(get_valid_moves(state, opposite(token)))
-
-
-def capture_score(state, token):
-    # returns the percentage of tokens you have, from 0 to 100
-    return state.count(token)/(100-state.count('.'))*100
-
-
-def territory_score(state, token):
-    global aa, bb, cc, dd, ee
-    score = 0
-    for territory in [x for x in range(0, 100) if state[x] == token]:
-        if territory in ee or cc:
-            score += 10
-        elif territory in bb or dd:
-            score -= 10
-    return score
-
-
 def smart_game(state):
-    best_move_setup()
     global skip, cont, moves
     skip = False
     cont = True
@@ -661,7 +423,6 @@ def smart_game(state):
     round(state.count('o') * 100 / total_moves, 4), round(state.count('@') * 100 / total_moves, 4)))
     print(("o" if state.count('o') > state.count('@') else '@') + " wins!")
 
-    # print(moves)
     print()
 
     return ("o" if state.count('o') > state.count('@') else '@'), round(state.count('@') * 100 / total_moves, 4)
@@ -831,9 +592,10 @@ def display(state):
     # print()
     print(" o: %s  @: %s" % (state.count('o'), state.count('@')))
     # print()
-    pct = int(100*(state.count(maxing)/(state.count(maxing) + state.count(opposite(maxing)))))
+    pct = int(100*(state.count('@')/(state.count('@') + state.count(opposite("@")))))
     print("|                       |                        |                        |                        |")
     print("".join(["#"]*pct))
+
 
 if __name__ == "__main__":
     main()
