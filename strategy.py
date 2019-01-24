@@ -47,14 +47,14 @@ global WEIGHTS
 #      0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
 
 WEIGHTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-     0, 140, -20, 50,  5,  5, 50, -20, 140, 0,
-     0, -20, -20,  5, -5, -5,  5, -20, -20, 0,
+     0, 170, -30, 50,  5,  5, 50, -30, 170, 0,
+     0, -30, -20,  5, -5, -5,  5, -20, -30, 0,
      0,  50,   5, 15,  3,  3, 15,   5,  50, 0,
      0,   5,  -5,  3,  3,  3,  6,  -5,   5, 0,
      0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
      0,  50,   5, 15,  3,  6, 15,   5,  50, 0,
-     0, -20, -20,  5, -5, -5,  5, -20, -20, 0,
-     0, 140, -20, 50,  5,  5, 50, -20, 140, 0,
+     0, -30, -20,  5, -5, -5,  5, -20, -30, 0,
+     0, 170, -30, 50,  5,  5, 50, -30, 170, 0,
      0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
 
 BORDER = {11, 12, 13, 14, 15, 16, 17, 18, 21, 31, 41, 51, 61, 71, 81, 82, 83, 84, 85, 86, 87, 88, 78, 68, 58, 48, 38, 28}
@@ -74,9 +74,12 @@ class Strategy:
         best_move_setup()
         best_move.value = get_valid_moves(board, player)[0]
         d = 1
-        while still_running:
+        done = False
+        while still_running and not done:
             best_move.value = maxmin_ab_2(board, player, d, -999999999999, 999999999999)[0]
             d += 1
+            if abs(best_move.value) > 99999999:
+                done = True
 
 
 def main():
@@ -250,7 +253,7 @@ def board_score(board):
         return SEEN[board]
 
     moves_left = board.count('.')
-    m_weight = 800 if moves_left > 10 else 0
+    m_weight = 2000 if moves_left > 5 else 0
     c_weight = 300 if moves_left < 15 else -300
     t_weight = 75 if moves_left > 5 else 25
     s_weight = 200 if moves_left > 10 else 100
@@ -270,7 +273,7 @@ def board_score(board):
 
     SEEN[board] = mobility + territory + count + shots + frontier + lines
 
-    print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, SEEN[board]))
+    print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\nTOTAL: %s" % (mobility, territory, count, shots, frontier, lines, SEEN[board]))
 
     return mobility + territory + count + shots + frontier + lines
 
@@ -396,7 +399,6 @@ def score_territory(board, player):
     score = 0
     for spot in [x for x in range(0, 100) if board[x] == player]:
         score += WEIGHTS[spot]
-
 
     return score
 
