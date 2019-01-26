@@ -2,6 +2,7 @@ BLANK = "??????????.......??.......??.......??.......??.......??.......?????????
 
 import time
 import tkinter as tk
+from tkinter import *
 from PIL import ImageTk
 import random
 
@@ -16,6 +17,10 @@ yo = 0
 
 
 def main():
+    global maxing, mining
+    opposite = {'@': 'o', 'o': '@'}
+    maxing = '@'#input(':')
+    mining = opposite[maxing]
     global master
     blank_window()
     # time.sleep(1)
@@ -48,6 +53,13 @@ def smart_game():
     token = '@'
     swap = {'@':'o', 'o':'@'}
 
+    if maxing == 'o':
+        display_turn(token)
+        display(board)
+        board = human_move(board, token)
+        # board = random_move(board, token)
+        token = swap[token]
+
     while check_win(board) == '.':
         display_turn(token)
         display(board)
@@ -58,6 +70,7 @@ def smart_game():
 
         display_turn(token)
         display(board)
+        # board = smart_move(board, token)
         board = human_move(board, token)
         # board = random_move(board, token)
         token = swap[token]
@@ -75,10 +88,12 @@ def smart_game():
 
 
 def smart_move(board, token):
+    # depth = 6
+
     valid_cols = get_valid_cols(board)
 
     if len(valid_cols) != 0:
-        best_spot, value = maxmin_ab_2(board, token, 8, -9999, 9999)
+        best_spot, value = maxmin_ab_2(board, token, int(d.get()), -9999, 9999)
         print(value)
         new_board = drop_a(board, best_spot, token)
         return new_board
@@ -119,15 +134,15 @@ def random_game():
 
 def maxmin_ab_2(board, player, depth, a, b):
     # print("AAAAAAAA")
-    global cou
+    global cou, maxing, mining
     opponent = {'o':'@', '@': 'o'}[player]
-    best = {'o': min, '@': max}
+    best = {mining: min, maxing: max}
     if depth == 0:  # if we've reached the desired depth
         return (None, score_board(board))  # return the score
 
     possible_moves = []  # empty list of possible moves
 
-    if player == '@':
+    if player == maxing:
         value = -999999999999
         for spot in get_valid_cols(board):
             mov = drop(board, spot, player)
@@ -137,7 +152,7 @@ def maxmin_ab_2(board, player, depth, a, b):
             else:
                 next_player = '?'
             if next_player == '?':
-                if check_win(mov) == '@':
+                if check_win(mov) == maxing:
                     possible_moves.append((spot, 1000000))
                     break
                 else:
@@ -159,7 +174,7 @@ def maxmin_ab_2(board, player, depth, a, b):
             else:
                 next_player = '?'
             if next_player == '?':
-                if check_win(mov) == '@':
+                if check_win(mov) == maxing:
                     possible_moves.append((spot, 1000000))
                     break
                 else:
@@ -176,7 +191,7 @@ def maxmin_ab_2(board, player, depth, a, b):
         return best[player](possible_moves, key=lambda x: x[1])
 
     else:
-        if check_win(board) == '@':
+        if check_win(board) == maxing:
             return None, 100000
         else:
             return None, -100000
@@ -185,7 +200,7 @@ def maxmin_ab_2(board, player, depth, a, b):
 def score_board(board):
     score = 0
 
-    score += max_connected(board, '@') - max_connected(board, 'o') + random.random()
+    score += max_connected(board, maxing) - max_connected(board, mining) + random.random()
 
     return score
 
@@ -218,6 +233,7 @@ def display_turn(token):
     statement = {'@': "black\'s turn...", 'o': 'red\'s turn...'}
     colors = {'@': 'black', 'o': 'red', '.': 'grey'}
     w.create_text(350, 50, fill=colors[token], font="Helvetica 30 bold", text=statement[token], width=700)
+
 
 def check_win(board):
     directions = [1, -1, 8, -8, 9, -9, 10, -10]
@@ -276,9 +292,12 @@ def animate_drop(board, start, stop, token):
     for y in range(start_y, end_y, 40):
         wipe_window()
         w.create_circle(x, y, 40, outline='', fill=color)
+        display_turn(token)
         display_window(board)
+
         time.sleep(.008)
     wipe_window()
+    # display_turn(token)
     display_window(board)
 
 
@@ -304,6 +323,8 @@ def display_window(board):
         color = colors[token]
         cord = index_to_cord[spot]
         w.create_circle(cord[0], cord[1], 40, outline='', fill=color)
+
+    start_window = w.create_window(500, 40, anchor=NW, window=OptionMenu(master, d, *list(range(1, 10))))
 
     master.update_idletasks()
     master.update()
@@ -338,6 +359,12 @@ def blank_window():
 
     for index in index_to_cord.values():
         w.create_circle(index[0], index[1], 40, outline='', fill='SteelBlue3')
+
+    global d
+
+    d = StringVar(w, value=6)
+
+    start_window = w.create_window(500, 40, anchor=NW, window=OptionMenu(master, d, *list(range(1, 10))))
 
     w.bind("<Button-1>", callback)
 

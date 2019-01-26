@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import *
 
 def main():
     master = tk.Tk()
@@ -27,14 +28,18 @@ def main():
     for index in index_to_cord.values():
         w.create_circle(index[0], index[1], 40, outline='', fill='SteelBlue3')
 
+    global d
 
+    d = StringVar(w, value=list(range(1, 10))[0])
+
+    start_window = w.create_window(500, 50, anchor=NW, window=OptionMenu(master, d, *list(range(1, 10))))
 
     print(index_to_cord)
 
-    # master.mainloop()
+    master.mainloop()
 
-    master.update_idletasks()
-    master.update()
+    # master.update_idletasks()
+    # master.update()
 
 
     # master.mainloop()
