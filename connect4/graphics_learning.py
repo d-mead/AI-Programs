@@ -27,9 +27,22 @@ def main():
     for index in index_to_cord.values():
         w.create_circle(index[0], index[1], 40, outline='', fill='SteelBlue3')
 
+
+
     print(index_to_cord)
 
-    master.mainloop()
+    # master.mainloop()
+
+    master.update_idletasks()
+    master.update()
+
+
+    # master.mainloop()
+
+    # w.bind("<Button-1>", callback)
+
+def callback(event):
+    print("clicked at", event.x, event.y)
 
 
 def _create_circle(self, x, y, r, **kwargs):

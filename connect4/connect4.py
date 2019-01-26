@@ -5,15 +5,96 @@ import tkinter as tk
 from PIL import ImageTk
 import random
 
+animate = True
+
+
+global x, y, xo, yo
+x = 0
+y = 0
+xo = 0
+yo = 0
+
+
 def main():
     global master
     blank_window()
-    time.sleep(1)
-    # display(BLANK)
+    # time.sleep(1)
+    display(BLANK)
 
-    random_game()
+    #
+
+    smart_game()
 
     master.mainloop()
+
+
+def human_move(board, token):
+    global x, y, xo, yo
+    xo = x
+    yo = y
+
+    while xo == x and yo == y:
+        w.update()
+        time.sleep(.1)
+
+    spot = int(x/100)
+
+    new_board = drop_a(board, spot, token)
+    return new_board
+
+
+def smart_game():
+    board = BLANK
+    token = '@'
+    swap = {'@':'o', 'o':'@'}
+
+    while check_win(board) == '.':
+        display_turn(token)
+        display(board)
+        board = smart_move(board, token)
+        token = swap[token]
+        if check_win(board) != '.':
+            break
+
+        display_turn(token)
+        display(board)
+        board = human_move(board, token)
+        # board = random_move(board, token)
+        token = swap[token]
+        if check_win(board) != '.':
+            break
+
+    display(board)
+
+    statement = {"@": "black wins!", 'o': 'red wins!', '.': 'tie game', False: 'uh oh'}
+    print(statement[check_win(board)])
+
+    display_winner(check_win(board))
+
+    display(board)
+
+
+def smart_move(board, token):
+    valid_cols = get_valid_cols(board)
+
+    if len(valid_cols) != 0:
+        best_spot, value = maxmin_ab_2(board, token, 8, -9999, 9999)
+        print(value)
+        new_board = drop_a(board, best_spot, token)
+        return new_board
+    else:
+        return -1
+
+
+def random_move(board, token):
+    valid_cols = get_valid_cols(board)
+
+    if len(valid_cols) != 0:
+        spot = valid_cols[random.randint(0, len(valid_cols)-1)]
+        new_board = drop(board, spot, token)
+        return new_board
+    else:
+        return -1
 
 
 def random_game():
@@ -36,11 +117,107 @@ def random_game():
     display_winner(check_win(board))
 
 
+def maxmin_ab_2(board, player, depth, a, b):
+    # print("AAAAAAAA")
+    global cou
+    opponent = {'o':'@', '@': 'o'}[player]
+    best = {'o': min, '@': max}
+    if depth == 0:  # if we've reached the desired depth
+        return (None, score_board(board))  # return the score
+
+    possible_moves = []  # empty list of possible moves
+
+    if player == '@':
+        value = -999999999999
+        for spot in get_valid_cols(board):
+            mov = drop(board, spot, player)
+            next_players_moves = get_valid_cols(mov)
+            if check_win(mov) == '.':
+                next_player = opponent
+            else:
+                next_player = '?'
+            if next_player == '?':
+                if check_win(mov) == '@':
+                    possible_moves.append((spot, 1000000))
+                    break
+                else:
+                    possible_moves.append((spot, -1000000))
+            else:
+                this_val = maxmin_ab_2(mov, next_player, depth-1, a, b)[1]
+                value = max(value, this_val)
+                a = max(a, value)
+                possible_moves.append((spot, this_val))
+                if a >= b:
+                    break
+
+    else:
+        value = 999999999999
+        for spot in get_valid_cols(board):
+            mov = drop(board, spot, player)
+            if check_win(mov) == '.':
+                next_player = opponent
+            else:
+                next_player = '?'
+            if next_player == '?':
+                if check_win(mov) == '@':
+                    possible_moves.append((spot, 1000000))
+                    break
+                else:
+                    possible_moves.append((spot, -1000000))
+            else:
+                this_val = maxmin_ab_2(mov, next_player, depth - 1, a, b)[1]
+                value = min(value, this_val)
+                b = min(b, value)
+                possible_moves.append((spot, this_val))
+                if a >= b:
+                    break
+
+    if len(possible_moves) > 0:
+        return best[player](possible_moves, key=lambda x: x[1])
+
+    else:
+        if check_win(board) == '@':
+            return None, 100000
+        else:
+            return None, -100000
+
+
+def score_board(board):
+    score = 0
+
+    score += max_connected(board, '@') - max_connected(board, 'o') + random.random()
+
+    return score
+
+
+def max_connected(board, token):
+    max_count = 0
+    directions = [1, -1, 8, -8, 9, -9, 10, -10]
+    spots = [x for x in range(10, 62) if (board[x] == token)]
+    for spot in spots:
+        o_spot = spot  # preserve original value
+        token = board[spot]  # which type?
+        for dir in directions:
+            count = 1
+            new_spot = o_spot + dir
+            while board[new_spot] == token:
+                new_spot += dir
+                count += 1
+            if count > max_count:
+                max_count = count
+    return max_count
+
+
 def display_winner(token):
     statement = {"@": "black wins!", 'o': 'red wins!', '.': 'tie game'}
     colors = {'@': 'black', 'o': 'red', '.': 'grey'}
-    w.create_text(350, 50, fill=colors[token], font="Helvetica 40 italic bold", text=statement[token])
+    w.create_text(350, 50, fill=colors[token], font="Helvetica 40 italic bold", text=statement[token], width=700)
 
+
+def display_turn(token):
+    statement = {'@': "black\'s turn...", 'o': 'red\'s turn...'}
+    colors = {'@': 'black', 'o': 'red', '.': 'grey'}
+    w.create_text(350, 50, fill=colors[token], font="Helvetica 30 bold", text=statement[token], width=700)
 
 def check_win(board):
     directions = [1, -1, 8, -8, 9, -9, 10, -10]
@@ -56,7 +233,7 @@ def check_win(board):
                 count += 1
             if count == 4:
                 return token
-    return False
+    return '.'
 
 
 def get_valid_cols(board):
@@ -67,10 +244,19 @@ def get_valid_cols(board):
     return valids
 
 
+def drop_a(board, col, token):
+    for row in range(7, 0, -1):
+        if board[row*9+col+1] == '.':
+            if animate:
+                animate_drop(board, col+10, row*9+col+1, token)
+            board = place(board, row * 9 + col + 1, token)
+            break
+    return board
+
+
 def drop(board, col, token):
     for row in range(7, 0, -1):
         if board[row*9+col+1] == '.':
-            animate_drop(board, col+10, row*9+col+1, token)
             board = place(board, row * 9 + col + 1, token)
             break
     return board
@@ -109,7 +295,6 @@ def display(board):
 
 
 def display_window(board):
-
     w.create_image(353, 401, image=photoimage)
 
     colors = {'@': 'black', 'o': 'red'}
@@ -144,7 +329,6 @@ def blank_window():
 
     w.create_image(353, 401, image=photoimage)
 
-
     global index_to_cord
     index_to_cord = dict()
 
@@ -155,12 +339,22 @@ def blank_window():
     for index in index_to_cord.values():
         w.create_circle(index[0], index[1], 40, outline='', fill='SteelBlue3')
 
+    w.bind("<Button-1>", callback)
+
     master.update_idletasks()
     master.update()
 
 
+def callback(event):
+    global x, y
+    # print("clicked at", event.x, event.y)
+    x = event.x
+    y = event.y
+
+
 def _create_circle(self, x, y, r, **kwargs):
     return self.create_oval(x - r, y - r, x + r, y + r, **kwargs)
+
 
 tk.Canvas.create_circle = _create_circle
 
