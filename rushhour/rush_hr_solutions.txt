@@ -1,0 +1,758 @@
+B B · · · G
+A · · C · G
+A @ @ C · G →
+A · · C · ·
+E · · · F F
+E · D D D ·
+
+A B B · · ·
+A · · · · ·
+A · · · @ @ →
+E · · C · G
+E F F C · G
+D D D C · G
+
+BR1, AU1, EU1, DL2, FL3, CD2, GD3, XR3
+8
+0.80915
+
+
+A · · E E E
+A · · F · J
+@ @ · F G J →
+B B B · G J
+· · D · H H
+C C D I I ·
+
+E E E F G ·
+A · · F G ·
+A · · · @ @ →
+B B B · · J
+· · D H H J
+C C D I I J
+
+@R1, AD1, EL3, FU1, GU2, HL1, JD2, XR3
+8
+1.36737
+
+
+· · · · · ·
+· · · · · ·
+· @ @ B · · →
+· A A B · E
+· C · B · E
+· C D D · E
+
+· C · · · ·
+· C · · · ·
+· · · · @ @ →
+A A · B · E
+· · · B · E
+D D · B · E
+
+BU2, EU3, AR3, DR2, BD3, @R1, CU4, @L2, BU3, AL4, DL4, BD3, ED3, XR4
+14
+0.43818
+
+
+C · · E · ·
+C · · E · ·
+C @ @ E · · →
+· · A B B B
+· · A · · D
+· · F F F D
+
+C · A · · ·
+C · A · · ·
+C · · · @ @ →
+B B B E · ·
+· · · E · D
+F F F E · D
+
+CD3, @L1, AU3, @R1, CU3, BL3, FL2, ED3, XR3
+9
+0.1206
+
+
+A A · E · F
+J · · E B F
+J @ @ E B I →
+J G G G B I
+D · · · H H
+D · · · C C
+
+J A A · · F
+J · · · · F
+J · · · @ @ →
+G G G E B I
+D H H E B I
+D C C E B ·
+
+AR1, CL3, HL3, BD2, ID1, JU1, GL1, ED3, XR3
+9
+1.39059
+
+
+A A · F · ·
+G G · F E J
+· @ @ B E J →
+D D H B E J
+C · H B · ·
+C · · I I I
+
+A A H F · ·
+G G H F · ·
+· · · · @ @ →
+C D D B E J
+C · · B E J
+I I I B E J
+
+@L1, HU3, DR1, CU1, IL3, BD1, ED2, JD2, XR4
+9
+1.14091
+
+
+· A E E F D
+· A · G F D
+· @ @ G · C →
+· · H H · C
+· · · B · ·
+· · · B · ·
+
+E E · G · D
+· · · G · D
+· · · · @ @ →
+· A H H F C
+· A · B F C
+· · · B · ·
+
+CD1, DD1, FD3, ER2, GU1, @R1, AD3, @L2, GD1, EL4, DU1, GU1, XR4
+13
+3.05001
+
+
+· · · A A E
+· · F F G E
+@ @ D H G E →
+C C D H I I
+K K L J J J
+M M L B B B
+
+A A D H G ·
+F F D H G ·
+· · L · @ @ →
+C C L I I E
+K K J J J E
+M M B B B E
+
+AL3, FL2, DU2, GU1, HU2, @R3, IL1, LU2, BL1, JL1, ED3, XR1
+12
+0.61888
+
+
+· A F F G G
+· A · D H H
+@ @ · D E C →
+J B B B E C
+J · I · E K
+J · I · · K
+
+J F F G G C
+J A H H · C
+J A · · @ @ →
+B B B D E ·
+· · I D E K
+· · I · E K
+
+@R1, ED1, JU3, BL1, DD2, @R1, AD1, FL1, GL1, HL2, CU2, XR2
+12
+0.44957
+
+
+A A F · G G
+D D F · · E
+J @ @ · · E →
+J B B B · E
+J · · H C C
+I I · H K K
+
+J A A H G G
+J D D H · ·
+J · · · @ @ →
+B B B · · E
+· · F C C E
+I I F K K E
+
+@R2, GL1, EU1, BR2, FD4, @L2, AR1, DR1, JU2, BL3, HU2, CL1, KL1, ED3, GR1, HU2, XR3
+17
+1.18837
+
+
+D A A G · ·
+D · · G · ·
+D @ @ G · · →
+· · E B B B
+· · E · · F
+· · C C C F
+
+D · E · A A
+D · E · · ·
+D · · · @ @ →
+B B B G · F
+· · · G · F
+C C C G · ·
+
+DD3, @L1, EU2, BL1, FU3, BR1, CR1, ED3, @R1, DU3, BL3, GD1, AR3, GU1, BR3, DD3, @L1, EU4, @R1, DU3, BL3, CL3, FD2, GD3, XR3
+25
+0.43655
+
+
+A E E · · D
+A · G · · D
+@ @ G · · D →
+· · G B B B
+· · · · F ·
+C C C · F ·
+
+E E G · F ·
+A · G · F ·
+A · G · @ @ →
+B B B · · D
+· · · · · D
+C C C · · D
+
+ER2, GU1, BL2, FU3, BR2, CR3, GD3, @R1, AD1, EL3, FU1, @R2, GU3, BL3, CL3, DD3, XR1
+17
+0.66299
+
+
+A A F F G ·
+· · D · G E
+· H D @ @ E →
+J H · C C E
+J · · I B B
+J K K I L L
+
+A A D I F F
+· · D I · ·
+· · · · @ @ →
+J H C C G E
+J H B B G E
+J K K L L E
+
+DD2, EU1, CR1, HD1, @L3, DU2, IU3, BL2, CL2, GD3, LL1, ED3, FR2, DU1, IU1, XR4
+16
+4.81476
+
+
+A A F · · ·
+· · F · G G
+D H @ @ C I →
+D H K K C I
+· · J · B B
+E E J · · ·
+
+A A F · C I
+G G F · C I
+· · · · @ @ →
+K K · · · ·
+D H J · B B
+D H J E E ·
+
+DU1, HU1, KL2, JU1, ER3, JD1, KR2, DD3, HD3, @L2, KL2, FD2, GL4, CU2, FU2, IU2, XR4
+17
+4.91116
+
+
+· A A F F ·
+G G D D E J
+B K @ @ E J →
+B K H C E J
+B K H C I I
+· L L M M ·
+
+A A H C F F
+G G H C D D
+B K · · @ @ →
+B K · · E J
+B K I I E J
+L L M M E J
+
+AL1, BD1, FR1, MR1, LR1, KD1, @L2, CU1, HU1, IL2, ED1, JD1, DR2, CU2, HU2, @R2, BU1, KU1, LL2, ML2, ED1, JD1, XR2
+23
+0.27139
+
+
+A A F F G E
+D · H H G E
+D C J @ @ E →
+· C J B B B
+· · J · · ·
+I I · · · ·
+
+A A J F F ·
+H H J · · ·
+· · J · @ @ →
+D C B B B E
+D C · · G E
+I I · · G E
+
+CD1, DD2, HL2, JD1, @L3, GD1, FR1, JU3, IR2, CD1, BL2, GD3, BR2, CU1, IL2, JD3, @R3, JU3, BL1, ED3, XR1
+21
+1.56193
+
+
+A E E E · ·
+A · F F G G
+@ @ D · · · →
+H H D J · ·
+B B B J C I
+K K K J C I
+
+· · D E E E
+F F D · G G
+A · · · @ @ →
+A H H J C I
+B B B J C I
+K K K J · ·
+
+CU2, ER2, FL1, IU2, JU2, BR3, KR3, DD2, @R1, HR1, AD4, @L1, FL1, HL1, DU4, @R1, HR1, AU2, BL3, CD1, ID1, KL3, JD2, XR3
+24
+1.6992
+
+
+A A F E · ·
+G G F E · ·
+H @ @ E · · →
+H B B B · ·
+H D D · · ·
+C C C · · ·
+
+H · F · A A
+H · F · G G
+H · · · @ @ →
+B B B E · ·
+· · · E D D
+C C C E · ·
+
+BR2, CR3, DR3, HD1, @L1, FD4, @R1, AR1, GR1, HU3, BL3, ED2, AR3, GR3, EU2, BR3, HD3, @L1, FU4, @R1, HU3, BL3, CL3, ED3, XR3
+25
+0.97932
+
+
+· · A E E ·
+· · A · F ·
+· C @ @ F · →
+· C G G B ·
+· D D D B ·
+· · · · · ·
+
+E E A · F ·
+· C A · F ·
+· C · · @ @ →
+· · G G B ·
+D D D · B ·
+· · · · · ·
+
+CU2, @L2, AD1, EL1, FU1, BU1, DR2, GL2, AD3, @R2, GR2, CD4, @L2, EL2, GL2, AU4, @R2, GR2, CU3, DL3, BD1, XR2
+22
+0.22207
+
+
+A · · E E E
+A F F G · ·
+@ @ D G · I →
+· · D · · I
+· · H C C I
+· · H B B B
+
+A · D E E E
+A · D F F ·
+· · · · @ @ →
+· · H G · I
+C C H G · I
+B B B · · I
+
+GD1, FR2, DU2, HU2, BL3, CL3, GD1, HD1, ID1, XR4
+10
+0.56734
+
+
+A A E D · ·
+F · E D · ·
+F @ @ D · · →
+F B B B · ·
+· · · · · ·
+· · · C C C
+
+F · E · A A
+F · E · · ·
+F · · · @ @ →
+B B B D · ·
+· · · D · ·
+C C C D · ·
+
+BR2, FD2, @L1, ED4, @R1, AR1, FU3, BL3, DD1, AR3, DU1, BR3, FD3, @L1, EU4, @R1, FU3, BL3, CL3, DD3, XR3
+21
+0.13041
+
+
+· · A E E E
+F · A J G G
+F @ @ J · · →
+· D · J H H
+C D I I · K
+C B B B · K
+
+E E E · · K
+F G G · · K
+F · · · @ @ →
+C D A J H H
+C D A J I I
+B B B J · ·
+
+FU1, @L1, IR1, AD3, @R1, FD1, EL3, JU1, HL1, KU2, BR2, AD1, DD1, HL2, IR1, CU1, JD2, GL3, JU2, KU2, HR3, AU1, DU1, BL3, JD3, XR3
+26
+2.26251
+
+
+· · E E E I
+· · A F F I
+· · A @ @ I →
+· · G D H H
+· · G D C C
+· · B B B ·
+
+· · A E E E
+F F A · · ·
+· · · · @ @ →
+H H G D · I
+C C G D · I
+B B B · · I
+
+BL2, DD1, HL1, ID1, ER1, AU1, @L3, AD1, EL3, IU1, HR1, DU1, BR3, GD1, AD1, FL3, AU1, DU2, HL4, ID1, ER3, AU1, GU2, BL3, CL4, DD2, GD1, ID2, XR4
+29
+1.22255
+
+
+· · A F F ·
+· G A · · ·
+D G @ @ H · →
+D C C · H ·
+E E E · I ·
+B B · · I ·
+
+F F A · H ·
+· G A · H ·
+· G · · @ @ →
+· · C C I ·
+D E E E I ·
+D · · B B ·
+
+DU2, CL1, GU1, @L2, AD1, FL1, HU2, IU2, BR3, ER3, AD3, @R2, CR2, DD4, GD4, @L2, CL2, FL2, AU4, @R2, CR2, GU3, EL2, ID1, XR2
+25
+3.14165
+
+
+A A F · G G
+D D F · · E
+J @ @ · H E →
+J B B B H E
+J C · I K K
+· C · I L L
+
+A A F I G G
+D D F I · ·
+· · · · @ @ →
+J B B B H E
+J C K K H E
+J C L L · E
+
+GL1, EU1, HU1, BR2, JD1, @L1, FD4, @R1, AR1, DR1, JU3, BL3, IU3, BR3, JD3, @L1, AL1, DL1, FU4, BL2, KL2, HD2, LL2, ED3, GR1, IU1, XR4
+27
+6.78878
+
+
+· A · E E E
+F A · G K ·
+F @ @ G K D →
+H J J J K D
+H · C · · I
+· · C B B I
+
+E E E G · D
+F A · G · D
+F A · · @ @ →
+H J J J K ·
+H · C · K I
+B B C · K I
+
+EL1, DU2, HD1, IU1, BR1, JL1, GD3, @R1, AD1, EL2, KU1, JR2, AD3, @L1, JL2, GU4, @R1, BL1, ID1, JR3, AU3, CU1, HU1, BL3, CD1, JL2, KD3, XR2
+28
+3.43911
+
+
+A F F E · ·
+A G G E · ·
+@ @ D E · I →
+· · D H H I
+· · C · · I
+· · C B B B
+
+F F D · · ·
+A · D G G ·
+A · · · @ @ →
+H H C E · I
+· · C E · I
+B B B E · I
+
+IU2, HR1, ED2, FR2, GR2, DU2, @R1, AD4, @L1, DD2, FL3, GL3, DU1, EU2, HL4, DD1, ED2, GR3, DU2, @R1, HR1, AU3, HL1, CU1, BL3, ED1, ID3, XR3
+28
+1.51002
+
+
+E E E A · ·
+· · J A F F
+@ @ J · · · →
+G D J H H K
+G D B B B K
+C C I I · K
+
+E E E A · ·
+F F J A · ·
+· · J · @ @ →
+G D J H H K
+G D B B B K
+C C I I · K
+
+AD1, ER3, JU1, KU1, IR2, CR2, DD1, GD1, HL3, AD1, FL1, KU1, BR1, JD2, FL3, AU1, JU2, HR3, DU1, GU1, CL2, JD3, EL3, AU1, @R3, JU2, BL1, IL2, KD2, XR1
+30
+1.11588
+
+
+E E E · J ·
+· · A · J ·
+@ @ A · J F →
+G D D H H F
+G C C I · K
+B B B I · K
+
+G E E E · F
+G · A · · F
+· · A · @ @ →
+D D H H J ·
+C C · I J K
+B B B I J K
+
+ER1, FU1, HR1, IU3, CR2, HL1, KU1, BR3, GD1, DL1, AD3, @R1, DR1, GU4, @L1, DL1, AU3, BL3, CL3, KD1, HR1, ID3, HL2, JD3, ER2, AU1, @R3, AD1, EL2, FU1, XR1
+31
+3.16361
+
+
+E · A I I I
+E · A F · ·
+E @ @ F · · →
+G G D D · B
+· · · · · B
+H H C C · B
+
+I I I F · ·
+E · · F · ·
+E · · · @ @ →
+E G G D D B
+· · A · · B
+H H A C C B
+
+BU1, CR2, DR1, GR1, HR1, ED3, @L1, AD1, IL3, BU2, DR1, FD3, DL1, BD1, IR3, AU1, @R3, EU3, GL1, HL1, AD4, @L2, GR1, ED1, IL3, BU1, DR1, FU4, CL1, DL1, BD3, XR3
+32
+0.67453
+
+
+A A · E E E
+· · · F G G
+D @ @ F · J →
+D · B H H J
+C C B · · J
+· · B I I I
+
+D A A E E E
+D · B G G ·
+· · B · @ @ →
+H H B F · J
+C C · F · J
+I I I · · J
+
+AR1, DU2, @L1, BU2, CR3, BD2, @R1, DD4, @L1, AL1, BU3, HL3, BD3, FD1, GL1, JU1, CR1, FD1, @R3, BU3, HR1, DU3, HL1, BD3, AR1, DU1, @L3, BU2, FU1, CL4, BD2, FD1, @R3, BU2, IL3, JD2, XR1
+37
+2.52983
+
+
+A A E F G G
+· · E F · ·
+@ @ E · · · →
+D H H C C J
+D · · I · J
+B B · I · J
+
+D A A F G G
+D · · F · ·
+· · · · @ @ →
+H H E C C J
+· · E I · J
+B B E I · J
+
+FD1, GL1, JU3, CR1, IU1, BR4, DD1, HL1, ED3, ID1, CL1, JD1, GR1, FU1, @R3, EU3, HR1, DU3, HL1, ED3, AR1, DU1, @L3, EU2, FD1, GL1, JU1, CR1, IU1, BL4, ED2, ID1, CL1, JD3, GR1, FU1, XR4
+37
+0.24724
+
+
+· A E · F F
+· A E · · ·
+@ @ E · · · →
+K D D H H J
+K C C I G J
+B B B I G J
+
+K A F F G ·
+K A E · G ·
+· · E · @ @ →
+D D E H H J
+C C · I · J
+B B B I · J
+
+FL1, JU3, HR1, IU3, BR1, KD1, DL1, HL2, GU3, BR2, CR3, HR2, ED3, FL1, GU1, ID2, @R3, AD1, FL2, EU3, DR1, KU3, DL1, ED3, FR2, AU1, KU1, @L3, EU2, IU1, CL4, ED2, ID1, @R3, EU2, BL3, ID1, HL1, JD3, XR1
+40
+2.83769
+
+
+A · · E E E
+A · · F · J
+@ @ · F G J →
+B B B D G J
+· · H D C C
+K K H I I ·
+
+E E E F G ·
+A · · F G ·
+A · · · @ @ →
+B B B D · J
+C C H D · J
+K K H I I J
+
+@R1, AD1, EL3, FU1, GU1, IR1, DD1, JU1, BR3, AD2, @L1, HU3, KR1, AD1, BL3, DU2, CL3, DD2, BR1, FD1, JD1, ER3, HU1, @R1, AU4, @L1, CL1, HD1, EL2, GU1, JU1, BR2, KL1, HD3, @R1, AD1, BL3, DU1, EL1, FU1, IL1, JD3, XR3
+43
+3.04956
+
+
+· · E A A J
+· · E F · J
+@ @ E F · J →
+G B B B · ·
+G D D H C ·
+I I · H C ·
+
+A A E F · ·
+G · E F · ·
+G · E · @ @ →
+B B B · · J
+D D · H C J
+I I · H C J
+
+CU3, IR1, GD1, BL1, JD1, AR1, FU1, HU2, DR3, IR3, HD2, FD1, AL1, JU1, BR3, ED3, @R1, GU4, @L1, EU3, BL3, JD1, AR1, FU1, HU2, DL4, IL4, CD3, HD2, FD1, AL1, JU1, BR3, ED3, AL2, FU1, @R3, GD1, AL1, EU3, BL3, JD3, XR1
+43
+2.6152
+
+
+E J J J A A
+E F G G · B
+E F @ @ · B →
+K K K D · B
+· · H D C C
+I I H · · ·
+
+J J J D A A
+E G G D · ·
+E · · · @ @ →
+E K K K · B
+· F H C C B
+· F H I I B
+
+@R1, DD1, KR2, ED1, JL1, AL1, BU1, KR1, GR1, HU3, KL1, BD1, AR1, JR1, EU1, KL2, DU1, IR4, DD1, KR2, ED1, FD3, JL1, AL1, BU1, KR1, HD3, @L2, KL1, BD1, AR1, JR1, EU1, KL2, GL2, DU3, CL1, IL1, BD2, KR1, ED1, JL1, DU1, XR3
+44
+1.71461
+
+
+A A F · G G
+D D F · E J
+B @ @ · E J →
+B K K K E J
+B · · H C C
+I I · H L L
+
+A A F H G G
+D D F H · ·
+B · · · @ @ →
+B K K K E J
+B C C · E J
+I I L L E J
+
+IR1, BD1, @L1, FD1, GL2, EU1, JU1, KR2, FD2, @R1, BU1, DR1, IL1, FD1, KL2, ED1, GR1, AR1, BU2, KL1, HU3, KR1, BD2, AL1, DL1, GL1, EU1, KR2, FU1, IR1, BD1, @L1, FU2, CL3, KL2, ED2, GR1, FU1, @R1, BU1, IL1, LL2, ED1, JD3, GR1, HU1, XR3
+47
+1.35638
+
+
+A · · E E E
+A F F G · ·
+@ @ D G · J →
+· · D H H J
+· · C I I J
+· · C B B B
+
+A · D E E E
+A · D F F ·
+· · · · @ @ →
+H H C G · J
+I I C G · J
+B B B · · J
+
+EL1, JU2, HR1, GD1, FR2, DU1, CU1, BL3, IR1, GD2, HL1, JD1, ER1, DU1, @R1, AD3, @L1, DD1, EL3, JU1, HR1, GU1, BR3, AD1, CD1, DD1, FL3, DU1, GU2, HL4, DD1, GD1, FR3, JD1, ER3, DU2, @R1, HR1, AU4, @L1, HL1, CU2, BL3, IL4, CD1, GD1, JD2, XR4
+48
+2.19624
+
+
+· · A E E E
+· · A F · ·
+@ @ G F · B →
+D D G H H B
+C I J J · B
+C I K K · ·
+
+C I A E E E
+C I A · · ·
+· · · · @ @ →
+D D G H H B
+J J G F · B
+K K · F · B
+
+BU1, JR2, KR2, GD2, AD1, EL3, BU1, HR1, FD3, HL1, BD1, ER3, AU1, @R3, AD1, EL1, BU1, HR1, DR2, CU4, IU4, DL2, HL1, BD1, ER1, AU1, @L3, AD1, EL1, BU1, HR1, FU3, HL1, BD1, ER1, AU1, GU2, JL4, GD1, AD1, EL1, BU1, HR1, KL4, FD3, HL1, BD3, ER1, AU1, XR4
+50
+2.10748
+
+
+E A A · F ·
+E G D · F J
+E G D @ @ J →
+B B B H · J
+· · C H I I
+K K C L L ·
+
+A A D H F ·
+E · D H F ·
+E · · · @ @ →
+E G B B B J
+· G C I I J
+K K C L L J
+
+JU1, LR1, HD1, BR3, CU1, GD2, KR1, ED3, AL1, DU1, @L3, DD1, FD1, AR3, DU1, @R2, EU3, GU3, @L1, KL1, CD1, BL3, JD1, AR1, HU4, @R1, BR2, GD3, @L1, HD1, AL1, IL1, JU1, BR1, CU1, KR1, ED3, @L1, DD1, AL3, DU1, @R1, EU2, FU1, HU1, KL1, CD1, BL1, LL1, JD3, XR3
+51
+2.24159

@@ -1,0 +1,236 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+	<HEAD>
+		<title>SIS StudentVUE</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta content="en-US" name="language">
+		<meta content="private - general audiences" name="rating">
+		<meta content="2005 - Edupoint,Inc" name="copyright">
+		<meta content="Edupoint, LLC" name="author">
+		<LINK title="global styles" href="Schemes/PXP_Global.css" type="text/css" rel="stylesheet">
+		<LINK title="global styles" href="Schemes/PXP_Form.css" type="text/css" rel="stylesheet">
+        <link rel="Shortcut Icon" href="synergy.ico">
+	</HEAD>
+	<body id="MainBody" onload="document.getElementById(&#39;username&#39;).focus()">
+		<div id="MainDiv"><div id="header"><div class="span"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td valign="top"><img src="images/PXP/header_lft3.gif" alt="Left Corner Page Header" border="0" height="109" width="10" /></td><td valign="top" class="span"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tr>
+				<td width="20%"></td><td align="center" valign="middle" height="83"><img src="Photos/A2/A2ED8555-8160-442E-83E6-1E22E1A997CA_LoginPageLogo.PNG" alt="District Logo" border="0" height="60" /></td><td valign="bottom" width="20%"></td>
+			</tr><tr>
+				<td colspan="3"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+					<tr>
+						<td></td><td></td><td></td><td class="small_txt" align="right"></td>
+					</tr>
+				</table></td>
+			</tr>
+		</table></td><td valign="top"><img src="images/PXP/header_rt.gif" alt="Right Corner Page Header" border="0" height="109" width="10" /></td>
+	</tr>
+</table></div></div><table id="bar_nav" cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td align="right">&nbsp;</td><td align="left" valign="top">&nbsp;</td>
+	</tr>
+</table>
+			<table class="main" cellSpacing="0" cellPadding="0" width="100%" border="0">
+				<tr>
+					<td vAlign="top" width="8"></td> <!-- end side navigation -->
+					<td vAlign="top"> <!--main content  - middle column-->
+						<div id="maincontent">
+							<div id="dataBG">
+								<table class="main" cellSpacing="0" cellPadding="0" width="100%" border="0">
+									<tr>
+										<td class="whiteBG" vAlign="top"><IMG height="12" alt="Top Left Corner" src="images/PXP/corner_top_lft.gif" width="13" align="middle"
+												border="0"></td>
+										<td class="whiteBG" vAlign="top" width="100%" height="200">
+											<h1 id="LoginSVUE" style="display:none">StudentVUE Account Access</h1> <h1>SIS StudentVUE</h1>
+											<span class="welcome">&nbsp;</span>
+											<table cellSpacing="10" cellPadding="5" width="80%" align="center" border="0">
+												<tr>
+													<td vAlign="top" width="100%">
+													
+													  <table cellSpacing="0" cellPadding="0" width="50%" border="0" align="center">
+															<tr>
+																<td class="row_hdr" vAlign="top"><IMG alt="" src="images/PXP/content_header_left.png" border="0"></td>
+																<td id="LoginMessage" class="row_hdr" valign="middle" width="100%">Login</td>
+
+																<td class="row_hdr" vAlign="top" align="right"><img alt="Right Corner Content Header" src="images/PXP/content_header_right.png" border="0" /></td>
+															</tr>
+														</table>
+														<table class="login_tbl blueBG" cellSpacing="0" cellPadding="0" width="50%" align="center">
+															<tr>
+																<td align="center" height="200">
+																	<div id="login">
+																		<form name="Form1" method="post" action="./Login_Student_PXP_OVR.aspx?regenerateSessionId=True" id="Form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="wruPGORrWGGRCywdHhnGmKxzjUu+UXE4jfth69ySD4XqK2d6fnAzU9efkmUnJOJHAWpwe+yCa3KdXXnmevsdLbEjGu4bpAD9kCsKr3Ar5E8=" />
+
+
+<script src="js/ST/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="js/ST/jquery-ui.min.js" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="048E18CA" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="ip3v1jy+FDVrSbRNjnVPcivQDopmJEAa/K8MfWmGT4NvVbBFIoQhMoofllTMgtWwznvTUvO3JH4peWgD8RCNqfE+M7Gv7wSJVhuhJ+WD9hPqFPBBhWdrOwfyY6RExaZQG8Md4PJ4TbDXWMROgFe/p9/KSYDvRqfmogODxjfy0YE=" />
+																			<table class="plain">
+																				<tr>
+																					<td><label id="LoginUserName" for="username" style="display:none">User Name:</label><label for="username">Username:</label></td>
+																					<td><input name="username" type="text" id="username" /></td>
+																				</tr>
+																				<tr>
+																					<td><label id="LoginPassword" for="password" style="display:none">Password:</label><label for="password">Password:</label></td>
+																					<td><input name="password" type="password" id="password" /></td>
+																				</tr>
+																				<tr>
+																					<td></td>
+																					<td><br>
+																						<input name="Submit1" type="submit" id="Submit1" value="Login" CssClass="btn" Text="Login" onclick="this.disabled=true;this.form.submit();" /></td>
+																				</tr>
+																			</table>
+																			<p style="display:none"><a href="Password_Help_PXP.aspx" id="LoginForget">Forget your password?  Click here.</a></p>
+																		  <p>
+																			<a href="https://itweb.fcps.edu/accountrecovery/index.cfm">Forgot Password</a><br />
+																			<a href="https://mystudent.fcps.edu">Change Password</a>
+																		  </p>
+																		</form>
+																	</div>
+																</td>
+															</tr>
+														</table>
+														<table cellSpacing="0" cellPadding="0" width="50%" border="0" align="center">
+															<tr>
+																<td class="row_ftr" vAlign="top"><img alt="Left Footer Content" src="images/PXP/content_footer_left.png" border="0" /></td>
+																<td class="row_ftr" width="100%">&nbsp;</td>
+																<td class="row_ftr" vAlign="top"><img alt="Right Footer Content" src="images/PXP/content_footer_right.png" border="0" /></td>
+															</tr>
+														</table>
+													</td>
+													<td vAlign="top" width="50%" style="display:none">
+														<table cellSpacing="0" cellPadding="0" width="100%" border="0">
+															<tr>
+																<td class="row_hdr" vAlign="top"><IMG alt="Left Corner Content Header" src="images/PXP/content_header_left.png" border="0"></td>
+																<td id="LoginActivate" class="row_hdr" valign="middle" width="100%">Activate My Account</td>
+
+																<td class="row_hdr" vAlign="top"><IMG alt="Right Corner Content Header" src="images/PXP/content_header_right.png" border="0"></td>
+															</tr>
+														</table>
+														<table class="login_tbl blueBG" cellSpacing="0" cellPadding="2" width="100%">
+															<tr>
+																<td align="center" height="197">
+																	<img alt = "Students Icon" src="Images/PXP/Students2_Add.gif"/>
+																	<p id="ActMsg" align="center"><A href="Activate_Account_Privacy_Student_PXP.aspx"><span id="LoginActivateMessage" class="largeText">I have an activation key and need to create my account&gt;&gt;</span></A></p>
+                                                                    
+																</td>
+															</tr>
+														</table>
+														<table cellSpacing="0" cellPadding="0" width="100%" border="0">
+															<tr>
+																<td class="row_ftr" vAlign="top"><IMG alt="Left Footer Content" src="images/PXP/content_footer_left.png" border="0"></td>
+																<td class="row_ftr" width="100%">&nbsp;</td>
+																<td class="row_ftr" vAlign="top"><IMG alt="Right Footer Content" src="images/PXP/content_footer_right.png" border="0"></td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+<table  cellspacing="0" cellpadding="0" align="center" border="0">
+<tr>
+<td align="center"  valign="middle">
+<div id="MOBILE_APP">Download the mobile StudentVUE application at the <a href="http://itunes.apple.com/us/app/studentvue/id412050327?mt=8">App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.FreeLance.StudentVUE">Google Play</a></div>
+			<div id="SIS_MESSAGE"  class="frmCtrlGrp" style="display:none"></div>
+			<script>
+			$.get("../FCPS/SIS_OUTAGE.txt")
+			.done(function() { 
+				$( "#SIS_MESSAGE" ).load( "../FCPS/SIS_OUTAGE.txt" , function( response, status, xhr ) {
+				if ( status == "error" ) {
+				var msg = "Sorry but there was an error: ";
+				$( "#SIS_MESSAGE" ).html( msg + xhr.status + " " + xhr.statusText );
+				}
+				else{
+				if($("#SIS_MESSAGE").text().length>0){
+				//$("#SIS_MESSAGE").css("width","300px");
+				$("#SIS_MESSAGE").css("display","block");
+				$("#MOBILE_APP").css("display","none");
+				}
+				}
+			});
+			}).fail(function() { 
+				// not exists code
+			});
+			</script>
+</td>
+</tr>
+</table>
+                                            <table  cellspacing="0" cellpadding="0" align="center" border="0"  style="display:none">
+												<tr>
+									                    <td id="StudentVUEMobileLinkTD" align="center" valign="middle"><a href="http://itunes.apple.com/us/app/studentvue/id412050327?mt=8" 
+                                                                        id="StudentVUEMobileLink"><img height="40" alt="iTunes StudentVUE App Link" src="images/PXP/PXP_iTunesLink_StudentVUE.gif" width="350" border="0"></a></td>
+
+                                                        <td id="StudentVUEAndroidLinkTD" align="center" valign="middle">
+                                                         <a href="https://market.android.com/details?id=com.FreeLance.StudentVUE" 
+                                                                        id="StudentVUEAndroidLink"> <img height="40" alt="Android Market StudentVUE App Link" src="images/PXP/PXP_android_market_logo.png" width="115" border="0"></a></td>
+
+
+												</tr>
+											</table>
+                                       		<table class="plain" align="center" border="0"  style="display:none">
+                                            	<tr>
+                                                 	<td id="DistrictURLTD" height="30" align="center" valign="middle" cellpadding="2">
+                                                    	<label id="DistrictURLTitle">District URL for mobile app:</label>
+                                                	</td>
+
+                                                	<td id="DistrictURLTDValue" height="30" align="center" valign="middle">
+                                                    	<b> <label id="DistrictURLLabel">not specified</label></b>
+                                               	 	</td>
+
+                                            	</tr>
+	                                        </table>
+										</td>
+										<td class="banner_ie2" vAlign="top" width="16">
+											<table cellSpacing="0" cellPadding="0" width="16" border="0">
+												<tr>
+													<td vAlign="top" width="16"><IMG height="12" alt="Top Right Corner" src="images/PXP/corner_top_rt.gif" width="16" align="right" border="0"></td>
+												</tr>
+												<tr>
+													<td vAlign="top" width="16"><IMG height="1" alt="Spacer" src="images/PXP/1x1trans.gif" width="16" align="middle" border="0"></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td class="whiteBG"></td>
+										<td class="whiteBG" vAlign="top">
+											<table cellSpacing="10" cellPadding="5" width="80%" align="center" border="0">
+												<tr>
+													<td vAlign="top" width="50%">
+														<table width="100%">
+															<tr>
+																<td align="center">
+																	<span id="ERROR"></span>
+																</td>
+															</tr>
+														</table>
+													</td>
+													<td vAlign="top" width="50%">&nbsp;</td>
+												</tr>
+											</table>
+										</td>
+										<td class="banner_ie2" width="16"></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td valign="top"><div id="footer"><ul><li><a href="Login_PXP.aspx?Logout=2">Return to common login</a>|</li><li><a href="Contact_PXP.aspx">Contact</a>|</li><li><a href="Privacy_PXP.aspx">Privacy</a></li></ul></div><div id="legal"><p><br /><a href="http://www.edupoint.com/" target="_blank"><img src="images/PXP/edupoint_logo_footer.png" border="0" alt="Edupoint Educational Systems" style="padding-bottom:3px;border:0px" /></a><br />&copy;Copyright 2018 Edupoint, LLC</p></div></td>
+	</tr>
+</table></div>
+		<p style="color:rgb(156,182,217); text-align:center; font-size:10px; margin-top:-25px">03</p>
+		<script>
+		
+		// Remove the first li element to common login
+		var ftr = document.getElementById("footer");
+		ftr.childNodes[0].removeChild (ftr.childNodes[0].childNodes[0] );
+		</script>
+	</body>
+</HTML>
