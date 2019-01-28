@@ -84,7 +84,7 @@ def main():
     # smart_game(BLANK)
     # print(cou)
     display(FRONT)
-    print((score_frontier(FRONT, 'o') - score_frontier(FRONT, '@')))
+    print(score_frontier(FRONT, '@'))
     # board_score(SPECIAL)
     # print(score_special_corners(SPECIAL, '@'))
     # begin = time.perf_counter()
@@ -246,10 +246,10 @@ def board_score(board):
 
     moves_left = board.count('.')
     m_weight = 50 if moves_left > 10 else 20
-    c_weight = 30 if moves_left < 15 else -50
-    t_weight = 20 #if moves_left > 5 else 25
+    c_weight = 30 if moves_left < 15 else -100
+    t_weight = 25 #if moves_left > 5 else 25
     s_weight = 20 if moves_left > 10 else 10
-    f_weight = 90 if moves_left > 5 else 5
+    f_weight = 100 if moves_left > 5 else 5
     # k_weight = -15
     l_weight = 20
     sp_weight = 1500
@@ -339,10 +339,10 @@ def score_frontier(board, player):
     for spot in spots:
         found = False
         for direction in directions:
-            if board[spot+direction] == '.':
+            if board[spot + direction] == '.':
                 score += 1
                 found = True
-            elif board[spot+direction] == '?':
+            elif board[spot + direction] == '?':
                 found = True
         if not found:
             score -= 1
@@ -858,6 +858,7 @@ def display(state):
     pct = int(100*(state.count(maxing)/(state.count(maxing) + state.count(opposite(maxing)))))
     print("|                       |                        |                        |                        |")
     print("".join(["#"]*pct))
+
 
 
 if __name__ == "__main__":
