@@ -17,10 +17,20 @@ BLANK = "??????????" \
         "??????????"
 OTHER = "???????????........??........??.@...@..??.oooo...??...@@...??...@....??...@....??........???????????"
 ROWS  = "???????????@@@@@@@@??@.......??@.......??@..@o...??@..o@...??@.......??@.......??@.......???????????"
-FRONT = "???????????........??oooooooo??@@@@@@@@??........??........??........??........??........???????????"
+FRONT = "???????????oooooooo??@@@@@@@@??oooooooo??........??........??........??........??........???????????"
 SHOTS = "???????????oooo....??o.......??o.......??........??........??........??........??......oo???????????"
 PAR_1 = "???????????........??........??........??...@@@..??...o@...??........??........??........???????????"
 PAR_2 = "???????????........??........??........??...@@@..??...o@o..??....@...??........??........???????????"
+SPECIAL = "??????????" \
+        "?o@.....o?" \
+        "?@.......?" \
+        "?@.......?" \
+        "?...@o...?" \
+        "?...o@...?" \
+        "?........?" \
+        "?.......@?" \
+        "?......@o?" \
+        "??????????"
 
 
 DIRECTIONS = [1, -1, 10, -10, 11, -11, 9, -9]
@@ -68,16 +78,20 @@ class Strategy:
 
 
 def main():
-    # global maxing, cou
-    # cou = 0
-    # maxing = '@'
+    global maxing, cou
+    cou = 0
+    maxing = '@'
     # smart_game(BLANK)
     # print(cou)
-    begin = time.perf_counter()
-    print(maxmin_ab_2(BLANK, "@", 7, -999999999999, 999999999999))
-    # print(maxmin(BLANK, "@", 6))
-    end = time.perf_counter()
-    print(end-begin)
+    display(FRONT)
+    print((score_frontier(FRONT, 'o') - score_frontier(FRONT, '@')))
+    # board_score(SPECIAL)
+    # print(score_special_corners(SPECIAL, '@'))
+    # begin = time.perf_counter()
+    # print(maxmin_ab_2(BLANK, "@", 7, -999999999999, 999999999999))
+    # # print(maxmin(BLANK, "@", 6))
+    # end = time.perf_counter()
+    # print(end-begin)
 
 
 def play_many_games(state, count):
@@ -231,29 +245,60 @@ def board_score(board):
         return SEEN[board]
 
     moves_left = board.count('.')
-    m_weight = 500 if moves_left > 10 else 0
-    c_weight = 300 if moves_left < 15 else -150
-    t_weight = 250 #if moves_left > 5 else 25
-    s_weight = 200 if moves_left > 10 else 100
-    f_weight = 200 if moves_left > 5 else 50
-    # k_weight = -150
-    l_weight = 300
-    # r_weight = 100
+    m_weight = 50 if moves_left > 10 else 20
+    c_weight = 30 if moves_left < 15 else -50
+    t_weight = 20 #if moves_left > 5 else 25
+    s_weight = 20 if moves_left > 10 else 10
+    f_weight = 90 if moves_left > 5 else 5
+    # k_weight = -15
+    l_weight = 20
+    sp_weight = 1500
+    # r_weight = 10
 
     mobility =  (len(get_valid_moves(board, '@')) - len(get_valid_moves(board, 'o')))   * m_weight
     territory = (score_territory(board, '@') - score_territory(board, 'o'))             * t_weight
     count =     (board.count('@') - board.count('o'))                                   * c_weight
     shots =     (score_shots(board, '@') - score_shots(board, 'o'))                     * s_weight
     frontier =  (score_frontier(board, 'o') - score_frontier(board, '@'))               * f_weight
+    special  =  (score_special_corners(board, '@') - score_special_corners(board, 'o')) * sp_weight
     lines =     (score_lines(board, 'o') - score_lines(board, '@'))                            * l_weight
     # keep =      (score_keep(board, '@') - score_keep(board, 'o'))                       * k_weight
     # rows =      score_rows(board, '@') - score_rows(board, 'o')                         * r_weight
 
-    SEEN[board] = mobility + territory + count + shots + frontier + lines
+    SEEN[board] = mobility + territory + count + shots + frontier + lines + special
 
-    # print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, SEEN[board]))
+    if moves_left < 10:
+        display(board)
+        print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\ns: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, special, SEEN[board]))
 
-    return mobility + territory + count + shots + frontier + lines
+    return mobility + territory + count + shots + frontier + lines + special
+
+
+def score_special_corners(board, player):
+    score = 0
+    op = opposite(player)
+    if board[11] != '.':
+        if board[12] == player:
+            score += 1
+        if board[21] == player:
+            score += 1
+    if board[18] != '.':
+        if board[17] == player:
+            score += 1
+        if board[21] == player:
+            score += 1
+    if board[81] != '.':
+        if board[71] == player:
+            score += 1
+        if board[82] == player:
+            score += 1
+    if board[88] != '.':
+        if board[78] == player:
+            score += 1
+        if board[87] == player:
+            score += 1
+
+    return score
 
 
 def score_lines(board, player):
@@ -292,9 +337,15 @@ def score_frontier(board, player):
     spots = set([x for x in range(0, 100) if board[x] == player])
     directions = [1, 10, -1, -10]
     for spot in spots:
+        found = False
         for direction in directions:
             if board[spot+direction] == '.':
                 score += 1
+                found = True
+            elif board[spot+direction] == '?':
+                found = True
+        if not found:
+            score -= 1
     return score
 
 
@@ -396,10 +447,10 @@ def smart_move(state, token):
         begin = time.perf_counter()
         thresh = 1
         depth = 3
-        spot, score = maxmin_ab_2(state, token, 2, -999999999999, 999999999999)
-        while time.perf_counter() - begin < thresh:
-            spot, score = maxmin(state, token, depth)
-            depth += 1
+        spot, score = maxmin_ab_2(state, token, 5, -999999999999, 999999999999)
+        # while time.perf_counter() - begin < thresh:
+        #     spot, score = maxmin(state, token, depth)
+        #     depth += 1
         print(depth)
         new_state = move(state, token, spot)# new_state, score = maxmin(state, token, 3)#move(state, token, spot)
         print(score)
