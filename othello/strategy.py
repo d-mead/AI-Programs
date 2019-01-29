@@ -81,10 +81,10 @@ def main():
     global maxing, cou
     cou = 0
     maxing = '@'
-    # smart_game(BLANK)
+    smart_game(BLANK)
     # print(cou)
-    display(FRONT)
-    print(score_frontier(FRONT, '@'))
+    # display(FRONT)
+    # print(score_frontier(FRONT, '@'))
     # board_score(SPECIAL)
     # print(score_special_corners(SPECIAL, '@'))
     # begin = time.perf_counter()
@@ -247,9 +247,9 @@ def board_score(board):
     moves_left = board.count('.')
     m_weight = 50 if moves_left > 10 else 20
     c_weight = 30 if moves_left < 15 else -100
-    t_weight = 25 #if moves_left > 5 else 25
+    t_weight = 10 #if moves_left > 5 else 25
     s_weight = 20 if moves_left > 10 else 10
-    f_weight = 100 if moves_left > 5 else 5
+    f_weight = 1000 if moves_left > 5 else 5
     # k_weight = -15
     l_weight = 20
     sp_weight = 1500
@@ -267,7 +267,7 @@ def board_score(board):
 
     SEEN[board] = mobility + territory + count + shots + frontier + lines + special
 
-    if moves_left < 10:
+    if moves_left < 20:
         display(board)
         print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\ns: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, special, SEEN[board]))
 
