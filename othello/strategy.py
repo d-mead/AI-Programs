@@ -46,12 +46,12 @@ SEEN[PAR_1] = 100000
 global WEIGHTS
 WEIGHTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
      0, 140, -30, 50,  5,  5, 50, -30, 140, 0,
-     0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
+     0, -10, -60, -5, -5, -5, -5, -60, -10, 0,
      0,  50,  -5, 15,  3,  3, 15,  -5,  50, 0,
      0,   5,  -5,  3,  3,  3,  6,  -5,   5, 0,
      0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
      0,  50,  -5, 15,  3,  6, 15,  -5,  50, 0,
-     0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
+     0, -10, -60, -5, -5, -5, -5, -60, -10, 0,
      0, 140, -30, 50,  5,  5, 50, -30, 140, 0,
      0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
 
@@ -247,8 +247,8 @@ def board_score(board):
     moves_left = board.count('.')
     m_weight = 50 if moves_left > 7 else 20
     c_weight = 30 if moves_left < 20 else -100
-    t_weight = 20 #if moves_left > 5 else 25
-    s_weight = 20 if moves_left > 10 else 10
+    t_weight = 30 if moves_left > 5 else 2
+    # s_weight = 20 if moves_left > 10 else 10
     f_weight = 250 if moves_left > 5 else 5
     # k_weight = -15
     l_weight = 20
@@ -257,7 +257,7 @@ def board_score(board):
 
     mobility =  (len(get_valid_moves(board, '@')) - len(get_valid_moves(board, 'o')))   * m_weight
     territory = (score_territory(board, '@') - score_territory(board, 'o'))             * t_weight
-    count =     (board.count('@') - board.count('o'))                                   * c_weight
+    count =    (board.count('@') - board.count('o') + (99999 if board.count('o') == 0 else 0))   * c_weight
     shots =     (score_shots(board, '@') - score_shots(board, 'o'))                     * s_weight
     frontier =  (score_frontier(board, 'o') - score_frontier(board, '@'))               * f_weight
     special  =  (score_special_corners(board, '@') - score_special_corners(board, 'o')) * sp_weight
@@ -272,6 +272,11 @@ def board_score(board):
         print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\ns: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, special, SEEN[board]))
 
     return mobility + territory + count + shots + frontier + lines + special
+
+# def score_stability(board, player):
+#     op_moves = get_valid_moves(board, opposite(player))
+#     count =
+#     for move in get_valid_moves
 
 
 def score_special_corners(board, player):
@@ -428,7 +433,10 @@ def score_territory(board, player):
     score = 0
     for spot in [x for x in range(0, 100) if board[x] == player]:
         score += WEIGHTS[spot]
-
+    if board.count('.') < 20:
+        for spot in [x for x in range(0, 100) if board[x] == player]:
+            if spot in BORDER:
+                score += 10
     return score
 
 
