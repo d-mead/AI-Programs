@@ -248,7 +248,7 @@ def board_score(board):
     m_weight = 50 if moves_left > 7 else 20
     c_weight = 30 if moves_left < 20 else -100
     t_weight = 30 if moves_left > 5 else 2
-    # s_weight = 20 if moves_left > 10 else 10
+    s_weight = 20 if moves_left > 10 else 10
     f_weight = 250 if moves_left > 5 else 5
     # k_weight = -15
     l_weight = 20
@@ -258,7 +258,7 @@ def board_score(board):
     mobility =  (len(get_valid_moves(board, '@')) - len(get_valid_moves(board, 'o')))   * m_weight
     territory = (score_territory(board, '@') - score_territory(board, 'o'))             * t_weight
     count =    (board.count('@') - board.count('o') + (99999 if board.count('o') == 0 else 0))   * c_weight
-    shots =     (score_shots(board, '@') - score_shots(board, 'o'))                     * s_weight
+    shots =     0 #(score_shots(board, '@') - score_shots(board, 'o'))                     * s_weight
     frontier =  (score_frontier(board, 'o') - score_frontier(board, '@'))               * f_weight
     special  =  (score_special_corners(board, '@') - score_special_corners(board, 'o')) * sp_weight
     lines =     (score_lines(board, 'o') - score_lines(board, '@'))                            * l_weight
