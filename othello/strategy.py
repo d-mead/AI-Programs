@@ -245,11 +245,11 @@ def board_score(board):
         return SEEN[board]
 
     moves_left = board.count('.')
-    m_weight = 50 if moves_left > 10 else 20
-    c_weight = 30 if moves_left < 15 else -100
-    t_weight = 10 #if moves_left > 5 else 25
+    m_weight = 50 if moves_left > 7 else 20
+    c_weight = 30 if moves_left < 20 else -100
+    t_weight = 20 #if moves_left > 5 else 25
     s_weight = 20 if moves_left > 10 else 10
-    f_weight = 1000 if moves_left > 5 else 5
+    f_weight = 250 if moves_left > 5 else 5
     # k_weight = -15
     l_weight = 20
     sp_weight = 1500
