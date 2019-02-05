@@ -246,8 +246,8 @@ def board_score(board):
 
     moves_left = board.count('.')
     m_weight = 50 if moves_left > 7 else 20
-    c_weight = 50 if moves_left < 10 else -100
-    t_weight = 30 #if moves_left > 5 else 2
+    c_weight = 30 if moves_left < 20 else -100
+    t_weight = 30 if moves_left > 5 else 2
     s_weight = 20 if moves_left > 10 else 10
     f_weight = 250 if moves_left > 5 else 5
     # k_weight = -15

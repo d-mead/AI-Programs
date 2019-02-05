@@ -33,7 +33,7 @@ import xlsxwriter
 DOMAIN = 'http://api.geonames.org/'
 USERNAME = 'davidmead'  # enter your geonames username here
 
-EMAIL_ACCOUNT = "dem@vamead.net"  # ""davidmead1219@gmail.com"
+EMAIL_ACCOUNT = "dogsindoggles@gmail.com"  # ""davidmead1219@gmail.com"
 
 # Use 'INBOX' to read inbox.  Note that whatever folder is specified,
 # after successfully running this script all emails in that folder
@@ -43,36 +43,36 @@ EMAIL_FOLDER = "Inbox"
 
 def main():
     global colleges
-    # http = urllib3.PoolManager()
-    #
-    # M = imaplib.IMAP4_SSL('imap.gmail.com')
-    #
-    # # print(get_lng_lat_state("university of notre dame"))
-    #
-    # M = imaplib.IMAP4_SSL('mail.vamead.net')
-    #
-    # try:
-    #     rv, data = M.login(EMAIL_ACCOUNT, getpass.getpass())
-    # except imaplib.IMAP4.error:
-    #     print("LOGIN FAILED!!! ")
-    #     sys.exit(1)
-    #
-    # print(rv, data)
-    #
-    # rv, mailboxes = M.list()
-    # if rv == 'OK':
-    #     print("Mailboxes:")
-    #     print(mailboxes)
-    #
-    # rv, data = M.select(EMAIL_FOLDER)
-    # if rv == 'OK':
-    #     print("Processing mailbox...\n")
-    #     process_mailbox(M)
-    #     M.close()
-    # else:
-    #     print("ERROR: Unable to open mailbox ", rv)
+    http = urllib3.PoolManager()
 
-    # colleges = ['connecticut college', 'babson college', 'college of charleston admissions', 'case western reserve university', 'college board', 'university of notre dame', 'university of portland', 'radford university', 'university of central florida']#'university of lynchburg', 'clemson university office of undergraduate admissions', 'hampshire college', 'clemson university office of undergraduate admissions', 'hampden-sydney college', "bard college at simon's rock", 'hampshire college', 'missouri university of science and technology', 'worcester polytechnic institute', 'university of maryland admissions', 'adelphi university', 'worcester polytechnic institute', 'university of tampa', 'university of tennessee', 'bridgewater college', 'creighton university', 'university of north carolina at pembroke']
+    M = imaplib.IMAP4_SSL('imap.gmail.com')
+
+    # print(get_lng_lat_state("university of notre dame"))
+
+    M = imaplib.IMAP4_SSL('mail.vamead.net')
+
+    try:
+        rv, data = M.login(EMAIL_ACCOUNT, getpass.getpass())
+    except imaplib.IMAP4.error:
+        print("LOGIN FAILED!!! ")
+        sys.exit(1)
+
+    print(rv, data)
+
+    rv, mailboxes = M.list()
+    if rv == 'OK':
+        print("Mailboxes:")
+        print(mailboxes)
+
+    rv, data = M.select(EMAIL_FOLDER)
+    if rv == 'OK':
+        print("Processing mailbox...\n")
+        process_mailbox(M)
+        M.close()
+    else:
+        print("ERROR: Unable to open mailbox ", rv)
+
+    colleges = ['connecticut college', 'babson college', 'college of charleston admissions', 'case western reserve university', 'college board', 'university of notre dame', 'university of portland', 'radford university', 'university of central florida']#'university of lynchburg', 'clemson university office of undergraduate admissions', 'hampshire college', 'clemson university office of undergraduate admissions', 'hampden-sydney college', "bard college at simon's rock", 'hampshire college', 'missouri university of science and technology', 'worcester polytechnic institute', 'university of maryland admissions', 'adelphi university', 'worcester polytechnic institute', 'university of tampa', 'university of tennessee', 'bridgewater college', 'creighton university', 'university of north carolina at pembroke']
 
     draw()
 
