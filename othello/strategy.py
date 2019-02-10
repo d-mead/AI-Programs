@@ -16,23 +16,25 @@ BLANK = "??????????" \
         "?........?" \
         "??????????"
 
+TEST1 = "???????????....o@..??..oooo..??.@@@o@..??.o@@o@@.??..ooo@..??...o@@..??........??........???????????"
+
 DIRECTIONS = [1, -1, 10, -10, 11, -11, 9, -9]
 SIZE = 100
 
 SEEN = dict()
 
 WEIGHTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-     0, 140, -30, 50,  5,  5, 50, -30, 140, 0,
-     0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
+     0, 140, -20, 50,  5,  5, 50, -20, 150, 0,
+     0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
      0,  50,  -5, 15,  3,  3, 15,  -5,  50, 0,
      0,   5,  -5,  3,  3,  3,  6,  -5,   5, 0,
      0,   5,  -5,  3,  3,  3,  3,  -5,   5, 0,
      0,  50,  -5, 15,  3,  6, 15,  -5,  50, 0,
-     0, -10, -40, -5, -5, -5, -5, -40, -10, 0,
-     0, 140, -30, 50,  5,  5, 50, -30, 140, 0,
+     0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
+     0, 140, -20, 50,  5,  5, 50, -20, 140, 0,
      0,   0,   0,  0,  0,  0,  0,   0,   0, 0]
 
-BORDER = {11, 12, 13, 14, 15, 16, 17, 18, 21, 31, 41, 51, 61, 71, 81, 82, 83, 84, 85, 86, 87, 88, 78, 68, 58, 48, 38, 28}
+BORDER = {13, 14, 15, 16, 31, 41, 51, 61, 83, 84, 85, 86, 68, 58, 48, 38}
 
 # ADVANCED: Opening book
 
@@ -43,90 +45,6 @@ BORDER = {11, 12, 13, 14, 15, 16, 17, 18, 21, 31, 41, 51, 61, 71, 81, 82, 83, 84
 #   of actually scoring them, so they will always be chosen when compared to other
 #   moves at their depth.
 
-op1 =   "??????????" \
-        "?........?" \
-        "?........?" \
-        "?..@o....?" \
-        "?..@oo...?" \
-        "?..@@@...?" \
-        "?........?" \
-        "?........?" \
-        "?........?" \
-        "??????????"
-
-op2 =   "??????????" \
-        "?........?" \
-        "?........?" \
-        "?..o@....?" \
-        "?..@@@...?" \
-        "?...@o...?" \
-        "?........?" \
-        "?........?" \
-        "?........?" \
-        "??????????"
-
-op3 =   "??????????" \
-        "?........?" \
-        "?........?" \
-        "?..o.....?" \
-        "?..@o@...?" \
-        "?...@o...?" \
-        "?........?" \
-        "?........?" \
-        "?........?" \
-        "??????????"
-
-op4 =   "??????????" \
-        "?........?" \
-        "?........?" \
-        "?..@@@...?" \
-        "?..o@o...?" \
-        "?...@....?" \
-        "?........?" \
-        "?........?" \
-        "?........?" \
-        "??????????"
-
-op5 =   "??????????" \
-        "?........?" \
-        "?........?" \
-        "?....o...?" \
-        "?..@oo...?" \
-        "?..o@@@..?" \
-        "?....o@..?" \
-        "?........?" \
-        "?........?" \
-        "??????????"
-
-op6 =   "??????????" \
-        "?........?" \
-        "?........?" \
-        "?....o...?" \
-        "?..@@@@..?" \
-        "?..o@@@..?" \
-        "?....ooo.?" \
-        "?........?" \
-        "?........?" \
-        "??????????"
-
-op7 =   "??????????" \
-        "?........?" \
-        "?........?" \
-        "?....o...?" \
-        "?..@@o...?" \
-        "?...@@@..?" \
-        "?........?" \
-        "?........?" \
-        "?........?" \
-        "??????????"
-
-SEEN[op1] = 100000
-SEEN[op2] = 100000
-SEEN[op3] = 100000
-SEEN[op4] = 100000
-SEEN[op5] = 100000
-SEEN[op6] = 100000
-SEEN[op7] = 100000
 
 
 class Strategy:
@@ -143,6 +61,8 @@ def main():
     global maxing, cou
     cou = 0
     maxing = '@'
+    # display(TEST1)
+    # board_score(TEST1)
     smart_game(BLANK)
 
 
@@ -251,12 +171,13 @@ def board_score(board):
         return SEEN[board]
 
     moves_left = board.count('.')
-    m_weight = 80 if moves_left > 10 else 20
-    c_weight = 30 if moves_left < 10 else -100
-    t_weight = 20 if moves_left > 10 else 25
+    m_weight = 120 if moves_left > 10 else 20
+    c_weight = 30 if moves_left < 10 else -200
+    t_weight = 15 if moves_left > 10 else 25
     s_weight = 20 if moves_left > 10 else 10
     f_weight = 90 if moves_left > 10 else 5
     l_weight = 20
+    b_weight = 100 if moves_left > 35 else 0
     sp_weight = 800
 
     mobility =  (len(get_valid_moves(board, '@')) - len(get_valid_moves(board, 'o')))   * m_weight
@@ -264,17 +185,27 @@ def board_score(board):
     count =     (board.count('@') - board.count('o'))                                   * c_weight
     shots =     (score_shots(board, '@') - score_shots(board, 'o'))                     * s_weight
     frontier =  (score_frontier(board, 'o') - score_frontier(board, '@'))               * f_weight
-    special  =  (score_special_corners(board, '@') - score_special_corners(board, 'o')) * sp_weight
-    lines =     (score_lines(board, 'o') - score_lines(board, '@'))                     * l_weight
+    special  =  0#(score_special_corners(board, '@') - score_special_corners(board, 'o')) * sp_weight
+    border =    (score_border_fours(board, 'o') - score_border_fours(board, '@'))       * b_weight
+    # lines =     (score_lines(board, 'o') - score_lines(board, '@'))                     * l_weight
 
-    SEEN[board] = mobility + territory + count + shots + frontier + lines + special
+    SEEN[board] = mobility + territory + count + shots + frontier + special + border
 
-    if moves_left < 10:
-        display(board)
-        print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\nl: %s\ns: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, lines, special, SEEN[board]))
+    # if moves_left < 10:
+    # display(board)
+    # print("m: %s\nt: %s\nc: %s\ns: %s\nf: %s\ns: %s\nb: %s\n TOTAL: %s" % (mobility, territory, count, shots, frontier, special, border, SEEN[board]))
 
-    return mobility + territory + count + shots + frontier + lines + special
+    return mobility + territory + count + shots + frontier + special + border
 
+
+def score_border_fours(board, player):
+    spots = set([x for x in range(0, 100) if board[x] == player])
+    score = 0
+    for spot in spots:
+        if spot in BORDER:
+            score += 1
+
+    return score
 
 def score_shots(board, player):
     score = 0
@@ -373,7 +304,6 @@ def score_special_corners(board, player):
 
 
 def score_territory(board, player):
-    global aa, bb, cc, dd, ee
     score = 0
     for spot in [x for x in range(0, 100) if board[x] == player]:
         score += WEIGHTS[spot]
