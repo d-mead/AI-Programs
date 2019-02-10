@@ -1,53 +1,64 @@
-BLANK = "??????????.......??.......??.......??.......??.......??.......???????????"
-
 import time
 import tkinter as tk
-from tkinter import *
 from PIL import ImageTk
 import random
+import sys
 
-animate = True
+BLANK = "??????????.......??.......??.......??.......??.......??.......???????????"
 
-
-global x, y, xo, yo
 x = 0
 y = 0
 xo = 0
 yo = 0
 
 
+animate = False
+
+
 def main():
     global maxing, mining
     opposite = {'@': 'o', 'o': '@'}
-    maxing = '@'#input(':')
+    maxing = 'o'#input(':')
     mining = opposite[maxing]
     global master
-    blank_window()
-    # time.sleep(1)
-    display(BLANK)
+    if animate:
+        blank_window()
+        time.sleep(1)
+        print('\33[32mINSTRUCTIONS: \033[0m ')
+        print('\033[32mclick anywhere along the column to drop a disk when its your turn\033[0m ')
+    else:
+        print('\33[32mINSTRUCTIONS: \033[0m ')
+        print('\33[32mtype the column number you want to drop a disk in when its your turn \033[0m ')
 
-    #
+    line = sys.argv[1]
 
-    smart_game()
+    if line == "RANDOM":
+        smart_game_random()
+    elif line == "PLAYER":
+        smart_game()
 
-    master.mainloop()
+    if animate:
+        master.mainloop()
 
 
 def human_move(board, token):
-    global x, y, xo, yo
-    xo = x
-    yo = y
+    if animate:
+        xo = x
+        yo = y
 
-    while xo == x and yo == y:
-        w.update()
-        time.sleep(.1)
+        while xo == x and yo == y:
+            w.update()
+            time.sleep(.1)
 
-    spot = int(x/100)
+        spot = int(x/100)
+    else:
+        spot = int(input("choose a column: "))
 
     new_board = drop_a(board, spot, token)
     return new_board
 
 
+# PLAYERGAME
 def smart_game():
     board = BLANK
     token = '@'
@@ -56,13 +67,13 @@ def smart_game():
     if maxing == 'o':
         display_turn(token)
         display(board)
-        board = human_move(board, token)
-        # board = random_move(board, token)
+        board = human_move(board, token)  # input asked/waited for in this method
         token = swap[token]
 
     while check_win(board) == '.':
         display_turn(token)
         display(board)
+        display_turn(token)
         board = smart_move(board, token)
         token = swap[token]
         if check_win(board) != '.':
@@ -70,16 +81,55 @@ def smart_game():
 
         display_turn(token)
         display(board)
-        # board = smart_move(board, token)
-        board = human_move(board, token)
-        # board = random_move(board, token)
+        display_turn(token)
+        board = human_move(board, token)  # input asked/waited for in this method
         token = swap[token]
         if check_win(board) != '.':
             break
 
     display(board)
 
-    statement = {"@": "black wins!", 'o': 'red wins!', '.': 'tie game', False: 'uh oh'}
+    statement = {"@": "black (player) wins!", 'o': 'red (ai) wins!', '.': 'tie game', False: 'uh oh'}
+    print(statement[check_win(board)])
+
+    display_winner(check_win(board))
+
+    display(board)
+
+
+# RANDOMGAME
+def smart_game_random():
+    board = BLANK
+    token = '@'
+    swap = {'@':'o', 'o':'@'}
+
+    if maxing == 'o':
+        display_turn(token)
+        display(board)
+        display_turn(token)
+        board = random_move(board, token)
+        token = swap[token]
+
+    while check_win(board) == '.':
+        display_turn(token)
+        display(board)
+        display_turn(token)
+        board = smart_move(board, token)
+        token = swap[token]
+        if check_win(board) != '.':
+            break
+
+        display_turn(token)
+        display(board)
+        display_turn(token)
+        board = random_move(board, token)
+        token = swap[token]
+        if check_win(board) != '.':
+            break
+
+    display(board)
+
+    statement = {"@": "black (random) wins!", 'o': 'red (ai) wins!', '.': 'tie game', False: 'uh oh'}
     print(statement[check_win(board)])
 
     display_winner(check_win(board))
@@ -88,13 +138,12 @@ def smart_game():
 
 
 def smart_move(board, token):
-    # depth = 6
 
     valid_cols = get_valid_cols(board)
 
     if len(valid_cols) != 0:
-        best_spot, value = maxmin_ab_2(board, token, int(d.get()), -9999, 9999)
-        print(value)
+        best_spot, value = maxmin_ab_2(board, token, 6, -9999, 9999)
+        print(token, "chosen move:", best_spot)
         new_board = drop_a(board, best_spot, token)
         return new_board
     else:
@@ -102,11 +151,13 @@ def smart_move(board, token):
 
 
 def random_move(board, token):
+    display_turn(token)
     valid_cols = get_valid_cols(board)
 
     if len(valid_cols) != 0:
         spot = valid_cols[random.randint(0, len(valid_cols)-1)]
-        new_board = drop(board, spot, token)
+        print(token, "chosen move:", spot)
+        new_board = drop_a(board, spot, token)
         return new_board
     else:
         return -1
@@ -133,12 +184,11 @@ def random_game():
 
 
 def maxmin_ab_2(board, player, depth, a, b):
-    # print("AAAAAAAA")
     global cou, maxing, mining
     opponent = {'o':'@', '@': 'o'}[player]
     best = {mining: min, maxing: max}
     if depth == 0:  # if we've reached the desired depth
-        return (None, score_board(board))  # return the score
+        return None, score_board(board)  # return the score
 
     possible_moves = []  # empty list of possible moves
 
@@ -199,9 +249,7 @@ def maxmin_ab_2(board, player, depth, a, b):
 
 def score_board(board):
     score = 0
-
     score += max_connected(board, maxing) - max_connected(board, mining) + random.random()
-
     return score
 
 
@@ -224,15 +272,23 @@ def max_connected(board, token):
 
 
 def display_winner(token):
-    statement = {"@": "black wins!", 'o': 'red wins!', '.': 'tie game'}
-    colors = {'@': 'black', 'o': 'red', '.': 'grey'}
-    w.create_text(350, 50, fill=colors[token], font="Helvetica 40 italic bold", text=statement[token], width=700)
+    if animate:
+        if sys.argv[1] == 'RANDOM':
+            statement = {"@": "black (random) wins!", 'o': 'red (ai) wins!', '.': 'tie game'}
+        else:
+            statement = {"@": "black (player) wins!", 'o': 'red (ai) wins!', '.': 'tie game'}
+        colors = {'@': 'black', 'o': 'red', '.': 'grey'}
+        w.create_text(350, 50, fill=colors[token], font="Helvetica 40 italic bold", text=statement[token], width=700)
 
 
 def display_turn(token):
-    statement = {'@': "black\'s turn...", 'o': 'red\'s turn...'}
-    colors = {'@': 'black', 'o': 'red', '.': 'grey'}
-    w.create_text(350, 50, fill=colors[token], font="Helvetica 30 bold", text=statement[token], width=700)
+    if animate:
+        if sys.argv[1] == 'RANDOM':
+            statement = {'@': "black\'s (random\'s) turn...", 'o': 'red\'s (ai) turn...'}
+        else:
+            statement = {'@': "black\'s (your) turn...", 'o': 'red\'s (ai) turn...'}
+        colors = {'@': 'black', 'o': 'red', '.': 'grey'}
+        w.create_text(350, 50, fill=colors[token], font="Helvetica 30 bold", text=statement[token], width=900)
 
 
 def check_win(board):
@@ -307,10 +363,13 @@ def place(board, spot, token):
 
 
 def display(board):
+    print("0 1 2 3 4 5 6")
     for row in range(1, 7):
-        print(" ".join(board[x] for x in range(row*9+1, row*9+8)) + "\t" + str(list(range(row*9+1, row*9+8))))
+        print(" ".join(board[x] for x in range(row*9+1, row*9+8)))# + "\t" + str(list(range(row*9+1, row*9+8))))
     print()
-    display_window(board)
+    print()
+    if animate:
+        display_window(board)
 
 
 def display_window(board):
@@ -324,7 +383,7 @@ def display_window(board):
         cord = index_to_cord[spot]
         w.create_circle(cord[0], cord[1], 40, outline='', fill=color)
 
-    start_window = w.create_window(500, 40, anchor=NW, window=OptionMenu(master, d, *list(range(1, 10))))
+    # start_window = w.create_window(500, 40, anchor=NW, window=OptionMenu(master, d, *list(range(1, 10))))
 
     master.update_idletasks()
     master.update()
@@ -360,11 +419,11 @@ def blank_window():
     for index in index_to_cord.values():
         w.create_circle(index[0], index[1], 40, outline='', fill='SteelBlue3')
 
-    global d
+    # global d
 
-    d = StringVar(w, value=6)
-
-    start_window = w.create_window(500, 40, anchor=NW, window=OptionMenu(master, d, *list(range(1, 10))))
+    # d = StringVar(w, value=6)
+    #
+    # start_window = w.create_window(500, 40, anchor=NW, window=OptionMenu(master, d, *list(range(1, 10))))
 
     w.bind("<Button-1>", callback)
 
