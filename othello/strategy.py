@@ -24,7 +24,7 @@ SIZE = 100
 SEEN = dict()
 
 WEIGHTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-     0, 140, -20, 50,  5,  5, 50, -20, 150, 0,
+     0, 140, -20, 50,  5,  5, 50, -20, 140, 0,
      0, -20, -40, -5, -5, -5, -5, -40, -20, 0,
      0,  50,  -5, 15,  3,  3, 15,  -5,  50, 0,
      0,   5,  -5,  3,  3,  3,  6,  -5,   5, 0,
@@ -172,12 +172,12 @@ def board_score(board):
 
     moves_left = board.count('.')
     m_weight = 120 if moves_left > 10 else 20
-    c_weight = 30 if moves_left < 10 else -200
+    c_weight = 50 if moves_left < 10 else -250
     t_weight = 15 if moves_left > 10 else 25
     s_weight = 20 if moves_left > 10 else 10
-    f_weight = 90 if moves_left > 10 else 5
+    f_weight = 110 if moves_left > 10 else 5
     l_weight = 20
-    b_weight = 100 if moves_left > 35 else 0
+    b_weight = 130 if moves_left > 25 else 0
     sp_weight = 800
 
     mobility =  (len(get_valid_moves(board, '@')) - len(get_valid_moves(board, 'o')))   * m_weight
