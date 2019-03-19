@@ -664,7 +664,6 @@ def a_star(start, end):
         return -1
 
 
-
 def dijkstra(start, end):
     fringe = [(0, start, 0), ]
     visited = set()

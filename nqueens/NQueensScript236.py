@@ -922,9 +922,6 @@ def causes(state, row, col):
     return count
 
 
-
-
-
 def graph_csp_2(state, h):
     global g
     global visited

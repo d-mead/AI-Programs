@@ -77,7 +77,7 @@ def maxmin_ab_2(board, player, depth, a, b):
     if player == '@':
         value = -999999999999
         for spot in get_valid_moves(board, player):
-            mov = move(board, player, spot)                    
+            mov = move(board, player, spot)
             next_players_moves = get_valid_moves(mov, opponent)
             if len(next_players_moves) != 0:
                 next_player = opponent
