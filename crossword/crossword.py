@@ -39,7 +39,7 @@ def solve():
     dict_file = sys.argv[3]#"wordsC.txt"#
     initial_words = sys.argv[4:]
 
-    # raw = "a " + '13x13 32 xwords.txt "V2x4#" "V1x9#" "V3x2#" "h8x2#moo#" "v5x5#two#" "h6x4#ten#" "v3x7#own#" "h4x6#orb#" "H12x4Easy"'
+    # raw = "a " + '9x24 36 xwords.txt "h4x9d#" "h3x6s#" "h2x6#" "v2x0eye" "V5x1#b" "V8x20f"'
     # inp = raw.replace('"', '').split(' ')
     #
     # height = int(inp[1][:inp[1].index("x")])
@@ -268,29 +268,89 @@ def fill_blocking_squares():
         board = scribe(board, ((int(height/2)+1)*int(width+2)+(int(width/2)+1)), '#')
         board = propogate(board)
     display(board)
-    legals = []
+    legs = []
     illegals = find_illegal_squares(board)
     for index, letter in enumerate(board):
         if letter == '-':
             if index not in illegals:
-                legals.append(index)
+                legs.append(index)
+
+    legals = order_legal_spaces(board, legs)
 
     total_ideal_blockers = num_blocked + (width*2) + (height*2) + 4
     temp_board = board
     while temp_board.count('#') != total_ideal_blockers or not legal(temp_board):
         temp_board = board
+        temp_legals = list(legals)
+
+        count = 0
 
         while temp_board and temp_board.count('#') < total_ideal_blockers:
-            move = legals[random.randrange(len(legals))]
+
+            move = temp_legals[random.randint(0, len(temp_legals)-1)]#[int(random.randint(0, count))]#
+            count += 1
             if rotate(move) in legals:
                 temp_board = scribe(temp_board, move, '#')
                 temp_board = scribe(temp_board, rotate(move), '#')
                 temp_board = propogate(temp_board)
+            a = 5
+
+    long = longest_in_board(temp_board, legs)
+    if long > max(width, height):
+        return fill_blocking_squares()
 
     if temp_board and legal(temp_board) and temp_board.count('#') == total_ideal_blockers:
         return temp_board
     else:
         return fill_blocking_squares()
+
+
+def longest_in_board(board, legals):
+    longest = 0
+    for legal in legals:
+        long = longest_chunk(board, legal)
+        if long > longest:
+            longest = long
+    return longest
+
+
+def order_legal_spaces(board, legals):
+    values = []
+    for legal in legals:
+        values.append((abs(-longest_chunk(board, legal)+int(width ** 0.5)+5), legal)) #
+    values = sorted(values, key=lambda x: x[0])
+    return [value[1] for value in values]
+
+
+def longest_chunk(board, legal):
+    longest = 0
+    directions = [1, -1, (width + 2), -(width + 2)]
+    for direction in directions:
+        move = legal + direction
+        count = 0
+        while -1 < move < len(board) and board[move] != '#':
+            count += 1
+            move += direction
+        if count > longest:
+            longest = count
+    return longest
+
+
+def find_longest_words(board):
+    lengths_and_middles = []
+    directions = [1, -1, (width + 2), -(width + 2)]
+    for index, letter in enumerate(board):
+        if letter == '#':
+            for direction in directions:
+                move = index + direction
+                count = 0
+                while -1 < move < len(board) and board[move] != '#':
+                    count += 1
+                    move += direction
+                middle = index + int(count/2)*direction
+                lengths_and_middles.append((count, middle))
+    lengths_and_middles = sorted(lengths_and_middles, key=lambda x: len(x[0]))
+    return lengths_and_middles
 
 
 # checks all the different legality tests on the board
