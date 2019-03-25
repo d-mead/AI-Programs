@@ -1,40 +1,13 @@
-# David Mead 3/10/2019
-# take a series of commands line inputs and construct a crossword puzzle with those characteristics
+# David Mead March 21st 2019
 
 import sys
 import re
 from collections import deque
 import random
 
-# BLANK = "........................."
 letters = "ETAOINSRHDLUCMFYWGPBVKXQJZ"
 
-BAD = "#######DOOR##AAAA##BKKC##BYYK#######"
-BLANK = "#######----##----##----##----#######"
-seen = set()
-""# # # # # ## A S S E ## S A A D ## S A R D ## E D I - ## # # # # #"
-# BAD2 = "# # # # # # # # # # # # #
-# # - D - - - # - - - - - #
-# # - O - - - # - - - - - #
-# # - G - - - # - - - - - #
-# # - - - - # # # - - - - #
-# # - - - # # - # # - - - #
-# # - - - - # # # - - - - #
-# # - - - - - # - - - - - #
-# # - - - - - # - - - - - #
-# # - - - - - # - - - - - #
-# # # # # # # # # # # # # #"
-
-
-
-# executes
 def main():
-
-    solve()
-
-
-# main function under which the puzzle is solved
-def solve():
     global height, width, num_blocked, dict_file, all_words, initial_words
     # height = int(sys.argv[1][:sys.argv[1].index("x")])
     # width = int(sys.argv[1][sys.argv[1].index("x") + 1:])
@@ -42,310 +15,62 @@ def solve():
     # dict_file = sys.argv[3]#"wordsC.txt"#
     # initial_words = sys.argv[4:]
 
-    raw = "a " + '7x7 11 xwords.txt'
+    raw = "a " + '4x4 0 xwords.txt'
     inp = raw.replace('"', '').split(' ')
 
     height = int(inp[1][:inp[1].index("x")])
     width = int(inp[1][inp[1].index("x") + 1:])
     num_blocked = int(inp[2])
-    dict_file = "morewords.txt"#inp[3]
+    dict_file = "morewords.txt"  # inp[3]
     initial_words = inp[4:]
 
-    # height = 11#4
-    # width = 13#4
-    # num_blocked = 27#0
-    # dict_file = "wordsC.txt"
-    # initial_words = ['H0x0begin', 'V8x12end']#'H0x0door']#
     print(height, width, num_blocked, dict_file, initial_words)
 
     all_words = "\n".join(open(dict_file, 'r').read().splitlines())
 
     board = fill_blocking_squares()
     display(board)
+    word_by_word(board)
 
-    board = letter_by_letter(board)
 
-    board_edges = remove_edges(board)
-    display_edgeless(board_edges)
-
-    # display(board)
-
-alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-def letter_by_letter(board):
-    # if board in seen:
-    #     return None
-    for spot in get_blank_spots(board):
-        # if board in seen:
-        #     continue
-    #     hor_d, vert_d = find_depth(board, spot)
-    #     hor_c, vert_c = get_conditions_for_spot(board, spot)
-        letter_to_valids = []
-        # for letter in alphabet:
-        #     hor_c_new = hor_c[:5+hor_d] + letter + hor_c[5+hor_d:]
-        #     vert_c_new = vert_c[:5+vert_d] + letter + vert_c[5+vert_d:]
-        #
-        #     hor_count = len(re.findall(hor_c_new, all_words, re.I))
-        #     vert_count = len(re.findall(vert_c_new, all_words, re.I))
-        #
-        #     if hor_count > 0 and vert_count > 0:
-        #         freq = min(hor_count, vert_count)
-        #     else:
-        #         freq = -1
-        #     letter_to_valids.append((letter, freq))
-            # if re.search(hor_c_new, all_words, re.I) and re.find(vert_c_new, all_words, re.I):
-            #     letter_to_valids.append((letter, 1))
-
-        # letter_to_valids = sorted(letter_to_valids, key=lambda x: x[1])[::-1]
-        found = False
-        for letter in letters:#alphabet:#
-            new_board = scribe(board, spot, letter)
-            if new_board in seen:
-                continue
-            if not check_feasability(new_board):
-                continue
-            found = True
+def word_by_word(board):
+    print('A')
+    word_starts = find_word_starts(board)
+    for start, direction in word_starts:
+        if filled(board, start, direction):
+            continue
+        conditions = find_conditions(board, start, direction)
+        possible_words = find_words_for_condition(conditions)
+        for word in possible_words:
+            new_board = add_word(board, direction, start, word)
             display(new_board)
-            seen.add(new_board)
-            if check_done(new_board):
-                print("DONE")
+            if "-" not in new_board:
                 return new_board
-            result = letter_by_letter(new_board)
+            result = word_by_word(new_board)
             if result:
                 return result
-        if not found:
-            return None
-
-    return None
+    return False
 
 
-def check_feasability(board):
-    starts = find_word_starts(board)
-    count = 0
-    for index, direction in starts:
-        conditions = find_conditions(board, index, direction)
-        search = re.search(conditions, all_words, re.I):
-        if not search:
+def filled(board, start, direction):
+    index = start
+    while board[index] != '#':
+        if board[index] == '-':
             return False
-        count += len(search)
-    return count
-
-
-def check_done(board):
-    if '-' in board:
-        return False
-    starts = find_word_starts(board)
-    for start, direction in starts:
-        temp = start
-        while board[temp] != '#':
-            if board[temp] == '-':
-                return False
-            temp += direction
-
+        index += direction
     return True
 
 
-def count_valid_words(hor_c_new, vert_c_new):
-    hor = len(re.findall(hor_c_new, all_words, re.I))
-    vert = len(re.findall(vert_c_new, all_words, re.I))
-    if hor == 0:
-        return -1
-    if vert == 0:
-        return -1
-    return hor + vert
-
-
-# finds the conditions for the spot's or and vert words
-# returns (hor, vert) conditions
-def get_conditions_for_spot(board, spot):
-    direction = -(width + 2)
-    temp_spot = spot + direction
-    while board[temp_spot] != '#':
-        temp_spot += direction
-    vert = find_conditions(board, temp_spot-direction, -direction)
-
-    direction = -1
-    temp_spot = spot + direction
-    while board[temp_spot] != '#':
-        temp_spot += direction
-    hor = find_conditions(board, temp_spot-direction, -direction)
-
-    return hor, vert
-
-
-# finds how deep it each word the letter is
-# returns (hor, vert) depths
-def find_depth(board, spot):
-    direction = -(width + 2)
-    temp_spot = spot + direction
-    count = 0
-    while board[temp_spot] != '#':
-        temp_spot += direction
-        count += 1
-    vert = count
-
-    direction = -1
-    temp_spot = spot + direction
-    count = 0
-    while board[temp_spot] != '#':
-        temp_spot += direction
-        count += 1
-    hor = count
-
-    return (hor, vert)
-
-
-def get_blank_spots(board):
-    result = [spot for spot, o in enumerate(board) if o == '-']
-    # random.shuffle(result)
-    return result
-
-
-def remove_edges(board):
-    result = ""
-    for x in range(1, height+1):
-        result += board[(x*(width+2))+1:((x+1)*(width+2))-1]
-    return result
-
-
-def display_edgeless(board):
-    for x in range(0, height):
-        print(" ".join(list(board[x*width:(x+1)*width])))
-
-
-def find_solution(board):
-
-    starts = find_word_starts(board)
-    print(starts)
-    conditions = []
-    # for index, direction in starts:
-    #     conditions.append(find_conditions(board, index, direction))
-    # get_match(conditions[0])
-
-    temp_board = board
-
-    print(iterate(temp_board))
-
-    # print(bfs(temp_board, find_word_starts(board)))
-
-    # while '-' in temp_board:
-    #     temp_board = board
-    #     starts = find_word_starts(temp_board)
-    #     while
-
-    return temp_board
-
-
-def iterate(board):
-    if check_starts(board):
-        return board
-    # fringe = deque()
-    # visited = {board, }
-    # fringe.append(board)
-
-    for package in find_all_conditions(board):
-        conditions = package[0]
-        direction = package[1][1]
-        index = package[1][0]
-        matches = package[2]
-        if not conditions:
-            continue
-        if not matches:
-            continue
-        for word in matches:
-            new_board = add_word(board, direction, index, word)
-            if new_board == board:
-                continue
-            # display(new_board)
-
-            if not check_feasability(new_board):
-                continue
-            else:
-                display(new_board)
-
-            result = iterate(new_board)
-            if result:
-                return result
-
-    return False
-
-
-def find_all_conditions(board):
-    starts = find_word_starts(board)
-    conds = []
-    for index, direction in starts:
-        if board[index] is '-':
-            continue
-        conds.append(find_conditions(board, index, direction))
-
+def find_words_for_condition(conditions):
     words = []
-    for condition in conds:
-        matches = search_textfile(condition)
-        for match in matches:
-            words.append(matches)
-    conds = zip(conds, starts, words)
-
-    return conds#sorted(conds, key=lambda x: len(x[2]))
+    for result in re.finditer(conditions, all_words, re.I):
+        word = result.group(0)
+        if word.isalpha():
+            words.append(word)
+    return words
 
 
-def sort_starts(starts):
-    return starts.sort(key=lambda x: sum(c.isalpha() for c in x[1]))
-
-
-def bfs(board, starts):
-    fringe = deque()
-    visited = {board, }
-    fringe.append(board)
-
-    while len(fringe) is not 0:
-        temp_board = fringe.pop()
-        if check_starts(temp_board):
-            return board
-        children = find_word_starts(temp_board)
-        for index, direction in children:
-            conditions = find_conditions(temp_board, index, direction)
-            if not conditions:
-                continue
-            matches = search_textfile(conditions)
-            for match in matches:
-                child_board = add_word(temp_board, direction, index, match)
-                if child_board not in visited:
-                    fringe.append(child_board)
-                    visited.add(child_board)
-                    display(child_board)
-
-    if len(fringe) == 0:
-        return -1
-
-
-def check_starts(board):
-    starts = find_word_starts(board)
-    for index, direction in starts:
-        conditions = find_conditions(board, index, direction)
-        if not conditions:
-            return False
-        if not get_match(conditions):
-            return False
-    if board.count('-') == 0:
-        return True
-    return False
-
-
-def conditions_list(board, starts):
-    conditions = []
-    for index, direction in starts:
-        conditions.append(find_conditions(board, index, direction))
-    return conditions
-
-
-def get_match(conditions):
-    matches = re.findall(conditions, all_words, re.I)
-    if len(matches) > 0:
-        return matches[random.randrange(len(matches))]
-    return []
-
-
-# finds the beginings of unsolved words and then finds their solutions
+# finds the beginnings of unsolved words and then finds their solutions
 # returns _
 def find_word_starts(board):
     starts = []
@@ -396,9 +121,6 @@ def fill_blocking_squares():
     display(board)
     legs = []
     illegals = find_illegal_squares(board)
-    # for il in illegals:
-    #     board = scribe(board, il, '@')
-    # display(board)
     for index, letter in enumerate(board):
         if letter == '-':
             if index not in illegals:
@@ -410,13 +132,13 @@ def fill_blocking_squares():
     temp_board = board
     while temp_board.count('#') != total_ideal_blockers or not legal(temp_board):
         temp_board = board
-        temp_legals = order_legal_spaces(board, legals)#list(legals)
+        temp_legals = list(legals)
 
         count = 0
 
         while temp_board and temp_board.count('#') < total_ideal_blockers:
 
-            move = temp_legals[random.randint(0, count)]#[int(random.randint(0, count))]#
+            move = temp_legals[random.randint(0, len(temp_legals)-1)]#[int(random.randint(0, count))]#
             count += 1
             if rotate(move) in legals:
                 temp_board = scribe(temp_board, move, '#')
@@ -425,7 +147,7 @@ def fill_blocking_squares():
             a = 5
 
     long = longest_in_board(temp_board, legs)
-    if long > max(width, height)*.9:
+    if long > max(width, height):
         return fill_blocking_squares()
 
     if temp_board and legal(temp_board) and temp_board.count('#') == total_ideal_blockers:
