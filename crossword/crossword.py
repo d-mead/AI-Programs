@@ -5,6 +5,7 @@ import sys
 import re
 from collections import deque
 import random
+import time
 
 # BLANK = "........................."
 letters = "ETAOINSRHDLUCMFYWGPBVKXQJZ"
@@ -12,68 +13,91 @@ letters = "ETAOINSRHDLUCMFYWGPBVKXQJZ"
 BAD = "#######DOOR##AAAA##BKKC##BYYK#######"
 BLANK = "#######----##----##----##----#######"
 seen = set()
+conditions_dict = {}
 ""# # # # # ## A S S E ## S A A D ## S A R D ## E D I - ## # # # # #"
-# BAD2 = "# # # # # # # # # # # # #
-# # - D - - - # - - - - - #
-# # - O - - - # - - - - - #
-# # - G - - - # - - - - - #
-# # - - - - # # # - - - - #
-# # - - - # # - # # - - - #
-# # - - - - # # # - - - - #
-# # - - - - - # - - - - - #
-# # - - - - - # - - - - - #
-# # - - - - - # - - - - - #
-# # # # # # # # # # # # # #"
+
+#  # # E E E E #
+#  E E N S I E #
+#  E E R I L Y #
+#  E N O # E O E
+#  # S O L E R A
+#  # I T U N E S
+#  # E S T S # #
+#  4.506103582000001
+
 
 
 
 # executes
 def main():
-
+    sys.setrecursionlimit(500000)
     solve()
 
 
 # main function under which the puzzle is solved
 def solve():
-    global height, width, num_blocked, dict_file, all_words, initial_words
-    # height = int(sys.argv[1][:sys.argv[1].index("x")])
-    # width = int(sys.argv[1][sys.argv[1].index("x") + 1:])
-    # num_blocked = int(sys.argv[2])
-    # dict_file = sys.argv[3]#"wordsC.txt"#
-    # initial_words = sys.argv[4:]
+    global height, width, num_blocked, dict_file, all_words, initial_words, len_all_words, very_begin
+    very_begin = time.perf_counter()
+    if len(sys.argv) > 1:
+        height = int(sys.argv[1][:sys.argv[1].index("x")])
+        width = int(sys.argv[1][sys.argv[1].index("x") + 1:])
+        num_blocked = int(sys.argv[2])
+        dict_file = sys.argv[3]#"wordsC.txt"#
+        initial_words = sys.argv[4:]
+    else:
+        raw = "a " + '5x5 0 dct20k.txt "V3x1D"'
+        inp = raw.replace('"', '').split(' ')
 
-    raw = "a " + '7x7 11 xwords.txt'
-    inp = raw.replace('"', '').split(' ')
+        height = int(inp[1][:inp[1].index("x")])
+        width = int(inp[1][inp[1].index("x") + 1:])
+        num_blocked = int(inp[2])
+        dict_file = inp[3]#'morewords.txt'#
+        initial_words = inp[4:]
 
-    height = int(inp[1][:inp[1].index("x")])
-    width = int(inp[1][inp[1].index("x") + 1:])
-    num_blocked = int(inp[2])
-    dict_file = "morewords.txt"#inp[3]
-    initial_words = inp[4:]
+    start = time.perf_counter()
 
     # height = 11#4
     # width = 13#4
     # num_blocked = 27#0
     # dict_file = "wordsC.txt"
     # initial_words = ['H0x0begin', 'V8x12end']#'H0x0door']#
-    print(height, width, num_blocked, dict_file, initial_words)
+    # print(height, width, num_blocked, dict_file, initial_words)
 
     all_words = "\n".join(open(dict_file, 'r').read().splitlines())
 
-    board = fill_blocking_squares()
-    display(board)
+    len_all_words = split_all_words(all_words)
+
+    start = time.perf_counter()
+
+    board = setup_blocking()
+    print("setup, now filling")
 
     board = letter_by_letter(board)
+    print("done filling, now printing")
 
-    board_edges = remove_edges(board)
-    display_edgeless(board_edges)
+    display_edgeless(remove_edges(board))
 
-    # display(board)
+    print(time.perf_counter()-start)
+
+
+
+def split_all_words(all_words):
+    len_to_words = dict()
+    a_words = all_words.split('\n')
+    for length in range(3, 31):
+        words = ""
+        for word in a_words:
+            if len(word) == length:
+                words += "\n" + word
+        len_to_words[length] = words
+    return len_to_words
+
 
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def letter_by_letter(board):
     # if board in seen:
+    #     print("already seen 2")
     #     return None
     for spot in get_blank_spots(board):
         # if board in seen:
@@ -99,39 +123,140 @@ def letter_by_letter(board):
         # letter_to_valids = sorted(letter_to_valids, key=lambda x: x[1])[::-1]
         found = False
         for letter in letters:#alphabet:#
+
             new_board = scribe(board, spot, letter)
+
             if new_board in seen:
+                # print("already seen")
                 continue
-            if not check_feasability(new_board):
+            check = check_feasability(new_board)
+            if not check:
                 continue
+            # found = True
+            # new_board = check
+            while check and new_board != check:
+                new_board = check
+                check = check_feasability(new_board)
+            if not check:
+                continue
+            new_board = check
+            # # check_board = new_board
+            # while check and new_board != check:
+            #     new_board = check
+            #     check = check_feasability(new_board)
+            # if not check:
+            #     return None
+            # new_board = check
             found = True
-            display(new_board)
+            #
             seen.add(new_board)
+            display(new_board)
             if check_done(new_board):
-                print("DONE")
+                # print("DONE")
                 return new_board
             result = letter_by_letter(new_board)
             if result:
-                return result
-        if not found:
-            return None
+                if len(str(result)) > 4:
+                    return result
+                elif in_same_row(result, spot):
+                    continue  #return None #
+                else:
+                    return result
+                    # return result
+        if not found:# or board[spot] == '-':
+            # print("YUCK")
+            return spot#letter_by_letter(board)
 
     return None
 
 
+def get_blank_spots(board):
+    result = [spot for spot, o in enumerate(board) if o == '-']
+    directions = [-1, 1, (width+2), -(width+2)]
+    to_sort = []
+    for blank in result:
+        count = 0
+        for direction in directions:
+            temp = blank + direction
+            while board[temp] != '#':
+                if board[temp] != '-':
+                    count += 1
+                temp += direction
+        to_sort.append((blank, count + random.random()))
+
+    to_return = sorted(to_sort, key=lambda x: x[1])
+
+    # random.shuffle(result)
+    return result# [x[0] for x in to_return][::1]#
+
+
+def in_same_row(spot1, spot2):
+    diff = spot1-spot2
+    if diff == 0:
+        return False
+        # print("AAAAA")
+    if diff % (width+2) == 0:
+        return True
+    else:
+        for row in range(1, height):
+            if row * (width+2) < spot1 < (row+1) * (width+2):
+                if row * (width + 2) < spot2 < (row + 1) * (width + 2):
+                    return True
+    return False
+
+
 def check_feasability(board):
     starts = find_word_starts(board)
-    count = 0
+    new_board = str(board)
     for index, direction in starts:
         conditions = find_conditions(board, index, direction)
-        search = re.search(conditions, all_words, re.I):
+        if conditions in conditions_dict.keys():
+            search = conditions_dict[conditions]
+        else:
+        # search = re.search(conditions, all_words, re.I)
+            search = search_lengths_list(conditions)
+            conditions_dict[conditions] = search
+        if len(search) == 1:
+            board = add_word(board, direction, index, search[0])
         if not search:
             return False
-        count += len(search)
-    return count
+        if not get_full_words(board):
+            return False
+    return board
+
+
+def get_full_words(board):
+    starts = find_word_starts(board)
+    words = set()
+    for index, direction in starts:
+        temp = index
+        word = ""
+        while board[temp] != '#':
+            if board[temp] == '-':
+                break
+            word += board[temp]
+            temp += direction
+        if board[temp] == '#':
+            if word in words:
+                return False
+            words.add(word)
+    return True
+
+
+def search_lengths_list(conditions):
+    length = int(conditions[conditions.index("{")+1:conditions.index("}")])
+    letters = conditions[conditions.index('b')+1:conditions.index(')')]
+    search = re.findall(conditions, len_all_words.get(length), re.I)
+    # if len(search) == 1:
+    #     print("YEYEE")
+    return search
 
 
 def check_done(board):
+    if not board:
+        return False
+    if len(str(board)) < 4:
+        return False
     if '-' in board:
         return False
     starts = find_word_starts(board)
@@ -195,11 +320,6 @@ def find_depth(board, spot):
     return (hor, vert)
 
 
-def get_blank_spots(board):
-    result = [spot for spot, o in enumerate(board) if o == '-']
-    # random.shuffle(result)
-    return result
-
 
 def remove_edges(board):
     result = ""
@@ -228,7 +348,7 @@ def find_solution(board):
 
     # print(bfs(temp_board, find_word_starts(board)))
 
-    # while '-' in temp_board:
+    # while '-' in temp_board:x
     #     temp_board = board
     #     starts = find_word_starts(temp_board)
     #     while
@@ -384,16 +504,17 @@ def find_conditions(board, start, direction):
     return format_conditions(conditions)
 
 
-# fills the board with the appropriate number of legal blocking squares
-# returns the board with blocking squares
-def fill_blocking_squares():
+def setup_blocking():
     global illegals
+    global best_board
+    best_board = (0, 10000)
     board = add_initial_words(initial_words)
-    display(board)
+    # display(board)
+    a = 5
     if num_blocked % 2 != 0 and width % 2 != 0 and height % 2 != 0:
-        board = scribe(board, ((int(height/2)+1)*int(width+2)+(int(width/2)+1)), '#')
+        board = scribe(board, ((int(height / 2) + 1) * int(width + 2) + (int(width / 2) + 1)), '#')
         board = propogate(board)
-    display(board)
+    # display(board)
     legs = []
     illegals = find_illegal_squares(board)
     # for il in illegals:
@@ -406,41 +527,231 @@ def fill_blocking_squares():
 
     legals = order_legal_spaces(board, legs)
 
-    total_ideal_blockers = num_blocked + (width*2) + (height*2) + 4
-    temp_board = board
+    total_ideal_blockers = num_blocked + (width * 2) + (height * 2) + 4
+    temp_board = str(board)
+
+    global full_start
+    full_start = time.perf_counter()
+
+    return fill_blocking_squares(board, legals, total_ideal_blockers)
+
+
+
+# fills the board with the appropriate number of legal blocking squares
+# returns the board with blocking squares
+def fill_blocking_squares(board, legals, total_ideal_blockers):
+    global best_board
+    # global illegals
+    # board = add_initial_words(initial_words)
+    # display(board)
+    # a = 5
+    # if num_blocked % 2 != 0 and width % 2 != 0 and height % 2 != 0:
+    #     board = scribe(board, ((int(height/2)+1)*int(width+2)+(int(width/2)+1)), '#')
+    #     board = propogate(board)
+    # # display(board)
+    # legs = []
+    # illegals = find_illegal_squares(board)
+    # # for il in illegals:
+    # #     board = scribe(board, il, '@')
+    # # display(board)
+    # for index, letter in enumerate(board):
+    #     if letter == '-':
+    #         if index not in illegals:
+    #             legs.append(index)
+    #
+    # legals = order_legal_spaces(board, legs)
+    #
+    # total_ideal_blockers = num_blocked + (width*2) + (height*2) + 4
+    temp_board = str(board)
+    # display(temp_board)
+    # for il in illegals:
+    #     temp_board = scribe(temp_board, il, '@')
+    # display(temp_board)
+    #
+    # new_board = fill_squares(board, legals, total_ideal_blockers)
+    # display(new_board)
+    # print(longest_in_board(board, legals))
+    # return new_board
+    # sorte = sort_next_blocks(temp_board, legals)
+    # print(sorte)
+
     while temp_board.count('#') != total_ideal_blockers or not legal(temp_board):
         temp_board = board
-        temp_legals = order_legal_spaces(board, legals)#list(legals)
+        temp_legals = order_legal_spaces(board, legals)#list(legals)#sort_next_blocks(board, legals)##list(legals)
 
         count = 0
 
-        while temp_board and temp_board.count('#') < total_ideal_blockers:
+        begin = time.perf_counter()
 
-            move = temp_legals[random.randint(0, count)]#[int(random.randint(0, count))]#
+        while temp_board and temp_board.count('#') < total_ideal_blockers:# and legal(board):
+
+            moves = sort_next_blocks(temp_board, legals)
+            if len(moves) > 0:
+                if len(moves) > 3:
+                    move = moves[random.randint(0, 2)]
+                else:
+                    move = moves[random.randint(0, len(moves)-1)]#temp_legals[random.randint(0, len(temp_legals)-1)]#
+            else:
+                break
+
+            # if abs(time.perf_counter() - begin) > .5:
+            #     break
+
             count += 1
             if rotate(move) in legals:
                 temp_board = scribe(temp_board, move, '#')
                 temp_board = scribe(temp_board, rotate(move), '#')
                 temp_board = propogate(temp_board)
-            a = 5
+            else:
+                move = moves[random.randint(0, len(moves) - 1)]
+                if rotate(move) in legals:
+                    temp_board = scribe(temp_board, move, '#')
+                    temp_board = scribe(temp_board, rotate(move), '#')
+                    temp_board = propogate(temp_board)
 
-    long = longest_in_board(temp_board, legs)
-    if long > max(width, height)*.9:
-        return fill_blocking_squares()
+            # display(temp_board)
+                # if longest_in_board_a(temp_board2, legals) < longest_in_board_a(temp_board, legals):
+                # temp_board = temp_board2
+            # print(longest_in_board(temp_board, legals))
+            # display(temp_board)
+            # a = 5
+
+    long = longest_in_board_a(temp_board, legals)
+
+    if abs(time.perf_counter()-full_start) > 7:
+        return best_board[0]
+
+    if long < best_board[1]:
+        best_board = (temp_board, long)
+
+    if long > 5:#max(width, height)/3:
+        return fill_blocking_squares(board, legals, total_ideal_blockers)
 
     if temp_board and legal(temp_board) and temp_board.count('#') == total_ideal_blockers:
+        # print(longest_in_board(temp_board, legals), width, height)
         return temp_board
     else:
-        return fill_blocking_squares()
+        return fill_blocking_squares(board, legals, total_ideal_blockers)
+
+
+seen_filled = set()
+
+
+def fill_squares(board, legals, ideal):
+    # if board in seen_filled:
+    #     print('seened')
+    #     return None
+    # else:
+    #     seen_filled.add(board)
+    if not board:
+        return None
+    print(longest_in_board(board, legals))
+    # display(board)
+    if is_done(board, ideal):
+        if num_blocked == 0:
+            return board
+        if longest_in_board(board, legals) <= min(width, height):
+            return board
+        return None
+
+    moves = sort_next_blocks(board, legals)
+    for move in moves:
+        if rotate(move) in legals:
+            temp_board = scribe(board, move, '#')
+            temp_board = scribe(temp_board, rotate(move), '#')
+            temp_board = propogate(temp_board)
+        else:
+            temp_board = None
+        if not temp_board:
+            continue
+        if temp_board in seen_filled:
+            continue
+        seen_filled.add(temp_board)
+        if temp_board.count('#') > ideal or not legal(temp_board):
+            continue
+        result = fill_squares(temp_board, legals, ideal)
+        if result:
+            return result
+    return None
+
+
+def is_done(board, ideal):
+    if not board:
+        return False
+    elif board.count('#') > ideal:
+        return False
+    elif board.count('#') < ideal:
+        return False
+    elif not legal(board):
+        return False
+    return True
+
+
+def sort_next_blocks(board, legals):
+    directions = [-1, 1, (width+2), -(width+2)]
+    values = []
+    for legal in legals:
+        if board[legal] == '#':
+            continue
+        count_h = 0
+        temp = legal
+        while board[temp] != '#':
+            temp += 1
+            count_h += 1
+        temp = legal-1
+        while board[temp] != '#':
+            temp -= 1
+            count_h += 1
+
+        count_v = 0
+        temp = legal
+        while board[temp] != '#':
+            temp += (width+2)
+            count_v += 1
+        temp = legal-(width+2)
+        while board[temp] != '#':
+            temp -= (width+2)
+            count_v += 1
+
+        ajs = 1
+        for direction in directions:
+            if board[legal + direction] == '#':
+                ajs += 1
+
+        values.append((legal, count_h + count_v - 3*ajs + random.random()))
+    values = sorted(values, key=lambda x: x[1])
+
+    return [x[0] for x in values][::-1]
+
+#  - D - - - # - - - # - - -
+#  - O - - - # - - - # - - -
+#  - G - - - # - - - - - - -
+#  # # # - - - - - # - - - -
+#  - - - - - - # - - - - - -
+#  - - - - # - - - - - # # #
+#  - - - - - - - # - - - - -
+#  - - - # - - - # - - - - -
+#  - - - # - - - # - - - - -
+#  1.169584241
 
 
 def longest_in_board(board, legals):
     longest = 0
-    for legal in legals:
-        long = longest_chunk(board, legal)
+    for move in range(0, len(board)-1):
+        long = longest_chunk(board, move)
         if long > longest:
             longest = long
     return longest
+
+
+def longest_in_board_a(board, legals):
+    longest = 0
+    moves = [x for x in range(0, len(board)) if board[x] != '#']
+    for legal in moves:
+        long = longest_chunk(board, legal)
+        # if long > longest:
+        longest += long
+    return longest/len(moves)
 
 
 def order_legal_spaces(board, legals):
@@ -614,7 +925,7 @@ def search_textfile(conditions):
 # returns the newly constructed board
 def add_initial_words(words):
     board = "#" * (width+2) + ("#" + "-"*width + "#")*height + "#" * (width+2)
-    display(board)
+    # display(board)
     for thing in words:
         index = (int(thing[1:thing.index('x')]) + 1) * (width + 2) + int(thing[thing.index('x')+1:re.search("\D+$", thing).start()]) + 1
         board = add_initial_word(board, thing[0].upper(), index, thing[re.search("\D+$", thing).start():])
@@ -672,10 +983,22 @@ def force_scribe(board, index, letter):
 # prints the board neatly to the console
 # returns nothing
 def display(board):
+    print(board.count('-'))
     if not board:
         print('yuck')
     for row in range(0, height+3):
         print(" ".join(list(board[row*(width+2):(row+1)*(width+2)])))
+
+
+def display_num(board):
+    print(board.count('-'))
+    if not board:
+        print('yuck')
+    for row in range(0, height + 2):
+        nums = ""
+        for x in range(row * (width + 2), (row + 1) * (width + 2)):
+            nums += ("  " if len(str(x)) == 1 else " ") + str(x)
+        print(" ".join(list(board[row * (width + 2):(row + 1) * (width + 2)])) + "\t" + nums)
 
 
 # runs the main function
