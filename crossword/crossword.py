@@ -9,6 +9,7 @@ import time
 
 # BLANK = "........................."
 letters = "ETAOINSRHDLUCMFYWGPBVKXQJZ"
+#          EAISRNTOLCDPUMGHBYFVWKXJZQ
 
 BAD = "#######DOOR##AAAA##BKKC##BYYK#######"
 BLANK = "#######----##----##----##----#######"
@@ -39,6 +40,7 @@ feas_dict = {}
 # I N T E R
 # A G R E E
 # L E A K S
+#137
 
 
 
@@ -62,7 +64,7 @@ def solve():
         dict_file = sys.argv[3]#"wordsC.txt"#
         initial_words = sys.argv[4:]
     else:
-        raw = "a " + '5x5 0 "dct20k.txt" "V0x4tyres"'
+        raw = "a " + '7x7 11 "dctEckel.txt"'
         inp = raw.replace('"', '').split(' ')
 
         height = int(inp[1][:inp[1].index("x")])
@@ -90,14 +92,17 @@ def solve():
 
     global letters
 
-    letters = "".join(get_freq_list(all_words))
+    if num_blocked != 0:
+        letters = "".join(get_freq_list(all_words))
+
+    # print(letters)
 
     board = setup_blocking()
     print("setup, now filling")
 
     starts = find_word_starts(board)
 
-    board = letter_by_letter(board)
+    # board = letter_by_letter(board)
     # while type(board) is None or int:
     #     # print('int')
     #
@@ -199,7 +204,7 @@ def letter_by_letter(board):
             found = True
             #
             seen.add(new_board)
-            # display(new_board)
+            display(new_board)
             if check_done(new_board):
                 # print("DONE")
                 return new_board
@@ -232,25 +237,28 @@ def letter_by_letter(board):
 def get_blank_spots(board):
     # for start in starts:
 
-    result = [spot for spot, o in enumerate(board) if o == '-'][::-1]
-    directions = [-1, 1, (width+2), -(width+2)]
-    to_sort = []
-    for blank in result:
-        count = 0
-        for direction in directions:
-            temp = blank + direction
-            while board[temp] != '#':
-                if board[temp] != '-':
-                    count += 1
-                # else:
-                #     count -= .5
-                temp += direction
-        to_sort.append((blank, count))# + random.random()))
+    result = [spot for spot, o in enumerate(board) if o == '-']
+    if num_blocked != 0:
+        result = result[::-1]
+        directions = [-1, 1, (width+2), -(width+2)]
+        to_sort = []
+        for blank in result:
+            count = 0
+            for direction in directions:
+                temp = blank + direction
+                while board[temp] != '#':
+                    if board[temp] != '-':
+                        count += 1
+                    # else:
+                    #     count -= .5
+                    temp += direction
+            to_sort.append((blank, count))# + random.random()))
 
-    to_return = sorted(to_sort, key=lambda x: x[1])
+        to_return = sorted(to_sort, key=lambda x: x[1])
+        result = [x[0] for x in to_return][::-1]
 
     # random.shuffle(result)
-    return [x[0] for x in to_return][::-1]#result#
+    return result
 
 
 def in_same_row(spot1, spot2):
@@ -305,37 +313,41 @@ def get_full_words(board):
     global starts
     # starts = find_word_starts(board)
     words = set()
+    # random.shuffle(starts)
     for index, direction in starts:
         temp = index
-        conditions = find_conditions(board, index, direction)
-        word = "".join([c for c in conditions if c.isupper()])
-        length = int(conditions[conditions.index("{") + 1:conditions.index("}")])
-        if len(word) == length:
-            if word in words:
-                return False
+        if num_blocked == 0:
+            conditions = find_conditions(board, index, direction)
+            word = "".join([c for c in conditions if c.isupper()])
+            length = int(conditions[conditions.index("{") + 1:conditions.index("}")])
+            if len(word) == length:
+                if word in words:
+                    return False
+                words.add(word)
+            else:
+                break
         else:
-            break
-        # word = ""
-        # while board[temp] != '#':
-        #     if board[temp] == '-':
-        #         break
-        #     word += board[temp]
-        #     temp += direction
-        # if board[temp] == '#':
-        #     if word in words:
-        #         return False
-        #     words.add(word)
+            word = ""
+            while board[temp] != '#':
+                if board[temp] == '-':
+                    break
+                word += board[temp]
+                temp += direction
+            if board[temp] == '#':
+                if word in words:
+                    return False
+                words.add(word)
     return True
 
 
 def search_lengths_list(conditions):
     length = int(conditions[conditions.index("{")+1:conditions.index("}")])
     # letters = conditions[conditions.index('b')+1:conditions.index(')')]
-    if (conditions, length) in search_dict.keys():
+    if conditions in search_dict.keys():
         search = search_dict[(conditions, length)]
     else:
         search = re.findall(conditions, len_all_words.get(length), re.I)
-        search_dict[(conditions, length)] = search
+        search_dict[conditions] = search
     # if len(search) == 1:
     #     print("YEYEE")
     return search
@@ -715,7 +727,7 @@ def fill_blocking_squares(board, legals, total_ideal_blockers):
     if long < best_board[1]:
         best_board = (temp_board, long)
 
-    if long > 5:#max(width, height)/3:
+    if long > 7:#max(width, height)/3:
         return fill_blocking_squares(board, legals, total_ideal_blockers)
 
     if temp_board and legal(temp_board) and temp_board.count('#') == total_ideal_blockers:
@@ -842,6 +854,8 @@ def longest_in_board_a(board, legals):
         long = longest_chunk(board, legal)
         # if long > longest:
         longest += long
+    if len(moves) == 0:
+        return 0
     return longest/len(moves)
 
 
