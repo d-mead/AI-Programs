@@ -14,6 +14,8 @@ BAD = "#######DOOR##AAAA##BKKC##BYYK#######"
 BLANK = "#######----##----##----##----#######"
 seen = set()
 conditions_dict = {}
+search_dict = {}
+feas_dict = {}
 ""# # # # # ## A S S E ## S A A D ## S A R D ## E D I - ## # # # # #"
 
 #  # # E E E E #
@@ -23,7 +25,22 @@ conditions_dict = {}
 #  # S O L E R A
 #  # I T U N E S
 #  # E S T S # #
-#  4.506103582000001
+# #  4.506103582000001
+#
+# A T L A S
+# I R I S H
+# D E N S E
+# E N D E D
+# S T A T S
+#
+
+# T R U S T
+# R A L L Y
+# I N T E R
+# A G R E E
+# L E A K S
+
+
 
 
 
@@ -36,7 +53,7 @@ def main():
 
 # main function under which the puzzle is solved
 def solve():
-    global height, width, num_blocked, dict_file, all_words, initial_words, len_all_words, very_begin
+    global height, width, num_blocked, dict_file, all_words, initial_words, len_all_words, very_begin, starts
     very_begin = time.perf_counter()
     if len(sys.argv) > 1:
         height = int(sys.argv[1][:sys.argv[1].index("x")])
@@ -45,7 +62,7 @@ def solve():
         dict_file = sys.argv[3]#"wordsC.txt"#
         initial_words = sys.argv[4:]
     else:
-        raw = "a " + '5x5 0 dct20k.txt "V3x1D"'
+        raw = "a " + '5x5 0 "dct20k.txt" "V0x4tyres"'
         inp = raw.replace('"', '').split(' ')
 
         height = int(inp[1][:inp[1].index("x")])
@@ -69,16 +86,28 @@ def solve():
 
     start = time.perf_counter()
 
+    # print(get_freq_list(all_words))
+
+    global letters
+
+    letters = "".join(get_freq_list(all_words))
+
     board = setup_blocking()
     print("setup, now filling")
 
+    starts = find_word_starts(board)
+
     board = letter_by_letter(board)
+    # while type(board) is None or int:
+    #     # print('int')
+    #
+    #     board = letter_by_letter(setup_blocking())
+
     print("done filling, now printing")
 
     display_edgeless(remove_edges(board))
 
-    print(time.perf_counter()-start)
-
+    # print(time.perf_counter()-start)
 
 
 def split_all_words(all_words):
@@ -94,12 +123,32 @@ def split_all_words(all_words):
 
 
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+def get_freq_list(all_words):
+    # global letters
+    letters = []
+    for letter in alphabet:
+        letters.append((letter, all_words.upper().count(letter)))
+    letters = sorted(letters, key=lambda x: x[1])
+    return [x[0] for x in letters][::-1]
+
+
+# B A R O N
+# E N E M Y
+# A N G E L
+# D I E G O
+# S E D A N
+
+
 
 def letter_by_letter(board):
+    if check_done(board):
+        # print("DONE")
+        return board
     # if board in seen:
     #     print("already seen 2")
     #     return None
-    for spot in get_blank_spots(board):
+    blanks = get_blank_spots(board)
+    for spot in blanks:
         # if board in seen:
         #     continue
     #     hor_d, vert_d = find_depth(board, spot)
@@ -127,7 +176,7 @@ def letter_by_letter(board):
             new_board = scribe(board, spot, letter)
 
             if new_board in seen:
-                # print("already seen")
+                print("already seen")
                 continue
             check = check_feasability(new_board)
             if not check:
@@ -150,28 +199,40 @@ def letter_by_letter(board):
             found = True
             #
             seen.add(new_board)
-            display(new_board)
+            # display(new_board)
             if check_done(new_board):
                 # print("DONE")
                 return new_board
             result = letter_by_letter(new_board)
             if result:
-                if len(str(result)) > 4:
+                if len(str(result)) > 5:
+                    # print(result, spot)
                     return result
-                elif in_same_row(result, spot):
-                    continue  #return None #
-                else:
+                elif not in_same_row(result, spot):
+                    # print(result, spot)
+                    if spot == blanks[0]:
+                        print('going none')
+                        break#return None
+                    print('going result')
                     return result
-                    # return result
-        if not found:# or board[spot] == '-':
+                # elif in_same_row(result, spot):
+                #     return None#continue#return None#
+                # else:
+                #     return result
+        if not found or board[spot] == '-':
             # print("YUCK")
-            return spot#letter_by_letter(board)
-
+            # print(spot)
+            # if spot != blanks[0]:
+            #     return spot#break#return None#
+            return None
+    print("end of func")
     return None
 
 
 def get_blank_spots(board):
-    result = [spot for spot, o in enumerate(board) if o == '-']
+    # for start in starts:
+
+    result = [spot for spot, o in enumerate(board) if o == '-'][::-1]
     directions = [-1, 1, (width+2), -(width+2)]
     to_sort = []
     for blank in result:
@@ -181,19 +242,21 @@ def get_blank_spots(board):
             while board[temp] != '#':
                 if board[temp] != '-':
                     count += 1
+                # else:
+                #     count -= .5
                 temp += direction
-        to_sort.append((blank, count + random.random()))
+        to_sort.append((blank, count))# + random.random()))
 
     to_return = sorted(to_sort, key=lambda x: x[1])
 
     # random.shuffle(result)
-    return result# [x[0] for x in to_return][::1]#
+    return [x[0] for x in to_return][::-1]#result#
 
 
 def in_same_row(spot1, spot2):
     diff = spot1-spot2
-    if diff == 0:
-        return False
+    # if diff == 0:
+    #     return False
         # print("AAAAA")
     if diff % (width+2) == 0:
         return True
@@ -206,7 +269,9 @@ def in_same_row(spot1, spot2):
 
 
 def check_feasability(board):
-    starts = find_word_starts(board)
+    global starts
+    # if board in feas_dict.keys():
+    #     return feas_dict[board]
     new_board = str(board)
     for index, direction in starts:
         conditions = find_conditions(board, index, direction)
@@ -219,34 +284,58 @@ def check_feasability(board):
         if len(search) == 1:
             board = add_word(board, direction, index, search[0])
         if not search:
+            # feas_dict[board] = False
             return False
+        # if len(search) < 3:
+        #     found = False
+        #     for word in search:
+        #         nb = add_word(board, direction, index, word)
+        #         if check_feasability(nb):
+        #             found = True
+        #     if not found:
+        #         return False
         if not get_full_words(board):
+            # feas_dict[board] = False
             return False
+    # feas_dict[board] = new_board
     return board
 
 
 def get_full_words(board):
-    starts = find_word_starts(board)
+    global starts
+    # starts = find_word_starts(board)
     words = set()
     for index, direction in starts:
         temp = index
-        word = ""
-        while board[temp] != '#':
-            if board[temp] == '-':
-                break
-            word += board[temp]
-            temp += direction
-        if board[temp] == '#':
+        conditions = find_conditions(board, index, direction)
+        word = "".join([c for c in conditions if c.isupper()])
+        length = int(conditions[conditions.index("{") + 1:conditions.index("}")])
+        if len(word) == length:
             if word in words:
                 return False
-            words.add(word)
+        else:
+            break
+        # word = ""
+        # while board[temp] != '#':
+        #     if board[temp] == '-':
+        #         break
+        #     word += board[temp]
+        #     temp += direction
+        # if board[temp] == '#':
+        #     if word in words:
+        #         return False
+        #     words.add(word)
     return True
 
 
 def search_lengths_list(conditions):
     length = int(conditions[conditions.index("{")+1:conditions.index("}")])
-    letters = conditions[conditions.index('b')+1:conditions.index(')')]
-    search = re.findall(conditions, len_all_words.get(length), re.I)
+    # letters = conditions[conditions.index('b')+1:conditions.index(')')]
+    if (conditions, length) in search_dict.keys():
+        search = search_dict[(conditions, length)]
+    else:
+        search = re.findall(conditions, len_all_words.get(length), re.I)
+        search_dict[(conditions, length)] = search
     # if len(search) == 1:
     #     print("YEYEE")
     return search
@@ -259,7 +348,8 @@ def check_done(board):
         return False
     if '-' in board:
         return False
-    starts = find_word_starts(board)
+    global starts
+    # starts = find_word_starts(board)
     for start, direction in starts:
         temp = start
         while board[temp] != '#':
@@ -334,8 +424,8 @@ def display_edgeless(board):
 
 
 def find_solution(board):
-
-    starts = find_word_starts(board)
+    global starts
+    # starts = find_word_starts(board)
     print(starts)
     conditions = []
     # for index, direction in starts:
@@ -439,7 +529,8 @@ def bfs(board, starts):
 
 
 def check_starts(board):
-    starts = find_word_starts(board)
+    global starts
+    # starts = find_word_starts(board)
     for index, direction in starts:
         conditions = find_conditions(board, index, direction)
         if not conditions:
