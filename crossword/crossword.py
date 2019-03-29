@@ -15,6 +15,7 @@ BAD = "#######DOOR##AAAA##BKKC##BYYK#######"
 BLANK = "#######----##----##----##----#######"
 seen = set()
 conditions_dict = {}
+conds_dict = {}
 search_dict = {}
 feas_dict = {}
 ""# # # # # ## A S S E ## S A A D ## S A R D ## E D I - ## # # # # #"
@@ -64,7 +65,7 @@ def solve():
         dict_file = sys.argv[3]#"wordsC.txt"#
         initial_words = sys.argv[4:]
     else:
-        raw = "a " + '7x7 11 "dctEckel.txt"'
+        raw = "a " + '5x5 0 "dct20k.txt" "V0x2organ"'
         inp = raw.replace('"', '').split(' ')
 
         height = int(inp[1][:inp[1].index("x")])
@@ -102,7 +103,7 @@ def solve():
 
     starts = find_word_starts(board)
 
-    # board = letter_by_letter(board)
+    board = letter_by_letter(board)
     # while type(board) is None or int:
     #     # print('int')
     #
@@ -112,7 +113,30 @@ def solve():
 
     display_edgeless(remove_edges(board))
 
-    # print(time.perf_counter()-start)
+    print(time.perf_counter()-start)
+
+    # print(conditions_dict)
+
+# F L O A T
+# E A R L Y
+# A N G E R
+# S C A R E
+# T E N T S
+
+# S H O T S
+# T E R R E
+# A N G I E
+# T R A C K
+# S I N K S
+# 88.353014072
+
+
+# G R E A T
+# H O L L Y
+# O U T E R
+# S T O R E
+# T E N T S
+
 
 
 def split_all_words(all_words):
@@ -146,9 +170,16 @@ def get_freq_list(all_words):
 
 
 def letter_by_letter(board):
-    if check_done(board):
-        # print("DONE")
-        return board
+    # if check_done(board):
+    #     # print("DONE")
+    #     return board
+    # check = check_feasability(board)
+    # while check and board != check:
+    #     board = check
+    #     check = check_feasability(board)
+    # if not check:
+    #     return None
+    # board = check
     # if board in seen:
     #     print("already seen 2")
     #     return None
@@ -186,6 +217,10 @@ def letter_by_letter(board):
             check = check_feasability(new_board)
             if not check:
                 continue
+            # check = check_feasability(check)
+            # if not check:
+            #     continue
+            # new_board = check
             # found = True
             # new_board = check
             while check and new_board != check:
@@ -193,14 +228,14 @@ def letter_by_letter(board):
                 check = check_feasability(new_board)
             if not check:
                 continue
-            new_board = check
-            # # check_board = new_board
+            # new_board = check
+            # check_board = new_board
             # while check and new_board != check:
             #     new_board = check
             #     check = check_feasability(new_board)
             # if not check:
             #     return None
-            # new_board = check
+            new_board = check
             found = True
             #
             seen.add(new_board)
@@ -216,9 +251,9 @@ def letter_by_letter(board):
                 elif not in_same_row(result, spot):
                     # print(result, spot)
                     if spot == blanks[0]:
-                        print('going none')
+                        # print('going none')
                         break#return None
-                    print('going result')
+                    # print('going result')
                     return result
                 # elif in_same_row(result, spot):
                 #     return None#continue#return None#
@@ -260,6 +295,12 @@ def get_blank_spots(board):
     # random.shuffle(result)
     return result
 
+# C H A R S
+# R E S E T
+# U N I T E
+# S C A R E
+# T E N O R
+
 
 def in_same_row(spot1, spot2):
     diff = spot1-spot2
@@ -276,23 +317,45 @@ def in_same_row(spot1, spot2):
     return False
 
 
-def check_feasability(board):
-    global starts
-    # if board in feas_dict.keys():
-    #     return feas_dict[board]
-    new_board = str(board)
-    for index, direction in starts:
-        conditions = find_conditions(board, index, direction)
+def check_feasability_spot(board, spot):
+    hor, vert = get_conditions_for_spot(board, spot)
+    conds = [hor, vert]
+    for conditions, index, direction in conds:
         if conditions in conditions_dict.keys():
             search = conditions_dict[conditions]
         else:
-        # search = re.search(conditions, all_words, re.I)
+            # if not re.search(conditions, all_words, re.I):
+            #     return False
+            if '{' not in conditions:
+                conditions = format_conditions(conditions)
             search = search_lengths_list(conditions)
             conditions_dict[conditions] = search
         if len(search) == 1:
             board = add_word(board, direction, index, search[0])
         if not search:
             # feas_dict[board] = False
+            return False
+    return board
+
+
+def check_feasability(board):
+    global starts
+    if board in feas_dict.keys():
+        return feas_dict[board]
+    new_board = str(board)
+    for index, direction in starts:
+        conditions = find_conditions(new_board, index, direction)
+        if conditions in conditions_dict.keys():
+            search = conditions_dict[conditions]
+        else:
+            # if not re.search(conditions, all_words, re.I):
+            #     return False
+            search = search_lengths_list(conditions)
+            conditions_dict[conditions] = search
+        if len(search) == 1:
+            new_board = add_word(new_board, direction, index, search[0])
+        if not search:
+            feas_dict[board] = False
             return False
         # if len(search) < 3:
         #     found = False
@@ -302,11 +365,11 @@ def check_feasability(board):
         #             found = True
         #     if not found:
         #         return False
-        if not get_full_words(board):
-            # feas_dict[board] = False
+        if not get_full_words(new_board):
+            feas_dict[board] = False
             return False
-    # feas_dict[board] = new_board
-    return board
+    feas_dict[board] = new_board
+    return new_board
 
 
 def get_full_words(board):
@@ -344,7 +407,7 @@ def search_lengths_list(conditions):
     length = int(conditions[conditions.index("{")+1:conditions.index("}")])
     # letters = conditions[conditions.index('b')+1:conditions.index(')')]
     if conditions in search_dict.keys():
-        search = search_dict[(conditions, length)]
+        search = search_dict[conditions]
     else:
         search = re.findall(conditions, len_all_words.get(length), re.I)
         search_dict[conditions] = search
@@ -391,13 +454,13 @@ def get_conditions_for_spot(board, spot):
         temp_spot += direction
     vert = find_conditions(board, temp_spot-direction, -direction)
 
-    direction = -1
-    temp_spot = spot + direction
-    while board[temp_spot] != '#':
-        temp_spot += direction
-    hor = find_conditions(board, temp_spot-direction, -direction)
+    direction_v = -1
+    temp_spot_v = spot + direction_v
+    while board[temp_spot_v] != '#':
+        temp_spot_v += direction_v
+    hor = find_conditions(board, temp_spot_v-direction_v, -direction_v)
 
-    return hor, vert
+    return (hor, temp_spot-direction, -direction), (vert, temp_spot_v-direction_v, -direction_v)
 
 
 # finds how deep it each word the letter is
@@ -597,14 +660,20 @@ def format_conditions(conditions):
 # finds the regex expression to find a word starting at a certain point
 # returns the formatted expression
 def find_conditions(board, start, direction):
+    if (board, start, direction) in conds_dict.keys():
+        return conds_dict[(board, start, direction)]
     position = start + direction
     conditions = board[start]
     while board[position] != '#':
         conditions += board[position]
         position += direction
+
+    formatted = format_conditions(conditions)
+
+    conds_dict[(board, start, direction)] = formatted
     # print(conditions)
     # print(format_conditions(conditions))
-    return format_conditions(conditions)
+    return formatted
 
 
 def setup_blocking():
@@ -706,11 +775,13 @@ def fill_blocking_squares(board, legals, total_ideal_blockers):
                 temp_board = scribe(temp_board, rotate(move), '#')
                 temp_board = propogate(temp_board)
             else:
-                move = moves[random.randint(0, len(moves) - 1)]
+                while rotate(move) not in legals:
+                    move = moves[random.randint(0, len(moves) - 1)]
                 if rotate(move) in legals:
                     temp_board = scribe(temp_board, move, '#')
                     temp_board = scribe(temp_board, rotate(move), '#')
                     temp_board = propogate(temp_board)
+            # a = 5
 
             # display(temp_board)
                 # if longest_in_board_a(temp_board2, legals) < longest_in_board_a(temp_board, legals):
@@ -820,8 +891,10 @@ def sort_next_blocks(board, legals):
         for direction in directions:
             if board[legal + direction] == '#':
                 ajs += 1
-
-        values.append((legal, count_h + count_v - 3*ajs + random.random()))
+        if num_blocked > 20:
+            values.append((legal, count_h + count_v - 3*ajs + random.random()))
+        else:
+            values.append((legal, count_h + count_v + random.random()))
     values = sorted(values, key=lambda x: x[1])
 
     return [x[0] for x in values][::-1]
