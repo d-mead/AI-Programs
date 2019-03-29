@@ -217,24 +217,17 @@ def letter_by_letter(board):
             check = check_feasability(new_board)
             if not check:
                 continue
-            # check = check_feasability(check)
-            # if not check:
-            #     continue
-            # new_board = check
-            # found = True
-            # new_board = check
-            while check and new_board != check:
-                new_board = check
-                check = check_feasability(new_board)
-            if not check:
-                continue
-            # new_board = check
-            # check_board = new_board
-            # while check and new_board != check:
-            #     new_board = check
-            #     check = check_feasability(new_board)
-            # if not check:
-            #     return None
+            if width == 5 and height == 5:
+                check = check_feasability(check)
+                if not check:
+                    continue
+                #
+            else:
+                while check and new_board != check:
+                    new_board = check
+                    check = check_feasability(new_board)
+                if not check:
+                    continue
             new_board = check
             found = True
             #
