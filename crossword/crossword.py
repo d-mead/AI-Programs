@@ -6,6 +6,10 @@ import re
 from collections import deque
 import random
 import time
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import colors
+from matplotlib.ticker import PercentFormatter
 
 # BLANK = "........................."
 letters = "ETAOINSRHDLUCMFYWGPBVKXQJZ"
@@ -18,6 +22,9 @@ conditions_dict = {}
 conds_dict = {}
 search_dict = {}
 feas_dict = {}
+
+spot_freq_dict = {}
+spot_list = []
 ""# # # # # ## A S S E ## S A A D ## S A R D ## E D I - ## # # # # #"
 
 #  # # E E E E #
@@ -44,14 +51,41 @@ feas_dict = {}
 #137
 
 
-
-
-
-
 # executes
 def main():
     sys.setrecursionlimit(500000)
     solve()
+    print(spot_freq_dict)
+    # print(spot_list)
+
+    # spot_list = [16, 17, 18, 31, 32, 33, 46, 47, 48, 63, 64, 65, 66, 79, 80, 76, 94, 95, 91, 92, 109, 109, 91, 92, 109, 109, 91, 109, 91, 109, 91, 109, 95, 110, 20, 91, 92, 106, 107, 111, 121, 121, 122, 106, 121, 122, 122, 107, 121, 122, 122, 121, 122, 122, 122, 107, 91, 92, 122, 137, 21, 22, 23, 36, 37, 52, 38, 53, 69, 84, 70, 71, 72, 85, 86, 86, 86, 87, 25, 26, 28, 41, 41, 28, 41, 43, 26, 28, 40, 40, 41, 26, 28, 41, 28, 26, 28, 41, 26, 28, 41, 28, 41, 26, 28, 41, 87, 100, 101, 25, 27, 40, 27, 28, 28, 97, 127, 128, 142, 143, 141, 117, 118, 132, 133, 147, 148]
+
+    fig, axs = plt.subplots(1, 1, figsize=(7*(width/height), 7*(height/width)), sharex=True, sharey=True,
+                            tight_layout=True)
+
+    x, y = spot_to_xy(spot_list)
+
+    # We can increase the number of bins on each axis
+    # axs[0].hist2d(x, y, bins=40)
+
+    # As well as define normalization of the colors
+    plt.hist2d(x, y, bins=(width+2, height+2), cmap = 'PuBu_r')#, norm=colors.LogNorm(),
+    plt.colorbar()
+
+    # We can also define custom numbers of bins for each axis
+    # axs[2].hist2d(x, y, bins=(80, 10), norm=colors.LogNorm())
+
+    plt.show()
+
+
+def spot_to_xy(spots):
+    x = []
+    y = []
+    for index in spots:
+        x.append(index % (width+2))
+        y.append(height- int(index/(width+2)))
+    return x, y
+
 
 
 # main function under which the puzzle is solved
@@ -65,7 +99,7 @@ def solve():
         dict_file = sys.argv[3]#"wordsC.txt"#
         initial_words = sys.argv[4:]
     else:
-        raw = "a " + '5x5 0 "dct20k.txt" "V0x2organ"'
+        raw = "a " + '5x5 0 "dct20k.txt" "V3x0S"'#9x13 19 "dctEckel.txt" "v2x3#" "v1x8#" "h3x1#" "v4x5##"'#
         inp = raw.replace('"', '').split(' ')
 
         height = int(inp[1][:inp[1].index("x")])
@@ -103,6 +137,8 @@ def solve():
 
     starts = find_word_starts(board)
 
+    spot_list = []
+
     board = letter_by_letter(board)
     # while type(board) is None or int:
     #     # print('int')
@@ -138,7 +174,6 @@ def solve():
 # T E N T S
 
 
-
 def split_all_words(all_words):
     len_to_words = dict()
     a_words = all_words.split('\n')
@@ -168,7 +203,6 @@ def get_freq_list(all_words):
 # S E D A N
 
 
-
 def letter_by_letter(board):
     # if check_done(board):
     #     # print("DONE")
@@ -185,6 +219,7 @@ def letter_by_letter(board):
     #     return None
     blanks = get_blank_spots(board)
     for spot in blanks:
+
         # if board in seen:
         #     continue
     #     hor_d, vert_d = find_depth(board, spot)
@@ -210,6 +245,7 @@ def letter_by_letter(board):
         for letter in letters:#alphabet:#
 
             new_board = scribe(board, spot, letter)
+            spot_freq(spot)
 
             if new_board in seen:
                 print("already seen")
@@ -217,7 +253,7 @@ def letter_by_letter(board):
             check = check_feasability(new_board)
             if not check:
                 continue
-            if width == 5 and height == 5:
+            if width == 500 and height == 5:
                 check = check_feasability(check)
                 if not check:
                     continue
@@ -257,9 +293,17 @@ def letter_by_letter(board):
             # print(spot)
             # if spot != blanks[0]:
             #     return spot#break#return None#
-            return None
+            return spot
     print("end of func")
     return None
+
+
+def spot_freq(spot):
+    # if spot in spot_freq_dict.keys():
+    #     spot_freq_dict[spot] = 1 + spot_freq_dict.get(spot)
+    # else:
+    #     spot_freq_dict[spot] = 1
+    spot_list.append(spot)
 
 
 def get_blank_spots(board):
@@ -1110,6 +1154,7 @@ def add_word(board, add_to_shift, location, word):
 
     for letter in word:
         board = force_scribe(board, location, letter)
+        # spot_freq(location)
         location += add_to_shift
 
     return board
@@ -1143,7 +1188,9 @@ def rotate(index):
 # returns the new board
 def scribe(board, index, letter):
     # if board[index] in "#-":
+    spot_freq(index)
     return board[:index] + letter + board[index+1:]
+
     # return False
 
 
